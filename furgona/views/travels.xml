@@ -40,7 +40,7 @@
                                  type="action"
                                  string="Change furgona"
                                  class="oe_highlight"
-                                 context="{'travel_context': active_id, 'furgona_context': furgona}"
+                                
                          />
                     </group></sheet>
                 </form>

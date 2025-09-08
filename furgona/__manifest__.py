@@ -26,8 +26,8 @@ Long description of module's purpose
         'views/views.xml',
         'views/templates.xml',
 'views/travels.xml',
-        'demo/demo.xml',
-        'views/crons.xml'
+        'demo/demo.xml'
+        
     ],
     # only loaded in demonstration mode
     'demo': [

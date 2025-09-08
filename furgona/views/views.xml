@@ -46,8 +46,8 @@
         </record>
 
 
-        <record model="ir.ui.view" id="furgona.paquet_tree_inherit">
-            <field name="name">paquet tree inherit</field>
+        <record model="ir.ui.view" id="furgona.paquet_list_inherit">
+            <field name="name">paquet list inherit</field>
             <field name="model">sale.order.line</field>
             <field name="inherit_id" ref="sale.view_order_line_tree"></field>
             <field name="arch" type="xml">
@@ -59,7 +59,7 @@
         </record>
 
         <record model="ir.ui.view" id="furgona.paquet_sale_order_inherit">
-            <field name="name">paquet tree inherit</field>
+            <field name="name">paquet list inherit</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"></field>
             <field name="arch" type="xml">
@@ -111,21 +111,21 @@
         <record model="ir.actions.act_window" id="furgona.action_furgona_window">
             <field name="name">furgona window</field>
             <field name="res_model">furgona.furgona</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">kanban,list,form</field>
         </record>
         <record model="ir.actions.act_window" id="furgona.action_paquet_window">
             <field name="name">furgona paquet window</field>
             <field name="res_model">sale.order.line</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{'default_is_paquet': True, 'search_default_is_paquet': 1}</field>
                <field name="view_ids" eval="[(5, 0, 0),
-                     (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.view_order_line_tree')}),
+                     (0, 0, {'view_mode': 'list', 'view_id': ref('sale.view_order_line_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('furgona.furgona_paquet_form')}),]" />
         </record>
         <record model="ir.actions.act_window" id="furgona.action_travel_window">
             <field name="name">furgona travel window</field>
             <field name="res_model">furgona.travel</field>
-            <field name="view_mode">tree,form,calendar</field>
+            <field name="view_mode">list,form,calendar</field>
         </record>
 
 
@@ -138,7 +138,7 @@
               <field name="code">
                 action = {
                   "type": "ir.actions.act_window",
-                  "view_mode": "tree,form",
+                  "view_mode": "list,form",
                   "res_model": model._name,
                 }
               </field>
