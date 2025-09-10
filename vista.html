@@ -29,10 +29,10 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -416,18 +416,18 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#formularis-dinamics">Formularis dinàmics</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-kanban">Vistes Kanban</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imatges-en-els-kanbans">Imatges en els Kanbans</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-search">Vistes search</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadors-per-als-domains">Operadors per als domains:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-kanban">Vistes Kanban</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imatges-en-els-kanbans">Imatges en els Kanbans</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-calendar">Vistes Calendar</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-graph">Vistes Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-search">Vistes search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadors-per-als-domains">Operadors per als domains:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-calendar">Vistes Calendar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-graph">Vistes Graph</a></li>
 </ul>
             </nav>
         </div>
@@ -843,7 +843,6 @@ crear nous. Accepta arguments per evitar les opcions de crear:</p></li>
 <li><p><strong>widget=”many2onebutton”</strong>: Crea un simple botó que indica si
 està assignat. Si polses s’obri el formulari.</p></li>
 </ul>
-<p><img alt="" src="Many2onebutton.png" /></p>
 </section>
 <section id="many2many">
 <h4>Many2Many<a class="headerlink" href="#many2many" title="Link to this heading">#</a></h4>
@@ -852,13 +851,7 @@ està assignat. Si polses s’obri el formulari.</p></li>
 esborrar o afegir nous.</p></li>
 <li><p><strong>widget=”many2many_tags”</strong>: Llista amb etiquetes com en els
 filtres</p></li>
-</ul>
-<p><img alt="" src="Many2many_tags.png" /></p>
-<ul class="simple">
 <li><p><strong>widget=”many2many_checkboxes”</strong>: Llista de checkboxes.</p></li>
-</ul>
-<p><img alt="" src="Many2many_checkboxes.png" /></p>
-<ul class="simple">
 <li><p><strong>widget=”many2many_kanban”</strong>: Mostra un kanban dels que té
 associats, necessita que la vista kanban estiga definida.</p></li>
 <li><p><strong>widget=”x2many_counter”</strong>: Mostra sols la quantitat.</p></li>
@@ -925,18 +918,16 @@ imatges.</p>
 <h4>Binary o Image<a class="headerlink" href="#binary-o-image" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>signature</strong>: Permet signar dirènctament en la pantalla</p></li>
-</ul>
-<ul class="simple">
 <li><p><strong>image</strong>: A banda del que es pot ficar en el field de max_width o
 max_height, al widget es pot afegir opcions com:</p></li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options=&quot;{&amp;quot;zoom&amp;quot;: true, &amp;quot;preview_image&amp;quot;: &amp;quot;image_128&amp;quot;}
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">options</span><span class="o">=</span><span class="s2">&quot;{&amp;quot;zoom&amp;quot;: true, &amp;quot;preview_image&amp;quot;: &amp;quot;image_128&amp;quot;}</span>
 </pre></div>
 </div>
 </section>
 <section id="selection">
 <h4>Selection<a class="headerlink" href="#selection" title="Link to this heading">#</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>       &lt;field name=&quot;state&quot; decoration-success=&quot;state == &#39;sale&#39; or state == &#39;done&#39;&quot; decoration-info=&quot;state == &#39;draft&#39; or state == &#39;sent&#39;&quot; widget=&quot;badge&quot; optional=&quot;show&quot;/&gt;
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">           </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="w"> </span><span class="na">decoration-success=</span><span class="s">&quot;state == &#39;sale&#39; or state == &#39;done&#39;&quot;</span><span class="w"> </span><span class="na">decoration-info=</span><span class="s">&quot;state == &#39;draft&#39; or state == &#39;sent&#39;&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;badge&quot;</span><span class="w"> </span><span class="na">optional=</span><span class="s">&quot;show&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -1008,8 +999,7 @@ Els buttons poden tindre també <a class="reference internal" href="#Odoo#Contex
 per enviar alguna cosa extra al servidor.</p>
 <p><strong>Smart Buttons</strong>
 <a class="reference external" href="https://www.slideshare.net/openobject/odoo-smart-buttons">2</a></p>
-<p>En el formulari dels client, podem veure aquests botons:</p>
-<p><img alt="" src="Smartbutton.png" /></p>
+<p>En el formulari dels client, podem veure aquests botons.</p>
 <p>Es tracta de botons que, amés d’executar-se, mostren una informació
 resumida i una icona. El text i la forma del botó es modifica
 dinàmicament en funció d’alguns criteris i això li dona més comoditat a
@@ -1094,8 +1084,9 @@ cal afegir:</p>
 </div>
 </section>
 </section>
+</section>
 <section id="vistes-kanban">
-<h3>Vistes Kanban<a class="headerlink" href="#vistes-kanban" title="Link to this heading">#</a></h3>
+<h2>Vistes Kanban<a class="headerlink" href="#vistes-kanban" title="Link to this heading">#</a></h2>
 <p>Les vistes kanban són per a mostrar el model en forma de ‘cartes’. Les
 vistes kanban se declaren amb una mescla de xml, html i plantilles
 <strong>Qweb</strong>.</p>
@@ -1266,12 +1257,12 @@ identificador extern d’una vista form en <strong>quick_create_view</strong>. A
 </pre></div>
 </div>
 <section id="imatges-en-els-kanbans">
-<h4>Imatges en els Kanbans<a class="headerlink" href="#imatges-en-els-kanbans" title="Link to this heading">#</a></h4>
+<h3>Imatges en els Kanbans<a class="headerlink" href="#imatges-en-els-kanbans" title="Link to this heading">#</a></h3>
 <p>En molts llocs trobarem la funció <code class="docutils literal notranslate"><span class="pre">kanban_image</span></code>. És la manera correcta de fer-ho en Qweb. Necessita posar el camp <code class="docutils literal notranslate"><span class="pre">id</span></code> el principi. però també es pot utilitzar dirèctament el <code class="docutils literal notranslate"><span class="pre">widget=&quot;image&quot;</span></code> com en els forms.</p>
 </section>
 </section>
 <section id="vistes-search">
-<h3>Vistes search<a class="headerlink" href="#vistes-search" title="Link to this heading">#</a></h3>
+<h2>Vistes search<a class="headerlink" href="#vistes-search" title="Link to this heading">#</a></h2>
 <p>Les vistes search tenen 3 tipus:</p>
 <ul class="simple">
 <li><p><strong>field</strong> que permeten buscar en un determinat camp.</p></li>
@@ -1318,7 +1309,7 @@ Per exemple:</p>
 <p>Els filtres sols poden comparar un field amb un valor específic. Així que si volem comparar dos fields cal fer una funció.</p>
 </div>
 <section id="operadors-per-als-domains">
-<h4>Operadors per als domains:<a class="headerlink" href="#operadors-per-als-domains" title="Link to this heading">#</a></h4>
+<h3>Operadors per als domains:<a class="headerlink" href="#operadors-per-als-domains" title="Link to this heading">#</a></h3>
 <p>‘like’: [(‘input’, ‘like’, ‘open’)] - Returns case sensitive
 (wildcards - ‘%open%’) search.</p>
 <p>O/p: open, opensource, openerp, Odooopenerp</p>
@@ -1389,7 +1380,7 @@ true.</p>
 </section>
 </section>
 <section id="vistes-calendar">
-<h3>Vistes Calendar<a class="headerlink" href="#vistes-calendar" title="Link to this heading">#</a></h3>
+<h2>Vistes Calendar<a class="headerlink" href="#vistes-calendar" title="Link to this heading">#</a></h2>
 <p>Si el recurs té un camp date o datetime. Permet editar els recursos
 ordenats per temps. L’exemple són els esdeveniments del mòdul de ventes.</p>
 <ul class="simple">
@@ -1423,7 +1414,7 @@ vista. Valors possibles: day, week, month. Per defecte, month.</p></li>
 </div>
 </section>
 <section id="vistes-graph">
-<h3>Vistes Graph<a class="headerlink" href="#vistes-graph" title="Link to this heading">#</a></h3>
+<h2>Vistes Graph<a class="headerlink" href="#vistes-graph" title="Link to this heading">#</a></h2>
 <p>En general s’utilitza per a veure agregacions sobre les dades a
 mostrar. Accepta els següents atributs:</p>
 <ul class="simple">
@@ -1465,7 +1456,6 @@ dades en sí que es van a agregar.</p></li>
 <p class="admonition-title">Tip</p>
 <p>Les vistes graph en Odoo són molt limitades, sols accepten un element en les X i necessiten que els camps estiguen guardats en la base de dades</p>
 </div>
-</section>
 </section>
 </section>
 
@@ -1563,18 +1553,18 @@ dades en sí que es van a agregar.</p></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#formularis-dinamics">Formularis dinàmics</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-kanban">Vistes Kanban</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imatges-en-els-kanbans">Imatges en els Kanbans</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-search">Vistes search</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadors-per-als-domains">Operadors per als domains:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-kanban">Vistes Kanban</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imatges-en-els-kanbans">Imatges en els Kanbans</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-calendar">Vistes Calendar</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-graph">Vistes Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-search">Vistes search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadors-per-als-domains">Operadors per als domains:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-calendar">Vistes Calendar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-graph">Vistes Graph</a></li>
 </ul>
   </nav></div>
 

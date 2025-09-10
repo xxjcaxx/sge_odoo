@@ -445,21 +445,13 @@ date_begin = fields.Datetime( string='Start Date')
 -   **widget=\"many2onebutton\"**: Crea un simple botó que indica si
     està assignat. Si polses s\'obri el formulari.
 
-![](Many2onebutton.png "Many2onebutton.png")
-
 #### Many2Many
 
 -   **widget=\"many2many\"**: Per defecte, crea una llista amb opció de
     esborrar o afegir nous.
 -   **widget=\"many2many_tags\"**: Llista amb etiquetes com en els
     filtres
-
-![](Many2many_tags.png "Many2many_tags.png")
-
 -   **widget=\"many2many_checkboxes\"**: Llista de checkboxes.
-
-![](Many2many_checkboxes.png "Many2many_checkboxes.png")
-
 -   **widget=\"many2many_kanban\"**: Mostra un kanban dels que té
     associats, necessita que la vista kanban estiga definida.
 -   **widget=\"x2many_counter\"**: Mostra sols la quantitat.
@@ -527,22 +519,16 @@ imatges.
 #### Binary o Image 
 
 -   **signature**: Permet signar dirènctament en la pantalla
-
-```{=html}
-<!-- -->
-```
 -   **image**: A banda del que es pot ficar en el field de max_width o
     max_height, al widget es pot afegir opcions com:
 
-```{=html}
-<!-- -->
-```
+```python
     options="{&quot;zoom&quot;: true, &quot;preview_image&quot;: &quot;image_128&quot;}
-
+```
 #### Selection
-
+```xml
            <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
-
+```
 #### Fields dels trees 
 
 -   **handle**: Per a ordenar a ma. Cal que aquest camp siga el criteri
@@ -624,9 +610,7 @@ per enviar alguna cosa extra al servidor.
 **Smart Buttons**
 [2](https://www.slideshare.net/openobject/odoo-smart-buttons)
 
-En el formulari dels client, podem veure aquests botons:
-
-![](Smartbutton.png "Smartbutton.png")
+En el formulari dels client, podem veure aquests botons.
 
 Es tracta de botons que, amés d\'executar-se, mostren una informació
 resumida i una icona. El text i la forma del botó es modifica
@@ -731,7 +715,7 @@ cal afegir:
 ```
 
 
-### Vistes Kanban
+## Vistes Kanban
 
 Les vistes kanban són per a mostrar el model en forma de \'cartes\'. Les
 vistes kanban se declaren amb una mescla de xml, html i plantilles
@@ -910,7 +894,7 @@ identificador extern d\'una vista form en **quick_create_view**. Aquest
 En molts llocs trobarem la funció `kanban_image`. És la manera correcta de fer-ho en Qweb. Necessita posar el camp `id` el principi. però també es pot utilitzar dirèctament el `widget="image"` com en els forms. 
 
 
-### Vistes search 
+## Vistes search 
 
 Les vistes search tenen 3 tipus:
 
@@ -1064,7 +1048,7 @@ En aquest exemple, filtra amb en **search_default_XXXX** que activa el
 filtre XXXX i, amés, fa que en els formularis tiguen un camp boolean a
 true.
 
-### Vistes Calendar
+## Vistes Calendar
 
 Si el recurs té un camp date o datetime. Permet editar els recursos
 ordenats per temps. L'exemple són els esdeveniments del mòdul de ventes.
@@ -1098,7 +1082,7 @@ ordenats per temps. L'exemple són els esdeveniments del mòdul de ventes.
         </record>
 ```
 
-### Vistes Graph
+## Vistes Graph
 
 En general s\'utilitza per a veure agregacions sobre les dades a
 mostrar. Accepta els següents atributs:
