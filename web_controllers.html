@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Web Controllers &#8212; Apunts d&#39;Odoo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'web_controllers';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Client Web" href="client_web.html" />
+    <link rel="prev" title="Wizards" href="wizards.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/odoo_logo.svg" class="logo__image only-light" alt="Apunts d'Odoo - Home"/>
+    <script>document.write(`<img src="_static/odoo_logo.svg" class="logo__image only-dark" alt="Apunts d'Odoo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introducció a Odoo
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instalarodoo.html">Instal·lar Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo.html">Desenvolupar per a Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">La vista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accions_menus.html">Accions i menús</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizards.html">Wizards</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Web Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client_web.html">Client Web</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge/issues/new?title=Issue%20on%20page%20%2Fweb_controllers.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/web_controllers.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Web Controllers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passar-parametres-al-web-controller">Passar paràmetres al web controller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cors-en-odoo">CORS en Odoo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacio">Autenticació</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controllers-amb-json">Controllers amb JSON</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-complet">Exemple complet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fer-una-api-rest">Fer una API Rest</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="web-controllers">
+<h1>Web Controllers<a class="headerlink" href="#web-controllers" title="Link to this heading">#</a></h1>
+<p>En Odoo hi ha moltes maneres de comunicar-se amb el
+servidor:</p>
+<ul class="simple">
+<li><p>Entrant en el backend</p></li>
+<li><p>La pàgina web (frontend)</p></li>
+<li><p>El TPV</p></li>
+<li><p>Amb un API de XML-RPC per a aplicacions Java, Python o PHP.</p></li>
+<li><p>Amb els controladors web per a consultes web o Ajax.</p></li>
+</ul>
+<p>Si volem fer la web amb el CMS d’Odoo, cal aprendre a fer webs en Odoo.
+Però si el que volem és accedir a Odoo com un servidor <strong>Rest</strong> o
+similar des de una aplicació web diferent, hem de crear la interficie de
+servidor web amb Odoo i formular correctament les peticions Ajax.</p>
+<p>En aquest manual la intenció és fer una aplicació web en Angular que
+consulte coses a Odoo.</p>
+<p>Odoo utilitza la biblioteca
+<a class="reference external" href="https://werkzeug.palletsprojects.com/en/1.0.x/">https://werkzeug.palletsprojects.com/en/1.0.x/</a> per als seus
+controladors web, encara que simplifica la complexitat de la mateixa en
+els seus propis mètodes. Quasi totes les aplicacions web fetes en Python
+necessiten una manera estàndard de comunicar-se amb el servidor web.
+Aquesta es diu <strong>WSGI</strong> i Odoo la implementa a partir de la biblioteca
+Werzeug. Aquesta biblioteca implementa les particularitats d’un
+servidor web i les translada amb un llenguatge comú a l’aplicació web
+corresponent. No obstant, a l’hora del desplegament, es sol instal·lar
+un servidor web tipus Nginx per fer de proxy invers i implementar HTTPS
+o una web estàtica, per exemple.
+<a class="reference external" href="https://serverfault.com/questions/220046/why-is-setting-nginx-as-a-reverse-proxy-a-good-idea">1</a></p>
+<p>Quan fem un mòdul en scaffold, es crea el fitxer
+controllers/controllers.py, el qual està comentat, però que té un
+exemple molt útil de controlador.</p>
+<p>Si analitzem les primeres línies:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyController</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">Controller</span><span class="p">):</span>
+    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/school/course/&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">course</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Veurem que és una classe que hereta de <strong>http.controller</strong>. A
+continuació hi ha un decorador que modifica la funció <strong>course()</strong> per a
+ser executada quan es demana la ruta especificada. Aquest decorador diu
+que necessita una <strong>autentificació d’usuari</strong> i que espera i retorna un
+<strong>json</strong>.</p>
+<p>L’autentificació pot ser <strong>public</strong>, <strong>user</strong> o <strong>none</strong>.</p>
+<p>En aquestes funcions es sol cridar a <strong>http.request.render</strong> amb una
+template per a fer html. Una altra opció és generar les dades
+directament en Python.</p>
+<p>Podem fer aquest exemple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/school/courses/json&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">courses_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="n">records</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;school.course&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">([])</span>
+   <span class="k">return</span> <span class="n">records</span><span class="o">.</span><span class="n">read</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>El controlador espera un JSON i retorna un JSON. Si volem provar si
+funciona sense complicacions, podem excriure en una terminal:</p>
+<p><code class="docutils literal notranslate"><span class="pre">curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{}&quot; localhost:8069/school/courses/json</span></code></p>
+<p>Com es veu, sols hem enviat un JSON buit.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>JSON també és HTTP, podem fer un route de tipus http que retorne un JSON, però Odoo facilita molt el tractament de les dades si fiquem directament json en el type.</p>
+</div>
+<p>Una altra cosa que cal mirar en l’exemple és que no estic generant un
+JSON, sols retornant un array de noms. Odoo, a través del decorador que
+diu que és JSON ja el formatarà per a que retorne un JSON correcte. En
+cas de voler controlar tot el que s’envía, podem retornar el resultat
+de <strong>request.make_response()</strong></p>
+<p><strong>Request</strong> és un objecte estàtic que fa referència a la petició que
+s’està realizant. Té métodes i atributs útils com <strong>request.env</strong>, que
+és similar al self.env dels models. Una altra utilitat és
+<strong>request.session</strong> que guarda la sessió actual.</p>
+<p><strong>sudo()</strong> és necessari si fem que no es necessite autentificació. No
+obstant, açò és per provar. En producció sempre necessitarem
+autentificació.</p>
+<section id="passar-parametres-al-web-controller">
+<h2>Passar paràmetres al web controller<a class="headerlink" href="#passar-parametres-al-web-controller" title="Link to this heading">#</a></h2>
+<p>Odoo permet passar paràmetres de la forma tradicional del GET o el POST
+(amb ?) o com es fa en REST, com a part de la URL.</p>
+<p>En el cas tradicional:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/school/course_details&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">course_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course_id</span><span class="p">):</span>
+  <span class="n">record</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;school.course&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">course_id</span><span class="p">))</span>
+  <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;</span><span class="si">%s</span><span class="s1">&lt;/h1&gt;Teachers: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">record</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">teachers_ids</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s1">&#39;none&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p>El que ens interessa és course_id, el qual trau de una url com aquesta:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/school/course_details?course_id=2</span></code></p>
+<p>En el cas d’una URL segons l’estandard REST:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/school/course_details/&lt;model(&#39;</span><span class="n">school</span><span class="o">.</span><span class="n">course</span><span class="s1">&#39;):course&gt;&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">course_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course</span><span class="p">):</span>
+  <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;</span><span class="si">%s</span><span class="s1">&lt;/h1&gt;Teachers: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">course</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">teachers_ids</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s1">&#39;none&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p>En aquest cas veiem cóm obté la variable course de buscar en el model
+school.course el id passat per paràmetres amb
+<strong>&lt;model(‘school.course’):course&gt;</strong> i ja el pot utilitzar per al que
+necessite. La URL en aquest cas quedarà com:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/school/course_details/2</span></code></p>
+<p>Aquest mètode utilitza un <strong>converter</strong> de la biblioteca <em>werkzeug</em>.</p>
+<p>Si el que volem és enviar dades en JSON, sols cal indicar en el
+decorador route que és de <strong>type=’json</strong>’ i respectar un format en el
+json com aquest:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;call&quot;</span><span class="p">,</span><span class="nt">&quot;params&quot;</span><span class="p">:{</span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="s2">&quot;${user}&quot;</span><span class="p">,</span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;${pass}&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="cors-en-odoo">
+<h2>CORS en Odoo<a class="headerlink" href="#cors-en-odoo" title="Link to this heading">#</a></h2>
+<p>Odoo no permet peticions Ajax que no vinguen del mateix origen que ell.
+Això ho podem canviar en cada <strong>route</strong> amb <strong>cors=’*</strong>’</p>
+<p>Si volem permetre CORS en tot odoo, el millor és instal·lar Ngingx,
+configurar-lo per a permetre CORS i fer que actue com a proxy d’Odoo.</p>
+</section>
+<section id="autenticacio">
+<h2>Autenticació<a class="headerlink" href="#autenticacio" title="Link to this heading">#</a></h2>
+<p>En el directori d’addons d’Odoo, en el mòdul web/controller, trobem
+aquest codi:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/web/session/authenticate&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">login</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">base_location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">login</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;ir.http&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">session_info</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Eixa és la ruta d’autentificació. Com es veu, accepta un json amb la
+base de dades, login, password…</p>
+<p>Si vulguem fer una aplicació que connecte amb Odoo via web, deguem
+autenticar-nos. Anem a analitzar el que demana. Per a fer-ho utilitzarem
+el programa <a class="reference external" href="https://www.postman.com/">Postman</a></p>
+<p>En aquest gif es veu el que hem de ficar en el Postman per a veure si
+funciona el API:</p>
+<p><img alt="" src="Postmanauthenticationodoo.gif" /></p>
+<p>Podem copiar aquest codi per autenticar-nos en la ruta que necessitem.
+Cal importar:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">odoo.http</span> <span class="kn">import</span> <span class="n">request</span>
+</pre></div>
+</div>
+<p>Observem que en la resposta va una Cookie que és la sessió. Si en el
+postman o en navegador l’esborrem es perd la sessió.</p>
+<p>A partir d’aquest moment, en Postman podem fer peticions que necessiten
+autenticació.</p>
+<p>No obstant, si accedim per AJAX en un altre servidor, el navegador no
+pot utilitzar la cookie. Per això és té que implementar un sistema de
+token que implemente l’autenticació de forma manual sense el sistema de
+Odoo. Una possibilitat és manejar token JWT i hi ha mòduls per a
+implementar això en Odoo. En qualsevol cas, per provar es pot generar un
+token amb dades aleatòries i enviar-ho al JSON de resposta si l’usuari
+fa login. A partir d’aquest moment es pot demanar aquest token en totes
+les peticions posteriors.</p>
+</section>
+<section id="controllers-amb-json">
+<h2>Controllers amb JSON<a class="headerlink" href="#controllers-amb-json" title="Link to this heading">#</a></h2>
+<p>Com es veu en l’exemple anterior, el client ha d’enviar un JSON en un
+format determinat i el servidor també el retorna. Odoo necessita que el
+json tinga el format</p>
+<p><code class="docutils literal notranslate"><span class="pre">{&quot;jsonrpc&quot;: &quot;2.0&quot;, &quot;params&quot;:{...}}</span></code></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=wGvuRbCyytk&amp;amp;list=PL5ESsgnHGfa8d3EetmuUA8quawtJjEiH4&amp;amp;index=19&amp;amp;t=713s">https://www.youtube.com/watch?v=wGvuRbCyytk&amp;list=PL5ESsgnHGfa8d3EetmuUA8quawtJjEiH4&amp;index=19&amp;t=713s</a></p>
+<section id="exemple-complet">
+<h3>Exemple complet<a class="headerlink" href="#exemple-complet" title="Link to this heading">#</a></h3>
+<p>Este és el controller:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>     <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/terraform/terraform/create/travel&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="n">cors</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+     <span class="k">def</span> <span class="nf">terraform_model_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">player</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">travel</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;terraform.travel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">({</span><span class="s1">&#39;origin_planet&#39;</span><span class="p">:</span><span class="n">p1</span><span class="p">,</span> <span class="s1">&#39;destiny_planet&#39;</span><span class="p">:</span> <span class="n">p2</span><span class="p">,</span> <span class="s1">&#39;player&#39;</span><span class="p">:</span><span class="n">player</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">travel</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Este és el comandament i el resultat:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;call&quot;,&quot;params&quot;:{&quot;player&quot;:&quot;1&quot;,&quot;p1&quot;:&quot;8316&quot;,&quot;p2&quot;:&quot;8317&quot;}}&#39;</span><span class="w"> </span>localhost:8069/terraform/terraform/create/travel
+HTTP/1.0<span class="w"> </span><span class="m">200</span><span class="w"> </span>OK
+Content-Type:<span class="w"> </span>application/json
+Content-Length:<span class="w"> </span><span class="m">518</span>
+Access-Control-Allow-Origin:<span class="w"> </span>*
+Access-Control-Allow-Methods:<span class="w"> </span>POST
+Set-Cookie:<span class="w"> </span><span class="nv">session_id</span><span class="o">=</span>e745287b948236557adde062fb0183fb282b181d<span class="p">;</span><span class="w"> </span><span class="nv">Expires</span><span class="o">=</span>Thu,<span class="w"> </span><span class="m">04</span>-Mar-2021<span class="w"> </span><span class="m">08</span>:15:09<span class="w"> </span>GMT<span class="p">;</span><span class="w"> </span>Max-Age<span class="o">=</span><span class="m">7776000</span><span class="p">;</span><span class="w"> </span>HttpOnly<span class="p">;</span><span class="w"> </span><span class="nv">Path</span><span class="o">=</span>/
+Server:<span class="w"> </span>Werkzeug/0.16.1<span class="w"> </span>Python/3.8.5
+Date:<span class="w"> </span>Fri,<span class="w"> </span><span class="m">04</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">2020</span><span class="w"> </span><span class="m">08</span>:15:09<span class="w"> </span>GMT
+
+<span class="o">{</span><span class="s2">&quot;jsonrpc&quot;</span>:<span class="w"> </span><span class="s2">&quot;2.0&quot;</span>,<span class="w"> </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span>null,<span class="w"> </span><span class="s2">&quot;result&quot;</span>:<span class="w"> </span><span class="o">{</span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Pedro Hdisadlufa -&gt; Fmeeiponovi&quot;</span>,<span class="w"> </span><span class="s2">&quot;player&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="m">1</span>,<span class="w"> </span><span class="s2">&quot;Pedro&quot;</span><span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;origin_planet&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="m">8316</span>,<span class="w"> </span><span class="s2">&quot;Hdisadlufa&quot;</span><span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;destiny_planet&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="m">8317</span>,<span class="w"> </span><span class="s2">&quot;Fmeeiponovi&quot;</span><span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;distance&quot;</span>:<span class="w"> </span><span class="m">0</span>.1,<span class="w"> </span><span class="s2">&quot;percent&quot;</span>:<span class="w"> </span><span class="m">0</span>.18482222222222222,<span class="w"> </span><span class="s2">&quot;launch_time&quot;</span>:<span class="w"> </span><span class="s2">&quot;2020-12-04 08:15:09&quot;</span>,<span class="w"> </span><span class="s2">&quot;display_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Pedro Hdisadlufa -&gt; Fmeeiponovi&quot;</span>,<span class="w"> </span><span class="s2">&quot;create_uid&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="m">4</span>,<span class="w"> </span><span class="s2">&quot;Public user&quot;</span><span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;create_date&quot;</span>:<span class="w"> </span><span class="s2">&quot;2020-12-04 08:15:09&quot;</span>,<span class="w"> </span><span class="s2">&quot;write_uid&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="m">4</span>,<span class="w"> </span><span class="s2">&quot;Public user&quot;</span><span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;write_date&quot;</span>:<span class="w"> </span><span class="s2">&quot;2020-12-04 08:15:09&quot;</span>,<span class="w"> </span><span class="s2">&quot;__last_update&quot;</span>:<span class="w"> </span><span class="s2">&quot;2020-12-04 08:15:09&quot;</span><span class="o">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="fer-una-api-rest">
+<h3>Fer una API Rest<a class="headerlink" href="#fer-una-api-rest" title="Link to this heading">#</a></h3>
+<p>En general, Odoo i la seua documentació estan pensats per a que
+utilitzes el seu framework de client web junt en el backend. No obstant,
+si volem fer un client web o mòbil que es connecte a Odoo com si fora
+una API, cal tindre algunes consideracions:</p>
+<ul class="simple">
+<li><p>Accedirà d’una altra URL i farà peticions AJAX, per tant, cal ficar
+<strong>cors=”*”</strong> al decorador dels mètodes del controlador.</p></li>
+<li><p>Al no utilitzar el seu client web, no pot fer ús de csrf, per tant,
+cal desactivar-lo també en el decorador.</p></li>
+<li><p>No podem fer ús de l’autenticació d’Odoo, ja que envia una cookie
+però al ser cross-origin tampoc val.</p></li>
+<li><p>Tenim que implementar una autenticació per token propia. Pot ser
+JWT.</p></li>
+<li><p>Cal fer els mètodes adaptats al tipus de métode HTTP que demana el
+client. Ja que en les API REST, el mètode és el <em>verb</em> de la
+petició. Així, si demanem un GET serà per llegir, però si és un POST
+serà per guardar.</p></li>
+</ul>
+<p>Ací tenim un exemple funcional al que li falten moltes comprovacions per
+evitar errades:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>     <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/terraform/api/&lt;model&gt;&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">cors</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">csrf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+     <span class="k">def</span> <span class="nf">api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">):</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;</span><span class="p">)</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">httprequest</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+       <span class="n">model</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span>
+       <span class="k">if</span><span class="p">(</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">httprequest</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">):</span>   <span class="c1">#  {&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;call&quot;,&quot;params&quot;:{&quot;planet&quot;:{&quot;name&quot;:&quot;Trantor&quot;,&quot;average_temperature&quot;:20},&quot;password&quot;:&quot;1234&quot;}}</span>
+           <span class="n">record</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;terraform.&#39;</span><span class="o">+</span><span class="n">model</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">model</span><span class="p">])</span>
+           <span class="k">return</span> <span class="n">record</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+       <span class="k">if</span><span class="p">(</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">httprequest</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">):</span>
+           <span class="n">record</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;terraform.&#39;</span><span class="o">+</span><span class="n">model</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">])])</span>
+           <span class="k">return</span> <span class="n">record</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+       <span class="k">if</span><span class="p">(</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">httprequest</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;PUT&#39;</span> <span class="ow">or</span>  <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">httprequest</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;PATCH&#39;</span><span class="p">):</span>
+           <span class="n">record</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;terraform.&#39;</span><span class="o">+</span><span class="n">model</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">])])[</span><span class="mi">0</span><span class="p">]</span>
+           <span class="n">record</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">model</span><span class="p">])</span>
+           <span class="k">return</span> <span class="n">record</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+       <span class="k">if</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">httprequest</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">):</span>
+           <span class="n">record</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;terraform.&#39;</span><span class="o">+</span><span class="n">model</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">])])[</span><span class="mi">0</span><span class="p">]</span>
+           <span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+           <span class="n">record</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+           <span class="k">return</span> <span class="n">record</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+       <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;ir.http&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">session_info</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Tenim un problema i és que per GET en teoria no es pot enviar body i
+aquesta API l’està esperant al dir que és de tipus json. Si volem fer
+una API correcta, tenim que fer una funció diferent per al GET en http i
+retornar el JSON, que ha de ser construit dins de la funció.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="wizards.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Wizards</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="client_web.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Client Web</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passar-parametres-al-web-controller">Passar paràmetres al web controller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cors-en-odoo">CORS en Odoo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacio">Autenticació</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controllers-amb-json">Controllers amb JSON</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-complet">Exemple complet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fer-una-api-rest">Fer una API Rest</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

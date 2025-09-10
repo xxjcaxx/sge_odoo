@@ -1,0 +1,1017 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Accions i menús &#8212; Apunts d&#39;Odoo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'accions_menus';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reports" href="reports.html" />
+    <link rel="prev" title="La vista" href="vista.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/odoo_logo.svg" class="logo__image only-light" alt="Apunts d'Odoo - Home"/>
+    <script>document.write(`<img src="_static/odoo_logo.svg" class="logo__image only-dark" alt="Apunts d'Odoo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introducció a Odoo
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instalarodoo.html">Instal·lar Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo.html">Desenvolupar per a Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">La vista</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Accions i menús</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizards.html">Wizards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client_web.html">Client Web</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge/issues/new?title=Issue%20on%20page%20%2Faccions_menus.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/accions_menus.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Accions i menús</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accions-tipus-window">Accions tipus <em>window</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accions-tipus-url">Accions tipus URL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accions-tipus-server">Accions tipus Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domains-en-les-actions"><em>Domains</em> en les <em>actions</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actions-per-a-molts-records">Actions per a molts records</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="accions-i-menus">
+<h1>Accions i menús<a class="headerlink" href="#accions-i-menus" title="Link to this heading">#</a></h1>
+<p>Diagrama de cóm es comporta el client web quan carrega Odoo per primera vegada i cóm crida a un action i carrega les vistes i les dades (records)</p>
+<!-- 
+sequenceDiagram
+    participant N as Navegador Web
+    participant O as Servidor Odoo
+
+    N->>O: GET / (port 8069)
+    O->>N: index.html (bàsic)
+    N->>O: GET JS i CSS QWeb 
+    Note right of O: Crear els assets
+    O->>N: Assets (JS i CSS) Templates
+
+    Note left of N: Inicia Client Web
+
+    N->>O: POST Load Views
+    Note right of O: ir.ui.view
+    O->>N: arch + json amb fields
+    Note left of N: Polsem un menú
+
+    N->>O: POST Load Action
+    Note right of O: ir.ui.action
+    O->>N: Definició de l'action
+
+    N->>O: POST Load Views (per l'action)
+    O->>N: Totes les vistes i fields
+
+    N->>O: POST Search Read
+    Note right of O: Select i compute
+    O->>N: Json amb els records
+
+    Note left of N: Analitza fields necessaris
+    Note left of N: Renderitza la vista amb els records
+-->
+<div style="width: 600px;">
+  <img src="./imgs/diamgramaactions.png" alt="Diagrama de flujo" style="width: 100%;" />
+</div>
+<p>El client web de Odoo conté uns menús dalt i a l’esquerra. Aquests
+menús, al ser accionats mostren altres menús i les pantalles del
+programa. Quant pulsem en un menú, canvia la pantalla perquè hem fet una
+<a class="reference external" href="https://www.odoo.com/documentation/12.0/reference/actions.html">acció</a>.</p>
+<p>Una acció bàsicament té:</p>
+<ul class="simple">
+<li><p><strong>type</strong>: El tipus d’acció que és i cóm l’acció és interpretada.
+Quan la definim en el XML, el type no cal especificar-lo, ja que ho
+indica el model en que es guarda.</p></li>
+<li><p><strong>name</strong>: El nom, que pot ser mostrat en la pantalla o no. Es
+recomana que siga llegible per els humans.</p></li>
+</ul>
+<p>Les accions i els menús es declaren en fitxers de dades en XML o
+directament si una funció retorna un diccionari que la defineix. Les
+accions poden ser cridades de tres maneres:</p>
+<ul class="simple">
+<li><p>Fent clic en un menú.</p></li>
+<li><p>Fent clic en botons de les vistes (han d’estar connectats amb
+accions).</p></li>
+<li><p>Com accions contextuals en els objectes.</p></li>
+</ul>
+<p>D’aquesta manera, el client web pot saber quina acció ha d’executar si
+rep alguna d’aquestes coses:</p>
+<ul class="simple">
+<li><p><strong>false</strong>: Indica que s’ha de tancar el diàleg actual.</p></li>
+<li><p><strong>Una string</strong>: Amb l’etiqueta de <strong>l’acció de client</strong> a
+executar.</p></li>
+<li><p><strong>Un número</strong>: Amb el ID o external ID de l’acció a trobar a la
+base de dades.</p></li>
+<li><p><strong>Un diccionari</strong>: Amb la definició de l’acció, aquesta no està ni
+en XML ni en la base de dades. En general, és la manera de cridar a
+un action al finalitzar una funció.</p></li>
+</ul>
+<section id="accions-tipus-window">
+<h2>Accions tipus <em>window</em><a class="headerlink" href="#accions-tipus-window" title="Link to this heading">#</a></h2>
+<p>Les accions <em>window</em> són un record més (<strong>ir.actions.act_window</strong>). No
+obstant, els menús que les criden, tenen una manera més ràpida de ser
+declarats amb una etiqueta <strong>menuitem</strong>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.act_window&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;action_list_ideas&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Ideas<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res_model&quot;</span><span class="nt">&gt;</span>idea.idea<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;view_mode&quot;</span><span class="nt">&gt;</span>tree,form<span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+<span class="nt">&lt;menuitem</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;menu_ideas&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;menu_root&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Ideas&quot;</span><span class="w"> </span><span class="na">sequence=</span><span class="s">&quot;10&quot;</span>
+<span class="w">          </span><span class="na">action=</span><span class="s">&quot;action_list_ideas&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Les accions han de ser declarades al XML abans que els menús que les accionen.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>El que hem vist en esta secció és la definició d’una acció en un XML com a part de la vista, però una acció no és més que una forma còmoda d’escriure moltes coses que farà el client en javascript per demanar alguna cosa al servidor. Els actions separen i simplifiquen el desenvolupament de la interfície d’usuari que és el client web. Un menú o botó en html acciona una funció javascript que en principi no sap el que fer. Aquesta demana que es carregue la definició del seu action. Una vegada carregada la definició, queda clar tot el que ha de demanar (les vistes, context, dominis, vistes search, lloc on carregar-ho tot…) aleshores demana les vistes i amb ajuda de les vistes i els fields, demana els records que són les dades a mostrar. Per tant, un action és la definició sense programar javascript de coses que ha de fer el javascript. Odoo permet declarar actions com a resposta de funcions. Aquestes actions no estan en la base de dades, però són enviades igualment al client i el client fa en elles el mateix que en un action que ell ha demanat. Un exemple d’això són els actions que retornen els botons dels wizards. De fet, podem fer que un botó torne un action i, per tant, obrir una vista diferent.</p>
+</div>
+<p>Aquest exemple és una funció cridada per un botó que retorna un action:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@api</span><span class="o">.</span><span class="n">multi</span>    <span class="c1"># Molt important que siga multi.</span>
+    <span class="k">def</span> <span class="nf">create_comments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="n">clients</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;reserves.bookings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;checking_day&#39;</span><span class="p">,</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">()),(</span><span class="s1">&#39;room.hotel&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)])</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span><span class="s1">&#39;client&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ids</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">clients</span><span class="p">)</span>
+       <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">clients</span><span class="p">)</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">clients</span><span class="p">)</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;reserves.comments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span><span class="s1">&#39;hotel&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="s1">&#39;client&#39;</span><span class="p">:</span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;stars&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))})</span>
+        <span class="k">return</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Comment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;view_type&#39;</span><span class="p">:</span> <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;view_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;res_model&#39;</span><span class="p">:</span> <span class="s1">&#39;reserves.comments&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;res_id&#39;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="c1">#&#39;view_id&#39;: self.env.ref(&#39;reserves.comments_form&#39;).id,</span>
+    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ir.actions.act_window&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="s1">&#39;current&#39;</span><span class="p">,</span>
+         <span class="p">}</span>
+</pre></div>
+</div>
+<p>Observem que li pasem el model i el res_id per a que puga obrir un
+formulari amb el comentari creat.</p>
+<p>Aquest és el json que rep el client després de cridar al botó:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="mf">878622456</span><span class="p">,</span>
+<span class="w">   </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Comment&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;view_mode&quot;</span><span class="o">:</span><span class="s2">&quot;form&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;res_model&quot;</span><span class="o">:</span><span class="s2">&quot;reserves.comments&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;res_id&quot;</span><span class="o">:</span><span class="mf">20</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;ir.actions.act_window&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="s2">&quot;current&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;flags&quot;</span><span class="o">:</span><span class="p">{</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;views&quot;</span><span class="o">:</span><span class="p">[[</span><span class="kc">false</span><span class="p">,</span><span class="s2">&quot;form&quot;</span><span class="p">]]</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Ara el client pot demanar un formulari i el record corresponent al model
+<em>reserves.comments</em> i el id <em>20</em>.</p>
+<p>Anem a veure en detall tots els fields que tenen aquestes accions:</p>
+<ul class="simple">
+<li><p><strong>res_model</strong>: El model del que mostrarà les vistes.</p></li>
+<li><p><strong>views</strong>: Una llista de parelles en el ID de la vista i el tipus.
+En cas de que no sabem el ID de la vista, podem ficar <strong>false</strong> i
+triarà o crearà una per defecte. Observem l’exemple anterior, on en
+la declaració de l’acció no s’especifica aquest field, però el
+client si acaba rebent-lo amb
+<strong>“views”:</strong>. La llista
+de vistes la trau automàticament amb la funció
+<strong><a class="reference external" href="https://www.odoo.com/documentation/12.0/reference/orm.html#odoo.models.Model.fields_view_get">fields_view_get()</a></strong>.</p></li>
+<li><p><strong>res_id</strong>: (Opcional) Si es va a mostrar un form, indica la ID del
+record que es va a mostrar.</p></li>
+<li><p><strong>search_view_id</strong>: (Opcional) Se li pasa (id, name) on id
+respresenta el ID de la vista search que es mostrarà.</p></li>
+<li><p><strong>target</strong>: (Opcional) El destí del action. Per defecte és en la
+finestra actual (<strong>current</strong>), encara que pot ser a tota la pantalla
+(<strong>full_screen</strong>) o en un diàleg o <em>pop-up</em> (<strong>new</strong>) o <strong>main</strong> en
+cas de voler que es veja en la finestra actual sense les
+<em>breadcrumbs</em>, el que vol dir que elimina el rastre d’on vé
+l’acció.</p></li>
+<li><p><strong>context</strong>: (Opcional)Informació addicional.</p></li>
+<li><p><strong>domain</strong>: (Opcional) Aplica un filtre als registres que es demanaran a la base de dades.</p></li>
+<li><p><strong>limit</strong>: (Opcional) Per defecte 80, és la quantitat de records que
+mostrar en la vista tree.</p></li>
+<li><p><strong>auto-search</strong>: (Opcional) En cas de que necessitem una búsqueda
+només carregar la vista.</p></li>
+</ul>
+<p>Exemples d’Actions declarades en python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Action per obrir arbre i form:</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ir.actions.act_window&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;res_model&quot;</span><span class="p">:</span> <span class="s2">&quot;res.partner&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;views&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;tree&quot;</span><span class="p">],</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">]],</span>
+    <span class="s2">&quot;domain&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&quot;customer&quot;</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">]],</span>
+<span class="p">}</span>
+<span class="c1"># Action sols per a form en un id específic.</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ir.actions.act_window&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;res_model&quot;</span><span class="p">:</span> <span class="s2">&quot;product.product&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;views&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">]],</span>
+    <span class="s2">&quot;res_id&quot;</span><span class="p">:</span> <span class="n">a_product_id</span><span class="p">,</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;new&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1"># Action que ja està en la base de dades:</span>
+       <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="s1">&#39;terraform.new_building_type_action_window&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+       <span class="k">return</span> <span class="n">action</span>
+</pre></div>
+</div>
+<p>Quan guardem una action en la base de dades, normalment definint-la com
+un XML, tenim aquest altres fields:</p>
+<ul class="simple">
+<li><p><strong>view_mode</strong>: Lista separada per comes de les vistes que ha de
+mostrar. Una vegada el servidor va a enviar aquest action al client,
+amb açò generarà el field <strong>views</strong>.</p></li>
+<li><p><strong>view_ids</strong>: Una llista d’objectes de vista que permet definir la
+vista de la primera part de <strong>views</strong>. Aquesta llista és un
+Many2many amb les vistes i la taula intermitja es diu
+<strong>ir.actions.act_window.view</strong>.</p></li>
+<li><p><strong>view_id</strong>: Una vista específica a afegir a <strong>views</strong>.</p></li>
+</ul>
+<p>Per tant, si volem definir les vistes que volem que mostre el action,
+podem omplir els camps anteriors. El servidor observa la llista de
+<strong>view_ids</strong> i afegeix el <strong>view_id</strong>. Si no ompli tot el definit en
+<strong>view_mode</strong>, acaba d’omplir el field <strong>views</strong> (el que envía als
+clients) amb (False,<code class="docutils literal notranslate"><span class="pre">&lt;tipus&gt;</span></code>). Exemple de cóm especificar una
+vista en un action:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">field</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;view_ids&quot;</span> <span class="nb">eval</span><span class="o">=</span><span class="s2">&quot;[(5, 0, 0),(0, 0, {&#39;view_mode&#39;: &#39;tree&#39;, &#39;view_id&#39;: ref(&#39;tree_external_id&#39;)}),(0, 0, {&#39;view_mode&#39;: &#39;form&#39;, &#39;view_id&#39;: ref(&#39;form_external_id&#39;)}),]&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>En els fitxers de dades, aquesta sintaxi és per a modificar fields Many2many. El <strong>(5,0,0)</strong> per
+a desvincular les possibles vistes. El <strong>(0,0,<code class="docutils literal notranslate"><span class="pre">&lt;record&gt;</span></code>{=html})</strong> per
+crear un nou record i vincular-ho. En aquest cas, crea un record amb els
+dos fields necessaris, el tipus de vista i el External ID de la vista a
+vincular.</p>
+<p>Això també es pot fer més explícitament insertant records en <strong>ir.actions.act_window.view</strong>.</p>
+</section>
+<section id="accions-tipus-url">
+<h2>Accions tipus URL<a class="headerlink" href="#accions-tipus-url" title="Link to this heading">#</a></h2>
+<p>Aquestes accions símplement obrin un URL. Exemple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ir.actions.act_url&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://odoo.com&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>     <span class="c1"># Target pot ser self o new per reemplaçar el contingut de la pestanya del navegador o obrir una nova.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="accions-tipus-server">
+<h2>Accions tipus Server<a class="headerlink" href="#accions-tipus-server" title="Link to this heading">#</a></h2>
+<p>Les accions tipus server funcionen en un model base i poden ser
+executades automàticament o amb el menú contextual d’acció que es veu
+dalt en la vista.</p>
+<p>Les accions que pot fer un server action són:</p>
+<ul class="simple">
+<li><p>Executar un <strong>codi python</strong>. Amb un bloc de codi que serà executat
+al servidor.</p></li>
+<li><p>Crear un <strong>nou record</strong>.</p></li>
+<li><p><strong>Escriure</strong> en un record existent.</p></li>
+<li><p>Executar <strong>varies accions</strong>. Per poder executar varies accions
+server.</p></li>
+</ul>
+<p>Com es pot veure al codi de les server action:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">state</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Selection</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;Execute Python Code&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;object_create&#39;</span><span class="p">,</span> <span class="s1">&#39;Create a new Record&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;object_write&#39;</span><span class="p">,</span> <span class="s1">&#39;Update the Record&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span> <span class="s1">&#39;Execute several actions&#39;</span><span class="p">)],</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;Action To Do&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s1">&#39;object_write&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Type of server action. The following values are available:</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Execute Python Code&#39;: a block of python code that will be executed</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Create&#39;: create a new record with new values</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Update a Record&#39;: update the values of a record</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Execute several actions&#39;: define an action that triggers several other   </span>
+
+ <span class="n">server</span> <span class="n">actions</span>\<span class="n">n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Send Email&#39;: automatically send an email (Discuss)</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Add Followers&#39;: add followers to a record (Discuss)</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;- &#39;Create Next Activity&#39;: create an activity (Discuss)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Permet executar codi en el servidor. És una acció molt genèrica que pot,
+inclús retornar una acció tipus window. Les accions tipus server són una
+forma més genèrica del que fa el button tipus <strong>object</strong>.</p>
+<p>Veiem un exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.server&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;print_instance&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Res<span class="w"> </span>Partner<span class="w"> </span>Server<span class="w"> </span>Action<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;model_res_partner&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="nt">&gt;</span>code<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>raise<span class="w"> </span>Warning(model._name)
+<span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>En l’exemple anterior podem veure les característiques bàsiques:</p>
+<ul class="simple">
+<li><p><strong>ir.action.server</strong>: El nom del model on es guardarà.</p></li>
+<li><p><strong>model_id</strong>: És l’equivalent a <strong>res_model</strong> en les accions tipus
+window. Es tracta del model sobre el que treballarà l’action.</p></li>
+<li><p><strong>code</strong>: Troç de codi que executarà. Pot ser un python complex o el
+nom d’un mètode que ja tinga el model.</p></li>
+</ul>
+<p>El servidor rebrà del client la ordre d’executar eixe action. Eixa
+ordre és un <strong>Json</strong> en el que sols es diu la <strong>action_id</strong> del action i
+el context. Dins del context, tenim coses com els <strong>active_id,
+active_ids</strong> o el <strong>active_model</strong>. El servidor executa sobre eixe model
+el codi que diu l’action. En l’exemple anterior, simplement diu una
+alerta.</p>
+<p>El codi del action server pot definir una variable anomenada <strong>action</strong>
+que retornarà al client la seguent acció a executar. Aquesta pot ser
+window, això pot servir per refescar la pàgina o enviar a una altra.
+Exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.server&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;print_instance&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Res<span class="w"> </span>Partner<span class="w"> </span>Server<span class="w"> </span>Action<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;model_res_partner&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="nt">&gt;</span>code<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>if<span class="w"> </span>object.some_condition():
+<span class="w">            </span>action<span class="w"> </span>=<span class="w"> </span>{
+<span class="w">                </span>&quot;type&quot;:<span class="w"> </span>&quot;ir.actions.act_window&quot;,
+<span class="w">                </span>&quot;view_mode&quot;:<span class="w"> </span>&quot;form&quot;,
+<span class="w">                </span>&quot;res_model&quot;:<span class="w"> </span>model._name,
+<span class="w">                </span>&quot;res_id&quot;:<span class="w"> </span>object.id,
+<span class="w">            </span>}
+<span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>Però no sempre s’utilitza l’etiqueta <strong>code</strong>. Això depen d’una altra
+anomenada <strong>state</strong> que pot tindre el tipus d’acció de servidor. Estan
+disponibles els següents valors:</p>
+<ul class="simple">
+<li><p><strong>code</strong> : Executar codi Python’: un bloc de codi Python que serà
+executat. En el cas d’utilitzar code, el codi té accés a algunes
+variables específiques:</p>
+<ul>
+<li><p><strong>env</strong>: <em>Enviroment</em> d’Odoo en el que l’action s’executa.</p></li>
+<li><p><strong>model</strong>: Model en que s’executa. Es tracta d’un
+<strong>recordset</strong> buit.</p></li>
+<li><p><strong>record</strong>: El registre en que s’executa l’acció.</p></li>
+<li><p><strong>records</strong>: Recordset de tots els registres en que s’executa
+l’acció (si es cridada per un tree, per exemple)</p></li>
+<li><p><strong>time, datetime, dateutil, timezone</strong> Bilioteques Python útils
+(<strong>són python pures, no d’odoo</strong>)</p></li>
+<li><p><strong>log(message, level=’info’)</strong>: Per enviar missatges al log.</p></li>
+<li><p><strong>Warning</strong> per llançar una excepció amb <strong>raise</strong>.</p></li>
+<li><p><strong>action={…}</strong> per llançar una acció.</p></li>
+</ul>
+</li>
+<li><p><strong>object_create</strong>: Crear o duplicar un nou registre: crea un nou
+registre amb nous valors, o duplica un d’existent a la base de
+dades</p></li>
+<li><p><strong>object_write</strong>: Escriure en un registre: actualitza els valors
+d’un registre</p></li>
+<li><p><strong>multi</strong>: Executar diverses accions: defineix una acció que llança
+altres diverses accions de servidor</p></li>
+<li><p><strong>followers</strong>: Afegir seguidors: afegeix seguidors a un registre
+(disponible a Discuss)</p></li>
+<li><p><strong>email</strong>: Enviar un correu electrònic: envia automàticament un
+correu electrònic (disponible a email_template)</p></li>
+</ul>
+<p>Exemple complet de action tipus server. (No fa res útil, però es pot
+veure cóm s’utilitza tot):</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.server&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;escoleta.creaar_dia_menjador&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Creacio<span class="w"> </span>de<span class="w"> </span>un<span class="w"> </span>dia<span class="w"> </span>de<span class="w"> </span>menjador<span class="w"> </span>a<span class="w"> </span>partir<span class="w"> </span>d&#39;una<span class="w"> </span>plantilla<span class="w"> </span>d&#39;alumnes<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;model_escoleta_menjador&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="nt">&gt;</span>code<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>
+for<span class="w"> </span>r<span class="w"> </span>in<span class="w"> </span>records:
+<span class="w">     </span>fecha<span class="w"> </span>=<span class="w"> </span>datetime.datetime.now().strftime(&quot;%Y-%m-%d<span class="w"> </span>%H:%M:%S&quot;)
+<span class="w">     </span>env[&#39;escoleta.menjador_day&#39;].create({&#39;name&#39;:fecha,&#39;day&#39;:r.id})
+<span class="w">     </span>log(&#39;creat<span class="w"> </span>dia<span class="w"> </span>menjador&#39;,level=&#39;info&#39;)
+<span class="w">     </span>for<span class="w"> </span>s<span class="w"> </span>in<span class="w"> </span>r.students:
+<span class="w">      </span>log(&#39;creat<span class="w"> </span>alumne&#39;,level=&#39;info&#39;)
+<span class="w">      </span>env[&#39;escoleta.student_day&#39;].create({&#39;name&#39;:str(s.name)+&quot;<span class="w"> </span>&quot;+str(fecha),&#39;student&#39;:s.id,&#39;menjador_day&#39;:r.id})
+action<span class="w"> </span>=<span class="w"> </span>{
+<span class="w">                </span>&quot;type&quot;:<span class="w"> </span>&quot;ir.actions.act_window&quot;,
+<span class="w">                </span>&quot;view_mode&quot;:<span class="w"> </span>&quot;tree&quot;,
+<span class="w">                </span>&quot;res_model&quot;:<span class="w"> </span>&quot;escoleta.menjador_day&quot;,
+<span class="w">         </span>}
+
+<span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;binding_model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;escoleta.model_escoleta_menjador&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>L’exemple anterior mostra cóm podem crear un action server i executar
+coses complexes en el servidor sense modificar el codi python del model.
+Però açò té varis inconvenients: El primer és que estem desplaçant la
+tasca del controlador a la vista o a una part en mig entre la vista i el
+controlador. El segon inconvenient és que és més complicat escriure codi
+python dins d’un XML sense equivocar-se en la indentació. I el
+inconvenient més important és que no tenim accés a totes les funcions
+del ORM i biblioteques útils d’Odoo del controlador. Per tant, és
+recomanable crear una funció en el model i cridar-la:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.server&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;escoleta.creaar_dia_menjador&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Creacio<span class="w"> </span>de<span class="w"> </span>un<span class="w"> </span>dia<span class="w"> </span>de<span class="w"> </span>menjador<span class="w"> </span>a<span class="w"> </span>partir<span class="w"> </span>d&#39;una<span class="w"> </span>plantilla<span class="w"> </span>d&#39;alumnes<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;model_escoleta_menjador&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="nt">&gt;</span>code<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>
+action=model.crear_dia_menjador()<span class="w">      </span>#<span class="w"> </span>Assignar<span class="w"> </span>el<span class="w"> </span>resultat<span class="w"> </span>de<span class="w"> </span>la<span class="w"> </span>funció<span class="w"> </span>a<span class="w"> </span>action<span class="w"> </span>per<span class="w"> </span>refrescar<span class="w"> </span>la<span class="w"> </span>web
+<span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;binding_model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;escoleta.model_escoleta_menjador&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>Codi de la funció:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">crear_dia_menjador</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                            
+        <span class="c1"># En el XML era records i en el python cal extraurer els records de active_ids                             </span>
+        <span class="n">records</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;active_ids&#39;</span><span class="p">))</span>                            
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+         <span class="c1"># Ja es pot treballar millor en dates gràcies a la biblioteca &#39;fields&#39;</span>
+         <span class="n">fecha</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>                                                               
+         <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;escoleta.menjador_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">fecha</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">:</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">})</span>              
+         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">students</span><span class="p">:</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;escoleta.student_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fecha</span><span class="p">),</span><span class="s1">&#39;student&#39;</span><span class="p">:</span><span class="n">s</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="s1">&#39;menjador_day&#39;</span><span class="p">:</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">})</span>
+        <span class="k">return</span> <span class="p">{</span>                                                  
+                <span class="c1"># En el XML era action i ací fa falta que retorne el diccionari per assignar-lo a action</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ir.actions.act_window&quot;</span><span class="p">,</span>                                          
+                <span class="s2">&quot;view_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;tree&quot;</span><span class="p">,</span>                                                      
+                <span class="s2">&quot;res_model&quot;</span><span class="p">:</span> <span class="s2">&quot;escoleta.menjador_day&quot;</span><span class="p">,</span>                                     
+         <span class="p">}</span>      
+</pre></div>
+</div>
+</section>
+<section id="domains-en-les-actions">
+<h2><em>Domains</em> en les <em>actions</em><a class="headerlink" href="#domains-en-les-actions" title="Link to this heading">#</a></h2>
+<p>En Odoo, el concepte de <strong>domain</strong> o domini està en varis llocs, encara
+que el seu funcionament sempre és el mateix. Es tracta d’un criteri de
+búsqueda o filtre sobre un model. La sintaxi dels domains és como veurem
+en aquest exemple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># [(nom_del_field, operador , valor)] </span>
+<span class="p">[</span><span class="s1">&#39;|&#39;</span><span class="p">,(</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="s1">&#39;male&#39;</span><span class="p">),(</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="s1">&#39;female&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Com es veu, cada condició va entre parèntesis amb el mon del field i el
+valor desitjat entre cometes si és un <em>string</em> i amb l’operador entre
+cometes i tot separat per comes. Les dues condicions tenen un <strong>|</strong>
+dabant, que significa la <strong>O</strong> lògica. Està dabant per utilitzar la
+<a class="reference external" href="https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa">notació polaca
+inversa</a>.</p>
+<p>Un action en domain treu vistes per als elements del model que
+coincideixen en les condicions del domini. El domain és trauit per el
+model en un <em>where</em> més a la consulta SQL. Per tant, al client no li
+arriben mai els registres que no pasen el filtre. Els <em>domains</em> en les vistes search el funcionament en la
+part del model és igual, ja que no ejecuta un action, però fa la mateixa
+petició javascript.</p>
+<p>Exemple de domain en action:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;action_employee&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.act_window&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Employee<span class="w"> </span>Male<span class="w"> </span>or<span class="w"> </span>Female<span class="nt">&lt;/field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res_model&quot;</span><span class="nt">&gt;</span>employee.employee<span class="nt">&lt;/field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;view_type&quot;</span><span class="nt">&gt;</span>form<span class="nt">&lt;/field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;view_mode&quot;</span><span class="nt">&gt;</span>tree,form<span class="nt">&lt;/field&gt;</span>
+<span class="w">                </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;domain&quot;</span><span class="nt">&gt;</span>[&#39;|&#39;,(&#39;gender&#39;,&#39;=&#39;,&#39;male&#39;),(&#39;gender&#39;,&#39;=&#39;,&#39;female&#39;)]<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="actions-per-a-molts-records">
+<h2>Actions per a molts records<a class="headerlink" href="#actions-per-a-molts-records" title="Link to this heading">#</a></h2>
+<p>Quan estem observant un tree, podem veure dalt uns menús desplegables
+que mostren varies accions que es poden fer als records seleccionats del
+tree. Com ara eliminar o duplicar. Nosaltres podem crear noves accions
+que estaran ahí dalt.</p>
+<p>Fins ara hem vist accions que s’executen al polsar un menú o un botó.
+El menú està declarat explícitament i el botó també. Les accions sols
+són una manera de dir-li al client web cóm ha de demanar les coses i cóm
+ha de mostrar-les. El client web de Odoo genera moltes part de
+l’interfície de manera automàtica. En el cas que ens ocupa, el client
+web atén a un action demanat pel menú lateral, aquest mostra un tree en
+la finestra corresponent. Però en la definició del tree, sols està la
+part de les dades. Dalt del tree, el client web mostra una barra de
+búsqueda i uns menús desplegables <strong>dropdown</strong>. Aquest menú és generat
+pel client amb la llista d’accions vinculades al model que està
+mostrant.</p>
+<p>La manera més senzilla de vincular un action al menú de dalt és amb aquests
+fields que ara tenen les actions:</p>
+<ul class="simple">
+<li><p><strong>binding_type</strong>: Per defecte és de tipus <strong>action</strong>, però pot ser
+<strong>action_form_only</strong> per mostrar un formulari o <strong>report</strong> per
+generar un report.</p></li>
+<li><p><strong>binding_model_id</strong>: Aquest field serveix per vincular l’action al
+menú de dalt de les vistes d’eixe model.</p></li>
+</ul>
+<p>Exemple tret del codi d’Odoo 11:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;action_view_sale_advance_payment_inv&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.act_window&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Invoice<span class="w"> </span>Order<span class="nt">&lt;/field&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;type&quot;</span><span class="nt">&gt;</span>ir.actions.act_window<span class="nt">&lt;/field&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res_model&quot;</span><span class="nt">&gt;</span>sale.advance.payment.inv<span class="nt">&lt;/field&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;view_type&quot;</span><span class="nt">&gt;</span>form<span class="nt">&lt;/field&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;view_mode&quot;</span><span class="nt">&gt;</span>form<span class="nt">&lt;/field&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;target&quot;</span><span class="nt">&gt;</span>new<span class="nt">&lt;/field&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;groups_id&quot;</span><span class="w"> </span><span class="na">eval=</span><span class="s">&quot;[(4,ref(&#39;sales_team.group_sale_salesman&#39;))]&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;binding_model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;sale.model_sale_order&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>Exemple per a accions tipus server:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;action_server_learn_skill&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.server&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Learning<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;type&quot;</span><span class="nt">&gt;</span>ir.actions.server<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;your_module_folder_name.model_your_model&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;binding_model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;module_folder_name.model_your_target_model&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="nt">&gt;</span>code<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>model.action_learn()<span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>Per saber més de les actions, podem estudiar el codi:
+<a class="reference external" href="https://github.com/odoo/odoo/blob/18.0/odoo/addons/base/models/ir_actions.py">1</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="vista.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">La vista</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reports.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reports</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accions-tipus-window">Accions tipus <em>window</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accions-tipus-url">Accions tipus URL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accions-tipus-server">Accions tipus Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domains-en-les-actions"><em>Domains</em> en les <em>actions</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actions-per-a-molts-records">Actions per a molts records</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
