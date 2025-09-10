@@ -1,5 +1,10 @@
 # Instal·lar Odoo
 
+```{contents}
+:local:
+:depth: 2
+```
+
 Odoo pot ser instal·lat en qualsevol sistema
 operatiu. No obstant, es desenvolupa pensant en Ubuntu o Debian i és el
 sistema en el que anem a treballar.
