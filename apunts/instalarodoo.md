@@ -268,6 +268,44 @@ Odoo intentarà connectar-se a la base de dades **usant `localhost`**, però en 
 Per a solucionar-ho, has d’indicar explícitament el **host de la base de dades** i la **contrasenya** en la comanda
 ```
 
+#### Git i Odoo en Docker
+
+És important configurar un bon `.gitignore`:
+
+```yml
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+.envrc
+*.egg-info/
+.eggs/
+
+# VSCode / IDEs
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Docker volumes (si els mapejes localment)
+data/
+filestore/
+sessions/
+
+# Tests / coverage
+.coverage
+htmlcov/
+pytest_cache/
+```
+
+Com que els volumns de la base de dades i del propi Odoo no van a estar a la carpeta, no cal ignorar l'instal·lació d'Odoo. Es pot crear un repositori en Github i després configurar la carpeta sencera amb `docker-compose.yml`, el directori config, nginx o addons, per exemple. Al descarregar el repositori es generará un entorn de treball igual que l'original, però sense les dades de la base de dades. 
 
 ## Posar en producció amb docker
 
