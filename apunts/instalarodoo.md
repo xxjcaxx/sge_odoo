@@ -177,7 +177,12 @@ Això ha d\'estar en un directori dins d\'un fitxer anomenat
 
     docker compose up -d
 
-Per a que funcione correctament, necessitem un fitxer `odoo.conf` que podem extreure d'un contenidor sense el volumen de `./config`. 
+Per a que funcione correctament, necessitem un fitxer `odoo.conf`. Al menys deuria dir on estan els mòduls:
+
+```yml
+[options]
+addons_path = /mnt/extra-addons
+```
 
 Si volem entrar en la base de dades postgreSQL per a fer coses
 manualment, podem executar:
@@ -187,7 +192,7 @@ manualment, podem executar:
 
 Executem el comandament psql de forma interactiva a la base de dades proves i amb l\'usuari odoo. 
 
-Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, exepte config i addons. Això permet compartir el codi i la configuració d'Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.
+Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, excepte config i addons. Això permet compartir el codi i la configuració d'Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.
 
 #### Mode desenvolupador en Docker
 
