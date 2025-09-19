@@ -1,4 +1,4 @@
-## Accions i menús
+# Accions i menús
 
 Diagrama de cóm es comporta el client web quan carrega Odoo per primera vegada i cóm crida a un action i carrega les vistes i les dades (records)
 
@@ -74,7 +74,7 @@ rep alguna d\'aquestes coses:
     en XML ni en la base de dades. En general, és la manera de cridar a
     un action al finalitzar una funció.
 
-### Accions tipus *window*
+## Accions tipus *window*
 
 Les accions *window* són un record més (**ir.actions.act_window**). No
 obstant, els menús que les criden, tenen una manera més ràpida de ser
@@ -228,7 +228,7 @@ vincular.
 
 Això també es pot fer més explícitament insertant records en **ir.actions.act_window.view**.
 
-### Accions tipus URL 
+## Accions tipus URL 
 Aquestes accions símplement obrin un URL. Exemple:
 
 ``` python
@@ -239,7 +239,7 @@ Aquestes accions símplement obrin un URL. Exemple:
 }
 ```
 
-### Accions tipus Server
+## Accions tipus Server
 
 Les accions tipus server funcionen en un model base i poden ser
 executades automàticament o amb el menú contextual d\'acció que es veu
@@ -428,7 +428,7 @@ Codi de la funció:
          }      
 ```
 
-### *Domains* en les *actions*
+## *Domains* en les *actions*
 
 En Odoo, el concepte de **domain** o domini està en varis llocs, encara
 que el seu funcionament sempre és el mateix. Es tracta d\'un criteri de
@@ -466,7 +466,7 @@ Exemple de domain en action:
     </record>
 ```
 
-### Actions per a molts records
+## Actions per a molts records
 
 Quan estem observant un tree, podem veure dalt uns menús desplegables
 que mostren varies accions que es poden fer als records seleccionats del

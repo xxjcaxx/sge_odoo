@@ -29,10 +29,10 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -496,7 +496,8 @@ calendaris, gràfics… definits en fitxers XML i el controlador
 resideix en els mètodes definits en les classes que proporcionen la
 lògica de negoci.</p>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="_images/MVCDiagram.png"><img alt="Arquitectura MVC" src="_images/MVCDiagram.png" style="width: 321.0px; height: 151.0px;" /></a>
+<a class="reference internal image-reference" href="_images/MVCDiagram.png"><img alt="Arquitectura MVC" src="_images/MVCDiagram.png" style="width: 321.0px; height: 151.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Arquitectura MVC</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
@@ -893,6 +894,15 @@ sintaxi completa on especifiquem el nom de la relació i el nom de les
 columnes que identifiquem els dos models. Pensem que una relació
 Many2many implica una taula en mig i estem especificant les seues claus
 alienes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>També és precís especificar la taula en mig si es fa una relació Many2many al propi model.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Un Many2many implica una taula en mig. Si volem afegir atributs a aquesta relació, cal crear explícitament el model del mig.</p>
+<p>El many2many pot ser ‘’computed’’ i en el còmput es pot ordenar o filtrar. Un Many2many computed no crea la taula en mig.</p>
+</div>
 </section>
 <section id="related">
 <h4>Related<a class="headerlink" href="#related" title="Link to this heading">#</a></h4>

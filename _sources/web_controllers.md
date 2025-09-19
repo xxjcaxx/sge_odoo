@@ -161,11 +161,6 @@ Si vulguem fer una aplicació que connecte amb Odoo via web, deguem
 autenticar-nos. Anem a analitzar el que demana. Per a fer-ho utilitzarem
 el programa [Postman](https://www.postman.com/)
 
-En aquest gif es veu el que hem de ficar en el Postman per a veure si
-funciona el API:
-
-![](Postmanauthenticationodoo.gif "Postmanauthenticationodoo.gif")
-
 Podem copiar aquest codi per autenticar-nos en la ruta que necessitem.
 Cal importar:
 

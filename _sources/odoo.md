@@ -457,13 +457,13 @@ columnes que identifiquem els dos models. Pensem que una relació
 Many2many implica una taula en mig i estem especificant les seues claus
 alienes.
 
-```{=mediawiki}
+```{tip}
 També és precís especificar la taula en mig si es fa una relació Many2many al propi model.
 ```
-```{=mediawiki}
-{{nota|Un Many2many implica una taula en mig. Si volem afegir atributs a aquesta relació, cal crear explícitament el model del mig. 
+```{tip}
+Un Many2many implica una taula en mig. Si volem afegir atributs a aquesta relació, cal crear explícitament el model del mig. 
 
-El many2many pot ser ''computed'' i en el còmput es pot ordenar o filtrar. Un Many2many computed no crea la taula en mig.}}
+El many2many pot ser ''computed'' i en el còmput es pot ordenar o filtrar. Un Many2many computed no crea la taula en mig.
 ```
 #### Related
 

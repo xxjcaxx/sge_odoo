@@ -29,10 +29,10 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -389,21 +389,34 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-amb-docker">Instal·lar Amb Docker</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amb-docker-compose">Amb Docker Compose</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-desenvolupador-en-docker">Mode desenvolupador en Docker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#git-i-odoo-en-docker">Git i Odoo en Docker</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posar-en-produccio-amb-docker">Posar en producció amb docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-de-nginx">Docker de Nginx</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workers">Workers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-installar-odoo">On instal·lar Odoo?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-en-debian-i-ubuntu">Instal·lar en Debian i Ubuntu</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracio-de-la-ruta-dels-moduls">Configuració de la ruta dels mòduls</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depurar-odoo">Depurar Odoo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#millorar-l-eixida-de-log">Millorar l’eixida de Log</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opcions-de-log-opcions-de-log">Opcions de log {#opcions_de_log}</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparar-l-entorn-de-treball-per-a-sge">Preparar l’entorn de treball per a SGE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opcions-de-log">Opcions de log</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-mode">Debug mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posar-en-produccio-en-ubuntu">Posar en producció en Ubuntu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odoo-per-https">Odoo per HTTPS</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posar-en-produccio">Posar en producció</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odoo-per-https">Odoo per HTTPS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seguretat-en-odoo">Seguretat en Odoo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-de-les-dades">Persistència de les dades</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#copies-de-seguretat">Còpies de seguretat</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alta-disponibilitat">Alta disponibilitat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usuaris-i-permisos">Usuaris i permisos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacio-de-una-base-de-dades">Creació de una base de dades</a></li>
@@ -429,6 +442,51 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="installar-odoo">
 <h1>Instal·lar Odoo<a class="headerlink" href="#installar-odoo" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#installar-amb-docker" id="id1">Instal·lar Amb Docker</a></p>
+<ul>
+<li><p><a class="reference internal" href="#amb-docker-compose" id="id2">Amb Docker Compose</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#posar-en-produccio-amb-docker" id="id3">Posar en producció amb docker</a></p>
+<ul>
+<li><p><a class="reference internal" href="#docker-de-nginx" id="id4">Docker de Nginx</a></p></li>
+<li><p><a class="reference internal" href="#workers" id="id5">Workers</a></p></li>
+<li><p><a class="reference internal" href="#on-installar-odoo" id="id6">On instal·lar Odoo?</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#installar-en-debian-i-ubuntu" id="id7">Instal·lar en Debian i Ubuntu</a></p>
+<ul>
+<li><p><a class="reference internal" href="#configuracio-de-la-ruta-dels-moduls" id="id8">Configuració de la ruta dels mòduls</a></p></li>
+<li><p><a class="reference internal" href="#depurar-odoo" id="id9">Depurar Odoo</a></p></li>
+<li><p><a class="reference internal" href="#millorar-l-eixida-de-log" id="id10">Millorar l’eixida de Log</a></p></li>
+<li><p><a class="reference internal" href="#opcions-de-log" id="id11">Opcions de log</a></p></li>
+<li><p><a class="reference internal" href="#debug-mode" id="id12">Debug mode</a></p></li>
+<li><p><a class="reference internal" href="#posar-en-produccio-en-ubuntu" id="id13">Posar en producció en Ubuntu</a></p></li>
+<li><p><a class="reference internal" href="#odoo-per-https" id="id14">Odoo per HTTPS</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#seguretat-en-odoo" id="id15">Seguretat en Odoo</a></p>
+<ul>
+<li><p><a class="reference internal" href="#persistencia-de-les-dades" id="id16">Persistència de les dades</a></p></li>
+<li><p><a class="reference internal" href="#alta-disponibilitat" id="id17">Alta disponibilitat</a></p></li>
+<li><p><a class="reference internal" href="#usuaris-i-permisos" id="id18">Usuaris i permisos</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#creacio-de-una-base-de-dades" id="id19">Creació de una base de dades</a></p></li>
+<li><p><a class="reference internal" href="#errors-documentats" id="id20">Errors documentats</a></p>
+<ul>
+<li><p><a class="reference internal" href="#error-amb-el-rol-odoo" id="id21">Error amb el rol Odoo</a></p></li>
+<li><p><a class="reference internal" href="#error-amb-utf-8" id="id22">Error amb UTF-8</a></p></li>
+<li><p><a class="reference internal" href="#recuperar-la-contrasenya-de-l-administrador" id="id23">Recuperar la contrasenya de l’administrador</a></p></li>
+<li><p><a class="reference internal" href="#problemes-en-els-repositoris-oficials-d-ubuntu" id="id24">Problemes en els repositoris oficials d’ubuntu</a></p></li>
+<li><p><a class="reference internal" href="#no-connecta-amb-postgresql" id="id25">No connecta amb PostgreSQL</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#enllacos" id="id26">Enllaços</a></p></li>
+</ul>
+</nav>
 <p>Odoo pot ser instal·lat en qualsevol sistema
 operatiu. No obstant, es desenvolupa pensant en Ubuntu o Debian i és el
 sistema en el que anem a treballar.</p>
@@ -438,7 +496,7 @@ de les més avançades que són descarregar per <em>git</em> el repositori i fer
 que arranque a l’inici a les més simples que són desplegar un
 <strong>docker</strong> amb tot funcionant.</p>
 <section id="installar-amb-docker">
-<h2>Instal·lar Amb Docker<a class="headerlink" href="#installar-amb-docker" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Instal·lar Amb Docker</a><a class="headerlink" href="#installar-amb-docker" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://registry.hub.docker.com/_/odoo/">Documentació oficial</a></p>
 <p>Desplegar Odoo amb Docker permet instal·lar i gestionar el sistema de manera més senzilla, sense necessitat de configurar manualment dependències o bases de dades. Docker encapsula Odoo en un <em>contenidor</em>, que és com una caixa autosuficient amb tot el necessari per a funcionar, fent que siga més fàcil d’executar en qualsevol servidor o ordinador sense problemes de compatibilitat. Això també facilita la creació d’entorns de desenvolupament i producció consistents, permet actualitzacions i proves sense risc d’afectar el sistema principal i optimitza l’ús de recursos. A més, amb Docker és possible desplegar Odoo junt amb altres serveis necessaris, com PostgreSQL, amb un sol fitxer de configuració.</p>
 <div class="danger admonition">
@@ -474,7 +532,7 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
 </pre></div>
 </div>
-<p>En Docker és molt sencill desplegar Odoo, tan sols fa falta aquests
+<p>En Docker és molt senzill desplegar Odoo, tan sols fa falta aquests
 comandaments:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># docker run -d --restart=&quot;always&quot; -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:9.4
 # docker run --restart=&quot;always&quot; -p 8069:8069 --name odoo --link db:db -t odoo
@@ -508,7 +566,6 @@ $ docker start -a odoo
 $ docker exec odoo odoo --config /etc/odoo/odoo.conf -u nommodul -d nombasededades -r odoo -w odoo --db_host 172.17.0.2 --db_port 5432
 </pre></div>
 </div>
-<p><strong>Creació de mòduls, mètode 1</strong></p>
 <p>Com es veu, l’últim comandament és un poc complicat. Per tant, anem a
 fer les coses totalment bé. Per a aixó necessitem un fitxer propi de
 configuració d’Odoo al que anomenarem <strong>odoo.conf</strong>. Podem utilitzar
@@ -541,7 +598,7 @@ executar:</p>
 </pre></div>
 </div>
 <section id="amb-docker-compose">
-<h3>Amb Docker Compose<a class="headerlink" href="#amb-docker-compose" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Amb Docker Compose</a><a class="headerlink" href="#amb-docker-compose" title="Link to this heading">#</a></h3>
 <p>El mètode anterior suposa l’execució d’un <strong>docker run</strong> molt complex.
 Per evitar equivocar-nos, podem per un <a class="reference external" href="https://docs.docker.com/compose/">docker
 compose</a> com aquest:</p>
@@ -579,7 +636,7 @@ compose</a> com aquest:</p>
 <span class="w">  </span><span class="nt">odoo-db-data</span><span class="p">:</span>
 </pre></div>
 </div>
-<p>Observem que declarem dos servicis i el <strong>odoo</strong> depen del <strong>db</strong>. També
+<p>Observem que declarem dos servicis i el <strong>odoo</strong> depèn del <strong>db</strong>. També
 cal dir quina xarxa utilitzen i la resta de dades que posem normalment
 en el <strong>run</strong>.</p>
 <p>Això ha d’estar en un directori dins d’un fitxer anomenat
@@ -587,14 +644,18 @@ en el <strong>run</strong>.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker compose up -d
 </pre></div>
 </div>
-<p>Per a que funcione correctament, necessitem un fitxer <code class="docutils literal notranslate"><span class="pre">odoo.conf</span></code> que podem extreure d’un contenidor sense el volumen de <code class="docutils literal notranslate"><span class="pre">./config</span></code>.</p>
+<p>Per a que funcione correctament, necessitem un fitxer <code class="docutils literal notranslate"><span class="pre">odoo.conf</span></code>. Al menys deuria dir on estan els mòduls:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>[options]
+addons_path = /mnt/extra-addons
+</pre></div>
+</div>
 <p>Si volem entrar en la base de dades postgreSQL per a fer coses
 manualment, podem executar:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker exec -ti postgresql psql proves -U odoo
 </pre></div>
 </div>
 <p>Executem el comandament psql de forma interactiva a la base de dades proves i amb l’usuari odoo.</p>
-<p>Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, exepte config i addons. Això permet compartir el codi i la configuració d’Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.</p>
+<p>Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, excepte config i addons. Això permet compartir el codi i la configuració d’Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.</p>
 <section id="mode-desenvolupador-en-docker">
 <h4>Mode desenvolupador en Docker<a class="headerlink" href="#mode-desenvolupador-en-docker" title="Link to this heading">#</a></h4>
 <p>Com es pot veure, hem configurat un directori per als mòduls. En aquest directori farem els <code class="docutils literal notranslate"><span class="pre">scaffold</span></code>. Amés hem afegit al comandament <code class="docutils literal notranslate"><span class="pre">--dev=all</span></code>. Això simplifica molt el desenvolupament, ja que molts dels canvis provoquen un reinici del servidor i actualització d’algunes parts dels mòduls.</p>
@@ -619,18 +680,21 @@ manualment, podem executar:</p>
 <span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(triangle-right) Run Odoo&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;purple&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;singleInstance&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docker-compose down &amp;&amp; docker-compose up -d &amp;&amp; docker logs odoo -f&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sudo docker compose down &amp;&amp; sudo docker compose up -d &amp;&amp; sudo docker logs odoo -f&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(triangle-right) Rerun Odoo&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;purple&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;singleInstance&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docker-compose restart odoo &amp;&amp; docker logs odoo -f&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sudo docker compose restart odoo &amp;&amp; sudo docker logs odoo -f&quot;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">        </span><span class="p">],</span>
 </pre></div>
 </div>
 <p>El primer <code class="docutils literal notranslate"><span class="pre">Command</span></code> ho reinicia tot, tant la base de dades com Odoo i elimina els contenidors per recrear-los. Això pot solucionar alguns problemes. Però en principi, el segon reinicia només el contenidor Odoo sense recrear-ho. És més ràpid i també actualitza la base de dades. El comandament el podem utilitzar en una terminal si no volem fer els botons o estem en un entorn on hi ha interfície gràfica.</p>
+<blockquote>
+<div><p>Si no necessites ser sudo per executar docker es pot llevar dels comandaments anteriors.</p>
+</div></blockquote>
 <p>En <strong>Pycharm</strong> és encara més sencill perquè es poden crear en <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Edit</span> <span class="pre">configurations...</span></code> creant un nou <code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">Script</span></code> amb els comandaments anteriors.</p>
 <p>Per veure els logs podem fer:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker logs odoo -f
@@ -660,10 +724,213 @@ docker exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
 <p>Per a solucionar-ho, has d’indicar explícitament el <strong>host de la base de dades</strong> i la <strong>contrasenya</strong> en la comanda</p>
 </div>
 </section>
+<section id="git-i-odoo-en-docker">
+<h4>Git i Odoo en Docker<a class="headerlink" href="#git-i-odoo-en-docker" title="Link to this heading">#</a></h4>
+<p>És important configurar un bon <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span># Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+.envrc
+*.egg-info/
+.eggs/
+
+# VSCode / IDEs
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Docker volumes (si els mapejes localment)
+data/
+filestore/
+sessions/
+
+# Tests / coverage
+.coverage
+htmlcov/
+pytest_cache/
+</pre></div>
+</div>
+<p>Com que els volumns de la base de dades i del propi Odoo no van a estar a la carpeta, no cal ignorar l’instal·lació d’Odoo. Es pot crear un repositori en Github i després configurar la carpeta sencera amb <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>, el directori config, nginx o addons, per exemple. Al descarregar el repositori es generará un entorn de treball igual que l’original, però sense les dades de la base de dades.</p>
+</section>
+</section>
+</section>
+<section id="posar-en-produccio-amb-docker">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Posar en producció amb docker</a><a class="headerlink" href="#posar-en-produccio-amb-docker" title="Link to this heading">#</a></h2>
+<p>Si podem deixar correguent un Docker a un servidor amb connexió a Internet amb els ports exposats, ja estaria en producció. No obstant això suposa varis problemes de seguretat i rendiment.</p>
+<section id="docker-de-nginx">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Docker de Nginx</a><a class="headerlink" href="#docker-de-nginx" title="Link to this heading">#</a></h3>
+<p>Podem afegir al fitxer del Docker Compose la configuració d’un contenidor Nginx. Aquest implementarà HTTPS i farà de proxy a Odoo.</p>
+<p>Farem servir un fitxer Dockerfile basat en la imatge oficial de Nginx, però adaptada a les nostres necessitats. Els certificats es generen de manera automàtica i estan autofirmats.</p>
+<p>Encara que els navegadors mostren un avís d’error, la informació continua viatjant de forma segura. El que passa és que no hi ha cap autoritat certificadora que haja validat el certificat. (no és el mateix un certificat autofirmat que cap protecció).</p>
+<p>Es podria fer un script amb CertBot per a utilitzar Let’s Encrypt i renovar el certificat cada tres mesos.</p>
+<p>En Nginx, definim la mateixa carpeta per a HTTP i HTTPS, intentant simplificar al màxim la configuració i automatitzar la creació tant de la imatge com del contenidor amb scripts.</p>
+<p>El primer pas és crear la nostra clau i certificat autofirmat dins d’un directori nginx junt a la resta de fitxers dels dockers:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>nginx
+<span class="nb">cd</span><span class="w"> </span>nginx
+openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-sha256<span class="w"> </span>-nodes<span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span>-keyout<span class="w"> </span>ser.key<span class="w"> </span>-out<span class="w"> </span>ser.pem
+</pre></div>
+</div>
+<p>Després creem un <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> dins de la mateixa carpeta. Aquest fixter servirà per executar certs comandaments cada vegada que es llance el docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM<span class="w"> </span>nginx
+
+RUN<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>/etc/nginx/conf.d/default.conf
+COPY<span class="w"> </span>nginx.conf<span class="w"> </span>/etc/nginx/conf.d/
+COPY<span class="w"> </span>ser.key<span class="w"> </span>/etc/nginx/
+COPY<span class="w"> </span>ser.pem<span class="w"> </span>/etc/nginx/
+
+EXPOSE<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="m">443</span>
+
+CMD<span class="w"> </span><span class="o">[</span><span class="s2">&quot;nginx&quot;</span>,<span class="w"> </span><span class="s2">&quot;-g&quot;</span>,<span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Afegirem al <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./nginx</span>
+<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span><span class="w">  </span><span class="c1"># este campo es opcional si el archivo se llama así</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">odoo</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;443:443&quot;</span>
+</pre></div>
+</div>
+<p>Falta crear el <code class="docutils literal notranslate"><span class="pre">nginx.conf</span></code> que serà la configuració:</p>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1">#odoo server</span>
+<span class="w">    </span><span class="k">upstream</span><span class="w"> </span><span class="s">odoo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kn">server</span><span class="w"> </span><span class="n">odoo</span><span class="p">:</span><span class="mi">8069</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">upstream</span><span class="w"> </span><span class="s">odoochat</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kn">server</span><span class="w"> </span><span class="n">odoo</span><span class="p">:</span><span class="mi">8072</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1"># S&#39;han definit els upstream a localhost i als port determinats</span>
+
+<span class="w">    </span><span class="c1"># http -&gt; https (totes les peticions per HTTP se reformulen a HTTPS)</span>
+<span class="w">    </span><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">       </span><span class="kn">server_name</span><span class="w"> </span><span class="s">_</span><span class="p">;</span><span class="w">                            </span>
+<span class="w">       </span><span class="c1"># Si tinguerem nom de domini el ficariem, en altre cas: _</span>
+<span class="w">       </span><span class="kn">rewrite</span><span class="w"> </span><span class="s">^(.*)</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host$1</span><span class="w"> </span><span class="s">permanent</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">server_name</span><span class="w"> </span><span class="s">_</span><span class="p">;</span>
+<span class="w">     </span><span class="c1"># La _ perquè en l&#39;exemple no tenim domini, com dalt</span>
+<span class="w">     </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">720s</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">720s</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">proxy_send_timeout</span><span class="w"> </span><span class="s">720s</span><span class="p">;</span>
+
+<span class="w">     </span><span class="c1"># Add Headers for odoo proxy mode</span>
+<span class="w">     </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+
+<span class="w">     </span><span class="c1"># SSL parameters</span>
+<span class="w">     </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/etc/nginx/ser.pem</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/nginx/ser.key</span><span class="p">;</span>
+<span class="w">     </span><span class="c1"># IMPORTANT: ficar bé les rutes dels certificats</span>
+<span class="w">     </span><span class="kn">ssl_session_timeout</span><span class="w"> </span><span class="mi">30m</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">ssl_protocols</span><span class="w"> </span><span class="s">TLSv1</span><span class="w"> </span><span class="s">TLSv1.1</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">ssl_ciphers</span><span class="w"> </span><span class="s">&#39;ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA&#39;</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+
+<span class="w">     </span><span class="c1"># log</span>
+<span class="w">     </span><span class="kn">access_log</span><span class="w"> </span><span class="s">/var/log/nginx/odoo.access.log</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">error_log</span><span class="w"> </span><span class="s">/var/log/nginx/odoo.error.log</span><span class="p">;</span>
+
+<span class="w">     </span><span class="c1"># Redirect requests to odoo backend server</span>
+<span class="w">     </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kn">proxy_redirect</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">       </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://odoo</span><span class="p">;</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">     </span><span class="kn">location</span><span class="w"> </span><span class="s">/longpolling</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://odoochat</span><span class="p">;</span>
+<span class="w">     </span><span class="p">}</span>
+
+<span class="w">     </span><span class="c1"># common gzip</span>
+<span class="w">     </span><span class="kn">gzip_types</span><span class="w"> </span><span class="s">text/css</span><span class="w"> </span><span class="s">text/less</span><span class="w"> </span><span class="s">text/plain</span><span class="w"> </span><span class="s">text/xml</span><span class="w"> </span><span class="s">application/xml</span><span class="w"> </span><span class="s">application/json</span><span class="w"> </span><span class="s">application/javascript</span><span class="p">;</span>
+<span class="w">     </span><span class="kn">gzip</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="workers">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Workers</a><a class="headerlink" href="#workers" title="Link to this heading">#</a></h3>
+<p>Per defecte Odoo és <code class="docutils literal notranslate"><span class="pre">multithread</span></code>. Això vol dir que pot mantenir varis fils d’execució. No obstant això és un poc ineficient en producció si tens molts usuaris. És millor, amés, que siga <code class="docutils literal notranslate"><span class="pre">multi-processing</span></code> per poder distribuir la tasca millor entre distints processadors o nuclis. (no disponible en Windows)</p>
+<p>Per aconseguir-ho, sols hem de ficar al fitxer de configuració la quantitat de <code class="docutils literal notranslate"><span class="pre">workers</span></code> que volem, amés d’altres coses:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">options</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">limit_memory_hard = 1677721600</span>
+<span class="l l-Scalar l-Scalar-Plain">limit_memory_soft = 629145600</span>
+<span class="l l-Scalar l-Scalar-Plain">limit_request = 8192</span>
+<span class="l l-Scalar l-Scalar-Plain">limit_time_cpu = 600</span>
+<span class="l l-Scalar l-Scalar-Plain">limit_time_real = 1200</span>
+<span class="l l-Scalar l-Scalar-Plain">max_cron_threads = 1</span>
+<span class="l l-Scalar l-Scalar-Plain">workers = 8</span>
+</pre></div>
+</div>
+<p>Com a regla aproximada podem calcular els workers òptims com 1 Worker per cada 6 usuaris simultanis i El doble + 1 de workers per CPU. Així, si tenim un servidor amb 4 nuclis 8 Threads i uns 60 usuaris simultanis:</p>
+<ul class="simple">
+<li><p>60/6 ~= 10 workers</p></li>
+<li><p>4*2+1 = 9 workers que suporta la màquina.</p></li>
+<li><p>En aquest cas es poden utilitzar 8 workers + 1 per al cron.</p></li>
+<li><p>La RAM a nivell simple podem pensar en 1GB per worker. No obstant, hi ha peticions que no necessiten més de 150MB. Per tant, segon la documentació d’Odoo, per a 9 workers: 9 * ((0.8<em>150) + (0.2</em>1024)) ~= 3GB RAM mínim.</p></li>
+</ul>
+</section>
+<section id="on-installar-odoo">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">On instal·lar Odoo?</a><a class="headerlink" href="#on-installar-odoo" title="Link to this heading">#</a></h3>
+<p>Cada empresa té unes necessitats i aquesta pregunta pot tenir moltes respostes. Anem a fer una comparativa no rigorosa de les distintes opcions:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Lloc</strong></p></th>
+<th class="head"><p><strong>Tecnologia</strong></p></th>
+<th class="head"><p><strong>Propòsit</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Servidor local</strong></p></td>
+<td><p>Directament instal·lat a Ubuntu Server</p></td>
+<td><p>En funció de la potència, capacitat i seguretat del servidor, pot servir per a qualsevol empresa. Instal·lar directament dona menys flexibilitat, però aprofita tota la potència de la màquina i la compatibilitat amb tot. L’empresa té control total de les dades i és responsable de la seguretat. També té control de les despeses. És poc escalable i migrable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Servidor local</strong></p></td>
+<td><p>En Docker, Proxmox o VirtualBox</p></td>
+<td><p>Igual que l’opció anterior, però amb més possibilitats de ser escalable i migrable. Permet compartir millor els recursos de la màquina amb altres serveis.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Al núvol</strong></p></td>
+<td><p>VPS</p></td>
+<td><p>No és necessari pensar en la seguretat física, però sí en la lògica. És escalable si el proveïdor permet ampliar la màquina. El preu sol estar predeterminat, però és més car a la llarga que els servidors propis. En el cas de proveïdors primaris com AWS, Azure, Google Cloud… el preu és per ús i és perillós no controlar-ho.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Al núvol</strong></p></td>
+<td><p>SAAS</p></td>
+<td><p>Ja no cal tanta cura en la seguretat lògica, només pels usuaris d’Odoo. És escalable, però molt més car. No és personalitzable.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Al núvol</strong></p></td>
+<td><p><a class="reference external" href="http://Odoo.sh">Odoo.sh</a></p></td>
+<td><p>Permet desplegar el teu Odoo a un IaaS + PaaS preparat específicament per a Odoo. Permet personalitzar. És car.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Al núvol</strong></p></td>
+<td><p>PAAS (Render, Railway, <a class="reference external" href="http://Fly.io">Fly.io</a>…)</p></td>
+<td><p>Cada servei té les seues característiques, però combinen els avantatges de Docker pel que fa a la personalització amb una interfície molt còmoda per al DevOps i CI/CD. Es tracta el desplegament com si fos codi.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La resposta continúa sense ser clara. Cada empresa té unes posibilitats i necessitats. Una micro-empresa amb pocs ordinadors i sols necessitar de intranet pot instal·lar en un Docker en un servidor de baix consum amb copies de seguretat periòdiques. Una empresa menuda pot desplegar en VPS o PAAS amb preus predefinits i controlats i anar augmentant conforme ho necessiten. Una empresa més gran pot decidir-se per núvols més de baix nivell (IAAS) o per una instal·lació on-premise més seria amb alta disponibilitat a la propia empresa. Un SAAS pot ser útil per a empreses que no necessiten cap personalització. Si el negoci és donar el propi servei d’Odoo, es pot optar per contractar un IAAS i a sobre, donar un servei SAAS amb personalitzacions a mida i cobrar pel servei i per les personalitzacions.</p>
 </section>
 </section>
 <section id="installar-en-debian-i-ubuntu">
-<h2>Instal·lar en Debian i Ubuntu<a class="headerlink" href="#installar-en-debian-i-ubuntu" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Instal·lar en Debian i Ubuntu</a><a class="headerlink" href="#installar-en-debian-i-ubuntu" title="Link to this heading">#</a></h2>
 <p>Abans de res, cal preparar un poc el sistema:</p>
 <p>En el cas de Ubuntu o Debian, que és el que ens interessa,
 Odoo proporciona uns repositoris anomenats
@@ -704,7 +971,7 @@ l’Odoo.</p>
 </div>
 <p><a class="reference external" href="https://asciinema.org/a/122875">Asciinema del procés</a>.</p>
 <section id="configuracio-de-la-ruta-dels-moduls">
-<h3>Configuració de la ruta dels mòduls<a class="headerlink" href="#configuracio-de-la-ruta-dels-moduls" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Configuració de la ruta dels mòduls</a><a class="headerlink" href="#configuracio-de-la-ruta-dels-moduls" title="Link to this heading">#</a></h3>
 <p>Com que la instalació d’Odoo crea lúsuari <strong>odoo</strong>, que és el que tenim
 que utilitzar per al desenvolupament, anem a donar-li una contrasenya:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo passwd odoo
@@ -736,7 +1003,7 @@ al comandament. Els comandaments són queda, per tant:</p>
 </div>
 </section>
 <section id="depurar-odoo">
-<h3>Depurar Odoo<a class="headerlink" href="#depurar-odoo" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Depurar Odoo</a><a class="headerlink" href="#depurar-odoo" title="Link to this heading">#</a></h3>
 <p>Per crear mòduls o vorer els problemes que estan passant, cal llegir els
 fitxers de log, però hi ha una manera més eficient de fer-ho. Si
 observem el comandament que, realment, està executant odoo:</p>
@@ -783,7 +1050,7 @@ depurar.</a></p>
 <a class="reference external" href="https://www.odoo.com/documentation/12.0/reference/cmdline.html">https://www.odoo.com/documentation/12.0/reference/cmdline.html</a></p>
 </section>
 <section id="millorar-l-eixida-de-log">
-<h3>Millorar l’eixida de Log<a class="headerlink" href="#millorar-l-eixida-de-log" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Millorar l’eixida de Log</a><a class="headerlink" href="#millorar-l-eixida-de-log" title="Link to this heading">#</a></h3>
 <p>Per afegir als nostres mètodes una eixida de log i facilitar la
 depuració, es pot utilitzar el api de Odoo:</p>
 <p>Al principi del fitxer .py:</p>
@@ -804,8 +1071,8 @@ depuració, es pot utilitzar el api de Odoo:</p>
 </pre></div>
 </div>
 </section>
-<section id="opcions-de-log-opcions-de-log">
-<h3>Opcions de log {#opcions_de_log}<a class="headerlink" href="#opcions-de-log-opcions-de-log" title="Link to this heading">#</a></h3>
+<section id="opcions-de-log">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Opcions de log</a><a class="headerlink" href="#opcions-de-log" title="Link to this heading">#</a></h3>
 <p>Per defecte, Odoo llança el seu log a un fitxer a <strong>/var/log/odoo/</strong>,
 però es pot fer que envía a un altre fitxer amb <strong>–log-file=LOGFILE</strong>.</p>
 <p>Si volem més detall en determinats accions d’Odoo, podem afegir al
@@ -822,55 +1089,14 @@ que es donen a la web.</p></li>
 Aquesta opció ens ajuda a entendre cóm funciona el ORM.</p></li>
 <li><p><strong>–log-level=LOG_LEVEL</strong></p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">                       specify the level of the logging. Accepted values:</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">                       ['info', 'debug_rpc', 'warn', 'test', 'critical',</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">                       'debug_sql', 'error', 'debug', 'debug_rpc_answer',</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">                       'notset'].</span></code></p>
-</section>
-<section id="preparar-l-entorn-de-treball-per-a-sge">
-<h3>Preparar l’entorn de treball per a SGE<a class="headerlink" href="#preparar-l-entorn-de-treball-per-a-sge" title="Link to this heading">#</a></h3>
-<div class="tip admonition">
-<p class="admonition-title">Nota</p>
-<p>Aquesta ajuda és per que, com a alumnes, vos prepareu correctament per poder programar de manera cómoda en Odoo. No obstant, es poden traure idees per al treball professional o en altres entorns</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="p">[</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;debug_rpc&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;critical&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;debug_sql&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;debug_rpc_answer&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;notset&#39;</span><span class="p">]</span><span class="o">.</span>
+</pre></div>
 </div>
-<ul>
-<li><p>Instal·lar el contenidor o la màquina virtual Ubuntu Server</p></li>
-<li><p>Crear un usuari per poder accedir fàcilment per SSH les primeres
-vegades i que no siga Odoo.</p></li>
-<li><p>Accedir amb eixe usuari per SSH, fer-se root i instal·lar Odoo
-segons els manuals anteriors.</p></li>
-<li><p>Crear una empresa amb dades de demo en la web d’Odoo.</p></li>
-<li><p>Fer que l’usuari Odoo tinga shell i fer que es puga accedir a ell
-per <a class="reference internal" href="#SSH"><span class="xref myst">SSH</span></a> sense contrasenya des del vostre equip. (
-usermod -s /bin/bash odoo )</p></li>
-<li><p>Fer-se un compte i un projecte en Github.</p></li>
-<li><p>Crear el directori modules i configurar Odoo per utilitzar aquest
-quant s’inicie en ‘mode depuració’.</p></li>
-<li><p>Sincronitzar el directori modules en el Github personal.</p></li>
-<li><p>Instal·lar ngrok per poder accedir des de remot al contenidor.</p></li>
-<li><p>Configurar el navegador d’arxius per accedir per SSH i editar amb
-el teu editor preferit.</p></li>
-<li><p>Entrar en el navegador d’arxius a <em>altres ubicacions</em> i escriure
-<a class="reference external" href="ssh://odoo&#64;">ssh://odoo&#64;</a><code class="docutils literal notranslate"><span class="pre">&lt;ip&gt;</span></code>{=html}</p>
-<ul class="simple">
-<li><p>Ens mostrarà un directori que podem afegir com a favorit del
-navegador d’arxius.</p></li>
-<li><p>El directori real on l’ha muntat
-<strong><a class="reference external" href="https://es.wikipedia.org/wiki/GVFS">gvfs</a></strong> és
-<strong>/run/user/<code class="docutils literal notranslate"><span class="pre">&lt;usuari&gt;</span></code>{=html}/gvfs/sftp:host=<code class="docutils literal notranslate"><span class="pre">&lt;ip&gt;</span></code>{=html},user=odoo/var/lib/odoo</strong>
-o <strong>~/.gvfs/</strong></p></li>
-<li><p>Podem afegir aquest directori real com a lloc de projecte per al
-programa <strong>PyCharm</strong>.</p></li>
-<li><p>PyCharm també té una terminal que pot entrar per SSH.</p></li>
-</ul>
-</li>
-<li><p>Una alternativa al navegador d’arxius és connectar per sshfs:</p>
-<p>sshfs <a class="reference external" href="mailto:odoo&#37;&#52;&#48;10&#46;100&#46;23&#46;100">odoo<span>&#64;</span>10<span>&#46;</span>100<span>&#46;</span>23<span>&#46;</span>100</a>:/var/lib/odoo ./odoo/</p>
-</li>
-</ul>
 </section>
 <section id="debug-mode">
-<h3>Debug mode<a class="headerlink" href="#debug-mode" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Debug mode</a><a class="headerlink" href="#debug-mode" title="Link to this heading">#</a></h3>
 <p>Odoo permet entrar en mode debug amb <strong>–debug</strong>.</p>
 <p>També es pot importar la bibliteca <strong>pdb</strong> i col·locar un <em>trace</em> en el
 codi que ens interessa:</p>
@@ -882,13 +1108,13 @@ codi que ens interessa:</p>
 <p>Una vegada dins, es poden utilitzar els comandaments de pdb:
 <a class="reference external" href="https://docs.python.org/3/library/pdb.html">https://docs.python.org/3/library/pdb.html</a></p>
 </section>
-</section>
-<section id="posar-en-produccio">
-<h2>Posar en producció<a class="headerlink" href="#posar-en-produccio" title="Link to this heading">#</a></h2>
+<section id="posar-en-produccio-en-ubuntu">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Posar en producció en Ubuntu</a><a class="headerlink" href="#posar-en-produccio-en-ubuntu" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://www.odoo.com/documentation/17.0/administration/install/deploy.html?highlight=workers">https://www.odoo.com/documentation/17.0/administration/install/deploy.html?highlight=workers</a>
 <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd">https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd</a></p>
+</section>
 <section id="odoo-per-https">
-<h3>Odoo per HTTPS<a class="headerlink" href="#odoo-per-https" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Odoo per HTTPS</a><a class="headerlink" href="#odoo-per-https" title="Link to this heading">#</a></h3>
 <p>El servidor Odoo per defecte dona la seua web pel port 8069 i en HTTP
 sense capa de seguretat SSL.</p>
 <p>Per fer que tinga eixa seguretat, necessitem utilitzar un servidor web
@@ -1014,8 +1240,72 @@ modificar-lo per a que no afecte al port 80 d’Odoo.</p>
 <p>Ara es reinicien tanmt Odoo com nginx</p>
 </section>
 </section>
+<section id="seguretat-en-odoo">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Seguretat en Odoo</a><a class="headerlink" href="#seguretat-en-odoo" title="Link to this heading">#</a></h2>
+<p>Quan parlem de seguretat en Odoo estem parlant de temes generals que totes les aplicacions web tenen i de temes específics d’Odoo. En general, qualsevol aplicació web té uns mínims de seguretat que passen per donar servici sols en HTTPS, controlar els ports, evitar atacs DDOS, tenir bones contrasenyes…</p>
+<p>En quant al HTTPS, en els apartats corresponents està explicat, a falta de contractar un certificat real. La seguretat i alta disponibilitat del servidor és una qüestió massa complexa per a aquest mòdul i pot ser tasca del cicle d’ASIX. Però podem fer coses específiques d’Odoo per evitar els problemes o per a recuperar-se ràpidament d’ells.</p>
+<section id="persistencia-de-les-dades">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Persistència de les dades</a><a class="headerlink" href="#persistencia-de-les-dades" title="Link to this heading">#</a></h3>
+<p>Una empresa no es pot permetre perdre dades. Les formes d’evitar perdre dades en Odoo són múltiples. Si tenim una instal·lació on-premise hem de controlar tots els factors: físics i lògics. Això passa per varies tasques ineludibles:</p>
+<section id="copies-de-seguretat">
+<h4>Còpies de seguretat<a class="headerlink" href="#copies-de-seguretat" title="Link to this heading">#</a></h4>
+<p>Odoo, en la seua interfície gràfica, permet exportar taules i un cert control de les còpies de seguretat manuals per taules individuals. Això, per suposat, sols és recomanable per a exportacions/importacions puntuals.</p>
+<p>En l’interfície gràfica també es pot anar al gestor de bases de dades i exportar i importar el backup. Seria recomanable fer-ho cada cert temps.</p>
+<p>Si volem que siga automàtic, es pot programar externament un servici que, cada cert temps, es connecte de forma remota per XML-RCP:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">odoo_host</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8069&#39;</span>
+<span class="n">database</span> <span class="o">=</span> <span class="s1">&#39;tu_basededatos&#39;</span>
+<span class="n">admin_password</span> <span class="o">=</span> <span class="s1">&#39;tu_contraseña_admin&#39;</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">odoo_host</span><span class="si">}</span><span class="s1">/web/database/backup&#39;</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="s1">&#39;master_pwd&#39;</span><span class="p">:</span> <span class="n">admin_password</span><span class="p">,</span>
+	<span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">database</span><span class="p">,</span>
+	<span class="s1">&#39;backup_format&#39;</span><span class="p">:</span> <span class="s1">&#39;zip&#39;</span>  <span class="c1"># o &#39;dump&#39;</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+	<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">_backup.zip&quot;</span>
+	<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Backup guardado como </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al hacer backup: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>També podem fer-ho a nivel del CLI de la base de dades:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pg_dump<span class="w"> </span>db_name
+</pre></div>
+</div>
+<p>La copia de seguretat de la base de dades no inclou els fitxers i fotos. Necessitarem copiar el directori filestore si ho fem a nivell de base de dades.</p>
+<p>A més baix nivell, es pot fer una copia de seguretat del sistema d’arxius o inclús de les particions.</p>
+<p>No cal dir que eixa copia de seguretat no estarà finalment en el mateix disc dur que la base de dades original ni en la mateixa ubicació física.</p>
+</section>
+</section>
+<section id="alta-disponibilitat">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Alta disponibilitat</a><a class="headerlink" href="#alta-disponibilitat" title="Link to this heading">#</a></h3>
+<p>Un sistema empresarial ha d’estar sobre un servidor segur a nivell físic. Això implica SAIs i RAIDs o similars. Si estem utilitzant un VPS en el núvol, no ens preocuparem d’això. Si no, necessitarem un CPD encara que siga discret, amb seguretat física, sistemes d’alimentació ininterrompuda i discs redundants. Amés de sistemes de còpies de seguretat remotes. El sistema es deuria poder recuperar d’un trencament sense interrompre el servici.</p>
+</section>
+<section id="usuaris-i-permisos">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Usuaris i permisos</a><a class="headerlink" href="#usuaris-i-permisos" title="Link to this heading">#</a></h3>
+<p>Odoo té un complex sistema d’usuaris, grups, rols i permisos. Un/a administrador d’Odoo ha de portar al dia la gestió granular d’aquests permisos. Amés, deguem distingir els disitints usuaris que tenim que gestionar, de més poderos a menys:</p>
+<ul class="simple">
+<li><p>Root del sistema operatiu: Usuari amb poder total en aquest sistema operatiu, deuria ser un administrador de sistemes.</p></li>
+<li><p>Administrador de PostgreSQL: té molt de poder amb les dades de tota l’empresa i possiblement de varies empreses. Si PostgreSQL està utilitzant-se per a altres coses que no són Odoo també té poder sobre elles.</p></li>
+<li><p>Administrador de bases de dades d’Odoo: La seua contrasenya està en odoo.conf i té poder de crear, esborrar i fer còpies de totes les bases de dades. Accedeix típicament via web. És possible que els programadors no necessiten aquest poder.</p></li>
+<li><p>Administrador técnic d’una base de dades: Té poder per administrar mòduls i per canviar l’interfície. Els programadors necessiten eixe poder.</p></li>
+<li><p>Administrador de l’empresa: Pot administrar tot el que és relatiu al negoci. No pot instal·lar mòduls ni programar. Típicament són els propietaris, jefes… de l’empresa. No és convenient que una persona no experimentada en programació tinga més poder.</p></li>
+<li><p>Usuaris normals: Venedors, administratius… Poden accedir a certes parts de backend. Els seus permisos depenen del grup o rols al que estiguen associats.</p></li>
+<li><p>Clients i proveidors: Normalment tenen accés a la pàgina web, que pot estar feta amb Odoo. Poden tenir cert accés a una API feta per nosaltres si volem automatizar les relacions comercials amb ells.</p></li>
+</ul>
+</section>
+</section>
 <section id="creacio-de-una-base-de-dades">
-<h2>Creació de una base de dades<a class="headerlink" href="#creacio-de-una-base-de-dades" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Creació de una base de dades</a><a class="headerlink" href="#creacio-de-una-base-de-dades" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Atenció</p>
 <p>En general no cal fer aquest pas i és recomanable fer la base de dades per la interfície web.</p>
@@ -1033,14 +1323,14 @@ treballar.</p>
 postgreSQL</a></p>
 </section>
 <section id="errors-documentats">
-<h2>Errors documentats<a class="headerlink" href="#errors-documentats" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Errors documentats</a><a class="headerlink" href="#errors-documentats" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Atenció</p>
 <p><strong>Important</strong> Abans de fer aquests comandaments, consulteu el final del
 fitxer de log, generalment en /var/log/odoo/odoo-server.log</p>
 </div>
 <section id="error-amb-el-rol-odoo">
-<h3>Error amb el rol Odoo<a class="headerlink" href="#error-amb-el-rol-odoo" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Error amb el rol Odoo</a><a class="headerlink" href="#error-amb-el-rol-odoo" title="Link to this heading">#</a></h3>
 <p>Si apareix un error similar a:</p>
 <p><code class="docutils literal notranslate"><span class="pre">OperationalError: FATAL:  no existe el rol «odoo»</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">OperationalError: FATAL:  role &quot;odoo&quot; does not exist</span></code></p>
@@ -1051,7 +1341,7 @@ fitxer de log, generalment en /var/log/odoo/odoo-server.log</p>
 <p>Això crea l’usuari odoo amb permís de superusuari (-s)</p>
 </section>
 <section id="error-amb-utf-8">
-<h3>Error amb UTF-8<a class="headerlink" href="#error-amb-utf-8" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Error amb UTF-8</a><a class="headerlink" href="#error-amb-utf-8" title="Link to this heading">#</a></h3>
 <p>Moltes vegades, al instal·lar, no configura el template0 de la base de
 dades en utf-8.
 <a class="reference external" href="http://www.postgresql.org/docs/9.3/static/manage-ag-templatedbs.html">1</a></p>
@@ -1077,7 +1367,7 @@ els locales y després:</p>
 </div>
 </section>
 <section id="recuperar-la-contrasenya-de-l-administrador">
-<h3>Recuperar la contrasenya de l’administrador<a class="headerlink" href="#recuperar-la-contrasenya-de-l-administrador" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Recuperar la contrasenya de l’administrador</a><a class="headerlink" href="#recuperar-la-contrasenya-de-l-administrador" title="Link to this heading">#</a></h3>
 <p><strong>De l’administrador d’un base de dades:</strong> Dins de la base de dades:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> update res_users set password=&#39;test&#39; where login=&#39;admin&#39;;
 </pre></div>
@@ -1088,7 +1378,7 @@ línia <strong>admin_passwd</strong> de /etc/odoo/odoo.conf o .odoorc, depenent 
 fitxer de configuració estem utilitzant.</p>
 </section>
 <section id="problemes-en-els-repositoris-oficials-d-ubuntu">
-<h3>Problemes en els repositoris oficials d’ubuntu<a class="headerlink" href="#problemes-en-els-repositoris-oficials-d-ubuntu" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Problemes en els repositoris oficials d’ubuntu</a><a class="headerlink" href="#problemes-en-els-repositoris-oficials-d-ubuntu" title="Link to this heading">#</a></h3>
 <p>En el cas de l’IES, els repositoris oficials no funcionen bé per alguna
 interferència amb els de Lliurex. Cal canviar-los. Per exemple per els
 de Caliu. Una manera és entrar en <strong>vim</strong> i executar aquest comandament:</p>
@@ -1099,7 +1389,7 @@ de Caliu. Una manera és entrar en <strong>vim</strong> i executar aquest comand
 URL.)</p>
 </section>
 <section id="no-connecta-amb-postgresql">
-<h3>No connecta amb PostgreSQL<a class="headerlink" href="#no-connecta-amb-postgresql" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">No connecta amb PostgreSQL</a><a class="headerlink" href="#no-connecta-amb-postgresql" title="Link to this heading">#</a></h3>
 <p>Pot ser perquè no está el servici en funcionament.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> service postgresql [restart,start,stop,status]         
 </pre></div>
@@ -1123,7 +1413,7 @@ funciona:</p>
 </section>
 </section>
 <section id="enllacos">
-<h2>Enllaços<a class="headerlink" href="#enllacos" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">Enllaços</a><a class="headerlink" href="#enllacos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/odoo/technical-training/tree/12.0-99-sysadmin">Manual technical training
 Odoo</a>.</p></li>
@@ -1204,21 +1494,34 @@ seguridad</a>.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-amb-docker">Instal·lar Amb Docker</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amb-docker-compose">Amb Docker Compose</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-desenvolupador-en-docker">Mode desenvolupador en Docker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#git-i-odoo-en-docker">Git i Odoo en Docker</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posar-en-produccio-amb-docker">Posar en producció amb docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-de-nginx">Docker de Nginx</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workers">Workers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-installar-odoo">On instal·lar Odoo?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-en-debian-i-ubuntu">Instal·lar en Debian i Ubuntu</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracio-de-la-ruta-dels-moduls">Configuració de la ruta dels mòduls</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depurar-odoo">Depurar Odoo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#millorar-l-eixida-de-log">Millorar l’eixida de Log</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opcions-de-log-opcions-de-log">Opcions de log {#opcions_de_log}</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparar-l-entorn-de-treball-per-a-sge">Preparar l’entorn de treball per a SGE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opcions-de-log">Opcions de log</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-mode">Debug mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posar-en-produccio-en-ubuntu">Posar en producció en Ubuntu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odoo-per-https">Odoo per HTTPS</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#posar-en-produccio">Posar en producció</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odoo-per-https">Odoo per HTTPS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seguretat-en-odoo">Seguretat en Odoo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persistencia-de-les-dades">Persistència de les dades</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#copies-de-seguretat">Còpies de seguretat</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alta-disponibilitat">Alta disponibilitat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usuaris-i-permisos">Usuaris i permisos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacio-de-una-base-de-dades">Creació de una base de dades</a></li>
