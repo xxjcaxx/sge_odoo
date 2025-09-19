@@ -1,0 +1,1632 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>La vista &#8212; Apunts d&#39;Odoo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vista';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Accions i menús" href="accions_menus.html" />
+    <link rel="prev" title="Desenvolupar per a Odoo" href="odoo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/odoo_logo.svg" class="logo__image only-light" alt="Apunts d'Odoo - Home"/>
+    <script>document.write(`<img src="_static/odoo_logo.svg" class="logo__image only-dark" alt="Apunts d'Odoo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introducció a Odoo
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instalarodoo.html">Instal·lar Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo.html">Desenvolupar per a Odoo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">La vista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accions_menus.html">Accions i menús</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizards.html">Wizards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client_web.html">Client Web</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge/issues/new?title=Issue%20on%20page%20%2Fvista.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/vista.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>La vista</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-vistes-list">Les vistes list</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colors">Colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editable">Editable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camps-invisibles">Camps invisibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#botons">Botons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#totals">Totals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenar-per-un-field">Ordenar per un field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupar-per-un-field">Agrupar per un field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banner-route">banner_route</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-vistes-form">Les vistes form</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#widgets">Widgets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-i-float">Integer i Float</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#char-i-text-char-i-text">Char i Text {#char_i_text}</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean">Boolean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#date">Date</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2one">Many2one</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2many">Many2Many</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one2many">One2many</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-el-tree-del-one2many">Modificar el tree del One2many</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-o-image">Binary o Image</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#selection">Selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fields-dels-trees">Fields dels trees</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buttons">buttons</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#formularis-dinamics">Formularis dinàmics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-kanban">Vistes Kanban</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imatges-en-els-kanbans">Imatges en els Kanbans</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-search">Vistes search</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadors-per-als-domains">Operadors per als domains:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-calendar">Vistes Calendar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-graph">Vistes Graph</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="la-vista">
+<h1>La vista<a class="headerlink" href="#la-vista" title="Link to this heading">#</a></h1>
+<p>En aquest capítol, explorarem com funcionen les vistes en Odoo, quins tipus de vistes podem utilitzar i com es poden personalitzar mitjançant XML i accions de servidor. Aprendrem a estructurar correctament una interfície d’usuari, a definir formularis, llistats, kanbans i gràfics, i a gestionar la navegació entre ells.</p>
+<p>Les vistes són la manera en la que es representen els models. En cas de que no declarem les vistes, es poden referenciar per el seu tipus i Odoo generarà una vista de llista o formulari estandar per poder vorer els registres de cada model. No obstant, quasi sempre volem personalitzar les vistes i en aquest cas, es poden referenciar per un identificador.</p>
+<p>Les vistes tenen una prioritat i, si no s’especifica el identificador de la que volem mostrar, es mostrarà la que més prioritat tinga.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.ui.view&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;view_id&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>view.name<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>object_name<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;priority&quot;</span><span class="w"> </span><span class="na">eval=</span><span class="s">&quot;16&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arch&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- view content: &lt;form&gt;, &lt;list&gt;, &lt;graph&gt;, ... --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Les vistes es guarden en el model <code class="docutils literal notranslate"><span class="pre">ir.ui.view</span></code>. Tots els elements de interficie tenen en el seu nom ir.ui (Information Repository, User Interface). Els menús a ir.ui.menu o les accions a <code class="docutils literal notranslate"><span class="pre">ir.actions.window</span></code></p>
+</div>
+<p>Exemple de vista form:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.ui.view&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;course_form_view&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>course.form<span class="nt">&lt;/field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>openacademy.course<span class="nt">&lt;/field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arch&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;form</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Course Form&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;sheet&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;group&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;description&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/group&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/sheet&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/form&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>Encara que Odoo ja proporciona un list i un form per defecte, la vista
+cal millorar-la quasi sempre. Totes les vistes tenen fields que poden
+tindre widgets diferents. En les vistes form, podem adaptar molt
+l’aspecte amb grups de fields, pestanyes, camps ocults
+condicionalment…</p>
+<section id="les-vistes-list">
+<h2>Les vistes list<a class="headerlink" href="#les-vistes-list" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>A partir d’Odoo 18 ja no hi ha vistes <code class="docutils literal notranslate"><span class="pre">tree</span></code> i són totes <code class="docutils literal notranslate"><span class="pre">list</span></code>, els exemples antics funcionaran canviant aquesta paraula.</p>
+</div></blockquote>
+<p>Les vistes <em>list</em> (o vistes de llista) són un dels tipus de vistes més utilitzats en Odoo. Permeten mostrar registres en format de taula, facilitant la visualització i la gestió de grans quantitats de dades.</p>
+<p>Aquestes vistes són especialment útils per a representar informació resumida d’un conjunt de registres, amb columnes que mostren els camps més rellevants. A més, poden incloure funcionalitats com l’ordenació, els filtres i les accions ràpides.</p>
+<p>Un exemple bàsic d’una vista <em>list</em> per al model de clients (<em>res.partner</em>) seria el següent:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;view_partner_list&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.ui.view&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>res.partner.list<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>res.partner<span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arch&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;list&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;phone&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;email&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;company_id&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/list&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;record&gt;</span></code>: Defineix un nou registre en el model <code class="docutils literal notranslate"><span class="pre">ir.ui.view</span></code>, que representa la vista.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;field</span> <span class="pre">name=&quot;name&quot;&gt;</span></code>: Assigna un nom únic a la vista.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;field</span> <span class="pre">name=&quot;model&quot;&gt;</span></code>: Indica el model al qual pertany la vista (<code class="docutils literal notranslate"><span class="pre">res.partner</span></code> en aquest cas).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;field</span> <span class="pre">name=&quot;arch&quot;</span> <span class="pre">type=&quot;xml&quot;&gt;</span></code>: Conté l’estructura XML de la vista.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;list&gt;</span></code>: Defineix una vista de tipus <em>list</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;field</span> <span class="pre">name=&quot;name&quot;/&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;field</span> <span class="pre">name=&quot;phone&quot;/&gt;</span></code>, etc.: Representen les columnes que es mostraran en la llista.</p></li>
+</ul>
+<section id="colors">
+<h3>Colors<a class="headerlink" href="#colors" title="Link to this heading">#</a></h3>
+<p>En les vistes list es pot modificar el <strong>color</strong> en funció del contingut
+d’un field amb l’etiqueta <strong>decoration</strong>, que utilitza colors
+contextuals de <strong>Bootstrap</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">   decoration-bf - Lineas en BOLD </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-it - Lineas en ITALICS </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-danger - Color LIGHT RED </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-info - Color LIGHT BLUE </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-muted - Color LIGHT GRAY </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-primary - Color LIGHT PURPLE </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-success - Color LIGHT GREEN </span></code><br />
+<code class="docutils literal notranslate"><span class="pre">   decoration-warning - Color LIGHT BROWN</span></code></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;list</span><span class="w">  </span><span class="na">decoration-info=</span><span class="s">&quot;state==&#39;draft&#39;&quot;</span><span class="w"> </span><span class="na">decoration-danger=</span><span class="s">&quot;state==&#39;trashed&#39;&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/list&gt;</span>
+</pre></div>
+</div>
+<p>En el cas de que es vulga comparar un field Date o Datetime es pot fer
+amb la variable global de QWeb <strong>current_date</strong>. Per exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;list</span><span class="w">  </span><span class="na">decoration-info=</span><span class="s">&quot;start_date==current_date&quot;</span><span class="nt">&gt;</span>
+...
+</pre></div>
+</div>
+<p>També es pot fer <strong>decoration</strong> en els fields individualment.</p>
+</section>
+<section id="editable">
+<h3>Editable<a class="headerlink" href="#editable" title="Link to this heading">#</a></h3>
+<p>També es pot fer <strong>editable</strong> per no tindre que obrir un form:
+<strong>editable=”[top | bottom]”</strong>. Top o Bottom indica on es crearan
+els nous registres. Els lists editables poden tindre un atribut més
+<strong>on_write</strong> que indica un mètode a executar quan s’edita o crea un
+element.</p>
+</section>
+<section id="camps-invisibles">
+<h3>Camps invisibles<a class="headerlink" href="#camps-invisibles" title="Link to this heading">#</a></h3>
+<p>De vegades, un camp pot servir per a alguna cosa, però no cal que
+l’usuari el veja. El que cal fer és ficar el field , però dir que es
+<strong>invisible=”1”</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;list</span><span class="w">  </span><span class="na">decoration-info=</span><span class="s">&quot;duration==0&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;course_id&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;duration&quot;</span><span class="w"> </span><span class="na">invisible=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;taken_seats&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;progressbar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/list&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="botons">
+<h3>Botons<a class="headerlink" href="#botons" title="Link to this heading">#</a></h3>
+<p>Els <em>lists</em> poden tindre <strong>buttons</strong> amb els mateixos atributs que els
+buttons dels forms.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Cal tindre cura en els lists dins de forms (X2many), ja que el botó s’executa en el model del list i no del formulari que el conté. Si volem accedir al pare, cal utilitzar l’atribut parent.</p>
+</div>
+</section>
+<section id="totals">
+<h3>Totals<a class="headerlink" href="#totals" title="Link to this heading">#</a></h3>
+<p>En els lists es pot calcular totals amb aquesta etiqueta:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;amount&quot;</span><span class="w"> </span><span class="na">sum=</span><span class="s">&quot;Total Amount&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="ordenar-per-un-field">
+<h3>Ordenar per un field<a class="headerlink" href="#ordenar-per-un-field" title="Link to this heading">#</a></h3>
+<p>Un list es pot ordenar per defecte per un field que no siga computat.
+Això es fa en <strong>default_order</strong>. Mirem un exemple per ordenar
+descendentment:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;list</span><span class="w"> </span><span class="na">default_order=</span><span class="s">&quot;sequence,name desc&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Si volem que sempre s’ordene per eixe criteri, sense importar la vista,
+cal afegir al model l’atribut <strong>_order</strong>.</p>
+</div></blockquote>
+</section>
+<section id="agrupar-per-un-field">
+<h3>Agrupar per un field<a class="headerlink" href="#agrupar-per-un-field" title="Link to this heading">#</a></h3>
+<p>Amb <strong>default_group_by</strong>. Com l’atribut per ordenar, sols funciona amb camps guardats a la base de dades.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;list</span><span class="w"> </span><span class="na">default_group_by=</span><span class="s">&quot;born_year&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;born_year&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;age&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/list&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="banner-route">
+<h3>banner_route<a class="headerlink" href="#banner-route" title="Link to this heading">#</a></h3>
+<p>A partir de la versió 12 d’Odoo, permet afegir als lists, forms, etc
+una capçalera obtinguda per una url.
+<a class="reference external" href="https://www.odoo.com/documentation/12.0/reference/views.html#common-structure">https://www.odoo.com/documentation/12.0/reference/views.html#common-structure</a></p>
+<p>Aquesta capçalera serà un codi HTML que pot aprofitar les classes CSS
+d’Odoo, però no aprofita la generació de codi HTML que realitza el
+client web d’Odoo en la definició de les vistes. En cas d’utilitzar
+imatges, aquestes estaran en el directori <strong>static</strong> del mòdul.</p>
+<p><strong>Fer un banner route pas a pas</strong>:</p>
+<p>El primer és ficar en el list la referència al <strong>banner_route</strong>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="nt">&lt;list</span><span class="w"> </span><span class="na">banner_route=</span><span class="s">&quot;/negocity/city_banner&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<p>Ara cal crear el <strong>web controller</strong> que implementa aquesta ruta (es
+recomana en <a class="reference external" href="http://controllers.py">controllers.py</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">odoo</span> <span class="kn">import</span> <span class="n">http</span>
+
+
+<span class="k">class</span> <span class="nc">banner_city_controller</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">Controller</span><span class="p">):</span>
+    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/negocity/city_banner&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">banner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;html&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                &lt;div  class=&quot;negocity_banner&quot; </span>
+<span class="s2">                style=&quot;height: 200px; background-size:100%; background-image: url(/negocity/static/src/img/negocity_city.jpg)&quot;&gt;</span>
+<span class="s2">                &lt;div class=&quot;negocity_button&quot; style=&quot;position: static; color:#fff;&quot;&gt;&lt;a&gt;Generate Cities&lt;/a&gt;&lt;/div&gt;</span>
+<span class="s2">                &lt;/div&gt; &quot;&quot;&quot;</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest cas, el CSS es podria fer un estil en CSS segons les
+instruccions de <a class="reference internal" href="#El_client_Web_Odoo"><span class="xref myst">El client Web Odoo</span></a>.</p>
+<p>El resultat és un banner amb un <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> que, de moment, no fa res.
+Anem a donar-li funcionalitat a l’enllaç. El primer és assignar-li un
+action:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">                 </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;banner_button&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;action&quot;</span><span class="w"> </span><span class="na">data-reload-on-close=</span><span class="s">&quot;true&quot;</span><span class="w"> </span>
+<span class="w">                </span><span class="na">role=</span><span class="s">&quot;button&quot;</span><span class="w"> </span><span class="na">data-method=</span><span class="s">&quot;action_generate_cities&quot;</span><span class="w"> </span><span class="na">data-model=</span><span class="s">&quot;negocity.city&quot;</span><span class="nt">&gt;</span>Generate<span class="w"> </span>Cities<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+</div>
+<p>Segons les instruccions de
+<strong>addons/web/static/src/js/views/abstract_controller.js</strong>, si fem un
+<code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> amb un <strong>type=”action”</strong>, el JS d’Odoo interpretarà que
+ha de cridar al backend a una funció d’un model en concret. La resta de
+dades es fan com l’exemple. La funció que diu <strong>data-method</strong> és una
+funció que ha d’estar en el model que diu <strong>data-model</strong>.</p>
+</section>
+</section>
+<section id="les-vistes-form">
+<h2>Les vistes form<a class="headerlink" href="#les-vistes-form" title="Link to this heading">#</a></h2>
+<p>Per a que un form quede bé, es pot inclure la etiqueta
+<strong><code class="docutils literal notranslate"><span class="pre">&lt;sheet&gt;</span></code></strong>, que fa que no ocupe tota la pantalla encara que
+siga panoràmica.</p>
+<p>Tot sheet ha de tindre <strong><code class="docutils literal notranslate"><span class="pre">&lt;group&gt;</span></code></strong> i dins els fields. Es poden
+fer els group que vullgam i poden tindre string per mostrar un títol.</p>
+<p>Si no utilitzem l’etiquet group, els fields no tindran label, no
+obstant, coses com el class=”oe_edit_only” no funcionen en el group,
+per tant, cal utilitzar l’etiqueta <strong><code class="docutils literal notranslate"><span class="pre">&lt;label</span> <span class="pre">for=&quot;name&quot;&gt;</span></code></strong></p>
+<p>Per facilitar la gestió, un form pot tindre pestanyes temàtiques. Es fa
+en <strong><code class="docutils literal notranslate"><span class="pre">&lt;notebook&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;page</span> <span class="pre">string=&quot;titol&quot;&gt;</span></code></strong></p>
+<p>Es pot separar els grups amb
+<strong><code class="docutils literal notranslate"><span class="pre">&lt;separator</span> <span class="pre">string=&quot;Description</span> <span class="pre">for</span> <span class="pre">Quotations&quot;/&gt;</span></code></strong></p>
+<p>Alguns <strong>One2Many</strong> donen una vista list que no es adequada, per això es
+pot modificar el list per defecte:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;subscriptions&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;list&gt;</span>...<span class="nt">&lt;/list&gt;</span>
+<span class="nt">&lt;/field&gt;</span>
+</pre></div>
+</div>
+<p>O especificar la vista que volem:
+``xml
+<field name="subscriptions" context="{'list_view_ref': 'modul.view_subscriptions_tree'}"/></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+En un One2many es pot especificar també el **form** que ens donarà quan
+anem a crear un nou element.
+
+Una altra opció és especificar la vista que insertarà en el field:
+
+```xml
+    &lt;field name=&quot;m2o_id&quot; context=&quot;{&#39;form_view_ref&#39;: &#39;module_name.form_id&#39;}&quot;/&gt;
+</pre></div>
+</div>
+<blockquote>
+<div><p>Les vistes tree embegudes tenen limitacions respecte a les cridades amb un action. Per exemple, no poden ser agrupades.</p>
+</div></blockquote>
+<p><strong>Valors per defecte en un one2many</strong></p>
+<p>Quant creem un One2many en el mode form (o list editable) ens permet
+crear elements d’aquesta relació. Per a aconseguir que, al crear-los,
+el camp many2one corresponga al pare des del que es crida, es pot fer
+amb el context: Dins del field one2many que
+estem fent fiquem aquest codi:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>context=&quot;{&#39;default_<span class="nt">&lt;camp</span><span class="w"> </span><span class="err">many2one</span><span class="nt">&gt;</span>&#39;:active_id}&quot;
+</pre></div>
+</div>
+<p>O este exemple per a dins d’un action:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;context&quot;</span><span class="nt">&gt;</span>{&quot;default_doctor&quot;:<span class="w"> </span>True}<span class="nt">&lt;/field&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Aquesta sintaxi funciona per a passar per context valors per defecte a un form cridat amb un action. Pot ser en One2many, botons o menús</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">active_id</span></code> és una variable que apunta al id del element que està en aquest moment actiu. Com que estem en un formulari, és el que se està creant o modificant amb en formulari. En el cas de la creació, active_id no està encara apuntant a un element de la base de dades, però funciona internament, encara que en el field no diga res o diga False.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>En Odoo 14 ja no cal fer-ho, però el manual és vàlid per a altres many2ones o altres valors per defecte</p>
+</div>
+<p><strong>Domains en Many2ones</strong></p>
+<p>Els camps Many2one es poden filtrar, per exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hotel&quot;</span><span class="w"> </span><span class="na">domain=</span><span class="s">&quot;[(&#39;ishotel&#39;, &#39;=&#39;, True)]&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Funciona tant per a Many2one com per a Many2many.</p>
+<section id="widgets">
+<h3>Widgets<a class="headerlink" href="#widgets" title="Link to this heading">#</a></h3>
+<p>Alguns camps, com ara les imatges, es poden mostrar utilitzant un
+<strong>widget</strong> distint que el per defecte:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;image&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;image&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_left oe_avatar&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;taken_seats&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;progressbar&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;country_id&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;selection&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;statusbar&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Les vistes form, tree o kanban de Odoo mostren els fields en els
+anomenats widgets. Aquests permeten, per exemple, que les dates tinguen
+un calendari o que es mostre una llista en un many2many.</p>
+<p>Cada field te un widget per defecte, però es poden canviar si volem
+representar la informació de manera distinta. Aquests són els widgets
+disponibles per a cada tipus de field, sobretot per al form, encara que
+alguns funcionen en el tree:</p>
+<section id="integer-i-float">
+<h4>Integer i Float<a class="headerlink" href="#integer-i-float" title="Link to this heading">#</a></h4>
+<p>Els camps integer poden ser representats per molts widgets, es a dir, no
+donen error. Encara que no tots tenen sentit, com per exemple el <em>text</em>.</p>
+<ul>
+<li><p><strong>widget=”integer”</strong>: Tan sols mostra el número sense comes. En
+cas de no tindre valor, mostra 0.</p></li>
+<li><p><strong>widget=”char”</strong>: També mostra el número, si no te valor deixa un
+buit i el camp és més ample.</p></li>
+<li><p><strong>widget=”id”</strong>: Mostra el número però no es pot editar.</p></li>
+<li><p><strong>widget=”float”</strong>: Mostra el número en decimals.</p></li>
+<li><p><strong>widget=”percentpie”</strong>: Mostra un gràfic circular amb el
+percentatge (no funciona en la vista tree ni en kanban).</p></li>
+<li><p><strong>widget=”float_time”</strong>: Mostra els float com si representaren el
+temps.</p></li>
+<li><p><strong>widget=”progressbar”</strong>: Mostra una barra de progrés (funciona en
+la vista tree i form, però no en kanban):</p></li>
+<li><p><strong>widget=”monetary”</strong>: Mostra el número amb 2 decimals.</p></li>
+<li><p><strong>widget=”gauge”</strong>: Mostra un curiós gràfic de semi-circul. Sols
+funciona en kanban.</p>
+<p>Observem un ús real del <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> per veure com els widgets poden tenir opcions:</p>
+</li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;current&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;gauge&quot;</span><span class="w"> </span><span class="na">options=</span><span class="s">&quot;{&#39;max_field&#39;: &#39;target_goal&#39;, &#39;label_field&#39;: &#39;definition_suffix&#39;, &#39;style&#39;: &#39;width:160px; height: 120px;&#39;}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<section id="char-i-text-char-i-text">
+<h5>Char i Text {#char_i_text}<a class="headerlink" href="#char-i-text-char-i-text" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p><strong>widget=”char”</strong>: Mostra un editor d’un línia.</p></li>
+<li><p><strong>widget=”text”</strong>: Mostra un camp més alt per fer més d’una
+línia.</p></li>
+<li><p><strong>widget=”email”</strong>: Crea el enllaç per enviar-li un correu.</p></li>
+<li><p><strong>widget=”url”</strong>: Crea el enllaç amb http.</p></li>
+<li><p><strong>widget=”date”</strong>: Permet guardar dates com cadenes de text.</p></li>
+<li><p><strong>widget=”html”</strong>: Permet guardar textos però amb format. Apareix
+un wysiwyg</p></li>
+<li><p><strong>dashboard_graph</strong>:</p></li>
+</ul>
+<p>Mostra un gràfic menut indicant alguna progressió. Necessita tindre
+guardat (o generat) en el char un json determinat, per exemple:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[{&quot;values&quot;:</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">        [{&quot;label&quot;:&quot;2019-01-31&quot;,&quot;value&quot;: &quot;7&quot;},</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">         {&quot;label&quot;:&quot;2019-02-01&quot;,&quot;value&quot;: &quot;20&quot;},</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">         {&quot;label&quot;:&quot;2019-02-02&quot;,&quot;value&quot;: &quot;45&quot;},</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">         {&quot;label&quot;:&quot;2019-02-03&quot;,&quot;value&quot;: &quot;34&quot;},</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">         {&quot;label&quot;:&quot;2019-02-04&quot;,&quot;value&quot;: &quot;40&quot;},</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">         {&quot;label&quot;:&quot;2019-02-05&quot;,&quot;value&quot;: &quot;67&quot;},</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">         {&quot;label&quot;:&quot;2019-02-06&quot;,&quot;value&quot;: &quot;80&quot;}],</span></code><br />
+<code class="docutils literal notranslate"><span class="pre"> &quot;area&quot;:true, &quot;title&quot;: &quot;Next Week&quot;, &quot;key&quot;: &quot;Ocupation&quot;, &quot;color&quot;: &quot;#7c7bad&quot;}]</span></code></p>
+<p>I aquest seria un exemple del XML per a que funcione:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;week_ocupation&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;dashboard_graph&quot;</span><span class="w">  </span><span class="na">graph_type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>En els exemples que es poden veure en Odoo, aquests valors són sempre
+computed, generant un json i invocant la funció de python json.dumps()
+(<a class="reference external" href="https://docs.python.org/3.7/library/json.html">2</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>           <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+           <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">sales</span><span class="p">:</span>
+               <span class="n">reserves</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">quantity</span>
+               <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">),</span><span class="s1">&#39;value&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">reserves</span><span class="p">)})</span>
+           <span class="n">graph</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;#7c7bad&#39;</span><span class="p">}]</span>
+           <span class="n">h</span><span class="o">.</span><span class="n">graph_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Amés, accepta algunes opcions:</p>
+<ul class="simple">
+<li><p><strong>type</strong>: Pot ser <strong>bar</strong> o <strong>line</strong>. En el cas de ser line, en
+compte de ‘label’ i ‘value’ cal posar ‘x’ i ‘y’.</p></li>
+</ul>
+</section>
+</section>
+<section id="boolean">
+<h4>Boolean<a class="headerlink" href="#boolean" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Ribbon</strong>: (Odoo 13) Mostra com una cinta al costat del formulari
+per mostrar un boolean important.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">widget</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;web_ribbon&quot;</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Archived&quot;</span> <span class="n">bg_color</span><span class="o">=</span><span class="s2">&quot;bg-danger&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">widget</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;web_ribbon&quot;</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Paid&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>boolean_toggle</strong> per als trees, permet activar un boolean en un
+tree.</p></li>
+</ul>
+</section>
+<section id="date">
+<h4>Date<a class="headerlink" href="#date" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Daterange</strong>: Mostra un rang de dates</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date_begin</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Datetime</span><span class="p">(</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;Start Date&#39;</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">field</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;date_begin&quot;</span> <span class="n">widget</span><span class="o">=</span><span class="s2">&quot;daterange&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="many2one">
+<h4>Many2one<a class="headerlink" href="#many2one" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>widget=”many2one”</strong>: Per defecte, crea un selection amb opció de
+crear nous. Accepta arguments per evitar les opcions de crear:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&lt;</span><span class="n">field</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;field_name&quot;</span> <span class="n">options</span><span class="o">=</span><span class="s2">&quot;{&#39;no_create&#39;: True, &#39;no_open&#39;: True}&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>widget=”many2onebutton”</strong>: Crea un simple botó que indica si
+està assignat. Si polses s’obri el formulari.</p></li>
+</ul>
+<p><img alt="" src="Many2onebutton.png" /></p>
+</section>
+<section id="many2many">
+<h4>Many2Many<a class="headerlink" href="#many2many" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>widget=”many2many”</strong>: Per defecte, crea una llista amb opció de
+esborrar o afegir nous.</p></li>
+<li><p><strong>widget=”many2many_tags”</strong>: Llista amb etiquetes com en els
+filtres</p></li>
+</ul>
+<p><img alt="" src="Many2many_tags.png" /></p>
+<ul class="simple">
+<li><p><strong>widget=”many2many_checkboxes”</strong>: Llista de checkboxes.</p></li>
+</ul>
+<p><img alt="" src="Many2many_checkboxes.png" /></p>
+<ul class="simple">
+<li><p><strong>widget=”many2many_kanban”</strong>: Mostra un kanban dels que té
+associats, necessita que la vista kanban estiga definida.</p></li>
+<li><p><strong>widget=”x2many_counter”</strong>: Mostra sols la quantitat.</p></li>
+<li><p><strong>many2many_tags_avatar</strong>:</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>partner_ids<span class="w"> </span>=<span class="w"> </span>fields.Many2many(&#39;res.partner&#39;,<span class="w"> </span>&#39;calendar_event_res_partner_rel&#39;,<span class="w"> </span>string=&#39;Attendees&#39;)
+<span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;partner_ids&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;many2many_tags_avatar&quot;</span><span class="w"> </span><span class="na">write_model=</span><span class="s">&quot;calendar.contacts&quot;</span><span class="w"> </span><span class="na">write_field=</span><span class="s">&quot;partner_id&quot;</span><span class="w"> </span><span class="na">avatar_field=</span><span class="s">&quot;image_128&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="one2many">
+<h4>One2many<a class="headerlink" href="#one2many" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>widget=”one2many”</strong>: Per defecte.</p></li>
+<li><p><strong>widget=”one2many_list”</strong>: Aparentment igual, es manté per
+retrocompatibilitat</p></li>
+</ul>
+</section>
+<section id="modificar-el-tree-del-one2many">
+<h4>Modificar el tree del One2many<a class="headerlink" href="#modificar-el-tree-del-one2many" title="Link to this heading">#</a></h4>
+<p>El one2many, al igual que el many2one es poden vorer en format tree. Per
+defecte agafa el tree definit del model, però es pot especificar el tree
+que volem veure:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fortress&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;tree&gt;</span>
+<span class="w">     </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;level&quot;</span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/tree&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/field&gt;</span>
+</pre></div>
+</div>
+<p>Inclús es pot forçar a mostrar un kanban:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;gallery&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;kanban,tree&quot;</span><span class="w"> </span><span class="na">context=</span><span class="s">&quot;{&#39;default_hotel_id&#39;:active_id}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                 </span><span class="nt">&lt;kanban&gt;</span>
+<span class="w">                 </span><span class="cm">&lt;!--list of field to be loaded --&gt;</span>
+<span class="w">                 </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                 </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;image&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">                 </span><span class="nt">&lt;templates&gt;</span>
+<span class="w">                 </span><span class="nt">&lt;t</span><span class="w"> </span><span class="na">t-name=</span><span class="s">&quot;kanban-box&quot;</span><span class="nt">&gt;</span>
+<span class="w">                     </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_product_vignette&quot;</span><span class="nt">&gt;</span>
+<span class="w">                     </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;open&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;img</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_kanban_image&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;width:300px; height:auto;&quot;</span>
+<span class="w">                        </span><span class="na">t-att-src=</span><span class="s">&quot;kanban_image(&#39;marsans.hotel.galley&#39;, &#39;image&#39;, record.id.value)&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/a&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_product_desc&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;h4&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;edit&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;&lt;/field&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/a&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/h4&gt;</span>
+
+<span class="w">                    </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/t&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/templates&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/kanban&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/field&gt;</span>
+</pre></div>
+</div>
+<p>De vegades, el kanban este no funciona perquè no força a carregar les
+imatges.</p>
+</section>
+<section id="binary-o-image">
+<h4>Binary o Image<a class="headerlink" href="#binary-o-image" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>signature</strong>: Permet signar dirènctament en la pantalla</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>image</strong>: A banda del que es pot ficar en el field de max_width o
+max_height, al widget es pot afegir opcions com:</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options=&quot;{&amp;quot;zoom&amp;quot;: true, &amp;quot;preview_image&amp;quot;: &amp;quot;image_128&amp;quot;}
+</pre></div>
+</div>
+</section>
+<section id="selection">
+<h4>Selection<a class="headerlink" href="#selection" title="Link to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>       &lt;field name=&quot;state&quot; decoration-success=&quot;state == &#39;sale&#39; or state == &#39;done&#39;&quot; decoration-info=&quot;state == &#39;draft&#39; or state == &#39;sent&#39;&quot; widget=&quot;badge&quot; optional=&quot;show&quot;/&gt;
+</pre></div>
+</div>
+</section>
+<section id="fields-dels-trees">
+<h4>Fields dels trees<a class="headerlink" href="#fields-dels-trees" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>handle</strong>: Per a ordenar a ma. Cal que aquest camp siga el criteri
+d’ordenació.</p></li>
+</ul>
+<p><strong>Reescalar les imatges</strong></p>
+<p>Molt a sovint, tenim la necessitat de reescalar les imatges que
+l’usuari penja. A partir d’Odoo 13 tenim el field Image que permet
+tindre diferents resolucions amb varis related</p>
+</section>
+<section id="buttons">
+<h4>buttons<a class="headerlink" href="#buttons" title="Link to this heading">#</a></h4>
+<p>Podem introduir un botó en el form:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;update_progress&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;object&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;update&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_highlight&quot;</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w"> </span><span class="cm">&lt;!-- El name ha de ser igual que la funció a la que crida. --&gt;</span><span class="w">   </span>
+</pre></div>
+</div>
+<p>La funció pot ser una del model en el que està o un action. En el type
+cal indicar el tipus amb: <strong>object, action, url, client</strong> En l’exemple
+anterior, el button és de tipus object. Aixó vol dir que crida a una
+funció del model al que represente el formulari que el conté.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>És important que el record sobre el que es pulsa un botó de tipus object estiga ja guardat, ja que si no existeix en la base de dades, el servidor no té la seua ‘’’id’’’ i pot fer res. Per això, un botó polsat en fase de creació crida primer a la funció create().</p>
+</div>
+<p>Per a fer un butó que cride a un altre formulari, s’ha de fer en un
+tipus <strong>action</strong>. Amés, per ficar la id del <strong>action</strong> al que es vol
+cridar, cal ficar el prefixe i sufixe <strong>%(…)d</strong>, com en l’exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;%(launch_mmog_fortress_wizard)d&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;action&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Launch attack&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_highlight&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>D’aquesta manera, un formulari, té un botó que, al ser polsat, envia el
+ID de <strong>l’action</strong> a executar als servidor, aquest li retorna un action
+per a que el client l’execute. L’action pot obrir una altra finestra o
+un <em>pop-up</em>. En qualsevol cas, aquest action executat en el client,
+demana la vista i les dades que vol mostrar i les mostra. Aquesta és la
+raó de la sintaxis <strong>%(…)d</strong>.
+Ja que es tracta d’un <strong>External Id</strong> a una action guardada en la base de
+dades.</p>
+<p>Els <em>buttons</em> poden tindre una icona. Odoo proporciona algunes que es
+poden trobar a aquesta web:
+<a class="reference external" href="https://es.slideshare.net/TaiebKristou/odoo-icon-smart-buttons">1</a></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;fa-star-o&quot;</span><span class="w"> </span><span class="na">confirm=</span><span class="s">&quot;Are you sure?&quot;</span><span class="nt">/&gt;</span>
+Esborrar:<span class="w"> </span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;object&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;fa-trash-o&quot;</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;unlink&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>En l’exemple anterior, també hem ficat l’atribut <strong>confirm</strong> per
+mostrar una pregunta a l’usuari. Els <em>buttons</em> es poden posar per el
+form, encara que es recomana en el header:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+<span class="w"> </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;state&quot;</span><span class="w"> </span><span class="na">widget=</span><span class="s">&quot;statusbar&quot;</span><span class="nt">/&gt;</span>
+<span class="w"> </span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;accept&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;object&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Accept&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_highlight&quot;</span><span class="nt">/&gt;</span>
+<span class="w"> </span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">special=</span><span class="s">&quot;cancel&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Cancel&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div>
+<p>Els botons sempre executen una funció de Javascript en la part del
+client web que demana alguna cosa al servidor. En el cas dels button
+<strong>action</strong>, demana el action, per després executar aquesta. En el cas
+dels buttons <strong>object</strong> demana que s’execute una funció del model i
+recordset actual en el servidor. El client web es queda a l’espera
+d’una resposta del servidor, que si és un diccionari buit, provoca un
+refresc de la pàgina, però pot retornar moltes coses: <strong>warnings</strong>,
+<strong>domains</strong>, <strong>actions</strong>… i el client ha d’actuar en conseqüència.
+Els buttons poden tindre també <a class="reference internal" href="#Odoo#Context"><span class="xref myst"><strong>context</strong></span></a>
+per enviar alguna cosa extra al servidor.</p>
+<p><strong>Smart Buttons</strong>
+<a class="reference external" href="https://www.slideshare.net/openobject/odoo-smart-buttons">2</a></p>
+<p>En el formulari dels client, podem veure aquests botons:</p>
+<p><img alt="" src="Smartbutton.png" /></p>
+<p>Es tracta de botons que, amés d’executar-se, mostren una informació
+resumida i una icona. El text i la forma del botó es modifica
+dinàmicament en funció d’alguns criteris i això li dona més comoditat a
+l’usuari. Per exemple, si sols vol saber quantes factures té eixe
+client, el botó li ho diu. Si polsa el botó ja va a les factures en
+detall.</p>
+<p>Per fer-los, el primer és modificar la seua forma, de botó
+automàticament creat per el navegador a un rectangle. Això odoo ho pot
+fer per CSS amb la classe <strong>class=”oe_stat_button”</strong>. A continuació,
+se li posa una icona <strong>icon=”fa-star”</strong>.
+<a class="reference external" href="https://es.slideshare.net/TaiebKristou/odoo-icon-smart-buttons">3</a>. A
+partir d’ahí, l’etiqueta <strong><code class="docutils literal notranslate"><span class="pre">&lt;button&gt;</span></code></strong> pot contindre el
+contingut que desitgem. Per exemple, camps <em>computed</em> que mostren el
+resum del formulari que va a obrir.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">       </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_button_box&quot;</span><span class="nt">&gt;</span>
+<span class="w">             </span><span class="nt">&lt;button</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;object&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_stat_button&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;fa-pencil-square-o&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;regenerate_password&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;o_form_field o_stat_info&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;o_stat_value&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;password&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Password&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/span&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;o_stat_text&quot;</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/span&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/button&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="formularis-dinamics">
+<h4>Formularis dinàmics<a class="headerlink" href="#formularis-dinamics" title="Link to this heading">#</a></h4>
+<p>Els fields dels formularis permet modificar el seu comportament en
+funció de condicions. Per exemple, ocultar amb <strong>invisible</strong>, permetre
+ser editat o no amb <strong>readonly</strong> o <strong>required</strong>.</p>
+<p><strong>Ocultar condicionalment un field</strong></p>
+<p>Es pot ocultar un field si algunes condicions no es cumpleixen. Per
+exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;boyfriend_name&quot;</span><span class="w"> </span><span class="na">invisible =</span><span class="w"> </span><span class="s">&quot;married != False&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Tambés es pot ocultar i mostrar sols en el mode edició o lectura:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;partit&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_edit_only&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;equip&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_read_only&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>O mostrar si un camp anomenat <strong>state</strong> té un determinat valor:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">invisible =</span><span class="w"> </span><span class="s">&quot;state in [&#39;player&#39;, &#39;stats&#39;]&quot;</span><span class="w"> </span><span class="nt">&gt;&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dia&quot;</span><span class="nt">/&gt;&lt;/group&gt;</span>
+</pre></div>
+</div>
+<p>En el següent exemple, introdueix dos conceptes nous: el
+<strong>column_invisible</strong> per ocultar una columna d’un list i el <strong>parent</strong>
+per fer referència al valor d’un field de la vista pare:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lot_id&quot;</span><span class="w"> </span>
+<span class="na">attrs=</span><span class="s">&quot;{&#39;column_invisible&#39;: [(&#39;parent.state&#39;, &#39;not in&#39;, [&#39;sale&#39;, &#39;done&#39;])] }&quot;</span>
+<span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p><strong>Editar condicionalment un field</strong></p>
+<p>Es pot afegir <strong>readonly</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name2&quot;</span>
+<span class="na">readonly =</span><span class="w"> </span><span class="s">&quot;condition == False&quot;</span>
+<span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Aquests exemples combinen tots:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="w"> </span>
+<span class="na">invisible =</span><span class="w"> </span><span class="s">&quot;condition1 == False&quot;</span><span class="w"> </span>
+<span class="na">required =</span><span class="w"> </span><span class="s">&quot;condition2 == True&quot;</span>
+<span class="na">readonly =</span><span class="w"> </span><span class="s">&quot;condition3 == True&quot;</span>
+<span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;suma&quot;</span><span class="w"> </span>
+<span class="na">readonly =</span><span class="w"> </span><span class="s">&quot;valor == &#39;calculat&quot;</span>
+<span class="na">invisible =</span><span class="w"> </span><span class="s">&quot;servici in [&#39;Reparacions&#39;,&#39;Manteniment&#39;] or client == &#39;Pepe&#39;&quot;</span>
+<span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p><strong>readonly</strong></p>
+<p>En ocasions volem que un field siga readonly, al no poder editar, no pot
+ser required. En cas de ser modificar per un Onchage i es vulga guardar,
+cal afegir:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;salary&quot;</span><span class="w"> </span><span class="na">readonly=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">force_save=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span><span class="w"> </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="vistes-kanban">
+<h3>Vistes Kanban<a class="headerlink" href="#vistes-kanban" title="Link to this heading">#</a></h3>
+<p>Les vistes kanban són per a mostrar el model en forma de ‘cartes’. Les
+vistes kanban se declaren amb una mescla de xml, html i plantilles
+<strong>Qweb</strong>.</p>
+<p>Un Kanban és una mescla entre list i form. En Odoo, les vistes tenen una
+estructura jeràrquica. En el cas del Kanban, està la <strong>vista Kanban</strong>,
+que conté molts <strong>Kanban Box</strong>, un per a cada <em>record</em> mostrat. Cada
+kanban box té dins un <em>div</em> de <em>class</em> <strong>vignette</strong> o <strong>card</strong> i, dins,
+els <strong>Widgets</strong> per a cada field.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>             Window
++---------------------------+
+|     Kanban View           |
+| +----------+ +----------+ |
+| |Kanban Box| |Kanban Box| |
+| +----------+ +----------+ |
+| || Widget || || Widget || |
+| |----------| |----------| |
+| |----------| |----------| |
+| || Widget || || Widget || |
+| |----------| |----------| |
+| +----------+ +----------+ |
+|                           |
++---------------------------+
+</pre></div>
+</div>
+<p>Per mostrar un Kanban, la vista de Odoo, obri un action Window, dins
+clava una caixa que ocupa tota la finestra i va recorreguent els records
+que es tenen que mostrant i dibuixant els widgets de cada record.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A diferència en els lists o forms, els kanbans poden ser molt variats i han de deixar llibertat per ser dissenyats. És per això, que els desenvolupadors d’Odoo no han proporcionat unes etiquetes i atributs XML d’alt nivell com passa en els forms o lists, en els que no hem de preocupar-nos de la manera en que serà renderitzar, el CSS o cóm obté els fields de la base de dades. Al fer un Kanban, entrem al nivel de QWeb, per el que controlem plantilles, CSS i indicacions i funcions per al Javascript. Tot això està ocult en la resta de vistes, però en Kanban és impossible ocultar-ho.
+Es poden utilitzar certs widgets en els fields com <code class="docutils literal notranslate"><span class="pre">image</span></code> o <code class="docutils literal notranslate"><span class="pre">progress_bar</span></code>, però són molts menys widgets que en els forms o lists.</p>
+</div>
+<p>Exemple bàsic:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.ui.view&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;socio_kanban_view&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>cooperativa.socio<span class="nt">&lt;/field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>cooperativa.socio<span class="nt">&lt;/field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arch&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;kanban&gt;</span>
+<span class="w">                    </span><span class="cm">&lt;!--list of field to be loaded --&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w"> </span><span class="cm">&lt;!-- És important afegir el id per al record.id.value --&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;foto&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arrobas&quot;</span><span class="nt">/&gt;</span>
+
+<span class="w">                    </span><span class="nt">&lt;templates&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;t</span><span class="w"> </span><span class="na">t-name=</span><span class="s">&quot;kanban-box&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_product_vignette&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;open&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;img</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_kanban_image&quot;</span>
+<span class="w">                                        </span><span class="na">t-att-alt=</span><span class="s">&quot;record.name.value&quot;</span>
+<span class="w">                                        </span><span class="na">t-att-src=</span><span class="s">&quot;kanban_image(&#39;cooperativa.socio&#39;, &#39;foto&#39;, record.id.value)&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;/a&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;oe_product_desc&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;h4&gt;</span>
+<span class="w">                                        </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;edit&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;&lt;/field&gt;</span>
+<span class="w">                                        </span><span class="nt">&lt;/a&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;/h4&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;ul&gt;</span>
+
+<span class="w">                                       </span><span class="nt">&lt;li&gt;</span>Arrobas:<span class="w"> </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arrobas&quot;</span><span class="nt">&gt;&lt;/field&gt;&lt;/li&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;/ul&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/t&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/templates&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/kanban&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<p>En l’anterior vista kanban cal comentar les línies.</p>
+<p>Al principi es declaren els fields que han de ser mostrats. Si no es
+necessiten per a la lògica del kanban i sols han de ser mostrats no cal
+que estiguen declarats al principi. No obstant, per que l’exemple
+estiga complet els hem deixat. Aquesta declaració, fa demanar els fields
+en la primera petició asíncrona de dades. Els no especificats ací, són
+demanats després, però no estan disponibles per a que el Javascript puga
+utilitzar-los.</p>
+<p>A continuació ve un template <strong>Qweb</strong> en el que cal definir una etiqueta
+<strong><code class="docutils literal notranslate"><span class="pre">&lt;t</span> <span class="pre">t-name=&quot;kanban-box&quot;&gt;</span></code></strong> que serà renderitzada una vegada
+per cada element del model.</p>
+<p>Dins del template, es declaren divs o el que necessitem per donar-li el
+aspecte definitiu. Odoo ja té en el seu CSS unes classes per al
+productes o partners que podem aprofitar. El primer <strong>div</strong> defineix la
+forma i aspecte de cada caixa. Hi ha múltiples classes CSS que es poden
+utilitzar. Les que tenen <strong>vignette</strong> en principi no mostren vores ni
+colors de fons. Les que tenen <strong>card</strong> tenen el <em>border</em> prou marcat i
+un color de fons. Les bàsiques són <strong>oe_kanban_vignette</strong> i
+<strong>oe_kanban_card</strong>.</p>
+<p>Hi ha molts altres CSS que podem estudiar i utilitzar. Per exemple, els
+oe_kanban_image per a fer la imatge d’una mida adequada o el
+oe_product_desc que ajuda a colocar el text al costat de la foto. En
+l’exemple, usem uns <strong><code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code></strong> amb dos tipus: open i edit. Segons
+el que posem, al fer click ens obri el form en mode vista o edició.
+Aquests botons o enllaços poden tindre aquestes funcions:</p>
+<ul class="simple">
+<li><p><strong>action</strong>, <strong>object</strong>: Com en els botons dels forms, criden a
+accions o a mètodes.</p></li>
+<li><p><strong>open</strong>, <strong>edit</strong>, <strong>delete</strong>: Efectua aquestes accions al record
+que representa el kanban box.</p></li>
+</ul>
+<p>Si ja volem fer un kanban més avançat, tenim aquestes opcions:</p>
+<ul class="simple">
+<li><p>En la etiqueta <strong><code class="docutils literal notranslate"><span class="pre">&lt;kanban&gt;</span></code></strong>:</p>
+<ul>
+<li><p><strong>default_group_by</strong> per agrupar segons algun criteri al agrupar
+apareixen opcions per crear nous elements sense necessitat
+d’entrar al formulari.</p></li>
+<li><p><strong>default_order</strong> per ordenar segons algun criteri si no s’ha
+ordenat en el list.</p></li>
+<li><p><strong>quick_create</strong> a true o false segons vulguem que es puga crear
+elements sobre la marxa sense el form. Per defecte és false si
+no està agrupat i true si està agrupat.</p></li>
+</ul>
+</li>
+<li><p>En cada <strong>field</strong>:</p>
+<ul>
+<li><p><strong>sum, avg, min, max, count</strong> com a funcions d’agregació en els
+kanbans agrupats.</p></li>
+</ul>
+</li>
+<li><p>Dins del <strong>template</strong>:</p>
+<ul>
+<li><p>Cada <strong>field</strong> pot tindre un <strong>type</strong> que pot ser open, edit,
+action, delete.</p></li>
+</ul>
+</li>
+<li><p>Una serie de funcions javascript:</p>
+<ul>
+<li><p><strong>kanban_image()</strong> que accepta com a argument: model, field, id,
+cache i retorna una url a una imatge. La raó és perquè la imatge
+està en base64 i dins de la base de dades i cal convertir-la per
+mostrar-la.</p></li>
+<li><p><strong>kanban_text_ellipsis(string[, size=160])</strong> per acurtar
+textos llargs, ja que el kanban sols és una previsualització.</p></li>
+<li><p><strong>kanban_getcolor(raw_value)</strong> per a obtindre un color dels 0-9
+que odoo te predefinits en el CSS a partir de qualsevol field
+bàsic.</p></li>
+<li><p><strong>kanban_color(raw_value)</strong> Si tenim un field <strong>color</strong> que pot
+definir de forma específica el color que necessitem. Aquest
+field tindrà un valor de 0-9.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Forms dins de kanbans</strong>:</p>
+<p>A partir de la versió 12 es pot introduir un form dins d’un kanban,
+encara que es recomana que siga simple. Aquest funciona si tenim activat
+el <strong>quick_create</strong> i preferiblement quan el kanban està agrupat per
+Many2one o altres. Observem, per exemple el kanban de la secció de
+tasques del mòdul de proyecte:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;kanban</span><span class="w"> </span><span class="na">default_group_by=</span><span class="s">&quot;stage_id&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;o_kanban_small_column o_kanban_project_tasks&quot;</span><span class="w"> </span><span class="na">on_create=</span><span class="s">&quot;quick_create&quot;</span>
+<span class="w"> </span><span class="na">quick_create_view=</span><span class="s">&quot;project.quick_create_task_form&quot;</span><span class="w"> </span><span class="na">examples=</span><span class="s">&quot;project&quot;</span><span class="nt">&gt;</span>
+....
+<span class="nt">&lt;/kanban&gt;</span>
+</pre></div>
+</div>
+<p>Com podem observar, té activat el <strong>quick_create</strong> i una referència al
+identificador extern d’una vista form en <strong>quick_create_view</strong>. Aquest
+és el contingut del form:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;form&gt;</span>
+<span class="w">  </span><span class="nt">&lt;group&gt;</span>
+<span class="w">     </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Task Title&quot;</span><span class="nt">/&gt;</span>
+<span class="w">     </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;user_id&quot;</span><span class="w"> </span><span class="na">options=</span><span class="s">&quot;{&#39;no_open&#39;: True,&#39;no_create&#39;: True}&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/group&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/form&gt;</span>
+</pre></div>
+</div>
+<section id="imatges-en-els-kanbans">
+<h4>Imatges en els Kanbans<a class="headerlink" href="#imatges-en-els-kanbans" title="Link to this heading">#</a></h4>
+<p>En molts llocs trobarem la funció <code class="docutils literal notranslate"><span class="pre">kanban_image</span></code>. És la manera correcta de fer-ho en Qweb. Necessita posar el camp <code class="docutils literal notranslate"><span class="pre">id</span></code> el principi. però també es pot utilitzar dirèctament el <code class="docutils literal notranslate"><span class="pre">widget=&quot;image&quot;</span></code> com en els forms.</p>
+</section>
+</section>
+<section id="vistes-search">
+<h3>Vistes search<a class="headerlink" href="#vistes-search" title="Link to this heading">#</a></h3>
+<p>Les vistes search tenen 3 tipus:</p>
+<ul class="simple">
+<li><p><strong>field</strong> que permeten buscar en un determinat camp.</p></li>
+<li><p><strong>filter</strong> amb <strong>domain</strong> per filtrar per un valor predeterminat.</p></li>
+<li><p><strong>filter</strong> amb <strong>group</strong> per agrupar per algun criteri.</p></li>
+</ul>
+<p>Pel que fa a les search <strong>field</strong>, sols cal indicar quins fields seran
+buscats.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;search&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inventor_id&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/search&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Els fields han de ser guardats en la base de dades, encara que siguen de tipus ‘’’computed’’’</p>
+</div>
+<p>Les <strong>field</strong> poden tindre un <strong>domain</strong> per especificar quin tipus de
+búsqueda volem. Per exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;description&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Name and description&quot;</span>
+<span class="w">    </span><span class="na">filter_domain=</span><span class="s">&quot;[&#39;|&#39;, (&#39;name&#39;, &#39;ilike&#39;, self), (&#39;description&#39;, &#39;ilike&#39;, self)]&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Busca per ‘name’ i ‘description’ amb un domini que busca que es parega
+en “case-insensitive” (ilike) el que escriu l’usuari (self) amb el name
+o amb la descripció.</p>
+<p>o:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cajones&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Boxes or @&quot;</span><span class="w"> </span><span class="na">filter_domain=</span><span class="s">&quot;[&#39;|&#39;,(&#39;cajones&#39;,&#39;=&#39;,self),(&#39;arrobas&#39;,&#39;=&#39;,self)]&quot;</span><span class="nt">/&gt;</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Busca per <em>cajones o arrobas</em> sempre que l’usuari pose el mateix
+número.</p>
+<p>Les <strong>filter</strong> amb <strong>domain</strong> són per a predefinir filtres o búsquedes.
+Per exemple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;filter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_ideas&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;My Ideas&quot;</span><span class="w"> </span><span class="na">domain=</span><span class="s">&quot;[(&#39;inventor_id&#39;, &#39;=&#39;, uid)]&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;filter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;more_100&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;More than 100 boxes&quot;</span><span class="w"> </span><span class="na">domain=</span><span class="s">&quot;[(&#39;cajones&#39;,&#39;&gt;&#39;,100)]&quot;</span><span class="nt">/&gt;</span><span class="w"> </span>
+<span class="nt">&lt;filter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Today&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Today&quot;</span><span class="w"> </span><span class="na">domain=</span><span class="s">&quot;[(&#39;date&#39;, &#39;&amp;gt;=&#39;, datetime.datetime.now().strftime(&#39;%Y-%m-%d 00:00:00&#39;)),</span>
+<span class="s">                                             (&#39;date&#39;, &#39;&amp;lt;=&#39;,datetime.datetime.now().strftime(&#39;%Y-%m-%d 23:23:59&#39;))]&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Els filtres sols poden comparar un field amb un valor específic. Així que si volem comparar dos fields cal fer una funció.</p>
+</div>
+<section id="operadors-per-als-domains">
+<h4>Operadors per als domains:<a class="headerlink" href="#operadors-per-als-domains" title="Link to this heading">#</a></h4>
+<p>‘like’: [(‘input’, ‘like’, ‘open’)] - Returns case sensitive
+(wildcards - ‘%open%’) search.</p>
+<p>O/p: open, opensource, openerp, Odooopenerp</p>
+<p>‘not like’: [(‘input’, ‘not like’, ‘open’)] - Returns results
+not matched with case sensitive (wildcards - ‘%open%’) search.</p>
+<p>O/p: Openerp, Opensource, Open, Odoo, odoo, OdooOpenerp</p>
+<p>‘=like’: [(‘name’, ‘=like’, ‘open’)] - Returns exact (=
+‘open’) case sensitive search.</p>
+<p>O/p: open</p>
+<p>‘ilike’: [(‘name’, ‘ilike’, ‘open’)] - Returns exact case
+insensitive (wildcards - ‘%open%’) search.</p>
+<p>O/p: Openerp, openerp, Opensource, opensource, Open, open, Odooopenerp,
+OdooOpenerp</p>
+<p>‘not ilike’: [(‘name’, ‘not ilike’, ‘open’)] - Returns results
+not matched with exact case insensitive (wildcards - ‘%open%’) search.</p>
+<p>O/p: Odoo, odoo</p>
+<p>‘=ilike’: [(‘name’, ‘=ilike’, ‘open’)] - Returns exact (=
+‘open’ or ‘Open’) case insensitive search.</p>
+<p>O/p: Open, open</p>
+<p>‘=?’:</p>
+<p>name = ‘odoo’ parent_id = False [(‘name’, ‘like’, name),
+(‘parent_id’, ‘=?’, parent_id)] - Returns name domain result &amp; True</p>
+<p>name = ‘odoo’ parent_id = ‘openerp’ [(‘name’, ‘like’, name),
+(‘parent_id’, ‘=?’, parent_id)] - Returns name domain result &amp;
+parent_id domain result</p>
+<p>‘=?’ is a short-circuit that makes the term TRUE if right is None or
+False, ‘=?’ behaves like ‘=’ in other cases</p>
+<p>‘in’: [(‘value1’, ‘in’, [‘value1’, ‘value2’])] - in
+operator will check the value1 is present or not in list of right term</p>
+<p>‘not in’: [(‘value1’, ‘not in’, [‘value2’])] - not in
+operator will check the value1 is not present in list of right term
+While these ‘in’ and ‘not in’ works with list/tuple of values, the
+latter ‘=’ and ‘!=’ works with string</p>
+<p>‘=’: value = 10 [(‘value’,’=’,value)] - term left side has 10 in
+db and term right our value 10 will match</p>
+<p>‘!=’: value = 15 [(‘value’,’!=’,value)] - term left side has 10
+in db and term right our value 10 will not match</p>
+<p>‘child_of’: parent_id = ‘1’ #Agrolait ‘child_of’:
+[(‘partner_id’, ‘child_of’, parent_id)] - return left and right
+list of partner_id for given parent_id</p>
+<p>‘&lt;=’, ‘&lt;’, ‘&gt;’, ‘&gt;=’: These operators are largely used in
+openerp for comparing dates - [(‘date’, ‘&gt;=’, date_begin),
+(‘date’, ‘&lt;=’, date_end)]. You can use these operators to compare
+int or float also.</p>
+<p>Els <strong>filter</strong> amb <strong>group</strong> agrupen per algun field:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Group By&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;filter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;group_by_inventor&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Inventor&quot;</span><span class="w"> </span><span class="na">context=</span><span class="s">&quot;{&#39;group_by&#39;: &#39;inventor_id&#39;}&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+o:
+</pre></div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;filter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;group_by_matricula&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Matricula&quot;</span><span class="w"> </span><span class="na">context=</span><span class="s">&quot;{&#39;group_by&#39;: &#39;matricula&#39;}&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Si agrupem per data, el grup és per defecte per cada mes, si volem
+agrupar per dia:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;filter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;group_by_exit_day&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Exit&quot;</span><span class="w"> </span><span class="na">context=</span><span class="s">&quot;{&#39;group_by&#39;: &#39;exit_day:day&#39;}&quot;</span><span class="nt">/&gt;</span><span class="w">  </span>
+</pre></div>
+</div>
+<p>Si volem que un <strong>filtre estiga predefinit</strong> s’ha de posar en el
+context de <strong>l’action</strong>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;context&quot;</span><span class="nt">&gt;</span>{&#39;search_default_clients&#39;:1,&quot;default_is_client&quot;:<span class="w"> </span>True}<span class="nt">&lt;/field&gt;</span>
+</pre></div>
+</div>
+<p>En aquest exemple, filtra amb en <strong>search_default_XXXX</strong> que activa el
+filtre XXXX i, amés, fa que en els formularis tiguen un camp boolean a
+true.</p>
+</section>
+</section>
+<section id="vistes-calendar">
+<h3>Vistes Calendar<a class="headerlink" href="#vistes-calendar" title="Link to this heading">#</a></h3>
+<p>Si el recurs té un camp date o datetime. Permet editar els recursos
+ordenats per temps. L’exemple són els esdeveniments del mòdul de ventes.</p>
+<ul class="simple">
+<li><p><strong>string</strong>, per al títol de la vista</p></li>
+<li><p><strong>date_start</strong>, que ha de contenir el nom d’un camp datetime o date
+del model.</p></li>
+<li><p><strong>date_delay</strong>, que ha de contenir la llargada en hores de
+l’interval.</p></li>
+<li><p><strong>date_stop</strong>, Aquest atribut és ignorat si existeix l’atribut
+date_delay.</p></li>
+<li><p><strong>day_length</strong>, per indicar la durada en hores d’un dia. OpenObject
+utilitza aquest valor per calcular la data final a partir del valor
+de date_delay. Per defecte, el seu valor és 8 hores.</p></li>
+<li><p><strong>color</strong>, per indicar el camp del model utilitzat per distingir,
+amb colors, els recursos mostrats a la vista.</p></li>
+<li><p><strong>mode</strong>, per mostrar l’enfoc (dia/setmana/mes) amb el què s’obre la
+vista. Valors possibles: day, week, month. Per defecte, month.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.ui.view&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;session_calendar_view&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>session.calendar<span class="nt">&lt;/field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>openacademy.session<span class="nt">&lt;/field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arch&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;calendar</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Session Calendar&quot;</span><span class="w"> </span><span class="na">date_start=</span><span class="s">&quot;start_date&quot;</span>
+<span class="w">                          </span><span class="na">date_stop=</span><span class="s">&quot;end_date&quot;</span>
+<span class="w">                          </span><span class="na">color=</span><span class="s">&quot;instructor_id&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/calendar&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="vistes-graph">
+<h3>Vistes Graph<a class="headerlink" href="#vistes-graph" title="Link to this heading">#</a></h3>
+<p>En general s’utilitza per a veure agregacions sobre les dades a
+mostrar. Accepta els següents atributs:</p>
+<ul class="simple">
+<li><p><strong>string</strong>, per al títol de la vista</p></li>
+<li><p><strong>type</strong>, per al tipus de gràfic. (bar, pie, line)</p></li>
+<li><p><strong>stacked</strong> sols per a bar per mostrar les dades amuntonades en una
+única barra.</p></li>
+</ul>
+<p>La definició dels elements fills de l’element arrel graph determina el
+contingut del gràfic:</p>
+<ul class="simple">
+<li><p>Primer camp: eix X (horitzontal). Obligatori.</p></li>
+<li><p>Segon camp: eix Y (vertical). Obligatori.</p></li>
+</ul>
+<p>A cadascun dels camps que determinen els eixos, se’ls pot aplicar els
+atributs següents:</p>
+<ul class="simple">
+<li><p>name: El nom del field</p></li>
+<li><p>title: El nom que tindrà en el gràfic</p></li>
+<li><p>invisible: No apareixerà</p></li>
+<li><p>type: En aquest cas cal dir si és <strong>row</strong> per agrupar per aquest
+field, <strong>col</strong> per fer distintes línies o <strong>measure</strong> per a les
+dades en sí que es van a agregar.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.ui.view&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;terraform.planet_changes_graph&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Planet<span class="w"> </span>Changes<span class="w"> </span>graph<span class="nt">&lt;/field&gt;</span>
+<span class="w">      </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>terraform.planetary_changes<span class="nt">&lt;/field&gt;</span>
+<span class="w">      </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;arch&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;graph</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;Changes History&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;time&quot;</span><span class="w">  </span><span class="na">type=</span><span class="s">&quot;row&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;planet&quot;</span><span class="w">  </span><span class="na">type=</span><span class="s">&quot;col&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;greenhouse&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;measure&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/graph&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/record&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Les vistes graph en Odoo són molt limitades, sols accepten un element en les X i necessiten que els camps estiguen guardats en la base de dades</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="odoo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Desenvolupar per a Odoo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="accions_menus.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Accions i menús</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-vistes-list">Les vistes list</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colors">Colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editable">Editable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camps-invisibles">Camps invisibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#botons">Botons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#totals">Totals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenar-per-un-field">Ordenar per un field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupar-per-un-field">Agrupar per un field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banner-route">banner_route</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-vistes-form">Les vistes form</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#widgets">Widgets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-i-float">Integer i Float</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#char-i-text-char-i-text">Char i Text {#char_i_text}</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean">Boolean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#date">Date</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2one">Many2one</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2many">Many2Many</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one2many">One2many</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-el-tree-del-one2many">Modificar el tree del One2many</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-o-image">Binary o Image</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#selection">Selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fields-dels-trees">Fields dels trees</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buttons">buttons</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#formularis-dinamics">Formularis dinàmics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-kanban">Vistes Kanban</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imatges-en-els-kanbans">Imatges en els Kanbans</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-search">Vistes search</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadors-per-als-domains">Operadors per als domains:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-calendar">Vistes Calendar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vistes-graph">Vistes Graph</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
