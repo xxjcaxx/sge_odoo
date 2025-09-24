@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="proves.list">
+      <field name="name">proves list</field>
+      <field name="model">proves.proves</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="proves.action_students_window">
+      <field name="name">proves Student window</field>
+      <field name="res_model">proves.student</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="proves.action_teacher_window">
+      <field name="name">proves Teacher window</field>
+      <field name="res_model">proves.teacher</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="proves.action_topic_window">
+      <field name="name">proves Topic window</field>
+      <field name="res_model">proves.topic</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="proves.action_classroom_window">
+      <field name="name">proves Classroom window</field>
+      <field name="res_model">proves.classroom</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="School" id="proves.menu_root_school" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Management" id="proves.menu_management" parent="proves.menu_root_school" />
+
+    <!-- actions -->
+
+    <menuitem name="Students" id="proves.menu_students" parent="proves.menu_management"
+      action="proves.action_students_window" />
+    <menuitem name="Teachers" id="proves.menu_teacher" parent="proves.menu_management"
+      action="proves.action_teacher_window" />
+    <menuitem name="Topic" id="proves.menu_topic" parent="proves.menu_management"
+      action="proves.action_topic_window" />
+    <menuitem name="Classroom" id="proves.menu_classroom" parent="proves.menu_management"
+      action="proves.action_classroom_window" />
+
+
+  </data>
+</odoo>

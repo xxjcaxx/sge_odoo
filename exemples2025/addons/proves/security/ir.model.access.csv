@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_proves_student,proves.student,model_proves_student,base.group_user,1,1,1,1
+access_proves_teacher,proves.teacher,model_proves_teacher,base.group_user,1,1,1,1
+access_proves_topic,proves.topic,model_proves_topic,base.group_user,1,1,1,1
+access_proves_classroom,proves.classroom,model_proves_classroom,base.group_user,1,1,1,1
+access_proves_mark,proves.mark,model_proves_mark,base.group_user,1,1,1,1
