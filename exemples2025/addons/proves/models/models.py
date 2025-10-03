@@ -3,6 +3,14 @@
 from odoo import models, fields, api
 import random
 
+
+"""
+El nom del model mark ha de ser computat per indicar l’alumne i l’assignatura
+Fer un nou camp computat a partir de l’any de naixement per treure l’edat. 
+Treue la quantitat d’assignatures d’un alumne i d’un professor
+Fer que la nota per defecte al crear una nota en un alumne siga un número aleatori
+"""
+
 class student(models.Model):
     _name = 'proves.student'
     _description = 'Estudiants'
@@ -15,6 +23,7 @@ class student(models.Model):
     floor = fields.Integer(related='classroom_id.floor')
     median_mark = fields.Float(compute='_get_median_mark')
 
+    @api.depends('topics')
     def _get_median_mark(self):
         print(self)
         for student in self:
