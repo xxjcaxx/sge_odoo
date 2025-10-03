@@ -14,7 +14,7 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
-    command:  ["--dev=all", "-u", "natacio", "-d", "fncv"]
+    command:  ["--dev=all", "-u", "proves", "-d", "fncv"]
     tty: true
 
   db:
