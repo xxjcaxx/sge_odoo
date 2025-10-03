@@ -17,27 +17,30 @@ class student(models.Model):
 
     name = fields.Char(required=True)
     year = fields.Integer(default=lambda self: random.randint(2000,2015))
+    age = fields.Integer(compute="_get_age")
     photo = fields.Image(max_width=200, max_height=200)
     classroom_id = fields.Many2one('proves.classroom', ondelete='set null')
     topics = fields.One2many('proves.mark','student')
+    qua_topics = fields.Integer(compute = "_get_median_mark", string="Topics Quantity")
     floor = fields.Integer(related='classroom_id.floor')
     median_mark = fields.Float(compute='_get_median_mark')
 
     @api.depends('topics')
     def _get_median_mark(self):
-        print(self)
         for student in self:
             student.median_mark = 0
-            print(student.topics)
+            student.qua_topics = len(student.topics)
             if len(student.topics) > 0:
                 median = 0
                 for topic in student.topics:
                     median+= topic.mark
-                    print(topic)
                 student.median_mark = median / len(student.topics)
 
         
-    
+    @api.depends('year')
+    def _get_age(self):
+        for s in self:
+            s.age = int(fields.Date.to_string(fields.Date.today()).split('-')[0]) - s.year
 
 class teacher(models.Model):
     _name = 'proves.teacher'
@@ -73,10 +76,15 @@ class mark(models.Model):
     _name = 'proves.mark'
     _description = 'notes'
 
-    name = fields.Char()
-    mark = fields.Integer()
+    name = fields.Char(compute="_get_mark_name")
+    mark = fields.Integer(default=lambda self: random.randint(0,10))
     student = fields.Many2one('proves.student')
     topic = fields.Many2one('proves.topic')
+
+    @api.depends('student','topic')
+    def _get_mark_name(self):
+        for m in self:
+            m.name = str(m.student.name) + " " + str(m.topic.name)
 
 
 class topic(models.Model):
