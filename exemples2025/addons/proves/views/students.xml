@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="proves.student_list">
+      <field name="name">proves list</field>
+      <field name="model">proves.student</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name" />
+          <field name="median_mark" />
+          <field name="age" />
+          <field name="classroom_id" />
+          <field name="qua_topics" />
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="proves.student_form_view">
+      <field name="name">proves students form</field>
+      <field name="model">proves.student</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group string="Personal Data">
+                <field name="photo" widget="image"/>
+                <field name="name" />
+                <field name="year" />
+                <field name="age" />
+              </group>
+              <group string="Academic Data">
+                <field name="classroom_id" />
+                <field name="median_mark" />
+                <field name="qua_topics" />
+              </group>
+            </group>
+
+
+            <notebook>
+              <page string="Topics">
+                
+                  <field name="topics" />
+               
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    </data>
+</odoo>
