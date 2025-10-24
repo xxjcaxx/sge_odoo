@@ -2,7 +2,7 @@
     <data>
          <record model="ir.ui.view" id="proves.student_list">
       <field name="name">proves list</field>
-      <field name="model">proves.student</field>
+      <field name="model">res.partner</field>
       <field name="arch" type="xml">
         <list>
           <field name="name" />
@@ -16,12 +16,13 @@
 
     <record model="ir.ui.view" id="proves.student_form_view">
       <field name="name">proves students form</field>
-      <field name="model">proves.student</field>
+      <field name="model">res.partner</field>
       <field name="arch" type="xml">
         <form>
           <sheet>
             <group>
               <group string="Personal Data">
+                <field name="is_student"/>
                 <field name="photo" widget="image"/>
                 <field name="name" />
                 <field name="year" />
@@ -47,6 +48,22 @@
       </field>
     </record>
 
+
+    <record model="ir.ui.view" id="proves.student_search">
+      <field name="name">proves search</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="median_mark" />
+          <field name="age" />
+          <field name="classroom_id" />
+          <field name="qua_topics" />
+          <filter name="is_student" string="Is Student" domain="[('is_student', '=', True)]"/>
+          <filter name="group_by_student" string="Student" context="{'group_by': 'is_student'}"/>
+        </search>
+      </field>
+    </record>
 
     </data>
 </odoo>

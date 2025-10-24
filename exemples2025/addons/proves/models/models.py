@@ -12,10 +12,10 @@ Fer que la nota per defecte al crear una nota en un alumne siga un número aleat
 """
 
 class student(models.Model):
-    _name = 'proves.student'
-    _description = 'Estudiants'
+    #_name = 'proves.student'
+    _inherit = 'res.partner'
 
-    name = fields.Char(required=True)
+    #name = fields.Char(required=True)
     year = fields.Integer(default=lambda self: random.randint(2000,2015))
     age = fields.Integer(compute="_get_age")
     photo = fields.Image(max_width=200, max_height=200)
@@ -24,6 +24,7 @@ class student(models.Model):
     qua_topics = fields.Integer(compute = "_get_median_mark", string="Topics Quantity")
     floor = fields.Integer(related='classroom_id.floor')
     median_mark = fields.Float(compute='_get_median_mark')
+    is_student = fields.Boolean()
 
     @api.depends('topics')
     def _get_median_mark(self):
@@ -64,7 +65,7 @@ class classroom(models.Model):
     name = fields.Char()
     floor = fields.Integer()
     temperature = fields.Float()
-    student_list = fields.One2many('proves.student','classroom_id')
+    student_list = fields.One2many('res.partner','classroom_id')
     teachers = fields.Many2many('proves.teacher')
     tutors = fields.Many2many(comodel_name='proves.teacher', # El model en el que es relaciona
                             relation='teacher_tutor_classrom', # (opcional) el nom del la taula en mig
@@ -78,7 +79,7 @@ class mark(models.Model):
 
     name = fields.Char(compute="_get_mark_name")
     mark = fields.Integer(default=lambda self: random.randint(0,10))
-    student = fields.Many2one('proves.student')
+    student = fields.Many2one('res.partner')
     topic = fields.Many2one('proves.topic')
 
     @api.depends('student','topic')
