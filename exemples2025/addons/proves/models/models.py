@@ -97,3 +97,5 @@ class topic(models.Model):
     course = fields.Selection([('1','Primer'),('2','Segon')])
     teacher = fields.Many2one('proves.teacher',ondelete='set null', domain="[('course', '=', course)]")
     students = fields.One2many('proves.mark','topic')
+    date_start = fields.Date()
+    date_stop = fields.Date()
