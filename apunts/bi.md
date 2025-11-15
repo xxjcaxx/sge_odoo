@@ -9,7 +9,7 @@ Per tant, anem a buscar una alternativa. Una de les més fàcils d'implantar amb
 
 ## Metabase
 
-Per afegir Metabase al nostre projecte Odoo el podem posar al mateix `Docker Compose`: 
+Per afegir Metabase al nostre projecte Odoo el podem posar al mateix `Docker Compose`:  
 
 ```yml
 services:
