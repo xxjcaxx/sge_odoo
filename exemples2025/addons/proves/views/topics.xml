@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="proves.topics_calendar">
+            <field name="name">proves topics calendar</field>
+            <field name="model">proves.topic</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="date_start"
+                          date_stop="date_stop"
+                          color="course">
+                    <field name="name"></field>
+                </calendar>
+            </field>
+        </record>
+    </data>
+</odoo>

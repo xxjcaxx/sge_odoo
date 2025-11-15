@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_school_topic,school.topic,model_school_topic,base.group_user,1,1,1,1
-access_school_teacher,school.teacher,model_school_teacher,base.group_user,1,1,1,1
-access_school_qualification,school.qualification,model_school_qualification,base.group_user,1,1,1,1

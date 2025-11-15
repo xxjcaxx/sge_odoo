@@ -226,17 +226,19 @@ Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker-
                 "name": "$(triangle-right) Run Odoo",
                 "color": "purple",
                 "singleInstance": true,
-                "command": "docker-compose down && docker-compose up -d && docker logs odoo -f", 
+                "command": "sudo docker compose down && sudo docker compose up -d && sudo docker logs odoo -f", 
             },
             {
                 "name": "$(triangle-right) Rerun Odoo",
                 "color": "purple",
                 "singleInstance": true,
-                "command": "docker-compose restart odoo && docker logs odoo -f", 
+                "command": "sudo docker compose restart odoo && sudo docker logs odoo -f", 
             },
         ],
 ```
 El primer `Command` ho reinicia tot, tant la base de dades com Odoo i elimina els contenidors per recrear-los. Això pot solucionar alguns problemes. Però en principi, el segon reinicia només el contenidor Odoo sense recrear-ho. És més ràpid i també actualitza la base de dades. El comandament el podem utilitzar en una terminal si no volem fer els botons o estem en un entorn on hi ha interfície gràfica.  
+
+> Si no necessites ser sudo per executar docker es pot llevar dels comandaments anteriors.
 
 En **Pycharm** és encara més sencill perquè es poden crear en `Run > Edit configurations...` creant un nou `Shell Script` amb els comandaments anteriors.  
 

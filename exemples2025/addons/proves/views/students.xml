@@ -1,0 +1,134 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="proves.student_list">
+      <field name="name">proves list</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name" />
+          <field name="median_mark" />
+          <field name="age" />
+          <field name="classroom_id" />
+          <field name="qua_topics" />
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="proves.student_form_view">
+      <field name="name">proves students form</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group string="Personal Data">
+                <field name="is_student" />
+                <field name="photo" widget="image" />
+                <field name="name" />
+                <field name="year" />
+                <field name="age" />
+              </group>
+              <group string="Academic Data">
+                <field name="classroom_id" />
+                <field name="median_mark" />
+                <field name="qua_topics" />
+              </group>
+            </group>
+
+
+            <notebook>
+              <page string="Topics">
+
+                <field name="topics" />
+
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="proves.student_kanban">
+      <field name="name">proves students kanban</field>
+      <field name="model">res.partner</field>
+      <field name="priority">17</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="id" />
+          <field name="name" />
+          <field name="median_mark" />
+          <field name="age" />
+          <field name="classroom_id" />
+          <field name="qua_topics" />
+
+          <templates>
+            <t t-name="kanban-box">
+              <div  t-attf-class="oe_kanban_card oe_kanban_color_{{kanban_getcolor(record.name.raw_value)}}">
+                <a type="open">
+                  <img class="oe_kanban_image"
+                    t-att-alt="record.name.value"
+                    t-att-src="kanban_image('res.partner', 'photo', record.id.value)" />
+                </a>
+                <div class="oe_product_desc">
+                  <h4>
+                    <a type="edit">
+                      <field name="name"></field>
+                      <field name="age"></field>
+                    </a>
+                  </h4>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="proves.student_form_inherit_view">
+      <field name="name">proves students form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+
+        <field name="vat" position="after">
+          <field name="is_student" />
+          <field name="year" />
+          <field name="age" />
+        </field>
+
+        <notebook position="inside">
+
+          <page string="Topics">
+            <group string="Academic Data">
+              <field name="classroom_id" />
+              <field name="median_mark" />
+              <field name="qua_topics" />
+            </group>
+            <field name="topics" />
+
+          </page>
+        </notebook>
+
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="proves.student_search">
+      <field name="name">proves search</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="median_mark" />
+          <field name="age" />
+          <field name="classroom_id" />
+          <field name="qua_topics" />
+          <filter name="is_student" string="Is Student" domain="[('is_student', '=', True)]" />
+          <filter name="group_by_student" string="Student" context="{'group_by': 'is_student'}" />
+        </search>
+      </field>
+    </record>
+
+  </data>
+</odoo>
