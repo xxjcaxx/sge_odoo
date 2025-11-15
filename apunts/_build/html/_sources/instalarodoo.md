@@ -1,5 +1,10 @@
 # Instal·lar Odoo
 
+```{contents}
+:local:
+:depth: 2
+```
+
 Odoo pot ser instal·lat en qualsevol sistema
 operatiu. No obstant, es desenvolupa pensant en Ubuntu o Debian i és el
 sistema en el que anem a treballar.
@@ -8,7 +13,7 @@ Odoo, en esencia, és un servidor web fet en python que es connecta amb
 una base de dades postgreSQL. Hi ha moltes maneres d\'instal·lar Odoo,
 de les més avançades que són descarregar per *git* el repositori i fer
 que arranque a l\'inici a les més simples que són desplegar un
-**docker** amb tot funcionant. 
+**docker** amb tot funcionant.
 
 ## Instal·lar Amb Docker
 
@@ -23,9 +28,9 @@ En classe treballarem finalment amb Docker Compose, el text següent serveix per
 ```
 https://docs.docker.com/engine/install/ubuntu/
 
-> Si volem GUI, podem utilitzar Docker Desktop per a contenidors locals o Portainer per a gestionar també contenidors remots. 
+> Si volem GUI, podem utilitzar Docker Desktop per a contenidors locals o Portainer per a gestionar també contenidors remots.
 
-Es pot instal·lar Docker de moltes maneres, però anem a fer-ho de la manera més recomanable per al nostre cas, que és la de la web oficial: 
+Es pot instal·lar Docker de moltes maneres, però anem a fer-ho de la manera més recomanable per al nostre cas, que és la de la web oficial:
 
 ```bash
 # Add Docker's official GPG key:
@@ -53,7 +58,7 @@ sudo usermod -aG docker $USER
 
 ```
 
-En Docker és molt sencill desplegar Odoo, tan sols fa falta aquests
+En Docker és molt senzill desplegar Odoo, tan sols fa falta aquests
 comandaments:
 
     # docker run -d --restart="always" -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:9.4
@@ -89,8 +94,6 @@ actualitzar el mòdul.
     $ docker stop odoo
     $ docker start -a odoo
     $ docker exec odoo odoo --config /etc/odoo/odoo.conf -u nommodul -d nombasededades -r odoo -w odoo --db_host 172.17.0.2 --db_port 5432
-
-**Creació de mòduls, mètode 1**
 
 Com es veu, l'últim comandament és un poc complicat. Per tant, anem a
 fer les coses totalment bé. Per a aixó necessitem un fitxer propi de
@@ -165,7 +168,7 @@ volumes:
   odoo-db-data:
 ```
 
-Observem que declarem dos servicis i el **odoo** depen del **db**. També
+Observem que declarem dos servicis i el **odoo** depèn del **db**. També
 cal dir quina xarxa utilitzen i la resta de dades que posem normalment
 en el **run**.
 
@@ -174,7 +177,12 @@ Això ha d\'estar en un directori dins d\'un fitxer anomenat
 
     docker compose up -d
 
-Per a que funcione correctament, necessitem un fitxer `odoo.conf` que podem extreure d'un contenidor sense el volumen de `./config`. 
+Per a que funcione correctament, necessitem un fitxer `odoo.conf`. Al menys deuria dir on estan els mòduls:
+
+```yml
+[options]
+addons_path = /mnt/extra-addons
+```
 
 Si volem entrar en la base de dades postgreSQL per a fer coses
 manualment, podem executar:
@@ -184,7 +192,7 @@ manualment, podem executar:
 
 Executem el comandament psql de forma interactiva a la base de dades proves i amb l\'usuari odoo. 
 
-Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, exepte config i addons. Això permet compartir el codi i la configuració d'Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.
+Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, excepte config i addons. Això permet compartir el codi i la configuració d'Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.
 
 #### Mode desenvolupador en Docker
 
@@ -218,17 +226,19 @@ Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker-
                 "name": "$(triangle-right) Run Odoo",
                 "color": "purple",
                 "singleInstance": true,
-                "command": "docker-compose down && docker-compose up -d && docker logs odoo -f", 
+                "command": "sudo docker compose down && sudo docker compose up -d && sudo docker logs odoo -f", 
             },
             {
                 "name": "$(triangle-right) Rerun Odoo",
                 "color": "purple",
                 "singleInstance": true,
-                "command": "docker-compose restart odoo && docker logs odoo -f", 
+                "command": "sudo docker compose restart odoo && sudo docker logs odoo -f", 
             },
         ],
 ```
 El primer `Command` ho reinicia tot, tant la base de dades com Odoo i elimina els contenidors per recrear-los. Això pot solucionar alguns problemes. Però en principi, el segon reinicia només el contenidor Odoo sense recrear-ho. És més ràpid i també actualitza la base de dades. El comandament el podem utilitzar en una terminal si no volem fer els botons o estem en un entorn on hi ha interfície gràfica.  
+
+> Si no necessites ser sudo per executar docker es pot llevar dels comandaments anteriors.
 
 En **Pycharm** és encara més sencill perquè es poden crear en `Run > Edit configurations...` creant un nou `Shell Script` amb els comandaments anteriors.  
 
@@ -269,7 +279,203 @@ Odoo intentarà connectar-se a la base de dades **usant `localhost`**, però en 
 
 Per a solucionar-ho, has d’indicar explícitament el **host de la base de dades** i la **contrasenya** en la comanda
 ```
+
+#### Git i Odoo en Docker
+
+És important configurar un bon `.gitignore`:
+
+```yml
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+.envrc
+*.egg-info/
+.eggs/
+
+# VSCode / IDEs
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Docker volumes (si els mapejes localment)
+data/
+filestore/
+sessions/
+
+# Tests / coverage
+.coverage
+htmlcov/
+pytest_cache/
+```
+
+Com que els volumns de la base de dades i del propi Odoo no van a estar a la carpeta, no cal ignorar l'instal·lació d'Odoo. Es pot crear un repositori en Github i després configurar la carpeta sencera amb `docker-compose.yml`, el directori config, nginx o addons, per exemple. Al descarregar el repositori es generará un entorn de treball igual que l'original, però sense les dades de la base de dades. 
+
+## Posar en producció amb docker
+
+Si podem deixar correguent un Docker a un servidor amb connexió a Internet amb els ports exposats, ja estaria en producció. No obstant això suposa varis problemes de seguretat i rendiment. 
+
+### Docker de Nginx
+
+Podem afegir al fitxer del Docker Compose la configuració d'un contenidor Nginx. Aquest implementarà HTTPS i farà de proxy a Odoo.
+
+Farem servir un fitxer Dockerfile basat en la imatge oficial de Nginx, però adaptada a les nostres necessitats. Els certificats es generen de manera automàtica i estan autofirmats.
+
+Encara que els navegadors mostren un avís d’error, la informació continua viatjant de forma segura. El que passa és que no hi ha cap autoritat certificadora que haja validat el certificat. (no és el mateix un certificat autofirmat que cap protecció).
+
+Es podria fer un script amb CertBot per a utilitzar Let's Encrypt i renovar el certificat cada tres mesos.
+
+En Nginx, definim la mateixa carpeta per a HTTP i HTTPS, intentant simplificar al màxim la configuració i automatitzar la creació tant de la imatge com del contenidor amb scripts.
+
+El primer pas és crear la nostra clau i certificat autofirmat dins d'un directori nginx junt a la resta de fitxers dels dockers:
+
+```bash
+mkdir nginx
+cd nginx
+openssl req -x509 -sha256 -nodes -newkey rsa:2048 -keyout ser.key -out ser.pem
+```
+
+Després creem un `Dockerfile` dins de la mateixa carpeta. Aquest fixter servirà per executar certs comandaments cada vegada que es llance el docker:
+
+```bash
+FROM nginx
+
+RUN rm -f /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
+COPY ser.key /etc/nginx/
+COPY ser.pem /etc/nginx/
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Afegirem al `docker-compose.yml`:
+
+```yaml
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile  # este campo es opcional si el archivo se llama así
+    container_name: nginx
+    depends_on:
+      - odoo
+    ports:
+      - "80:80"
+      - "443:443"
+```
+Falta crear el `nginx.conf` que serà la configuració:
+
+```nginx
+ #odoo server
+    upstream odoo {
+     server odoo:8069;
+    }
+    upstream odoochat {
+     server odoo:8072;
+    }
+    # S'han definit els upstream a localhost i als port determinats
+
+    # http -> https (totes les peticions per HTTP se reformulen a HTTPS)
+    server {
+       listen 80;
+       server_name _;                            
+       # Si tinguerem nom de domini el ficariem, en altre cas: _
+       rewrite ^(.*) https://$host$1 permanent;
+    }
+
+    server {
+     listen 443 ssl;
+     server_name _;
+     # La _ perquè en l'exemple no tenim domini, com dalt
+     proxy_read_timeout 720s;
+     proxy_connect_timeout 720s;
+     proxy_send_timeout 720s;
+
+     # Add Headers for odoo proxy mode
+     proxy_set_header X-Forwarded-Host $host;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     proxy_set_header X-Forwarded-Proto $scheme;
+     proxy_set_header X-Real-IP $remote_addr;
+
+     # SSL parameters
+     ssl_certificate /etc/nginx/ser.pem;
+     ssl_certificate_key /etc/nginx/ser.key;
+     # IMPORTANT: ficar bé les rutes dels certificats
+     ssl_session_timeout 30m;
+     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+     ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+     ssl_prefer_server_ciphers on;
+
+     # log
+     access_log /var/log/nginx/odoo.access.log;
+     error_log /var/log/nginx/odoo.error.log;
+
+     # Redirect requests to odoo backend server
+     location / {
+       proxy_redirect off;
+       proxy_pass http://odoo;
+     }
+     location /longpolling {
+         proxy_pass http://odoochat;
+     }
+
+     # common gzip
+     gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
+     gzip on;
+    }
+```
+
+### Workers
+
+Per defecte Odoo és `multithread`. Això vol dir que pot mantenir varis fils d'execució. No obstant això és un poc ineficient en producció si tens molts usuaris. És millor, amés, que siga `multi-processing` per poder distribuir la tasca millor entre distints processadors o nuclis. (no disponible en Windows)
+
+Per aconseguir-ho, sols hem de ficar al fitxer de configuració la quantitat de `workers` que volem, amés d'altres coses:
+
+```yaml
+[options]
+limit_memory_hard = 1677721600
+limit_memory_soft = 629145600
+limit_request = 8192
+limit_time_cpu = 600
+limit_time_real = 1200
+max_cron_threads = 1
+workers = 8
+```
+
+Com a regla aproximada podem calcular els workers òptims com 1 Worker per cada 6 usuaris simultanis i El doble + 1 de workers per CPU. Així, si tenim un servidor amb 4 nuclis 8 Threads i uns 60 usuaris simultanis:
+
+* 60/6 ~= 10 workers
+* 4*2+1 = 9 workers que suporta la màquina. 
+* En aquest cas es poden utilitzar 8 workers + 1 per al cron. 
+* La RAM a nivell simple podem pensar en 1GB per worker. No obstant, hi ha peticions que no necessiten més de 150MB. Per tant, segon la documentació d'Odoo, per a 9 workers: 9 * ((0.8*150) + (0.2*1024)) ~= 3GB RAM mínim.
+
     
+### On instal·lar Odoo?
+
+Cada empresa té unes necessitats i aquesta pregunta pot tenir moltes respostes. Anem a fer una comparativa no rigorosa de les distintes opcions:
+
+| **Lloc**           | **Tecnologia**                         | **Propòsit**                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------ | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Servidor local** | Directament instal·lat a Ubuntu Server | En funció de la potència, capacitat i seguretat del servidor, pot servir per a qualsevol empresa. Instal·lar directament dona menys flexibilitat, però aprofita tota la potència de la màquina i la compatibilitat amb tot. L'empresa té control total de les dades i és responsable de la seguretat. També té control de les despeses. És poc escalable i migrable. |
+| **Servidor local** | En Docker, Proxmox o VirtualBox        | Igual que l'opció anterior, però amb més possibilitats de ser escalable i migrable. Permet compartir millor els recursos de la màquina amb altres serveis.                                                                                                                                                                                                           |
+| **Al núvol**       | VPS                                    | No és necessari pensar en la seguretat física, però sí en la lògica. És escalable si el proveïdor permet ampliar la màquina. El preu sol estar predeterminat, però és més car a la llarga que els servidors propis. En el cas de proveïdors primaris com AWS, Azure, Google Cloud... el preu és per ús i és perillós no controlar-ho.                                |
+| **Al núvol**       | SAAS                        | Ja no cal tanta cura en la seguretat lògica, només pels usuaris d'Odoo. És escalable, però molt més car. No és personalitzable.                                                                                                                                                                                                                                      |
+| **Al núvol**       | Odoo.sh                         | Permet desplegar el teu Odoo a un IaaS + PaaS preparat específicament per a Odoo. Permet personalitzar. És car.                                                                                                                                                                                                                                       |
+| **Al núvol**       | PAAS (Render, Railway, Fly.io...)             | Cada servei té les seues característiques, però combinen els avantatges de Docker pel que fa a la personalització amb una interfície molt còmoda per al DevOps i CI/CD. Es tracta el desplegament com si fos codi.                                                                                                                                                   |
+
+
+
+La resposta continúa sense ser clara. Cada empresa té unes posibilitats i necessitats. Una micro-empresa amb pocs ordinadors i sols necessitar de intranet pot instal·lar en un Docker en un servidor de baix consum amb copies de seguretat periòdiques. Una empresa menuda pot desplegar en VPS o PAAS amb preus predefinits i controlats i anar augmentant conforme ho necessiten. Una empresa més gran pot decidir-se per núvols més de baix nivell (IAAS) o per una instal·lació on-premise més seria amb alta disponibilitat a la propia empresa. Un SAAS pot ser útil per a empreses que no necessiten cap personalització. Si el negoci és donar el propi servei d'Odoo, es pot optar per contractar un IAAS i a sobre, donar un servei SAAS amb personalitzacions a mida i cobrar pel servei i per les personalitzacions.
+
 
 ## Instal·lar en Debian i Ubuntu
 
@@ -431,7 +637,7 @@ Per dins de les funcions:
     _logger.critical("The name '" + str(record.get('name')) + "' is not okay for us!")
 ```
 
-### Opcions de log {#opcions_de_log}
+### Opcions de log
 
 Per defecte, Odoo llança el seu log a un fitxer a **/var/log/odoo/**,
 però es pot fer que envía a un altre fitxer amb **\--log-file=LOGFILE**.
@@ -450,49 +656,11 @@ comandament les següents opcions:
     Aquesta opció ens ajuda a entendre cóm funciona el ORM.
 -   **\--log-level=LOG_LEVEL**
 
-`                       specify the level of the logging. Accepted values:`\
-`                       ['info', 'debug_rpc', 'warn', 'test', 'critical',`\
-`                       'debug_sql', 'error', 'debug', 'debug_rpc_answer',`\
-`                       'notset'].`
-
-### Preparar l\'entorn de treball per a SGE 
-
-```{admonition} Nota
-:class: tip
- 
-Aquesta ajuda és per que, com a alumnes, vos prepareu correctament per poder programar de manera cómoda en Odoo. No obstant, es poden traure idees per al treball professional o en altres entorns
+```python
+  ['info', 'debug_rpc', 'warn', 'test', 'critical',
+  'debug_sql', 'error', 'debug', 'debug_rpc_answer',
+ 'notset'].
 ```
--   Instal·lar el contenidor o la màquina virtual Ubuntu Server
--   Crear un usuari per poder accedir fàcilment per SSH les primeres
-    vegades i que no siga Odoo.
--   Accedir amb eixe usuari per SSH, fer-se root i instal·lar Odoo
-    segons els manuals anteriors.
--   Crear una empresa amb dades de demo en la web d\'Odoo.
--   Fer que l\'usuari Odoo tinga shell i fer que es puga accedir a ell
-    per [SSH](SSH "wikilink") sense contrasenya des del vostre equip. (
-    usermod -s /bin/bash odoo )
--   Fer-se un compte i un projecte en Github.
--   Crear el directori modules i configurar Odoo per utilitzar aquest
-    quant s\'inicie en \'mode depuració\'.
--   Sincronitzar el directori modules en el Github personal.
--   Instal·lar ngrok per poder accedir des de remot al contenidor.
--   Configurar el navegador d\'arxius per accedir per SSH i editar amb
-    el teu editor preferit.
--   Entrar en el navegador d\'arxius a *altres ubicacions* i escriure
-    <ssh://odoo@>`<ip>`{=html}
-    -   Ens mostrarà un directori que podem afegir com a favorit del
-        navegador d\'arxius.
-    -   El directori real on l\'ha muntat
-        **[gvfs](https://es.wikipedia.org/wiki/GVFS)** és
-        **/run/user/`<usuari>`{=html}/gvfs/sftp:host=`<ip>`{=html},user=odoo/var/lib/odoo**
-        o **\~/.gvfs/**
-    -   Podem afegir aquest directori real com a lloc de projecte per al
-        programa **PyCharm**.
-    -   PyCharm també té una terminal que pot entrar per SSH.
--   Una alternativa al navegador d\'arxius és connectar per sshfs:
-     
-     sshfs odoo@10.100.23.100:/var/lib/odoo ./odoo/
-
 
 ### Debug mode
 
@@ -510,7 +678,7 @@ codi que ens interessa:
 Una vegada dins, es poden utilitzar els comandaments de pdb:
 <https://docs.python.org/3/library/pdb.html>
 
-## Posar en producció
+### Posar en producció en Ubuntu
 
 <https://www.odoo.com/documentation/17.0/administration/install/deploy.html?highlight=workers>
 https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd
@@ -647,7 +815,76 @@ modificar-lo per a que no afecte al port 80 d\'Odoo.
 
 Ara es reinicien tanmt Odoo com nginx
 
+## Seguretat en Odoo
 
+Quan parlem de seguretat en Odoo estem parlant de temes generals que totes les aplicacions web tenen i de temes específics d’Odoo. En general, qualsevol aplicació web té uns mínims de seguretat que passen per donar servici sols en HTTPS, controlar els ports, evitar atacs DDOS, tenir bones contrasenyes… 
+
+En quant al HTTPS, en els apartats corresponents està explicat, a falta de contractar un certificat real. La seguretat i alta disponibilitat del servidor és una qüestió massa complexa per a aquest mòdul i pot ser tasca del cicle d’ASIX. Però podem fer coses específiques d’Odoo per evitar els problemes o per a recuperar-se ràpidament d’ells. 
+
+### Persistència de les dades
+
+Una empresa no es pot permetre perdre dades. Les formes d’evitar perdre dades en Odoo són múltiples. Si tenim una instal·lació on-premise hem de controlar tots els factors: físics i lògics. Això passa per varies tasques ineludibles:
+
+#### Còpies de seguretat
+
+Odoo, en la seua interfície gràfica, permet exportar taules i un cert control de les còpies de seguretat manuals per taules individuals. Això, per suposat, sols és recomanable per a exportacions/importacions puntuals. 
+
+En l’interfície gràfica també es pot anar al gestor de bases de dades i exportar i importar el backup. Seria recomanable fer-ho cada cert temps. 
+
+Si volem que siga automàtic, es pot programar externament un servici que, cada cert temps, es connecte de forma remota per XML-RCP:
+```python
+import requests
+
+odoo_host = 'http://localhost:8069'
+database = 'tu_basededatos'
+admin_password = 'tu_contraseña_admin'
+
+url = f'{odoo_host}/web/database/backup'
+
+payload = {
+	'master_pwd': admin_password,
+	'name': database,
+	'backup_format': 'zip'  # o 'dump'
+}
+
+response = requests.post(url, data=payload)
+
+if response.status_code == 200:
+	filename = f"{database}_backup.zip"
+	with open(filename, 'wb') as f:
+    	f.write(response.content)
+	print(f"Backup guardado como {filename}")
+else:
+	print(f"Error al hacer backup: {response.status_code} - {response.text}")
+```
+
+També podem fer-ho a nivel del CLI de la base de dades:
+
+```bash
+pg_dump db_name
+```
+
+La copia de seguretat de la base de dades no inclou els fitxers i fotos. Necessitarem copiar el directori filestore si ho fem a nivell de base de dades. 
+
+A més baix nivell, es pot fer una copia de seguretat del sistema d’arxius o inclús de les particions. 
+
+No cal dir que eixa copia de seguretat no estarà finalment en el mateix disc dur que la base de dades original ni en la mateixa ubicació física. 
+
+### Alta disponibilitat
+
+Un sistema empresarial ha d’estar sobre un servidor segur a nivell físic. Això implica SAIs i RAIDs o similars. Si estem utilitzant un VPS en el núvol, no ens preocuparem d’això. Si no, necessitarem un CPD encara que siga discret, amb seguretat física, sistemes d’alimentació ininterrompuda i discs redundants. Amés de sistemes de còpies de seguretat remotes. El sistema es deuria poder recuperar d’un trencament sense interrompre el servici.
+
+### Usuaris i permisos
+
+Odoo té un complex sistema d’usuaris, grups, rols i permisos. Un/a administrador d’Odoo ha de portar al dia la gestió granular d’aquests permisos. Amés, deguem distingir els disitints usuaris que tenim que gestionar, de més poderos a menys:
+
+- Root del sistema operatiu: Usuari amb poder total en aquest sistema operatiu, deuria ser un administrador de sistemes.
+- Administrador de PostgreSQL: té molt de poder amb les dades de tota l’empresa i possiblement de varies empreses. Si PostgreSQL està utilitzant-se per a altres coses que no són Odoo també té poder sobre elles. 
+- Administrador de bases de dades d’Odoo: La seua contrasenya està en odoo.conf i té poder de crear, esborrar i fer còpies de totes les bases de dades. Accedeix típicament via web. És possible que els programadors no necessiten aquest poder.
+- Administrador técnic d’una base de dades: Té poder per administrar mòduls i per canviar l’interfície. Els programadors necessiten eixe poder.
+- Administrador de l’empresa: Pot administrar tot el que és relatiu al negoci. No pot instal·lar mòduls ni programar. Típicament són els propietaris, jefes… de l’empresa. No és convenient que una persona no experimentada en programació tinga més poder.
+- Usuaris normals: Venedors, administratius… Poden accedir a certes parts de backend. Els seus permisos depenen del grup o rols al que estiguen associats.
+- Clients i proveidors: Normalment tenen accés a la pàgina web, que pot estar feta amb Odoo. Poden tenir cert accés a una API feta per nosaltres si volem automatizar les relacions comercials amb ells.
 
 
 ## Creació de una base de dades

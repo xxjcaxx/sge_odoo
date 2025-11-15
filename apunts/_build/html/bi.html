@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Apunts d'Odoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Business Intelligence &#8212; Apunts d&#39;Odoo</title>
   
   
   
@@ -55,12 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bi';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Usar Jupyter en Odoo." href="Jupyter%20y%20Odoo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -92,7 +92,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -122,8 +122,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -180,7 +178,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="instalarodoo.html">Instal·lar Odoo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odoo.html">Desenvolupar per a Odoo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vista.html">La vista</a></li>
@@ -192,7 +190,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bi.html">Business Intelligence</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Business Intelligence</a></li>
 </ul>
 
     </div>
@@ -264,7 +262,7 @@
       
       
       
-      <li><a href="https://github.com/xxjcaxx/exemples_sge/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/xxjcaxx/exemples_sge/issues/new?title=Issue%20on%20page%20%2Fbi.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -276,6 +274,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/bi.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -317,7 +363,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -326,42 +374,127 @@ document.write(`
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Business Intelligence</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metabase">Metabase</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="business-intelligence">
+<h1>Business Intelligence<a class="headerlink" href="#business-intelligence" title="Link to this heading">#</a></h1>
+<p>Odoo és un bom punt de partida per a fer BI ja que presenta una base de dades estructurada molt completa amb tota la informació de l’empresa en el mateix lloc. Les últimes versions tenen uns <code class="docutils literal notranslate"><span class="pre">Dashboards</span></code> interessants. La limitació és doble:</p>
+<ul class="simple">
+<li><p>La versió Community no té la ferramenta de SpreadSheet sobre la que es poden crear Dashboards nous ni la possibilitat de crear-ne nous sense entrar a OWL.</p></li>
+<li><p>Inclús la versió Enterprise és menys potent que ferramentes especialitzades com PowerBI, Grafana, Apache Superset, Metabase, Kibana, Tableau…</p></li>
+</ul>
+<p>Per tant, anem a buscar una alternativa. Una de les més fàcils d’implantar amb Docker i Odoo és <code class="docutils literal notranslate"><span class="pre">Metabase</span></code>.</p>
+<section id="metabase">
+<h2>Metabase<a class="headerlink" href="#metabase" title="Link to this heading">#</a></h2>
+<p>Per afegir Metabase al nostre projecte Odoo el podem posar al mateix <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Compose</span></code>:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>services:
+  odoo:
+    container_name: odooprofe
+    image: odoo:18.0
+    depends_on:
+      - db
+    ports:
+      - &quot;8069:8069&quot;
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    command: [&quot;--dev=all&quot;, &quot;-u&quot;, &quot;modul&quot;, &quot;-d&quot;, &quot;basededades&quot;]
+    tty: true
+
+  db:
+    container_name: postgresqlprofe
+    image: postgres:15
+    ports:
+      - &quot;5432:5432&quot;
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile 
+    container_name: nginx
+    depends_on:
+      - odoo
+    ports:
+      - &quot;80:80&quot;
+      - &quot;443:443&quot;
+
+  metabase:
+      container_name: metabase
+      image: metabase/metabase:latest
+      depends_on:
+        - db
+      ports:
+        - &quot;3000:3000&quot;
+      volumes:
+        - metabase-data:/metabase-data
+      environment:
+        TZ: Europe/Madrid 
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
+  metabase-data:
+</pre></div>
+</div>
+<p>Quan entrem a <code class="docutils literal notranslate"><span class="pre">localhost:3000</span></code> ens apareix un assistent de configuració. És important dir que en el servidor hem de posar <code class="docutils literal notranslate"><span class="pre">db</span></code>, el nom de la base de dades creada per a Odoo i els usuaris i contrasenyes d’Odoo per a la base de dades.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               
@@ -370,12 +503,36 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Jupyter%20y%20Odoo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Usar Jupyter en Odoo.</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metabase">Metabase</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
