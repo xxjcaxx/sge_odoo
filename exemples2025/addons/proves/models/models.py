@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 import random
 
 
@@ -19,29 +20,75 @@ class student(models.Model):
     year = fields.Integer(default=lambda self: random.randint(2000,2015))
     age = fields.Integer(compute="_get_age")
     photo = fields.Image(max_width=200, max_height=200)
-    classroom_id = fields.Many2one('proves.classroom', ondelete='set null')
+    classroom_id = fields.Many2one('proves.classroom', ondelete='set null', domain="[('id','in',available_classrooms)]")
     topics = fields.One2many('proves.mark','student')
     qua_topics = fields.Integer(compute = "_get_median_mark", string="Topics Quantity")
     floor = fields.Integer(related='classroom_id.floor')
     median_mark = fields.Float(compute='_get_median_mark')
     is_student = fields.Boolean()
+    course = fields.Integer()
+    available_classrooms = fields.Many2many('proves.classroom')
 
     @api.depends('topics')
     def _get_median_mark(self):
         for student in self:
-            student.median_mark = 0
             student.qua_topics = len(student.topics)
             if len(student.topics) > 0:
-                median = 0
-                for topic in student.topics:
-                    median+= topic.mark
-                student.median_mark = median / len(student.topics)
+                student.median_mark = sum(student.topics.mapped('mark'))/len(student.topics)
+            else:
+                student.median_mark = 0
+
+
+            #student.median_mark = 0
+            #student.qua_topics = len(student.topics)
+            #if len(student.topics) > 0:
+            #    median = 0
+            #    for topic in student.topics:
+            #        median+= topic.mark
+            #    student.median_mark = median / len(student.topics)
 
         
     @api.depends('year')
     def _get_age(self):
         for s in self:
             s.age = int(fields.Date.to_string(fields.Date.today()).split('-')[0]) - s.year
+    
+    @api.constrains('year')
+    def _check_age(self):
+        for record in self:
+            if record.year > 2020:
+                raise ValidationError("Your record is too young: %s" % record.age)
+
+
+    @api.onchange('course')
+    def _onchange_course(self):
+        print(self.course)
+        self.available_classrooms = self.env['proves.classroom'].search([('course', '=', self.course)])
+
+    @api.onchange('year')
+    def _onchange_year(self):
+        if self.year > 2020:
+            self.year = 2000
+            return {
+            'warning': {
+                'title': "too young",
+                'message': "too young",
+            }
+            }
+            
+    def increment_course(self):
+        #self.course = self.course+1
+        return {
+    'name': 'Classroom',
+    'view_type': 'form',
+    'view_mode': 'form',
+    'res_model': 'proves.classroom',
+    'res_id': self.classroom_id.id,
+    #'view_id': self.env.ref('reserves.comments_form').id,
+    'type': 'ir.actions.act_window',
+    'target': 'current',
+         }
+       
 
 class teacher(models.Model):
     _name = 'proves.teacher'
@@ -64,6 +111,7 @@ class classroom(models.Model):
 
     name = fields.Char()
     floor = fields.Integer()
+    course = fields.Integer()
     temperature = fields.Float()
     student_list = fields.One2many('res.partner','classroom_id')
     teachers = fields.Many2many('proves.teacher')

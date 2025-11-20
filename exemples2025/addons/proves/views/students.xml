@@ -27,6 +27,9 @@
                 <field name="name" />
                 <field name="year" />
                 <field name="age" />
+                <field name="course" />
+                <button name="increment_course" type="object" string="Go to course" class="oe_highlight" />
+                 <button name="%(proves.action_classroom_window)d" type="action" string="Go to course Action" class="oe_highlight" /> 
               </group>
               <group string="Academic Data">
                 <field name="classroom_id" />
