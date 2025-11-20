@@ -191,6 +191,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bi.html">Business Intelligence</a></li>
 </ul>
 
     </div>
@@ -893,6 +894,15 @@ sintaxi completa on especifiquem el nom de la relació i el nom de les
 columnes que identifiquem els dos models. Pensem que una relació
 Many2many implica una taula en mig i estem especificant les seues claus
 alienes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>També és precís especificar la taula en mig si es fa una relació Many2many al propi model.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Un Many2many implica una taula en mig. Si volem afegir atributs a aquesta relació, cal crear explícitament el model del mig.</p>
+<p>El many2many pot ser ‘’computed’’ i en el còmput es pot ordenar o filtrar. Un Many2many computed no crea la taula en mig.</p>
+</div>
 </section>
 <section id="related">
 <h4>Related<a class="headerlink" href="#related" title="Link to this heading">#</a></h4>

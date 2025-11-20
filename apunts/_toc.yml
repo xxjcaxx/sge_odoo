@@ -13,6 +13,7 @@ chapters:
 - file: web_controllers
 - file: client_web
 - file: Jupyter y Odoo
+- file: bi
 
 
 
