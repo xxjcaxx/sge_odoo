@@ -1,0 +1,81 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="nomines.form_view">
+      <field name="name">nomines form</field>
+      <field name="model">nomines.nomines</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+              <field name="total_amount"/>
+              <field name="state"/>
+              <field name="employee_id"/>
+              <field name="conceptes_ids"/>
+              <button string="Add Basic Concept" type="object" name="add_basic_concept"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="nomines.employee_form_view_inherit">
+      <field name="name">employees nomines form</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <notebook>
+          <page name="nomines" string="Nomines">
+            <group>
+              <field name="contract_type"/>
+              <field name="base_salary"/>
+              <field name="nomines_ids">
+                <list decoration-bf="state == 'paid'" decoration-italic="state == 'draft'" decoration-danger="state == 'confirmed'">
+                  <field name="name"/>
+                  <field name="start_date"/>
+                  <field name="end_date"/>
+                  <field name="total_amount"/>
+                  <field name="state"/>
+                </list>
+              </field>
+              <field name="nomines_pending" readonly="1"/>
+            </group>
+          </page>
+        </notebook>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="nomines.calendar_view">
+      <field name="name">nomines calendar</field>
+      <field name="model">nomines.nomines</field>
+      <field name="arch" type="xml">
+        <calendar string="Nomines Calendar" date_start="start_date" date_stop="end_date" color="employee_id">
+          <field name="name"/>
+          <field name="total_amount"/>
+          <field name="state"/>
+          <field name="employee_id"/>
+        </calendar>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="nomines.action_window_calendar">
+      <field name="name">nomines window</field>
+      <field name="res_model">nomines.nomines</field>
+      <field name="view_mode">calendar</field>
+    </record>
+
+
+
+
+
+    <menuitem name="Nomines Calendar" id="nomines.nomines_calendar" parent="hr.menu_hr_employee_payroll" action="nomines.action_window_calendar"/>
+
+  </data>
+</odoo>

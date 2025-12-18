@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nomines_nomines,nomines.nomines,model_nomines_nomines,base.group_user,1,1,1,1
+access_conceptes,nomines.conceptes,model_nomines_conceptes,base.group_user,1,1,1,1
