@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+
+          <record id="reg.producte_servici" model="product.product">
+            <field name="name">Servici de reg</field>
+            <field name="list_price">20</field>
+          </record>
+    </data>
+</odoo>

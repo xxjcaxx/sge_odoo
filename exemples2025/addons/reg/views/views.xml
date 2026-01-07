@@ -1,0 +1,106 @@
+<odoo>
+  <data>
+
+
+     <record model="ir.ui.view" id="reg.soci_form_inherit_view">
+      <field name="name">proves soci form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+
+        <notebook position="inside">
+
+          <page string="Reg">
+            
+            <field name="valvules" />
+
+          </page>
+        </notebook>
+
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="reg.servici_form_view">
+      <field name="name">proves servici form</field>
+      <field name="model">reg.servici</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              
+                <field name="name" />
+                <field name="hora_inici"/>
+                 <field name="hora_fi"/>
+                 <field name="valvula"/>
+                
+                <button name="fer_venda" type="object" string="Fer Venda" class="oe_highlight" />
+               
+            </group>
+
+
+           
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="reg.servici_calendar_view">
+      <field name="name">proves servici form</field>
+      <field name="model">reg.servici</field>
+      <field name="arch" type="xml">
+        <calendar string="Servici Calendar" date_start="hora_inici"
+                          date_stop="hora_fi"
+                          color="valvula">
+        
+                <field name="name" />
+                <field name="hora_inici"/>
+                 <field name="hora_fi"/>
+                 <field name="valvula"/>
+
+        </calendar>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="reg.action_window_socis">
+      <field name="name">reg window socis</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+        <record model="ir.actions.act_window" id="reg.action_window_valvules">
+      <field name="name">reg window valvules</field>
+      <field name="res_model">reg.valvula</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+        <record model="ir.actions.act_window" id="reg.action_window_servicis">
+      <field name="name">reg window servicis</field>
+      <field name="res_model">reg.servici</field>
+      <field name="view_mode">list,form,calendar</field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Reg" id="reg.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Gestió" id="reg.menu_1" parent="reg.menu_root"/>
+ 
+
+    <!-- actions -->
+
+    <menuitem name="Socis" id="reg.menu_1_list" parent="reg.menu_1"
+              action="reg.action_window_socis"/>
+    <menuitem name="Valvules" id="reg.menu_2_list" parent="reg.menu_1"
+              action="reg.action_window_valvules"/>
+        <menuitem name="Servicis" id="reg.menu_3_list" parent="reg.menu_1"
+              action="reg.action_window_servicis"/>
+
+  </data>
+</odoo>
