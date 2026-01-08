@@ -19,7 +19,7 @@ jobs:
         run: echo "Optional placeholder. Put your project's static website generator command here."
 
       - name: Install Jupyter-Books
-        run: pip install -U jupyter-book
+        run: pip install jupyter-book==1.0.2
 
       - name: Build Book
         run: jupyter-book build apunts/
