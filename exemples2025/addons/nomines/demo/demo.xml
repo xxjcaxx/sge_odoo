@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+
+          <record id="nomines.concepte_basic" model="nomines.conceptes">
+            <field name="name">Basic Salary</field>
+            <field name="type">basic</field>
+          </record>
+
+         
+    </data>
+</odoo>
