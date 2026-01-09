@@ -21,7 +21,10 @@
           <page string="Reg">
 
             <field name="valvules" />
-            <button name="%(reg.action_wizard_valvules)d" type="action" string="Create Valve"
+            <button name="%(reg.action_wizard_valvules)d"
+              context="{'soci_context': id, 'phone_context': phone}"
+              type="action"
+              string="Create Valve"
               class="oe_highlight" />
 
           </page>
@@ -43,9 +46,7 @@
               <field name="hora_inici" />
               <field name="hora_fi" />
               <field name="valvula" />
-
               <button name="fer_venda" type="object" string="Fer Venda" class="oe_highlight" />
-
             </group>
 
 
@@ -60,16 +61,32 @@
       <field name="model">reg.valvula_wizard</field>
       <field name="arch" type="xml">
         <form>
-
-          <group>
+          <header>
+            <button name="next" type="object"
+              string="Next"
+              invisible="state in ['resume']" />
+            <button name="previous" type="object"
+              string="previous" invisible="state in ['valvula']"
+            />
+            <field name="state" widget="statusbar" />
+          </header>
+          <group invisible="state in ['soci','resume']">
             <field name="name" />
             <field name="caval" />
+          </group>
+          <group invisible="state in ['valvula','resume']">
             <field name="soci" />
 
           </group>
+          <group invisible="state in ['valvula','soci']">
+            <field name="name" readonly="True" />
+            <field name="caval"  readonly="True"/>
+            <field name="soci" readonly="True"/>
+
+          </group>
           <footer>
-            <button name="create_valve" type="object" string="Create Valve" class="oe_highlight" />
-           <button special="cancel" string="Cancel"/>
+            <button name="create_valve" invisible="state in ['valvula','soci']" type="object" string="Create Valve" class="oe_highlight" />
+            <button special="cancel" string="Cancel" />
           </footer>
         </form>
       </field>
