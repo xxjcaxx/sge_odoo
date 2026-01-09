@@ -175,63 +175,6 @@ Amb **default_group_by**. Com l'atribut per ordenar, sols funciona amb camps gua
 </list>
 ```
 
-### banner_route
-
-A partir de la versió 12 d\'Odoo, permet afegir als lists, forms, etc
-una capçalera obtinguda per una url.
-<https://www.odoo.com/documentation/12.0/reference/views.html#common-structure>
-
-Aquesta capçalera serà un codi HTML que pot aprofitar les classes CSS
-d\'Odoo, però no aprofita la generació de codi HTML que realitza el
-client web d\'Odoo en la definició de les vistes. En cas d\'utilitzar
-imatges, aquestes estaran en el directori **static** del mòdul.
-
-**Fer un banner route pas a pas**:
-
-El primer és ficar en el list la referència al **banner_route**:
-
-``` xml
-   <list banner_route="/negocity/city_banner" >
-```
-
-Ara cal crear el **web controller** que implementa aquesta ruta (es
-recomana en controllers.py):
-
-``` python
-from odoo import http
-
-
-class banner_city_controller(http.Controller):
-    @http.route('/negocity/city_banner', auth='user', type='json')
-    def banner(self):
-        return {
-            'html': """
-                <div  class="negocity_banner" 
-                style="height: 200px; background-size:100%; background-image: url(/negocity/static/src/img/negocity_city.jpg)">
-                <div class="negocity_button" style="position: static; color:#fff;"><a>Generate Cities</a></div>
-                </div> """
-        }
-```
-
-En aquest cas, el CSS es podria fer un estil en CSS segons les
-instruccions de [El client Web Odoo](El_client_Web_Odoo "wikilink").
-
-El resultat és un banner amb un `<a>` que, de moment, no fa res.
-Anem a donar-li funcionalitat a l\'enllaç. El primer és assignar-li un
-action:
-
-``` xml
-                 <a class="banner_button" type="action" data-reload-on-close="true" 
-                role="button" data-method="action_generate_cities" data-model="negocity.city">Generate Cities</a>
-```
-
-Segons les instruccions de
-**addons/web/static/src/js/views/abstract_controller.js**, si fem un
-`<a>` amb un **type=\"action\"**, el JS d\'Odoo interpretarà que
-ha de cridar al backend a una funció d\'un model en concret. La resta de
-dades es fan com l\'exemple. La funció que diu **data-method** és una
-funció que ha d\'estar en el model que diu **data-model**.
-
 ## Les vistes form 
 
 Per a que un form quede bé, es pot inclure la etiqueta
