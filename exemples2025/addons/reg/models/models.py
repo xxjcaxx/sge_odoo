@@ -19,6 +19,22 @@ class valvula(models.Model):
     soci = fields.Many2one('res.partner')
     servics = fields.One2many('reg.servici', 'valvula')
 
+class valvula_wizard(models.TransientModel):
+    _name = 'reg.valvula_wizard'
+    _description = 'valvules wizard'
+
+    name = fields.Char()
+    caval = fields.Float()
+    soci = fields.Many2one('res.partner')
+    #servics = fields.One2many('reg.servici', 'valvula')
+
+    def create_valve(self):
+        self.env['reg.valvula'].create({
+            "name": self.name,
+            "caval": self.caval,
+            "soci": self.soci.id
+        })
+
 class servici(models.Model):
     _name = 'reg.servici'
 

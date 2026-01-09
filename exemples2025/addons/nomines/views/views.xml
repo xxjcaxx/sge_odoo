@@ -72,9 +72,6 @@
     </record>
 
 
-
-
-
     <menuitem name="Nomines Calendar" id="nomines.nomines_calendar" parent="hr.menu_hr_employee_payroll" action="nomines.action_window_calendar"/>
 
   </data>
