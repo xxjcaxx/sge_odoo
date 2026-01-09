@@ -191,6 +191,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bi.html">Business Intelligence</a></li>
 </ul>
 
     </div>
@@ -386,7 +387,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-basic">Wizard bàsic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-basic">Wizard bàsic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resum-del-wizard-basic">Resum del wizard bàsic</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-amb-assistent">Wizard amb assistent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-amb-dades-per-context">Wizard amb dades per context</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x2many-en-wizards">X2many en Wizards</a><ul class="nav section-nav flex-column">
@@ -413,13 +417,14 @@ document.write(`
 <p>Els wizards d’Odoo permeten fer un asistent
 interactiu per a que l’usuari complete una tasca. Es tracta simplement d’un formulari emergent que va demanant dades i ajundant a l’usuari i en el que les dades són temporals.</p>
 <p>Els wizards en Odoo se fan a partir de models que estenen la classe
-<strong>TransientModel</strong> en compte de <em>Model</em>. Aquesta classe és molt
+<strong>TransientModel</strong> en compte de <strong>Model</strong>. Aquesta classe és molt
 pareguda, però:</p>
 <ul class="simple">
 <li><p>Les dades no són persistents, encara que es guarden temporalment en la base de dades.</p></li>
-<li><p>Els records dels wizards poden tindre referències Many2one o Many2many amb el records dels models normals, però no al contrari.</p></li>
+<li><p>Els records dels wizards poden tindre referències Many2one o Many2many amb el records dels models normals, al contrari no té sentit, ja que s’eliminen cada cert temps.</p></li>
 <li><p>Els records dels models normals poden tindre One2many a Wizards, però cada cert tems s’eliminen.</p></li>
 </ul>
+<p>Com que les dades es guarden temporalment, un registre de un <code class="docutils literal notranslate"><span class="pre">transientModel</span></code> sí te una id en la taula corresponent i ha de tindre uns permisos i les característiques normals dels models com els recordsets i funcions. El formulari que típicament obrim per a per un <code class="docutils literal notranslate"><span class="pre">Wizard</span></code> sols mostra eixes dades com en un model normal.</p>
 <p>En realitat, no estem fent res molt diferent al que fem en Odoo a
 exepció del <strong>TransientModel</strong>. Es tracta de crear formularis i accions
 igual que podem crear-los per a altres propòsits. Un Wizard és un
@@ -435,7 +440,11 @@ un botó de tipus action.</p></li>
 tant isca en el menú de dalt d’una vista en eixe model.</p></li>
 <li><p>Per un action generat per Python i retornat per una funció. (En
 Odoo totes les funcions cridades des de la vista poden retornar
-un action que després el client executa).</p></li>
+un action que després el client executa).</p>
+<ul>
+<li><p>Eixe action pot ser creat per Python en un mètode del propi <code class="docutils literal notranslate"><span class="pre">transientModel</span></code> del wizard.</p></li>
+</ul>
+</li>
 <li><p>La més exòtica és per un action preexistent però obtingut en una
 funció Python i retornat per aquesta. No és molt freqüent, però
 pot ser l’única opció si la funció pot o no retornar un wizard
@@ -464,7 +473,7 @@ funció del field <strong>state</strong>.</p></li>
 </li>
 <li><p>En cas de tindre un wizard complex en el que omplir Many2many o
 One2many, tal vegada es necessiten més transientModels per fer
-relacions. No es poden fer relacions x2many amb models normals.</p></li>
+relacions.</p></li>
 <li><p>Finalment, el wizard acabarà creant o modificant alguns models
 permanent de la base de dades. Això es fa en una funció. Eixa funció
 pot retornar un action per mostrar les instàncies creades o per
@@ -552,6 +561,10 @@ action, ja que és l’anomenat <strong>XML id</strong>.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
+<section id="resum-del-wizard-basic">
+<h3>Resum del wizard bàsic<a class="headerlink" href="#resum-del-wizard-basic" title="Link to this heading">#</a></h3>
+<p>El més important que cal observar és que creem un <code class="docutils literal notranslate"><span class="pre">transientModel</span></code> i una vista per a ell igual que en qualsevol model normal. La novetat és que té un <code class="docutils literal notranslate"><span class="pre">action</span></code> diferent amb <code class="docutils literal notranslate"><span class="pre">target</span> <span class="pre">new</span></code> i la manera en que cridem al action, que en aquest exemple és un botó tipus <code class="docutils literal notranslate"><span class="pre">action</span></code> o una funció Python. Per últim, aquest wizard té un botó amb una funció que crea un registre en un altre model.</p>
+</section>
 </section>
 <section id="wizard-amb-assistent">
 <h2>Wizard amb assistent<a class="headerlink" href="#wizard-amb-assistent" title="Link to this heading">#</a></h2>
@@ -1107,7 +1120,10 @@ variable de context <strong>active_ids</strong> en compte de <strong>active_id</
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-basic">Wizard bàsic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-basic">Wizard bàsic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resum-del-wizard-basic">Resum del wizard bàsic</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-amb-assistent">Wizard amb assistent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wizard-amb-dades-per-context">Wizard amb dades per context</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x2many-en-wizards">X2many en Wizards</a><ul class="nav section-nav flex-column">

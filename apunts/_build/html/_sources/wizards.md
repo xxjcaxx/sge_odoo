@@ -4,12 +4,14 @@ Els wizards d\'Odoo permeten fer un asistent
 interactiu per a que l'usuari complete una tasca. Es tracta simplement d'un formulari emergent que va demanant dades i ajundant a l'usuari i en el que les dades són temporals.
 
 Els wizards en Odoo se fan a partir de models que estenen la classe
-**TransientModel** en compte de *Model*. Aquesta classe és molt
+**TransientModel** en compte de **Model**. Aquesta classe és molt
 pareguda, però:
 
 - Les dades no són persistents, encara que es guarden temporalment en la base de dades.
-- Els records dels wizards poden tindre referències Many2one o Many2many amb el records dels models normals, però no al contrari.
+- Els records dels wizards poden tindre referències Many2one o Many2many amb el records dels models normals, al contrari no té sentit, ja que s'eliminen cada cert temps.
 - Els records dels models normals poden tindre One2many a Wizards, però cada cert tems s\'eliminen.
+
+Com que les dades es guarden temporalment, un registre de un `transientModel` sí te una id en la taula corresponent i ha de tindre uns permisos i les característiques normals dels models com els recordsets i funcions. El formulari que típicament obrim per a per un `Wizard` sols mostra eixes dades com en un model normal. 
 
 En realitat, no estem fent res molt diferent al que fem en Odoo a
 exepció del **TransientModel**. Es tracta de crear formularis i accions
@@ -26,6 +28,7 @@ cicle de vida d\'un wizard serà el següent:
   - Per un action generat per Python i retornat per una funció. (En
         Odoo totes les funcions cridades des de la vista poden retornar
         un action que després el client executa).
+    -  Eixe action pot ser creat per Python en un mètode del propi `transientModel` del wizard. 
   - La més exòtica és per un action preexistent però obtingut en una
         funció Python i retornat per aquesta. No és molt freqüent, però
         pot ser l\'única opció si la funció pot o no retornar un wizard
@@ -49,7 +52,7 @@ cicle de vida d\'un wizard serà el següent:
         funció del field **state**.
 - En cas de tindre un wizard complex en el que omplir Many2many o
     One2many, tal vegada es necessiten més transientModels per fer
-    relacions. No es poden fer relacions x2many amb models normals.
+    relacions.
 - Finalment, el wizard acabarà creant o modificant alguns models
     permanent de la base de dades. Això es fa en una funció. Eixa funció
     pot retornar un action per mostrar les instàncies creades o per
@@ -145,6 +148,10 @@ def launch_mmog_fortress_wizard(self):
         'context': self._context,
     }
 ```
+
+### Resum del wizard bàsic
+
+El més important que cal observar és que creem un `transientModel` i una vista per a ell igual que en qualsevol model normal. La novetat és que té un `action` diferent amb `target new` i la manera en que cridem al action, que en aquest exemple és un botó tipus `action` o una funció Python. Per últim, aquest wizard té un botó amb una funció que crea un registre en un altre model.   
 
 ## Wizard amb assistent
 
