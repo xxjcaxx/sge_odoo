@@ -20,7 +20,16 @@
 
           <page string="Reg">
 
-            <field name="valvules" />
+            <field name="valvules">
+              <list>
+                <field name="name"></field>
+                <field name="caval"></field>
+                <field name="soci"></field>
+                
+                <button name="afegir_servicis" type="object" string="Afegir Servicis" class="oe_highlight" />
+                <field name="servics" widget="many2many_tags"/>
+              </list>
+              </field>
             <button name="%(reg.action_wizard_valvules)d"
               context="{'soci_context': id, 'phone_context': phone}"
               type="action"
@@ -92,6 +101,35 @@
       </field>
     </record>
 
+
+    <record model="ir.ui.view" id="reg.valvula_servicis_wizard_form">
+      <field name="name">proves valvula wizard form</field>
+      <field name="model">reg.valvula_servicis_wizard</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          
+          </header>
+          <group>
+             <field name="valvula_id" readonly="True"/>
+            <field name="servicis" readonly="True"/>
+            <field name="hora_inici_aux" />
+            <label colspan="2"
+                  for="hora_fi_aux"
+                  string="No valid data"
+                  invisible = "hora_fi_aux > hora_inici_aux"
+                  />
+            <field name="hora_fi_aux" />
+            <button name="add_service"  type="object" string="Add Service" class="oe_highlight" />
+           
+          </group>
+          <footer>
+            <button name="add_services"  type="object" string="Add Services" class="oe_highlight" />
+            <button special="cancel" string="Cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
 
     <record model="ir.ui.view" id="reg.servici_calendar_view">
       <field name="name">proves servici form</field>
