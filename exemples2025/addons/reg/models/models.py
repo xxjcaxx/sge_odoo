@@ -145,15 +145,19 @@ class valvula_servicis_wizard(models.TransientModel):
             hora_fi=hora_inici+timedelta(hours=1)
             self.hora_fi_aux=fields.Datetime.to_string(hora_fi)
     
-    @api.onchange('hora_fi_aux')
-    def _onchange_hora_fi_aux(self):
-        if self.hora_inici_aux and self.hora_fi_aux:
-            if self.hora_inici_aux > self.hora_fi_aux:
-                hora_inici = self.hora_inici_aux
-                hora_fi=hora_inici+timedelta(hours=1)
-                self.hora_fi_aux=fields.Datetime.to_string(hora_fi)
+    #@api.onchange('hora_fi_aux')
+    #def _onchange_hora_fi_aux(self):
+    #    if self.hora_inici_aux and self.hora_fi_aux:
+    #        if self.hora_inici_aux > self.hora_fi_aux:
+    #            hora_inici = self.hora_inici_aux
+    #            hora_fi=hora_inici+timedelta(hours=1)
+    #            self.hora_fi_aux=fields.Datetime.to_string(hora_fi)
                 #raise UserError('No valid date')
-                return {
+
+
+    def add_service(self):
+        if self.hora_inici_aux > self.hora_fi_aux:
+            return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
@@ -162,8 +166,6 @@ class valvula_servicis_wizard(models.TransientModel):
                         'sticky': False,
                     }
                 }
-
-    def add_service(self):
         self.servicis.create({
             "valvula_wizard": self.id,
             "hora_inici": self.hora_inici_aux,
