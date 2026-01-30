@@ -141,7 +141,7 @@ En el cas de mostrar dades que no són fields es posa `t-esc` o `t-out`
   <tr t-foreach="o.generate_data_event(e.id)" t-as="sw">
  ```
 
-
+**Per a crear un nou tipus de paper:**
 
 ```xml
     <record id="natacio.paperformat_ticket_80mm" model="report.paperformat">
@@ -160,6 +160,28 @@ En el cas de mostrar dades que no són fields es posa `t-esc` o `t-out`
         <field name="header_spacing">0</field>
     </record>
 
+```
+
+i en el action: 
+
+```xml
+<field name="paperformat_id" ref="natacio.paperformat_ticket_80mm" />
+```
+
+**Per a posar QRs**
+
+```xml
+  <div class="qr">
+                                            <img
+                                                t-att-src="
+                                    base_url +
+                                    '/report/barcode/QR/' +
+                                    (o.name + ' - Ticket ' + str(ticket['n']))
+                                "
+                                                width="50"
+                                                height="50"
+                                            />
+                                        </div>
 ```
 
 **Depurar els reports**
