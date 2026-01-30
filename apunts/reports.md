@@ -184,6 +184,10 @@ i en el action:
                                         </div>
 ```
 
+En cas de voler codis de barres normals:
+```xml
+/report/barcode/?barcode_type=Code128&value=123456789
+```
 **Depurar els reports**
 
 Because reports are standard web pages, they are available through a URL
