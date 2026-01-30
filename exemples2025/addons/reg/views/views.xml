@@ -1,0 +1,191 @@
+<odoo>
+  <data>
+
+
+    <record model="ir.actions.act_window" id="reg.action_wizard_valvules">
+      <field name="name">reg wizard valvules</field>
+      <field name="res_model">reg.valvula_wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+      <field name="binding_model_id" ref="model_reg_valvula" />
+    </record>
+
+    <record model="ir.ui.view" id="reg.soci_form_inherit_view">
+      <field name="name">proves soci form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+
+        <notebook position="inside">
+
+          <page string="Reg">
+
+            <field name="valvules">
+              <list>
+                <field name="name"></field>
+                <field name="caval"></field>
+                <field name="soci"></field>
+                
+                <button name="afegir_servicis" type="object" string="Afegir Servicis" class="oe_highlight" />
+                <field name="servics" widget="many2many_tags"/>
+              </list>
+              </field>
+            <button name="%(reg.action_wizard_valvules)d"
+              context="{'soci_context': id, 'phone_context': phone}"
+              type="action"
+              string="Create Valve"
+              class="oe_highlight" />
+
+          </page>
+        </notebook>
+
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="reg.servici_form_view">
+      <field name="name">proves servici form</field>
+      <field name="model">reg.servici</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+
+              <field name="name" />
+              <field name="hora_inici" />
+              <field name="hora_fi" />
+              <field name="valvula" />
+              <button name="fer_venda" type="object" string="Fer Venda" class="oe_highlight" />
+            </group>
+
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="reg.valvula_wizard_form">
+      <field name="name">proves valvula wizard form</field>
+      <field name="model">reg.valvula_wizard</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="next" type="object"
+              string="Next"
+              invisible="state in ['resume']" />
+            <button name="previous" type="object"
+              string="previous" invisible="state in ['valvula']"
+            />
+            <field name="state" widget="statusbar" />
+          </header>
+          <group invisible="state in ['soci','resume']">
+            <field name="name" />
+            <field name="caval" />
+          </group>
+          <group invisible="state in ['valvula','resume']">
+            <field name="soci" />
+
+          </group>
+          <group invisible="state in ['valvula','soci']">
+            <field name="name" readonly="True" />
+            <field name="caval"  readonly="True"/>
+            <field name="soci" readonly="True"/>
+
+          </group>
+          <footer>
+            <button name="create_valve" invisible="state in ['valvula','soci']" type="object" string="Create Valve" class="oe_highlight" />
+            <button special="cancel" string="Cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="reg.valvula_servicis_wizard_form">
+      <field name="name">proves valvula wizard form</field>
+      <field name="model">reg.valvula_servicis_wizard</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          
+          </header>
+          <group>
+             <field name="valvula_id" readonly="True"/>
+            <field name="servicis" readonly="True"/>
+            <field name="hora_inici_aux" />
+            <label colspan="2"
+                  for="hora_fi_aux"
+                  string="No valid data"
+                  invisible = "hora_fi_aux > hora_inici_aux"
+                  />
+            <field name="hora_fi_aux" />
+            <button name="add_service"  type="object" string="Add Service" class="oe_highlight" />
+           
+          </group>
+          <footer>
+            <button name="add_services"  type="object" string="Add Services" class="oe_highlight" />
+            <button special="cancel" string="Cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="reg.servici_calendar_view">
+      <field name="name">proves servici form</field>
+      <field name="model">reg.servici</field>
+      <field name="arch" type="xml">
+        <calendar string="Servici Calendar" date_start="hora_inici"
+          date_stop="hora_fi"
+          color="valvula">
+
+          <field name="name" />
+          <field name="hora_inici" />
+          <field name="hora_fi" />
+          <field name="valvula" />
+
+        </calendar>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="reg.action_window_socis">
+      <field name="name">reg window socis</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="reg.action_window_valvules">
+      <field name="name">reg window valvules</field>
+      <field name="res_model">reg.valvula</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="reg.action_window_servicis">
+      <field name="name">reg window servicis</field>
+      <field name="res_model">reg.servici</field>
+      <field name="view_mode">list,form,calendar</field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Reg" id="reg.menu_root" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Gestió" id="reg.menu_1" parent="reg.menu_root" />
+
+
+    <!-- actions -->
+
+    <menuitem name="Socis" id="reg.menu_1_list" parent="reg.menu_1"
+      action="reg.action_window_socis" />
+    <menuitem name="Valvules" id="reg.menu_2_list" parent="reg.menu_1"
+      action="reg.action_window_valvules" />
+    <menuitem name="Servicis" id="reg.menu_3_list" parent="reg.menu_1"
+      action="reg.action_window_servicis" />
+
+  </data>
+</odoo>

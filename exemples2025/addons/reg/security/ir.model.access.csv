@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_reg_valvula,reg.valvula,model_reg_valvula,base.group_user,1,1,1,1
+access_reg_valvula_wizard,reg.valvula_wizard,model_reg_valvula_wizard,base.group_user,1,1,1,1
+access_reg_servici,reg.servici,model_reg_servici,base.group_user,1,1,1,1
+access_reg_valvula_servicis_wizard,reg.valvula_servicis_wizard,model_reg_valvula_servicis_wizard,base.group_user,1,1,1,1
+access_reg_servicis_valvula_wizard,reg.servicis_valvula_wizard,model_reg_servicis_valvula_wizard,base.group_user,1,1,1,1
