@@ -2,6 +2,8 @@
 
 El motor de reports utilitza una combinació de **QWeb, BootStrap i Wkhtmltopdf**.
 
+https://www.odoo.com/documentation/19.0/developer/reference/frontend/qweb.html
+
 ```{admonition} Consell
 :class: tip
 
@@ -18,13 +20,15 @@ Un report consta de dos elements:
 Per exemple, en el xml:
 
 ``` xml
-<report
-        id="report_session"
-        model="openacademy.session"
-        string="Session Report"
-        name="openacademy.report_session_view"
-        file="openacademy.report_session"
-        report_type="qweb-pdf" />
+    <record id="natacio.action_championship_report" model="ir.actions.report">
+        <field name="name">Championship Results</field>
+        <field name="model">natacio.championship</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">natacio.report_session_view</field>
+        <field name="report_file">natacio.report_session_view</field>
+        <field name="binding_model_id" ref="model_natacio_championship" />
+        <field name="binding_type">report</field>
+    </record>
 
     <template id="report_session_view">
         <t t-call="report.html_container">
@@ -46,8 +50,7 @@ Per exemple, en el xml:
     </template>
 ```
 
-Els reports simplifiquen amb l\'etiqueta **report** la creació d\'un
-action de tipus report. Automàticament situen un botó dalt del tree o
+Automàticament situen un botó dalt del tree o
 form per imprimir.
 
 Una mínima template que funciona:
@@ -97,7 +100,7 @@ insertant el css:
 Per afegir una imatge de la base de dades:
 
 ``` xml
-<span t-field="doc.logo" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+<img t-attf-src="data:image/*;base64,{{c.logo}}"/>
 ```
 
 **Notes sobre QWeb**
@@ -117,7 +120,26 @@ que comencen per **t-**
 ```
 
 -   t-foreach: Per fer bucles per els elements d\'un one2many, per
-    exemple.
+    exemple:
+
+
+```xml
+<t t-foreach="s.events" t-as="e">
+    <span t-field="e.name" />
+</t>
+```
+
+En el cas de mostrar dades que no són fields es posa `t-esc` o `t-out`
+
+```xml
+ <span t-out="sw['swimmer']" />
+ ```
+
+ QWeb no pot executar codi però pot cridar a una funció:
+
+ ```xml
+  <tr t-foreach="o.generate_data_event(e.id)" t-as="sw">
+ ```
 
 **Depurar els reports**
 
