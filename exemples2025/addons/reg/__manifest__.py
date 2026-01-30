@@ -26,6 +26,7 @@ Long description of module's purpose
         'views/views.xml',
         'views/templates.xml',
         'demo/demo.xml',
+        'reports/reports.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

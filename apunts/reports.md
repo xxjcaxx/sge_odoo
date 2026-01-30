@@ -27,9 +27,9 @@ Per exemple, en el xml:
         report_type="qweb-pdf" />
 
     <template id="report_session_view">
-        <t t-call="report.html_container">
+        <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="report.external_layout">
+                <t t-call="web.external_layout">
                     <div class="page">
                         <h2 t-field="doc.name"/>
                         <p>From <span t-field="doc.start_date"/> to <span t-field="doc.end_date"/></p>
@@ -54,9 +54,9 @@ Una mínima template que funciona:
 
 ``` xml
 <template id="report_invoice">
-    <t t-call="report.html_container">
+    <t t-call="web.html_container">
         <t t-foreach="docs" t-as="o">
-            <t t-call="report.external_layout">
+            <t t-call="web.external_layout">
                 <div class="page">
                     <h2>Report title</h2>
                     <p>This object's name is <span t-field="o.name"/></p>
@@ -118,6 +118,27 @@ que comencen per **t-**
 
 -   t-foreach: Per fer bucles per els elements d\'un one2many, per
     exemple.
+
+
+
+```xml
+    <record id="natacio.paperformat_ticket_80mm" model="report.paperformat">
+        <field name="name">Ticket 80mm</field>
+        <field name="format">custom</field>
+        <field name="page_width">80</field>
+        <field name="page_height">40</field>
+        <field name="orientation">Portrait</field>
+
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+    </record>
+
+```
 
 **Depurar els reports**
 

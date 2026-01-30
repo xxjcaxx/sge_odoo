@@ -1,0 +1,41 @@
+<odoo>
+    <record id="reg.action_valvula_report" model="ir.actions.report">
+        <field name="name">Valvules Report</field>
+        <field name="model">reg.valvula</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">reg.report_valvula_view</field>
+        <field name="report_file">reg.report_valvula_view</field>
+        <field name="binding_model_id" ref="model_reg_valvula" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_valvula_view">
+        <t t-call="web.html_container">
+ <style type="text/css">
+                        h2.roig {
+                        color: #FF0000  
+                        }
+                    </style>
+            <t t-foreach="docs" t-as="doc">
+
+                <t t-call="web.external_layout">
+                   
+                    <div class="page">
+
+                        <h2 class="roig">Valvula: <span t-field="doc.name"></span></h2>
+                        <p>Caval: <span t-field="doc.caval"></span></p>
+                        <p>Soci: <span t-field="doc.soci"></span></p>
+                        <ul>
+                            <t t-foreach="doc.servics" t-as="s">
+                                <li>
+                                    <span t-field="s.hora_inici"></span>
+                                </li>
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
