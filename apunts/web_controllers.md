@@ -244,28 +244,61 @@ Ací tenim un exemple funcional al que li falten moltes comprovacions per
 evitar errades:
 
 ``` python
-     @http.route('/terraform/api/<model>', auth="none", cors='*', csrf=False, type='json')
-     def api(self, **args):
+ @http.route('/natacio/api/<model>', auth="none", cors='*', csrf=False, type='http')
+    def api(self, **args):
        print('APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
        print(args, http.request.httprequest.method)
        model = args['model']
-       if( http.request.httprequest.method == 'POST'):   #  {"jsonrpc":"2.0","method":"call","params":{"planet":{"name":"Trantor","average_temperature":20},"password":"1234"}}
-           record = http.request.env['terraform.'+model].sudo().create(args[model])
-           return record.read()
-       if( http.request.httprequest.method == 'GET'):
-           record = http.request.env['terraform.'+model].sudo().search([('id','=',args[model]['id'])])
-           return record.read()
+       if( http.request.httprequest.method == 'POST'):  # {"club": {"name": "nou clu22b"}}
+           data = json.loads(http.request.httprequest.data)
+           record = http.request.env['natacio.'+model].sudo().create(data[model])
+           return http.request.make_json_response(
+               record.read(['name']), 
+               headers=None, 
+               cookies=None, 
+               status=200)
+       if( http.request.httprequest.method == 'GET'):  #http://localhost:8069/natacio/api/club?id=2
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',args['id'])])
+           return http.request.make_json_response(
+               record.read(), 
+               headers=None, 
+               cookies=None, 
+               status=200)
+           
        if( http.request.httprequest.method == 'PUT' or  http.request.httprequest.method == 'PATCH'):
-           record = http.request.env['terraform.'+model].sudo().search([('id','=',args[model]['id'])])[0]
-           record.write(args[model])
-           return record.read()
+           data = json.loads(http.request.httprequest.data)
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',data['id'])])[0]
+           record.write(data[model])
+           return http.request.make_json_response(
+               record.read(['name']), 
+               headers=None, 
+               cookies=None, 
+               status=200)
        if(http.request.httprequest.method == 'DELETE'):
-           record = http.request.env['terraform.'+model].sudo().search([('id','=',args[model]['id'])])[0]
-           print(record)
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',args['id'])])[0]
            record.unlink()
-           return record.read()
+           return http.request.make_json_response(
+               {"deleted": True}, 
+               headers=None, 
+               cookies=None, 
+               status=200)
 
        return http.request.env['ir.http'].session_info()
+  
+
+    @http.route('/natacio/api/<model>/<id>', auth="none", cors='*', csrf=False, type='http')
+    def apiGet(self, **args):
+       print('APIIIIIIIIIIIIIIIIIIIII GETTTTTTTTT')
+       print(args, http.request.httprequest.method)
+       model = args['model']
+       id= args['id']
+       if( http.request.httprequest.method == 'GET'):  #http://localhost:8069/natacio/api/club/2
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',id)])
+           return http.request.make_json_response(
+               record.read(), 
+               headers=None, 
+               cookies=None, 
+               status=200)
 ```
 
 Tenim un problema i és que per GET en teoria no es pot enviar body i
