@@ -1,21 +1,19 @@
-# Web Controllers
+# Web Controllers i API Externa
 
 En Odoo hi ha moltes maneres de comunicar-se amb el
 servidor:
 
--   Entrant en el backend
--   La pàgina web (frontend)
--   El TPV
--   Amb un API de XML-RPC per a aplicacions Java, Python o PHP.
--   Amb els controladors web per a consultes web o Ajax.
+- Entrant en el backend
+- La pàgina web (frontend)
+- El TPV
+- Amb un API de XML-RPC (< versió 19) o JSON-2 (> versió 19)  per a aplicacions Java, Python o PHP.
+- Amb els controladors web per a consultes web o Ajax.
 
 Si volem fer la web amb el CMS d\'Odoo, cal aprendre a fer webs en Odoo.
 Però si el que volem és accedir a Odoo com un servidor **Rest** o
 similar des de una aplicació web diferent, hem de crear la interficie de
 servidor web amb Odoo i formular correctament les peticions Ajax.
 
-En aquest manual la intenció és fer una aplicació web en Angular que
-consulte coses a Odoo.
 
 Odoo utilitza la biblioteca
 <https://werkzeug.palletsprojects.com/en/1.0.x/> per als seus
@@ -305,3 +303,62 @@ Tenim un problema i és que per GET en teoria no es pot enviar body i
 aquesta API l\'està esperant al dir que és de tipus json. Si volem fer
 una API correcta, tenim que fer una funció diferent per al GET en http i
 retornar el JSON, que ha de ser construit dins de la funció.
+
+
+
+## API Externa amb JSON-2
+
+> A partir d'Odoo 19
+
+
+Està basada en fer peticions POST a la URL: `/json/2/<model>/<method>`. Les peticions han de tenir:
+
+* Host  Required, the hostname of the server.
+* Autorization Required, bearer followed by an API key.
+* Content-Type Required, application/json, a charset is recommended.
+* X-Odoo-Database Optional, the name of the database to connect to.
+* User-Agent Recommended, the name of your software.
+
+Amés cal posar un body amb aquesta sintaxi:
+
+```json
+{
+    "context": {
+        "lang": "en_US"
+    },
+    "domain": [
+        ["name", "ilike", "%deco%"],
+        ["is_company", "=", true]
+    ],
+    "fields": ["name"]
+}
+```
+
+Per autenticar és necessari crear una API key de forma sencilla en la interfície gràfica:
+
+```{figure} imgs/odoo_json24.png 
+    :scale: 100 %
+    :alt: api key
+
+    API Key
+```
+
+> És important destacar que la API key mai s'ha de compartir en un projecte real. El codi del client tindrà accés a variables d'entorn `env` o similar que no seràn pujades a Github. 
+
+> En un projecte real s'ha de crear usuaris específics per als bots amb permisos molt controlats a la seua tasca i no utilitzar l'usuari administrador.
+
+Ací podem veure com funciona en Postman:
+
+```{figure} imgs/odoo_json21.png 
+    :scale: 100 %
+    :alt: postman 1
+
+    Headers de la petició
+```
+
+```{figure} imgs/odoo_json22.png 
+    :scale: 100 %
+    :alt: postman 2
+
+    Body de la petició
+```

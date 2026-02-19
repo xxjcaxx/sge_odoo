@@ -216,6 +216,8 @@ postgreSQL o mirar en *Configuración \> Estructura de la base de datos
 Cal destacar el camp *modules* on diu els mòduls instal·lats on es
 defineix o hereta el model observat.
 
+A partir de la versió 19 es fa una documentació web automàtica dels models a `/doc` (per exemple: http://localhost:8069/doc/product.template)
+
 ### Fields
 
 Les \"columnes\" del model són els fields. Aquests poden ser de dades
