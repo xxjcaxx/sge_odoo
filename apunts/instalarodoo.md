@@ -61,7 +61,7 @@ sudo usermod -aG docker $USER
 En Docker és molt senzill desplegar Odoo, tan sols fa falta aquests
 comandaments:
 
-    # docker run -d --restart="always" -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:9.4
+    # docker run -d --restart="always" -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:15.0
     # docker run --restart="always" -p 8069:8069 --name odoo --link db:db -t odoo
     # docker stop odoo
     # docker start -a odoo
@@ -187,8 +187,11 @@ addons_path = /mnt/extra-addons
 Si volem entrar en la base de dades postgreSQL per a fer coses
 manualment, podem executar:
 
+```bash
     docker exec -ti postgresql psql proves -U odoo
-
+    # o
+    docker compose exec db psql proves -U odoo
+```
 
 Executem el comandament psql de forma interactiva a la base de dades proves i amb l\'usuari odoo. 
 
@@ -215,10 +218,9 @@ Com que el comandament amb `--dev=all` no actualitza la base de dades, la creaci
     command: ["--dev=all", "-u", "modul", "-d", "basededades"]
 ```
 
-Però sols quan ja existeix la base de dades i el mòdul està instal·lat. En cas d'arrancar docker amb aquest comandament per primera vegada, es crearà la base de dades amb una confoguració estàndard que no ens interessa en Anglés, sense dades de demo i amb usuari/password admin/admin.
+Però sols quan ja existeix la base de dades i el mòdul està instal·lat. En cas d'arrancar docker amb aquest comandament per primera vegada, es crearà la base de dades amb una configuració estàndard que no ens interessa en anglès, sense dades de demo i amb usuari/password admin/admin.
 
-
-Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker-compose down` i tornar a arrancar els contenidors de nou. Això suposa molta feina, així que ho podem simplificar afegint a `Visual Studio code` una extensió com `VS Code Action Buttons` i configurant el seu `json` així:
+Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker compose down` i tornar a arrancar els contenidors de nou. Això suposa molta feina, així que ho podem simplificar afegint a `Visual Studio code` una extensió com `VS Code Action Buttons` i configurant el seu `json` així:
 
 ```json
         "commands": [
@@ -236,6 +238,7 @@ Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker-
             },
         ],
 ```
+
 El primer `Command` ho reinicia tot, tant la base de dades com Odoo i elimina els contenidors per recrear-los. Això pot solucionar alguns problemes. Però en principi, el segon reinicia només el contenidor Odoo sense recrear-ho. És més ràpid i també actualitza la base de dades. El comandament el podem utilitzar en una terminal si no volem fer els botons o estem en un entorn on hi ha interfície gràfica.  
 
 > Si no necessites ser sudo per executar docker es pot llevar dels comandaments anteriors.
@@ -244,7 +247,11 @@ En **Pycharm** és encara més sencill perquè es poden crear en `Run > Edit con
 
 Per veure els logs podem fer:
 
+```bash
     docker logs odoo -f
+    #o
+    docker compose logs odoo -f
+```
 
 ```{admonition} Colors en la terminal
 :class: tip
@@ -254,9 +261,12 @@ Els logs es veuen en color gràcies a posar `tty:true` en el fitxer de configura
 
 Per fer un mòdul nou:
 
+```bash
     docker exec -ti odoo  odoo scaffold proves /mnt/extra-addons
     docker exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
+```
 
+Pot ser que tinguem un problema de permisos en aquest pas. És important recordad que la carpeta `addons` de fora pot o no ser propietat de l'usuari del docker depen de si existeix abans o no. Per tant, cal donar-i permisos 777 a la de fora y també dins del docker a la de dins. 
 
 ```{admonition} Shell
 :class: tip

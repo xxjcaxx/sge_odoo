@@ -5,13 +5,13 @@
 El *framework* d\'Odoo facilita diversos components que permeten
 construir l'aplicació:
 
--   La capa **ORM** (Object Relational Mapping) entre els objectes
+- La capa **ORM** (Object Relational Mapping) entre els objectes
     Python i la base de dades **PostgreSQL**. El dissenyador-programador
     no efectua el disseny de la base de dades; únicament dissenya
     classes, per les quals la capa ORM d'Odoo n'efectuarà el mapat sobre
     el SGBD PostgreSQL
 
--   Una arquitectura **MVC**
+- Una arquitectura **MVC**
     ([model-vista-controlador](http://es.wikipedia.org/wiki/Modelo_Vista_Controlador))
     en la qual el model resideix en les dades de les classes dissenyades
     amb Python, la vista resideix en els formularis, llistes,
@@ -27,20 +27,19 @@ construir l'aplicació:
     Arquitectura MVC
     ```
 
--   Odoo és un ERP amb una arquitectura [de Tenencia
+- Odoo és un ERP amb una arquitectura [de Tenencia
     Múltiple](http://es.wikipedia.org/wiki/Tenencia_M%C3%BAltiple). És A
     dir, té una base de dades i un servidor comú per a tots els clients.
     El contrari sería tindre un servidor o base de dades per client o
     virtualitzar.
--   Dissenyadors d'informes.
--   Facilitats de traducció de l'aplicació a diversos idiomes.
+- Dissenyadors d'informes.
+- Facilitats de traducció de l'aplicació a diversos idiomes.
 
 El **servidor** Odoo proporciona un accés a la base de dades amb
 **ORM**. El servidor necessita tindre instal·lats **mòduls**, ja que
 comença buit.
 
-Per altra banda, el **client** es comunica amb el servidor en
-**XML-RPC**, els clients web per **JSON-RPC**. El client sols té que mostrar el
+Per altra banda, el **client** web es comunica amb el servidor per **JSON-RPC**. El client sols té que mostrar el
 que dona el servidor o demanar correctament les dades. Per tant, un
 client pot ser molt simple i fer-se en qualsevol llenguatge de
 programació. Odoo proporciona un client web encara que es pot fer un
@@ -61,9 +60,7 @@ ser
 WSGI és una solució estàndard per a fer servidors i clients HTTP en
 Python. En el cas d\'Odoo, aquest té `Werkzeug`, que interpreta les peticions i les transforma en funcions que Odoo pot entendre.
 
-Un altre concepte dins d\'Odoo són els **Business Objects**. S'implementen amb `models` i implementen tant dades com lògica de negoci. 
-
-Odoo proporciona els anomenats **Wizards**, que es comporten com un
+Odoo permet crear els anomenats **Wizards**, que es comporten com un
 assistent per introduir dades d\'una manera més fàcil per a l\'usuari.
 
 El client web és fàcil de desenvolupar gràcies al **Widgets** o Window
@@ -89,7 +86,7 @@ formulari i el nom de la dada membre de la classe corresponent a cada
 camp del formulari. Aquesta informació permet arribar a la taula i
 columna afectades, tenint en compte dues qüestions:
 
--   El nom de les classes Python d'Odoo sempre són en minúscula
+- El nom de les classes Python d'Odoo sempre són en minúscula
     (s'utilitza el guió baix per fer llegible els mots compostos) i
     segueix la nomenclatura nom_del_modul.nom1.nom2.nom3... en la qual
     s'utilitza el punt per indicar un cert nivell de jerarquia. Cada
@@ -97,7 +94,7 @@ columna afectades, tenint en compte dues qüestions:
     possibilitats que el seu nom coincideixi amb el nom de la classe,
     tot substituint els punts per guions baixos.
 
--   Els noms dels atributs d'una classe Python sempre són en minúscula
+- Els noms dels atributs d'una classe Python sempre són en minúscula
     (s'utilitza el guió baix per fer llegible els mots compostos). Cada
     dada membre d'una classe Python d'Odoo que siga persistent (una
     classe pot tenir dades membres calculades no persistents) és mapat
@@ -115,7 +112,7 @@ corresponents. Es pot configurar el client web per tal que informe del
 nom de la classe i de la dada membre en situar el ratolí damunt les
 etiquetes dels camps dels formularis.
 
-## Els mòduls 
+## Els mòduls
 
 Tant el servidor com els clients són mòduls. Tots estan guardats en una
 base de dades. Tot els que es puga fer per modificar Odoo es fa en
@@ -126,37 +123,38 @@ mòduls.
 Els mòduls d\'Odoo amplien o modifiquen parts de
 Model-Vista-Controlador. D\'aquesta manera, un mòdul pot tindre:
 
--   **Objectes de negoci**: Són la part del model, estan definits en
+- **Objectes de negoci**: Són la part del model, estan definits en
     classes de Python segons una sintaxi pròpia de
-    l'ORM d'Odoo.
--   **Fitxers de dades**: Són fitxers XML que poden definir dades,
-    vistes o configuracions.
--   **Controladors web**: Gestionen les peticions dels navegadors web.
--   **Dades estàtiques**: Imatges, CSS, o javascript utilitzats per
+    l'ORM d'Odoo i es diuen `models`.
+- **Fitxers de dades**: Són fitxers XML que poden definir dades,
+    vistes o configuracions. Totes les dades acaben a la base de dades, incloses les vistes. 
+- **Controladors web**: Gestionen les peticions dels navegadors web.
+- **Dades estàtiques**: Imatges, CSS, o javascript utilitzats per
     l\'interficie web. És necessari que les dades estatiques es guarden
     en el directori **static**. Per exemple, l\'icona del mòdul va en
     static/description/icon.png
 
 #### Estructura de fitxers d\'un mòdul 
 
--   Tots el mòduls estan en un directori definit en l\'opció
+- Tots el mòduls estan en un directori definit en l\'opció
     **\--addons-path** o el fitxer de configuració. Poden ser més d\'un
     directori.
--   Un mòdul de python es declara en un fitxer de **manifest** que dona
+- Un mòdul de python es declara en un fitxer de **manifest** que dona
     informació sobre el mòdul, el que fa el mòduls dels que depen i cóm
     s\'ha d\'instal·lar o actualitzar.
     [1](https://www.odoo.com/documentation/8.0/reference/module.html#reference-module-manifest)
--   Un mòdul és un paquet de Python que necessita
+- Un mòdul és un paquet de Python que necessita
     un **\_\_init\_\_.py** per a instanciar tots els fitxers python.
 
-### Creació de mòduls 
+### Creació de mòduls
 
 Per ajudar al programador, Odoo conté un comandament per crear mòduls
 buits. Aquest crea l\'estructura de fitxers necessaria per començar a
 treballar:
 
-     $ odoo scaffold <module name> <where to put it>
-
+```bash
+$ odoo scaffold <module name> <where to put it>
+```
 
 ```{note}
 :class: dropdown
@@ -188,7 +186,7 @@ al programador la majoria de consultes SQL. D\'aquesta manera el
 desenvolupament dels mòduls és molt ràpid i evitem errades de
 programació.
 
-Els models són creats com classes de python que extenen la classe
+Els `models són creats com classes de python que extenen la classe
 **[models.Model](https://www.odoo.com/documentation/master/developer/reference/backend/orm.html)**
 que conté els camps i mètodes útils per a fer anar l\'ORM.
 
@@ -198,23 +196,20 @@ algunes variables, com ara **\_name**
 Odoo considera que un model és la referència a una o més taules en la
 base de dades. Un model no és una fila en la taula, és tota la taula.
 
-> En programació, el '''Model''' és una manera de relacionar el programa amb la base de dades. És de més alt nivell que les consultes directes en quant a base de dades i que les '''clases i objectes''' respecte a la programació orientada a objectes. El model junta en un únic concepte les '''estructures de dades''', les '''restriccions d'integritat''' i les opcions de '''manipulació''' de les dades. 
+> En programació, el '''Model''' és una manera de relacionar el programa amb la base de dades. És de més alt nivell que les consultes directes en quant a base de dades i que les '''clases i objectes''' respecte a la programació orientada a objectes. El model junta en un únic concepte les '''estructures de dades''', les '''restriccions d'integritat''' i les opcions de '''manipulació''' de les dades.
 
-Els models en Odoo poden heretar de **models.Model** i ser els normals
+Els models en Odoo poden heretar de **models.Model** i ser
 mapejats i permanents en la base de dades. També poden ser
 **models.TransientModel** i són iguals, sols que no tenen permanència
 definitiva en la base de dades. Aquest són els recomanables per a fer
 `wizards`. També poden ser **models.AbstractModel**
 per a definir models abstractes per a després heretar.
 
-### Inspeccionar el models 
+### Inspeccionar el models
 
 Per veure els models existents, es pot accedir a la base de dades
 postgreSQL o mirar en *Configuración \> Estructura de la base de datos
 \> Modelos* dins del mode desenvolupador.
-
-Cal destacar el camp *modules* on diu els mòduls instal·lats on es
-defineix o hereta el model observat.
 
 A partir de la versió 19 es fa una documentació web automàtica dels models a `/doc` (per exemple: http://localhost:8069/doc/product.template)
 
@@ -226,26 +221,26 @@ many2one, one2many, related\...
 
 Hi ha uns fields reservats:
 
--   **id** (Id) the unique identifier for a record in its model
--   **create_date** (Datetime) creation date of the record
--   **create_uid** (Many2one) user who created the record
--   **write_date** (Datetime) last modification date of the record
--   **write_uid** (Many2one) user who last modified the record
+- **id** (Id) the unique identifier for a record in its model
+- **create_date** (Datetime) creation date of the record
+- **create_uid** (Many2one) user who created the record
+- **write_date** (Datetime) last modification date of the record
+- **write_uid** (Many2one) user who last modified the record
 
 Hi ha altres fields que podem declarar i tenen propietats especials.
 Aquests són els més importants:
 
--   **name** És el field utiltizat per fer l**\'Identificador Extern** o
+- **name** És el field utiltizat per fer l**\'Identificador Extern** o
     quan es fa referència en els many2one en la vista.
--   **active** que diu si el record és actiu. Permet ocultar productes
+- **active** que diu si el record és actiu. Permet ocultar productes
     que ja no es necessiten, per exemple.
--   **sequence** Permet definir l\'ordre del records a mostrar en una
+- **sequence** Permet definir l\'ordre del records a mostrar en una
     llista.
 
 Els fields es declaren amb un constructor:
 
 ``` python
-from openerp import models, fields
+from odoo import models, fields
 
 class LessMinimalModel(models.Model):
     _name = 'test.model2'
@@ -255,13 +250,13 @@ class LessMinimalModel(models.Model):
 
 Tenen uns atributs comuns:
 
--   **string** (unicode, per defecte: El nom del field) L\'etiqueta que
+- **string** (unicode, per defecte: El nom del field) L\'etiqueta que
     veuran els usuaris en la vista.
--   **required** (bool, per defecte: False) Si és *True*, el camp no es
+- **required** (bool, per defecte: False) Si és *True*, el camp no es
     por deixar buit.
--   **help** (unicode, per defecte: \'\') En els formularis proporciona
+- **help** (unicode, per defecte: \'\') En els formularis proporciona
     ajuda a l\'usuari per plenar el camp.
--   **index** (bool, per defecte: False) Demana a Odoo fer que siga el
+- **index** (bool, per defecte: False) Demana a Odoo fer que siga el
     índex de la base de dades. En altre cas, el ORM crea un camp **id**.
 
 I algunes, sobretot les especials, tenen atributs particulars.
@@ -300,47 +295,46 @@ field.
 ``` python
  name = fields.Char(default='Alberto')
  # o:
- name = fields.Char(default=a_fun)
- #...
  def a_fun(self):
    return self.do_something()
+ name = fields.Char(default=a_fun)
 ```
 
-### Fields normals 
+### Fields normals
 
 Aquests són els fields per a dades normals que proporciona Odoo:
 
--   Integer
--   Char
--   Text
--   Date : Mostra un calendari en la vista.
--   Datetime
--   Float
--   Boolean
--   Html : Guarda un text, però es representa de manera especial en el
-    client.
--   Binary : Per guardar, per exemple, imatges. Utilitza codificació
+- Integer
+- Char
+- Text
+- Date : Mostra un calendari en la vista.
+- Datetime
+- Float
+- Boolean
+- Html : Guarda un text, però es representa de manera especial en el
+    client. El HTML és interpretat. No pot tenir css ni javascript. Els estils aniran en cada etiqueta, ja que és *sanititzat* abans de ser guardat per evitar injeccions malicioses. 
+- Binary : Per guardar, per exemple, imatges. Utilitza codificació
     base64 al enviar els fitxers al client. En realitat les guarda en
     **/var/lib/odoo/.local/share/Odoo/filestore** i la ruta als fitxers
     la diu la taula **ir_attachment** junt amb el id, nom del field i el
     model.
--   Image (Odoo13) : En el cas d\'imatges, accepta els atributs
+- Image: En el cas d\'imatges, accepta els atributs
     **max_width** i **max_height** on es pot dir en píxel que ha de
     redimensionar la imatge a eixa mida màxima.
--   Selection : Mostra un select amb les opcions indicades.
+- Selection : Mostra un select amb les opcions indicades.
 
 ``` python
      type = fields.Selection([('1','Basic'),('2','Intermediate'),('3','Completed')])
      aselection = fields.Selection(selection='a_function_name') # Es pot cridar a una funció que defineix les opcions.
 ```
 
-### Fields Relacionals 
+### Fields Relacionals
 
 Les relacions entre els models (en definitiva, entre les taules de la
-base de dades) també les simplifica l\'ORM. D\'aquesta maneram les
+base de dades) també les simplifica l\'ORM. D\'aquesta manera les
 relacions 1 a molts es fan en el Odoo anomena Many2one i les relacions
 Mols a Molts es fan el el Many2Many. Les relacions molts a molts, en una
-base de dades relacional, impliquen una tercera taula en mitg, però en
+base de dades relacional, impliquen una tercera taula en mig, però en
 Odoo no tenim que preocupar-nos d\'aquestes coses si no volem, el mapat
 dels objectes el detectarà i farà les taules, claus i restriccions
 d\'integritat necessaries. Anem a repasar un a un aquests camps:
@@ -492,81 +486,20 @@ sala = fields.Many2one('cine.sala',related='sessio.sala',store=True,readonly=Tru
 
 Un Many2one on es guardar també el model al qual fa referència amb l'atribut: **model_field**.
 
-#### One2one
-
-Els camps **One2one** no existeixen en Odoo. Però si volem aquesta
-funcionalitat podem utilitzar varies tècniques:
-
--   Fer dos camps Many2many i restringir amb constrains que sols pot
-    existir una relació. Problemes:
-    -   En la vista no podem ficar un widget com en el Many2one i és
-        complicat evitar relacions creuades.
-    -   Es pot fer un **limit** en la vista, però es continuarà
-        comportant com un Many2many.
--   Fer dos Many2one i restringit amb contrains o sql constrains que
-    sols pot existir una relació mútua. (Cal sobreescriure els mètodes
-    create i write per a que es cree l\'associació automàticament).
-    Problemes:
-    -   Si sobreescribim el write de els dos, es pot produir una cridada
-        recursiva sense fi i és molt complicat aconseguir que no tingam
-        referències creuades.
--   Fer un Many2one i en l\'altre model un Many2one computed que busque
-    en els del primer model. Per poder editar en els dos cal fer una
-    funció inversa per al camp computed. Aquesta és una de les opcions
-    més elegants. Exemple:
-
-
-``` python
-class orderline(models.Model):
-    _name = 'sale.order.line'
-    _inherit = 'sale.order.line'
-    booking = fields.Many2one('reserves.bookings')
-      
-    _sql_constraints = [
-    ('booking_uniq', 'unique(booking)', 'There is another order line for this booking'),
-    ]
-
-class bookings(models.Model):
-    _name = 'reserves.bookings'
-
-    name = fields.Char()
-    order_line = fields.Many2one('sale.order.line',compute='_get_order_line',inverse='_set_order_line')
-
-    @api.multi
-    def _get_order_line(self):
-        for b in self:
-            b.order_line=self.env['sale.order.line'].search([('booking.id','=',b.id)]).id
-
-    @api.one
-    def _set_order_line(self):
-        o = self.order_line.id
-        self.env['sale.order.line'].search([('id','=',o)]).write({'booking':self.id})
-```
--   Fer un Many2one i un One2many i restringir el màxim del One2many (
-    [3](https://stackoverflow.com/questions/32801526/how-to-create-a-one2one-relationship-in-odoo-8)
-    ). Problemes:
-    -   Els mateixos que en els dos many2manys. És més simple restringir
-        les relacions creuades.
--   Fer una herència múltiple.
-    [4](http://blog.odoobiz.com/2014/10/openerp-one2one-relational-field-example.html).
-    Problemes:
-    -   Esta és, en teoría, la forma més oficial de fer-ho, però obliga
-        a crear sempre la relació i els models en un ordre determinat.
-
-#### Filtres (Domains) 
+#### Filtres (Domains)
 
 En ocasions és necessari afegir un filtre en el codi python per fer que
 un camp **relacional** no puga tindre certes referències. El
-comportament del domain és diferent depen del tipus de field.
+comportament del domain és diferent depèn del tipus de field.
 
--   **Domain en Many2one**: Filtra els elements del model referenciat
+- **Domain en Many2one**: Filtra els elements del model referenciat
     que poden ser elegits per al field:
 
 ``` python
 parent = fields.Many2one('game.resource', domain="[('template', '=', True)]")
 ```
 
--   **Domain en Many2many**: La llista d\'elements a triar es filtra
+- **Domain en Many2many**: La llista d\'elements a triar es filtra
     segons el domain:
 
 ``` python
@@ -585,14 +518,11 @@ value_id = fields.Many2many(
 )
 ```
 
--   **Domain en One2many**: Al ser una relació que depen d\'altre
+- **Domain en One2many**: Al ser una relació que depen d\'altre
     Many2one, no es pot filtrar, si fiquem un domain, sols deixarà de
     mostrar els que no compleixen el domain, però no deien d\'existir:
 
-
-
-
-### Fields Computed 
+### Fields Computed
 
 Moltes vegades volem que el contingut d\'un camp siga calculat en el
 moment en que anem a veure-lo. Tots els tipus de fields poden ser
@@ -750,7 +680,7 @@ en el constructor dels fields:
 ``` python
 name = fields.Char(default="Unknown")
 user_id = fields.Many2one('res.users', default=lambda self: self.env.user)
-start_date = fields.Date(default=fields.Date.today())
+start_date = fields.Date(default=fields.Date.today)
 active = fields.Boolean(default=True)
 def compute_default_value(self):
     return self.get_value()
@@ -769,8 +699,8 @@ crear l\'element en el model. Cal fer:
 
 ``` python
 start_date = fields.Date(default=lambda self: fields.Date.today())  # CORRECTE
+start_date = fields.Date(default=fields.Date.today)  # CORRECTE
 ```
-
 o
 
 ``` python
@@ -795,7 +725,7 @@ pot utilitzar la funció **default_get** que ja tenen els models.
 El que fa aquesta funció és un poc avançat de moment, ja que fa ús del `context` i l\'herencia per afegir un valor per
 defecte al diccionari que retorna aquesta funció en la classe *Model*
 
-### Restriccions (constrains) 
+### Restriccions (constrains)
 
 Els objectes poden incorporar, de forma opcional, restriccions
 d'integritat, addicionals a les de la base de dades. Odoo valida
@@ -828,7 +758,7 @@ _sql_constraints = [
 En aquest cas és una restricció d\'unicitat, la qual és més simple que
 fer una búsqueda en python.
 
-## Fitxers de dades 
+## Fitxers de dades
 
 Quan fem un mòdul d\'Odoo, es poden definir dades que es guardaran en la
 base de dades. Aquestes dades poden ser necessàries per al funcionament
@@ -909,14 +839,14 @@ d\'elements.
 Observem que hem passat una tripleta amb un 6, un 0 i una llista de
 refs. Les tripletes poden ser:
 
--   (0,\_ ,{\'field\': value}): Crea un nou registre i el vincula
--   (1,id,{\'field\': value}): Actualtiza els valors en un registre ja
+- (0,\_ ,{\'field\': value}): Crea un nou registre i el vincula
+- (1,id,{\'field\': value}): Actualtiza els valors en un registre ja
     vinculats
--   (2,id,\_): Desvincula i elimina el registre
--   (3,id,\_): Desvincula però no elimina el registre de la relació.
--   (4,id,\_): Vincula un registre ja existent
--   (5,\_,\_): Desvincula pero no elimina tots els registres vinculats
--   (6,\_,\[ids\]): Reemplaça la llista de registres vinculats.
+- (2,id,\_): Desvincula i elimina el registre
+- (3,id,\_): Desvincula però no elimina el registre de la relació.
+- (4,id,\_): Vincula un registre ja existent
+- (5,\_,\_): Desvincula pero no elimina tots els registres vinculats
+- (6,\_,\[ids\]): Reemplaça la llista de registres vinculats.
 
 ### Dades per als Binary i Image
 
@@ -959,30 +889,30 @@ programa. Quant pulsem en un menú, canvia la pantalla perquè hem fet una
 
 Una acció bàsicament té:
 
--   **type**: El tipus d\'acció que és i cóm l\'acció és interpretada.
+- **type**: El tipus d\'acció que és i cóm l\'acció és interpretada.
     Quan la definim en el XML, el type no cal especificar-lo, ja que ho
     indica el model en que es guarda.
--   **name**: El nom, que pot ser mostrat en la pantalla o no. Es
+- **name**: El nom, que pot ser mostrat en la pantalla o no. Es
     recomana que siga llegible per els humans.
 
 Les accions i els menús es declaren en fitxers de dades en XML o
 dirèctament si una funció retorna un diccionari que la defineix. Les
 accions poden ser cridades de tres maneres:
 
--   Fent clic en un menú.
--   Fent clic en botons de les vistes (han d\'estar connectats amb
+- Fent clic en un menú.
+- Fent clic en botons de les vistes (han d\'estar connectats amb
     accions).
--   Com accions contextuals en els objectes.
+- Com accions contextuals en els objectes.
 
 D\'aquesta manera, el client web pot saber quina acció ha d\'executar si
 rep alguna d\'aquestes coses:
 
--   **false**: Indica que s\'ha de tancar el diàleg actual.
--   **Una string**: Amb l\'etiqueta de **l\'acció de client** a
+- **false**: Indica que s\'ha de tancar el diàleg actual.
+- **Una string**: Amb l\'etiqueta de **l\'acció de client** a
     executar.
--   **Un número**: Amb el ID o external ID de l\'acció a trobar a la
+- **Un número**: Amb el ID o external ID de l\'acció a trobar a la
     base de dades.
--   **Un diccionari**: Amb la definició de l\'acció, aquesta no està ni
+- **Un diccionari**: Amb la definició de l\'acció, aquesta no està ni
     en XML ni en la base de dades. En general, és la manera de cridar a
     un action al finalitzar una funció.
 
@@ -1068,11 +998,11 @@ desenvolupades.
 
 L'herència es pot aplicar en els tres components del patró MVC:
 
--   En el model: possibilita ampliar les classes existents o dissenyar
+- En el model: possibilita ampliar les classes existents o dissenyar
     noves classes a partir de les existents.
--   En la vista: possibilita modificar el comportament de vistes
+- En la vista: possibilita modificar el comportament de vistes
     existents o dissenyar noves vistes.
--   En el controlador: possibilita sobreescriure els mètodes existents o
+- En el controlador: possibilita sobreescriure els mètodes existents o
     dissenyar-ne de nous.
 
 OpenObject proporciona tres mecanismes d'herència: l'herència de classe,
@@ -1096,14 +1026,14 @@ l'herència per prototip i l'herència per delegació.
 
 El disseny d'un model d'Odoo heretat és paregut al disseny d'un no heretat; únicament hi ha dues diferències:
 
--   Apareix l'atribut **\_inherit** o **\_inherits** per indicar
+- Apareix l'atribut **\_inherit** o **\_inherits** per indicar
     l'objecte (herència simple) o els objectes (herència múltiple) dels
     quals deriva el nou objecte. La sintaxi a seguir és:
 
 `_inherit = 'nom.objecte.del.que.es.deriva'`\
 `_inherits = {'nom.objecte1':'nom_camp_FK1', ...}`
 
--   En cas d'herència simple, el nom (atribut \_name) de l'objecte
+- En cas d'herència simple, el nom (atribut \_name) de l'objecte
     derivat pot coincidir o no amb el nom de l'objecte pare. També és
     possible no indicar l'atribut \_name, fet que indica que el nou
     objecte manté el nom de l'objecte pare.
@@ -1215,11 +1145,11 @@ combina els camps de la vista pare amb els de la vista heretada i
 estableix la posició de les noves etiquetes a partir dels següents
 valors:
 
--   inside (per defecte): els valors s'afegeixen "dins" de l'etiqueta.
--   after: afegeix el contingut després de l'etiqueta.
--   before: afegeix el contingut abans de l'etiqueta.
--   replace: reemplaça el contingut de l'etiqueta.
--   attributes: Modifica [els
+- inside (per defecte): els valors s'afegeixen "dins" de l'etiqueta.
+- after: afegeix el contingut després de l'etiqueta.
+- before: afegeix el contingut abans de l'etiqueta.
+- replace: reemplaça el contingut de l'etiqueta.
+- attributes: Modifica [els
     atributs](https://www.odoo.com/es_ES/forum/ayuda-1/question/xpath-how-to-replace-attributes-only-and-not-the-full-field-38192).
 
 **Reemplaçar**
@@ -1378,10 +1308,10 @@ sobreescriure algun dels mètodes de l'objecte del qual es deriva i per a
 fer-ho adequadament cal tenir en compte que el mètode sobreescrit en
 l'objecte derivat:
 
--   De vegades vol substituir el mètode de l'objecte base sense
+- De vegades vol substituir el mètode de l'objecte base sense
     aprofitar-ne cap funcionalitat: el mètode de l'objecte derivat no
     invoca el mètode sobreescrit.
--   De vegades vol aprofitar la funcionalitat del mètode de l'objecte
+- De vegades vol aprofitar la funcionalitat del mètode de l'objecte
     base: el mètode de l'objecte derivat invoca el mètode sobreescrit.
 
 Exemples:
@@ -1426,10 +1356,10 @@ Els programadors en el framework d\'Odoo hem de conèixer els mètodes
 subministrats per la capa ORM i hem de dominar el disseny de mètodes
 per:
 
--   Poder definir camps funcionals en el disseny del model.
--   Poder definir l'acció que cal executar en modificar el contingut
+- Poder definir camps funcionals en el disseny del model.
+- Poder definir l'acció que cal executar en modificar el contingut
     d'un field d'una vista form (@api.onchange)
--   Poder alterar les accions automàtiques de cerca, creació,
+- Poder alterar les accions automàtiques de cerca, creació,
     modificació i eliminació de recursos.
 
 Una darrera consideració a tenir en compte en l'escriptura de mètodes i
@@ -1488,10 +1418,10 @@ Accedir a un **many2one, one2many o many2many** donarà un recordset.
 Els recordsets es poden combinar amb operacions específiques que són les
 típiques dels conjunts:
 
--   **record in set** retorna si el record està en el set
--   **set1 \| set2** Unió de sets
--   **set1 & set2** Intersecció de sets
--   **set1 - set2** Diferència de sets
+- **record in set** retorna si el record està en el set
+- **set1 \| set2** Unió de sets
+- **set1 & set2** Intersecció de sets
+- **set1 - set2** Diferència de sets
 
 Amés, un recordset no té elements repetits i permet accedir a recordsets
 dins d\'ell. Per exemple:
@@ -1510,7 +1440,7 @@ una funció als elements. Les més utilitzades són map(), filter(),
 reduce(), sort(), zip()\... Odoo treballa en recordsets, no llistes, i
 té les seues funcions pròpies per a imitar aquestes:
 
--   **filtered()** Filtra el recordset de manera que sols tinga els
+- **filtered()** Filtra el recordset de manera que sols tinga els
     records que complixen una condició.
 
 ``` python
@@ -1518,7 +1448,7 @@ records.filtered(lambda r: r.company_id == user.company_id)
 records.filtered("partner_id.is_company")
 ```
 
--   **sorted()** Ordena segons uns funció, se defineix una funció lambda
+- **sorted()** Ordena segons uns funció, se defineix una funció lambda
     (key) que indica que s\'ordena per el camp name:
 
 ``` python
@@ -1527,7 +1457,7 @@ records.sorted(key=lambda r: r.name)
 records.sorted(key=lambda r: r.name, reverse=True)
 ```
 
--   **mapped()** Li aplica una funció a cada recordset i retorna un
+- **mapped()** Li aplica una funció a cada recordset i retorna un
     recordset amb els canvis demanats:
 
 ``` python
@@ -1579,19 +1509,19 @@ print(self.env.context)
 Al llarg de tot aquest manual utilitzem sovint paràmetres del context.
 Aquests són els paràmetres que hem utilitzat en algun moment:
 
--   active_id : self.\_context.get(\'active_id\') es tracta de l\'id de
+- active_id : self.\_context.get(\'active_id\') es tracta de l\'id de
     l\'element del model que està en pantalla.
--   active_ids : Llista de les id seleccionats en un tree.
--   active_model : El model actual.
--   default\_`<field>`{=html} : En un action o en un one2many es pot
+- active_ids : Llista de les id seleccionats en un tree.
+- active_model : El model actual.
+- default\_`<field>`{=html} : En un action o en un one2many es pot
     assignar un valor per defecte a un field.
--   search_default\_`<filter>`{=html} : Per aplicar un filtre per
+- search_default\_`<filter>`{=html} : Per aplicar un filtre per
     defecte a la vista en un **action**.
--   group_by : Dins d\'un camp **filter** per a crear agrupacions en les
+- group_by : Dins d\'un camp **filter** per a crear agrupacions en les
     vistes **search**.
--   graph_mode : En les vistes **graph**, aquest paràmetre canvia el
+- graph_mode : En les vistes **graph**, aquest paràmetre canvia el
     **type**
--   context.get : En les vistes es pot treure algunes dades del context
+- context.get : En les vistes es pot treure algunes dades del context
     per a mostrar condicionalment o per als *domains*
 
 El context va passant d\'un mètode a un altre o a les vistes i, de
@@ -1985,17 +1915,17 @@ Els decoradors modifiquen la forma en la que és cridada la funció. Entre
 altres coses, modifiquen el contingut de **self**, les vegades que se
 crida i quant se crida.
 
--   **\@api.depends()** Aquest decorador crida a la funció sempre que el
+- **\@api.depends()** Aquest decorador crida a la funció sempre que el
     camp del que depén siga modificat. Encara que el camp diga
     *store=True*. Per defecte, **self** és un recordset, per tant, cal
     fer un for.
--   **\@api.model** S\'utilitza per a funcions que afecten al model i no
+- **\@api.model** S\'utilitza per a funcions que afecten al model i no
     als recordsets.
--   **\@api.constrains()** S\'utilitza per a comprovar les *constrains*.
+- **\@api.constrains()** S\'utilitza per a comprovar les *constrains*.
     Self és un recordset. Com que quasi sempre es crida en un form,
     funciona si utilitzem self directament. Però cal fer for, ja que pot
     ser cridat en un recordset quant modifiquem camps en grup.
--   **\@api.onchange()** S\'executa cada vegada que modifiquem el field
+- **\@api.onchange()** S\'executa cada vegada que modifiquem el field
     indicat en la vista. En aquest, com que es crida quant es modifica
     un form, sempre **self** serà un singleton. Però si fiquem un for no
     passa res.
@@ -2164,9 +2094,9 @@ relativedelta.
 
 ## Misc.
 
--   Si volem fer un print en colors, podem ficar un caracter de escape:
+- Si volem fer un print en colors, podem ficar un caracter de escape:
     \\033\[93m i \\033\[0m al final
--   Traure la menor potència de 2 major o igual a un número:
+- Traure la menor potència de 2 major o igual a un número:
     <http://stackoverflow.com/a/14267557>
 
 Distintes alertes:
