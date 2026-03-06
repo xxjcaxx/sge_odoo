@@ -1,0 +1,85 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record id="skills_description.skill_type_wizard_action" model="ir.actions.act_window">
+      <field name="name">Create Skill type</field>
+      <field name="res_model">skills_description.skill_type_wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+      <field name="binding_model_id" ref="hr_skills.model_hr_skill_type" />
+    </record>
+
+    <record model="ir.ui.view" id="skills_description.inherit_form">
+      <field name="name">skills_description form</field>
+      <field name="model">hr.skill</field>
+      <field name="inherit_id" ref="hr_skills.hr_skill_view_form"></field>
+      <field name="arch" type="xml">
+        <field name="skill_type_id" position="after">
+          <field name="description" />
+              <button name="%(skills_description.skill_type_wizard_action)d"
+          type="action" string="Create Skill Type"
+          context="{'color_context': 1}"
+          class="oe_highlight"
+  />
+        </field>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="skills_description.skill_type_wizard_form">
+      <field name="name">skill_type_wizard_form</field>
+      <field name="model">skills_description.skill_type_wizard</field>
+
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="skills_ids" />
+            </group>
+          </sheet>
+
+          <footer>
+              <button name="create_skill_type" type="object"   string="Create" class="oe_highlight"/>
+              
+              <button special="cancel" string="Cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+
+
+    <record id="skills_description.skill_type_report" model="ir.actions.report">
+        <field name="name">Skill Type report</field>
+        <field name="model">hr.skill.type</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">skills_description.report_skill_type_view</field>
+        <field name="report_file">skills_description.report_skill_type_view</field>
+        <field name="binding_model_id" ref="hr_skills.model_hr_skill_type" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_skill_type_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 t-field="doc.name"/>
+                        
+                        <h3>Skills:</h3>
+                        <ul>
+                            <t t-foreach="doc.skill_ids" t-as="skill">
+                                <li><span t-field="skill.name"/></li>
+                                <li><span t-field="skill.description"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+  </data>
+</odoo>
