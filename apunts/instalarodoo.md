@@ -333,6 +333,14 @@ Com que els volumns de la base de dades i del propi Odoo no van a estar a la car
 
 Si podem deixar correguent un Docker a un servidor amb connexió a Internet amb els ports exposats, ja estaria en producció. No obstant això suposa varis problemes de seguretat i rendiment. 
 
+El primer de tot és afegir al contenidor d'Odoo i PostgreSQL en docker-compose:
+
+```yml
+restart: always
+```
+
+Després cal configurar HTTPs, per a això el posarem a Nginx:
+
 ### Docker de Nginx
 
 Podem afegir al fitxer del Docker Compose la configuració d'un contenidor Nginx. Aquest implementarà HTTPS i farà de proxy a Odoo.
