@@ -351,12 +351,86 @@ class ai_tools(models.Model):
 
 Fer que funcione el stream a la interfície d'Odoo és més complicat perquè els `form` no estan preparats per a això, caldria crear un component en OWL específic per a això. 
 
-
 ## Agents amb Smolagents
 
 La creació de tools i la seua interpretació per part del model pot ser complexa i no sempre funciona bé, especialment amb models menuts. Una alternativa és utilitzar una arquitectura d'agents com SmolAgents, que permet crear agents més sofisticats que poden gestionar millor les eines i les respostes. SmolAgents és una biblioteca que facilita la creació d'agents que poden interactuar amb múltiples eines i gestionar converses de manera més eficient. Amb SmolAgents, es pot definir un agent que utilitze les tools de manera més intel·ligent i que puga manejar converses més complexes amb els usuaris.
 
+Cal instal·lar les llibreries: 
 
+```bash
+pip install smolagents
+pip install 'smolagents[litellm]'
+```
+
+Després la comunicació és més eficient que amb les tools, ja que SmolAgents gestiona millor quan utilitzar les tools i com interpretar les respostes. A més, permet crear agents més sofisticats que poden manejar converses més complexes amb els usuaris.
+
+```python
+from smolagents import tool
+from smolagents import ToolCallingAgent
+from smolagents import LiteLLMModel
+
+class ai_tools_smolagent(models.Model):
+    _name = 'ai.tools.smolagent'
+    _description = 'ai.tools.smolagent'
+
+    name = fields.Char()
+    response = fields.Text()
+    thinking = fields.Text()
+
+    def generate_random_number(self) -> str:
+      """Generate a random integer number Utiliza esta función ÚNICAMENTE cuando el usuario pida explícitamente generar un valor numérico al azar mediante computación.
+  
+        Args:
+          none
+
+        Returns:
+          A random integer number
+      """
+      return str(random.randint(0, 100))
+
+    def extract_aux_data(self, text: str) -> str:
+      """Extract auxiliary data from Odoo database. Utiliza esta función para extraer datos relevantes de la base de datos de Odoo relacionados con el texto proporcionado. El texto proporcionado ha de ser de máximo dos palabras, ya que se busca con ilike.  
+
+        Args:
+          text: A string containing the text from which to extract auxiliary data.
+
+        Returns:
+          A string containing the extracted auxiliary data.
+      """
+      # Placeholder implementation - replace with actual data extraction logic
+      datos = self.env['ai.aux.data'].search([('name', 'ilike', text)], limit=5)
+      return "\n".join(datos.mapped('value'))
+
+    def explain_random_number(self) -> None:
+      model = LiteLLMModel(
+          model_id="ollama_chat/qwen3.5:4b",
+          api_base="http://ollama:11434",
+          temperature=0.2,
+      )
+      agent = ToolCallingAgent(
+        tools=[tool(self.generate_random_number), tool(self.extract_aux_data)],
+        model=model,
+      )
+      response = agent.run("Explica alguna historia curiosa de un número aleatorio generado por ti")
+      print(response)
+      self.response = response
+
+    def explain_other_think(self) -> None:
+      prompt = "Resume e interpreta la información obtenida de aux data y relacionalo con la misión Artemis II"
+      # En la base de dades hi ha informació relacionada amb Artemis II. Si no, acaba fallant i diguent o inventant qualsevol cosa. 
+      model = LiteLLMModel(
+          model_id="ollama_chat/qwen3.5:4b",
+          api_base="http://ollama:11434",
+          temperature=0.2,
+      )
+      agent = ToolCallingAgent(
+        tools=[tool(self.generate_random_number), tool(self.extract_aux_data)],
+        model=model,
+      )
+      response = agent.run(prompt)
+      print(response)
+      self.response = response
+```
 
 ## Connectar amb MCP des de Odoo
 
@@ -373,7 +447,6 @@ Odoo pot executar models d’intel·ligència artificial perquè funciona sobre 
 
 ## Exposar un MCP amb Odoo
 
-Una arquitectura més robusta pot ser fer un servici o programa extern i connectar-lo amb Odoo mitjançant un MCP. Odoo es converteix en un simple backend per a una IA externa. 
+Una arquitectura més robusta pot ser fer un servici o programa extern i connectar-lo amb Odoo mitjançant un MCP. Odoo es converteix en un simple backend per a una IA externa.
 
-Per a que funcione deguem crear MCP que connecte amb Odoo per les múltiples formes que té: JSON-2, Web Controllers, XML-RPC, etc. Aquesta arquitectura és més escalable i permet separar les responsabilitats, però també és més complexa de implementar i mantenir. És important definir clarament les interfícies entre Odoo i la IA per evitar problemes de compatibilitat.
-
+Per a que funcione deguem crear MCP que connecte amb Odoo per les múltiples formes que té: JSON-2, Web Controllers, XML-RPC, etc. Aquesta arquitectura és més escalable i permet separar les responsabilitats.
