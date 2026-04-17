@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technical Exercise Platform</title>
+<!-- BEGIN: Tailwind CSS Integration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#1e293b',
+              100: '#334155',
+              600: '#3b82f6',
+              700: '#2563eb',
+              800: '#1d4ed8',
+              900: '#1e40af',
+            },
+            status: {
+              pass: '#22c55e',
+              fail: '#ef4444',
+              pending: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind CSS Integration -->
+<!-- BEGIN: Custom Typography Styles -->
+<style data-purpose="typography">
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    .code-font {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+  </style>
+<!-- END: Custom Typography Styles -->
+<!-- BEGIN: Layout Customizations -->
+<style data-purpose="layout-tweaks">
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .exercise-list-item:hover {
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+    .test-segment:hover .test-tooltip {
+      display: block;
+    }
+  </style>
+<!-- END: Layout Customizations -->
+</head>
+<body class="bg-[#0f172a] text-gray-300 h-screen flex flex-col overflow-hidden">
+<!-- BEGIN: Global Progress Header -->
+<header class="bg-[#1e293b] border-b border-gray-800 z-10" data-purpose="test-results-header">
+<div class="w-full px-4 py-2">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Resultados de Pruebas: Ejercicio 04</span>
+<span class="text-xs text-gray-500">7/12 Pruebas Superadas</span>
+</div>
+<!-- Granular progress bar representing test results -->
+<div class="flex gap-1 h-3 w-full relative" data-purpose="granular-progress-bar">
+<!-- Passed Tests (Green) -->
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 01: Estructura de Array</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 02: Tipo de Retorno</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 03: Filtrado por Edad</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 04: Mayúsculas</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 05: Array Vacío</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 06: Múltiples Coincidencias</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pass rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 07: Inmutabilidad</div>
+</div>
+<!-- Failed Tests (Red) -->
+<div class="test-segment group flex-1 bg-status-fail rounded-sm cursor-pointer relative" onclick="toggleError(this, 'Error: Expected [ALEX] but got [Alex]')">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 08: Transformación Uppercase</div>
+</div>
+<div class="test-segment group flex-1 bg-status-fail rounded-sm cursor-pointer relative" onclick="toggleError(this, 'Error: Unexpected character at index 14')">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 09: Caracteres Especiales</div>
+</div>
+<!-- Pending Tests (Gray/Dark) -->
+<div class="test-segment group flex-1 bg-status-pending rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 10: Pendiente</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pending rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 11: Pendiente</div>
+</div>
+<div class="test-segment group flex-1 bg-status-pending rounded-sm cursor-help relative" onclick="toggleError(this)">
+<div class="test-tooltip hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-[10px] rounded whitespace-nowrap z-50 pointer-events-none border border-gray-700 shadow-xl">Test 12: Pendiente</div>
+</div>
+</div>
+<!-- Inline Error Message Container -->
+<div class="hidden mt-2 p-2 bg-red-950/40 border border-red-900/50 rounded text-xs text-red-400 font-mono animate-in fade-in slide-in-from-top-1 duration-200" id="error-display">
+</div>
+</div>
+</header>
+<!-- END: Global Progress Header -->
+<div class="flex flex-1 overflow-hidden">
+<!-- BEGIN: Left Sidebar -->
+<aside class="w-72 bg-[#0f172a] border-r border-gray-800 flex flex-col" data-purpose="exercise-navigation">
+<div class="p-6 border-b border-gray-800">
+<h2 class="text-xl font-bold text-gray-100 flex items-center gap-2">
+<svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Ejercicios
+        </h2>
+</div>
+<nav class="flex-1 overflow-y-auto scrollbar-hide py-4 px-2">
+<ul class="space-y-1">
+<li>
+<a class="exercise-list-item flex items-center p-3 rounded-lg text-gray-400 hover:text-brand-600" href="#">
+<span class="w-6 text-sm font-medium">01</span>
+<span class="flex-1 text-sm font-medium">Configuración Inicial</span>
+<svg class="w-4 h-4 text-status-pass" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</a>
+</li>
+<li>
+<a class="exercise-list-item flex items-center p-3 rounded-lg text-gray-400 hover:text-brand-600" href="#">
+<span class="w-6 text-sm font-medium">02</span>
+<span class="flex-1 text-sm font-medium">Tipos de Datos</span>
+<svg class="w-4 h-4 text-status-pass" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</a>
+</li>
+<li>
+<a class="exercise-list-item flex items-center p-3 rounded-lg bg-brand-50 text-blue-400 border-l-4 border-brand-600 shadow-sm" href="#">
+<span class="w-6 text-sm font-bold">03</span>
+<span class="flex-1 text-sm font-bold">Lógica de Bucles</span>
+<span class="text-[10px] bg-brand-600/20 px-1.5 py-0.5 rounded text-brand-600">EN CURSO</span>
+</a>
+</li>
+<li>
+<a class="exercise-list-item flex items-center p-3 rounded-lg text-gray-600" href="#">
+<span class="w-6 text-sm font-medium">04</span>
+<span class="flex-1 text-sm font-medium">Arrays Avanzados</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</li>
+<!-- Repeat items for scrolling -->
+<li class="p-3 text-xs text-gray-500 uppercase font-semibold mt-4">Siguiente Nivel</li>
+<li>
+<a class="exercise-list-item flex items-center p-3 rounded-lg text-gray-600" href="#">
+<span class="w-6 text-sm font-medium">05</span>
+<span class="flex-1 text-sm font-medium">Interfaces en React</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="p-4 border-t border-gray-800 bg-[#0f172a]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white text-xs font-bold">JD</div>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-gray-300 truncate">John Doe</p>
+<p class="text-[10px] text-gray-500">Desarrollador Junior</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Left Sidebar -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-[#0f172a] p-8" data-purpose="exercise-workspace">
+<div class="max-w-4xl mx-auto space-y-8">
+<!-- BEGIN: Exercise Statement -->
+<section class="bg-[#1e293b] rounded-xl shadow-xl border border-gray-800 p-8" data-purpose="enunciado">
+<h1 class="text-2xl font-bold text-gray-100 mb-4">Ejercicio 03: Filtrado y Transformación de Arrays</h1>
+<div class="prose prose-invert prose-blue text-gray-400 max-w-none">
+<p class="mb-4">
+              Implementa una función que reciba una lista de objetos representando usuarios y devuelva un nuevo array que contenga solo los nombres de los usuarios que sean mayores de 18 años, transformados a mayúsculas.
+            </p>
+<div class="bg-[#0f172a] rounded-lg p-4 mb-4 border border-gray-800">
+<pre class="code-font text-sm text-gray-300"><code><span class="text-blue-400">// Ejemplo de entrada</span>
+const users = [{ name: 'Alex', age: 25 }, { name: 'Maria', age: 15 }];
+<span class="text-blue-400">// Salida esperada</span>
+['ALEX']</code></pre>
+</div>
+</div>
+</section>
+<!-- END: Exercise Statement -->
+<!-- BEGIN: Submission Form -->
+<section class="bg-[#1e293b] rounded-xl shadow-xl border border-gray-800 overflow-hidden" data-purpose="submission-form">
+<div class="border-b border-gray-800 bg-[#1e293b] px-6 py-4 flex justify-between items-center">
+<h3 class="font-semibold text-gray-200">Tu Solución</h3>
+<span class="text-xs text-gray-500 italic">Autoguardado hace 2 minutos</span>
+</div>
+<form class="p-6 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Name Input -->
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-1" for="student-name">Nombre Completo</label>
+<input class="block w-full rounded-md border-gray-700 bg-[#0f172a] text-gray-100 shadow-sm focus:border-brand-500 focus:ring-brand-500 sm:text-sm" id="student-name" name="student-name" placeholder="Tu nombre" type="text" value="John Doe"/>
+</div>
+<!-- Email Input -->
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-1" for="student-email">Correo Electrónico</label>
+<input class="block w-full rounded-md border-gray-700 bg-[#0f172a] text-gray-100 shadow-sm focus:border-brand-500 focus:ring-brand-500 sm:text-sm" id="student-email" name="student-email" placeholder="email@ejemplo.com" type="email" value="john.doe@example.com"/>
+</div>
+</div>
+<!-- Code Snippet Area -->
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-1" for="code-submission">Snippet de Código (JavaScript)</label>
+<div class="relative">
+<textarea class="block w-full rounded-md border-gray-700 shadow-sm focus:border-brand-500 focus:ring-brand-500 sm:text-sm code-font bg-[#0f172a] text-gray-200" id="code-submission" name="code-submission" placeholder="function transformUsers(users) { ... }" rows="8"></textarea>
+<div class="absolute top-2 right-2 flex gap-2">
+<span class="px-2 py-1 bg-gray-800 text-gray-400 rounded text-[10px] font-bold">JS</span>
+</div>
+</div>
+</div>
+<!-- Observations Area -->
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-1" for="observation">Observaciones / Comentarios</label>
+<textarea class="block w-full rounded-md border-gray-700 bg-[#0f172a] text-gray-100 shadow-sm focus:border-brand-500 focus:ring-brand-500 sm:text-sm" id="observation" name="observation" placeholder="Explica brevemente tu lógica si es necesario..." rows="3"></textarea>
+</div>
+<!-- Form Actions -->
+<div class="flex items-center justify-end gap-4 pt-4 border-t border-gray-800">
+<button class="px-4 py-2 text-sm font-medium text-gray-300 bg-transparent border border-gray-700 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 focus:ring-offset-[#1e293b]" type="button">
+                Limpiar
+              </button>
+<button class="px-6 py-2 text-sm font-bold text-white bg-brand-600 rounded-md hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 focus:ring-offset-[#1e293b] shadow-lg shadow-brand-900/20 flex items-center gap-2" type="submit">
+<span>Ejecutar Pruebas</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</form>
+</section>
+<!-- END: Submission Form -->
+</div>
+</main>
+<!-- END: Main Content Area -->
+</div>
+<!-- BEGIN: Interaction Script -->
+<script data-purpose="form-interactions">
+    function toggleError(element, message) {
+      const errorDisplay = document.getElementById('error-display');
+      
+      // Clear previous active states
+      document.querySelectorAll('.test-segment').forEach(s => s.classList.remove('ring-2', 'ring-white/50'));
+      
+      if (message) {
+        element.classList.add('ring-2', 'ring-white/50');
+        errorDisplay.textContent = message;
+        errorDisplay.classList.remove('hidden');
+      } else {
+        errorDisplay.classList.add('hidden');
+      }
+    }
+
+    // Minimal interaction script to show potential state changes
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      console.log('Enviando solución para procesar pruebas...');
+      // Future implementation for running tests locally or remote
+    });
+  </script>
+<!-- END: Interaction Script -->
+</body></html>

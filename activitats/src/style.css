@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --odoo-bg: #171d2d;
+    --odoo-bg-soft: #21283a;
+    --odoo-line: #2d3549;
+    --odoo-cyan: #26d9e0;
+    --odoo-magenta: #f05ca0;
+  }
+
+  body {
+    @apply m-0 text-slate-100 antialiased;
+    background-color: var(--odoo-bg);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-slate-100;
+  }
+
+  a {
+    @apply text-indigo-300;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3a435d #1a2031;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1a2031;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #3a435d;
+    border-radius: 8px;
+    border: 2px solid #1a2031;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl p-4;
+    border: 1px solid var(--odoo-line);
+    background: color-mix(in srgb, var(--odoo-bg-soft) 94%, black 6%);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+  }
+
+  .input {
+    @apply w-full rounded-lg px-3 py-2 text-sm text-slate-100 outline-none transition;
+    border: 1px solid #3a435d;
+    background: #161d2d;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  }
+
+  .input:focus {
+    border-color: var(--odoo-cyan);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--odoo-cyan) 28%, transparent 72%);
+  }
+
+  .label {
+    @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-400;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-white transition;
+    background: linear-gradient(180deg, #2bcee3 0%, #19b7cf 100%);
+    color: #0f1b2c;
+    box-shadow: 0 8px 22px rgba(38, 217, 224, 0.28);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.06);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-slate-100 transition;
+    border: 1px solid #4a556f;
+    background: #252c3f;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--odoo-magenta);
+    box-shadow: inset 0 -2px 0 var(--odoo-magenta);
+  }
+
+  .markdown {
+    @apply prose prose-invert max-w-none prose-headings:text-slate-100 prose-strong:text-slate-100 prose-code:text-cyan-300;
+  }
+
+  .status-ok {
+    @apply border-emerald-700/50 bg-emerald-900/30 text-emerald-200;
+  }
+
+  .status-fail {
+    @apply border-rose-700/50 bg-rose-900/30 text-rose-200;
+  }
+
+  .status-warn {
+    @apply border-amber-700/50 bg-amber-900/30 text-amber-200;
+  }
+}
