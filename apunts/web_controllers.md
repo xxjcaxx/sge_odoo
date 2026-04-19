@@ -3,7 +3,7 @@
 En Odoo hi ha moltes maneres de comunicar-se amb el
 servidor:
 
-- Entrant en el backend
+- Entrant al backend
 - La pàgina web (frontend)
 - El TPV
 - Amb un API de XML-RPC (< versió 19) o JSON-2 (> versió 19)  per a aplicacions Java, Python o PHP.
@@ -14,6 +14,8 @@ Però si el que volem és accedir a Odoo com un servidor **Rest** o
 similar des de una aplicació web diferent, hem de crear la interficie de
 servidor web amb Odoo i formular correctament les peticions Ajax.
 
+
+## Controladors web
 
 Odoo utilitza la biblioteca
 <https://werkzeug.palletsprojects.com/en/1.0.x/> per als seus
@@ -89,7 +91,7 @@ s\'està realizant. Té métodes i atributs útils com **request.env**, que
 obstant, açò és per provar. En producció sempre necessitarem
 autentificació.
 
-## Passar paràmetres al web controller
+### Passar paràmetres al web controller
 
 Odoo permet passar paràmetres de la forma tradicional del GET o el POST
 (amb ?) o com es fa en REST, com a part de la URL.
@@ -132,7 +134,7 @@ json com aquest:
  {"jsonrpc":"2.0","method":"call","params":{"user":"${user}","password":"${pass}"}}
 ```
 
-## CORS en Odoo
+### CORS en Odoo
 
 Odoo no permet peticions Ajax que no vinguen del mateix origen que ell.
 Això ho podem canviar en cada **route** amb **cors=\'\***\'
@@ -140,7 +142,7 @@ Això ho podem canviar en cada **route** amb **cors=\'\***\'
 Si volem permetre CORS en tot odoo, el millor és instal·lar Ngingx,
 configurar-lo per a permetre CORS i fer que actue com a proxy d\'Odoo.
 
-## Autenticació
+### Autenticació
 
 En el directori d\'addons d\'Odoo, en el mòdul web/controller, trobem
 aquest codi:
@@ -181,7 +183,7 @@ token amb dades aleatòries i enviar-ho al JSON de resposta si l\'usuari
 fa login. A partir d\'aquest moment es pot demanar aquest token en totes
 les peticions posteriors.
 
-## Controllers amb JSON
+### Controllers amb JSON
 
 Com es veu en l\'exemple anterior, el client ha d\'enviar un JSON en un
 format determinat i el servidor també el retorna. Odoo necessita que el
@@ -305,11 +307,11 @@ una API correcta, tenim que fer una funció diferent per al GET en http i
 retornar el JSON, que ha de ser construit dins de la funció.
 
 
-
 ## API Externa amb JSON-2
 
 > A partir d'Odoo 19
 
+Està pensat per a connectar aplicacions externes amb Odoo de forma senzilla. No es necessita crear un controlador web. No obstant, no és una API REST ni està orientada al client web. Si la volem utilitar a una web, les peticions s'han de fer des del servidor, no des del client, ja que no permet CORS. Una altre opció és fer servir un proxy invers com Nginx per a permetre CORS.
 
 Està basada en fer peticions POST a la URL: `/json/2/<model>/<method>`. Les peticions han de tenir:
 

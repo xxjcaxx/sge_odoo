@@ -33,6 +33,7 @@ export function getDb() {
       warn_count  INTEGER DEFAULT 0,
       fail_count  INTEGER DEFAULT 0,
       total_count INTEGER DEFAULT 0,
+      form_values TEXT    DEFAULT '{}',  -- JSON object with form fields
       updated_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(nia, slug),
       FOREIGN KEY (nia) REFERENCES students(nia)
@@ -53,6 +54,12 @@ export function getDb() {
       updated_at  DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `)
+
+  // Migration: add form_values column if it doesn't exist yet (for existing DBs)
+  const cols = db.prepare(`PRAGMA table_info(progress)`).all()
+  if (!cols.some((c) => c.name === 'form_values')) {
+    db.exec(`ALTER TABLE progress ADD COLUMN form_values TEXT DEFAULT '{}'`)
+  }
 
   return db
 }

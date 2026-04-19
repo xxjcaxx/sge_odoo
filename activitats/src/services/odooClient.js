@@ -1,3 +1,14 @@
+// ─── Call logger ─────────────────────────────────────────────────────────────
+// Tests can opt in by calling startCallLog() before run() and stopCallLog() after.
+let _callLog = null
+
+export function startCallLog() { _callLog = [] }
+export function stopCallLog()  { const log = _callLog; _callLog = null; return log ?? [] }
+
+function _recordCall(label, data) {
+  if (_callLog) _callLog.push({ label, data })
+}
+
 export function ok(detail) {
   return { status: 'ok', detail }
 }
@@ -53,8 +64,13 @@ export async function proxyHttp(url, options = {}) {
       return bodyText
     },
     async json() {
-      if (bodyJson && typeof bodyJson === 'object') return bodyJson
-      return JSON.parse(bodyText || '{}')
+      if (bodyJson && typeof bodyJson === 'object') {
+        _recordCall(`proxyHttp ${options.method || 'GET'} ${url}`, bodyJson)
+        return bodyJson
+      }
+      const parsed = JSON.parse(bodyText || '{}')
+      _recordCall(`proxyHttp ${options.method || 'GET'} ${url}`, parsed)
+      return parsed
     },
   }
 }
@@ -98,6 +114,7 @@ export async function json2(values, model, method, params) {
     throw new Error(data?.error?.message || `HTTP ${response.status}`)
   }
 
+  _recordCall(`json2 ${model}.${method}`, data)
   return data
 }
 

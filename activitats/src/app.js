@@ -3,7 +3,7 @@ import { renderExercisePage } from './components/ExercisePage'
 import { renderProfessorPage, renderProfessorPasswordGate } from './components/ProfessorPage'
 import { renderNiaModal } from './components/NiaModal'
 import { EXERCISE_MAP } from './exercises'
-import { createBaseTests } from './services/odooClient'
+import { createBaseTests, startCallLog, stopCallLog } from './services/odooClient'
 import {
   identify,
   fetchProgress,
@@ -60,6 +60,7 @@ const state = {
   common:     loadStorage('odoo-common-form', {}),
   byExercise: loadStorage('odoo-exercise-form', {}),
   results:    {},      // slug → Array<{ title, status, detail }>
+  rawOutputs: {},      // slug → Array<{ title, raw }>
   professorPassword: sessionStorage.getItem('odoo-professor-password') ?? '',
   professorAuthError: '',
   professorReport: null,
@@ -109,6 +110,57 @@ function normalizeResultsArray(results = [], testTitles = []) {
 }
 
 export function mountApp(rootElement) {
+  let hoverTooltipEl = null
+
+  function ensureHoverTooltip() {
+    if (hoverTooltipEl && document.body.contains(hoverTooltipEl)) return hoverTooltipEl
+    hoverTooltipEl = document.createElement('div')
+    hoverTooltipEl.className = 'fixed z-[9999] hidden max-w-[520px] max-h-[60vh] overflow-auto whitespace-pre-wrap break-words rounded-md border border-[#3a435d] bg-[#0f1623] px-3 py-2 text-xs text-gray-100 font-mono shadow-2xl pointer-events-none'
+    document.body.appendChild(hoverTooltipEl)
+    return hoverTooltipEl
+  }
+
+  function hideFormTooltip() {
+    if (!hoverTooltipEl) return
+    hoverTooltipEl.classList.add('hidden')
+    hoverTooltipEl.textContent = ''
+  }
+
+  function showOrMoveFormTooltip(event) {
+    const target = event.target?.closest?.('[data-form-tooltip]')
+    if (!target) {
+      hideFormTooltip()
+      return
+    }
+
+    const text = target.getAttribute('data-form-tooltip') || ''
+    if (!text) {
+      hideFormTooltip()
+      return
+    }
+
+    const tooltip = ensureHoverTooltip()
+    tooltip.textContent = text
+    tooltip.classList.remove('hidden')
+
+    const pad = 12
+    const tooltipRect = tooltip.getBoundingClientRect()
+    let left = event.clientX + pad
+    let top = event.clientY + pad
+
+    if (left + tooltipRect.width > window.innerWidth - 8) {
+      left = window.innerWidth - tooltipRect.width - 8
+    }
+    if (top + tooltipRect.height > window.innerHeight - 8) {
+      top = event.clientY - tooltipRect.height - pad
+    }
+    if (left < 8) left = 8
+    if (top < 8) top = 8
+
+    tooltip.style.left = `${left}px`
+    tooltip.style.top = `${top}px`
+  }
+
   if (!location.hash || (!getCurrentPractice() && getRouteSlug() !== 'professor')) {
     location.hash = `#/${practices[0]?.slug ?? ''}`
   }
@@ -119,6 +171,9 @@ export function mountApp(rootElement) {
   rootElement.addEventListener('click', onSegmentClick)
   rootElement.addEventListener('click', onChangeNia)
   rootElement.addEventListener('click', onProfessorActions)
+  rootElement.addEventListener('mouseover', showOrMoveFormTooltip)
+  rootElement.addEventListener('mousemove', showOrMoveFormTooltip)
+  rootElement.addEventListener('mouseout', showOrMoveFormTooltip)
 
   // If NIA already set, load persisted progress from DB
   if (state.nia) {
@@ -182,8 +237,7 @@ export function mountApp(rootElement) {
     const exTests      = exerciseDefinition?.createTests(mergedValues) ?? []
     const testTitles   = [...baseTests, ...exTests].map((t) => t.title)
 
-    
-    
+    const prevScrollTop = rootElement.querySelector('[data-purpose="main-content"]')?.scrollTop ?? 0
 
     rootElement.innerHTML = renderExercisePage({
       practices: visiblePractices,
@@ -197,10 +251,15 @@ export function mountApp(rootElement) {
       testTitles,
       isRunning: state.isRunning,
       allResults: state.results,
+      rawOutputs: state.rawOutputs[practice.slug] ?? [],
       activities: state.activities,
       nia:      state.nia,
       niaName:  state.niaName,
     })
+
+    // Restore scroll position after re-render
+    const mainContent = rootElement.querySelector('[data-purpose="main-content"]')
+    if (mainContent && prevScrollTop) mainContent.scrollTop = prevScrollTop
 
     // Overlay modal if no NIA
     if (!state.nia) {
@@ -277,6 +336,29 @@ export function mountApp(rootElement) {
     }
   }
 
+  function snapshotExerciseForm(form, slug) {
+    const commonValues = { ...state.common }
+    const exerciseValues = { ...(state.byExercise[slug] ?? {}) }
+
+    form.querySelectorAll('[data-scope][data-key]').forEach((field) => {
+      if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement)) return
+      const scope = field.dataset.scope
+      const key = field.dataset.key
+      if (!scope || !key) return
+      if (scope === 'common') {
+        commonValues[key] = field.value
+      } else if (scope === 'exercise') {
+        exerciseValues[key] = field.value
+      }
+    })
+
+    return {
+      commonValues,
+      exerciseValues,
+      mergedValues: { ...commonValues, ...exerciseValues },
+    }
+  }
+
   // ─── Submit ──────────────────────────────────────────────────────────────
 
   async function onSubmit(event) {
@@ -328,27 +410,33 @@ export function mountApp(rootElement) {
 
     // ── Exercise form ────────────────────────────────────────────────────
     if (!event.target.closest('form[data-role="exercise-form"]')) return
+    const exerciseForm = event.target.closest('form[data-role="exercise-form"]')
 
     const practice = getCurrentPractice()
-    if (!practice || state.isRunning) return
+    if (!practice || !exerciseForm || state.isRunning) return
+
+    const snapshot = snapshotExerciseForm(exerciseForm, practice.slug)
+    state.common = snapshot.commonValues
+    state.byExercise[practice.slug] = snapshot.exerciseValues
+    saveStorage('odoo-common-form', state.common)
+    saveStorage('odoo-exercise-form', state.byExercise)
 
     state.isRunning = true
     render()
 
-    const values = {
-      ...state.common,
-      ...(state.byExercise[practice.slug] ?? {}),
-    }
+    const values = snapshot.mergedValues
 
-    const results = await runValidation(practice.slug, values)
+    const { results, rawOutputs } = await runValidation(practice.slug, values)
     state.results[practice.slug] = results
+    state.rawOutputs[practice.slug] = rawOutputs
     state.isRunning = false
     render()
 
     // Auto-save to DB if NIA is set
     if (state.nia) {
       const score = summarizeResults(results)
-      saveProgress(state.nia, practice.slug, results, score).catch(() => {})
+      const formValues = snapshot.mergedValues
+      saveProgress(state.nia, practice.slug, results, score, formValues).catch(() => {})
     }
   }
 
@@ -523,19 +611,25 @@ async function loadProgressFromDb(nia) {
 
 async function runValidation(slug, values) {
   const exerciseDefinition = EXERCISE_MAP.get(slug)
-  const tests   = [...createBaseTests(values), ...(exerciseDefinition?.createTests(values) ?? [])]
-  const results = []
+  const tests      = [...createBaseTests(values), ...(exerciseDefinition?.createTests(values) ?? [])]
+  const results    = []
+  const rawOutputs = []
 
   for (const test of tests) {
     try {
+      startCallLog()
       const output = await test.run()
+      const calls  = stopCallLog()
       results.push(normalizeResultEntry({ title: test.title, status: output?.status, detail: output?.detail }, test.title))
+      rawOutputs.push({ title: test.title, raw: calls.length ? calls : output })
     } catch (error) {
+      stopCallLog()
       results.push({ title: test.title, status: 'fail', detail: normalizeError(error) })
+      rawOutputs.push({ title: test.title, raw: { error: normalizeError(error) } })
     }
   }
 
-  return normalizeResultsArray(results, tests.map((test) => test.title))
+  return { results: normalizeResultsArray(results, tests.map((test) => test.title)), rawOutputs }
 }
 
 function getVisiblePractices() {

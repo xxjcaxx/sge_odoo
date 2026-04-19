@@ -109,7 +109,7 @@ app.get('/api/progress/:nia', (req, res) => {
 //  Upserts the progress row (one row per student+exercise)
 // ═══════════════════════════════════════════════════════════════════════════
 app.post('/api/progress', (req, res) => {
-  const { nia, slug, results, score } = req.body ?? {}
+  const { nia, slug, results, score, formValues } = req.body ?? {}
   if (!nia || !slug || !Array.isArray(results)) {
     return res.status(400).json({ error: 'Falten camps: nia, slug, results.' })
   }
@@ -124,8 +124,8 @@ app.post('/api/progress', (req, res) => {
   const total_count = results.length
 
   db.prepare(`
-    INSERT INTO progress (nia, slug, results, score, ok_count, warn_count, fail_count, total_count, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    INSERT INTO progress (nia, slug, results, score, ok_count, warn_count, fail_count, total_count, form_values, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
     ON CONFLICT(nia, slug) DO UPDATE SET
       results     = excluded.results,
       score       = excluded.score,
@@ -133,8 +133,9 @@ app.post('/api/progress', (req, res) => {
       warn_count  = excluded.warn_count,
       fail_count  = excluded.fail_count,
       total_count = excluded.total_count,
+      form_values = excluded.form_values,
       updated_at  = CURRENT_TIMESTAMP
-  `).run(niaClean, slug, JSON.stringify(results), score ?? '', ok_count, warn_count, fail_count, total_count)
+  `).run(niaClean, slug, JSON.stringify(results), score ?? '', ok_count, warn_count, fail_count, total_count, JSON.stringify(formValues ?? {}))
 
   res.json({ ok: true })
 })
@@ -373,7 +374,7 @@ app.get('/api/professor/report', requireProfessorPassword, (req, res) => {
   `).all()
 
   const progressRows = db.prepare(`
-    SELECT nia, slug, ok_count, total_count, updated_at
+    SELECT nia, slug, ok_count, total_count, form_values, updated_at
     FROM progress
   `).all()
 
@@ -390,6 +391,7 @@ app.get('/api/professor/report', requireProfessorPassword, (req, res) => {
       ok: row.ok_count,
       total: row.total_count,
       pct,
+      formValues: (() => { try { return JSON.parse(row.form_values || '{}') } catch { return {} } })(),
       updatedAt: row.updated_at,
     }
   }

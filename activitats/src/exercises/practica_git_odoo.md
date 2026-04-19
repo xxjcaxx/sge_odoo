@@ -21,12 +21,12 @@ Heu de versionar la vostra configuració i els vostres mòduls.
 Heu de crear un mòdul nou (podeu usar el comandament `scaffold`) dins de la carpeta `addons`.
 *   **Nom del mòdul:** `practica_git_sge`.
 *   **Contingut:** El mòdul ha de definir un nou model de dades a Python.
-*   **Nom del model:** El model s'ha d'anomenar exactament **`model.practica`**.
+*   **Nom del model:** El model s'ha d'anomenar exactament **`practica_git_sge.practica`**.
     *   *Exemple de codi a `models/models.py`:*
         ```python
         from odoo import models, fields
         class ModelPractica(models.Model):
-            _name = 'model.practica'
+            _name = 'practica_git_sge.practica'
             _description = 'Model de prova per a la pràctica de Git'
             name = fields.Char(string="Nom de prova", required=True)
         ```
@@ -36,6 +36,7 @@ Una vegada creat el mòdul, cal que Odoo el reconega:
 1.  Pugeu el codi al vostre repositori públic (GitHub/GitLab).
 2.  Al VPS, executeu `docker compose restart odoo` per a que el servidor detecte la nova carpeta.
 3.  Entreu a Odoo en mode desenvolupador, aneu a **Aplicacions > Actualitzar llista de mòduls** i instal·leu `practica_git_sge`.
+4. Configureu docker-compose.yml per a actualizar el mòdul al reiniciar el contenidor amb un `command` que execute `odoo -u practica_git_sge` o similar. Afegiu `dev=all` i la base de dades al `command`. 
 
 #### 5. Entrega i Avaluació Automàtica
 Heu d'entregar l'URL del vostre repositori públic a la web proporcionada pel professor. El sistema realitzarà les següents comprovacions:

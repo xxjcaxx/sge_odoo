@@ -449,4 +449,6 @@ Odoo pot executar models d’intel·ligència artificial perquè funciona sobre 
 
 Una arquitectura més robusta pot ser fer un servici o programa extern i connectar-lo amb Odoo mitjançant un MCP. Odoo es converteix en un simple backend per a una IA externa.
 
-Per a que funcione deguem crear MCP que connecte amb Odoo per les múltiples formes que té: JSON-2, Web Controllers, XML-RPC, etc. Aquesta arquitectura és més escalable i permet separar les responsabilitats.
+Per a que funcione deguem crear MCP que connecte amb Odoo per les múltiples formes que té: JSON-2, Web Controllers, XML-RPC, etc. Aquesta arquitectura és més escalable i permet separar les responsabilitats. JSON-2 és una API que Odoo va crear per a facilitar la creació de APIs externes. És l'opció ideal a partir de la versió 19.
+
+Exemple https://github.com/bmya/claude-odoo-api 

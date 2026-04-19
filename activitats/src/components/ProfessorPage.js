@@ -1,5 +1,13 @@
 import { escapeHtml } from '../utils/helpers'
 
+function buildFormValuesTitle(formValues, ok = 0, total = 0) {
+  if (!formValues || typeof formValues !== 'object') return ''
+  const entries = Object.entries(formValues).filter(([, v]) => v !== '' && v != null)
+  const base = [`${ok}/${total} tests`]
+  if (!entries.length) return base.join('\n')
+  return [...base, ...entries.map(([k, v]) => `${k}: ${String(v)}`)].join('\n')
+}
+
 export function renderProfessorPasswordGate(error = '') {
   return `
     <div class="h-screen bg-[#171d2d] text-gray-300 flex items-center justify-center p-4">
@@ -122,7 +130,11 @@ export function renderProfessorPage({ report, loading, error, activities = [], a
                         const cell = row.exercises?.[slug]
                         if (!cell) return '<td class="px-2 py-2 text-center text-gray-600">-</td>'
                         const cls = cell.pct >= 80 ? 'text-green-400' : cell.pct >= 50 ? 'text-yellow-300' : 'text-red-400'
-                        return `<td class="px-2 py-2 text-center whitespace-nowrap ${cls}" title="${cell.ok}/${cell.total} tests">${formatPercent(cell.pct)}</td>`
+                        const tooltip = buildFormValuesTitle(cell.formValues, cell.ok, cell.total)
+                        return `
+                          <td class="px-2 py-2 text-center whitespace-nowrap ${cls}" data-form-tooltip="${escapeHtml(tooltip)}">
+                            ${formatPercent(cell.pct)}
+                          </td>`
                       }).join('')}
                       <td class="sticky right-0 z-10 bg-[#21283a] group-hover:bg-[#242b3d] px-3 py-2 text-center font-bold whitespace-nowrap ${gradeColor(row.finalGrade)}" style="min-width: 8rem; width: 8rem;">${formatPercent(row.finalGrade)}</td>
                     </tr>

@@ -24,11 +24,11 @@ export async function fetchProgress(nia) {
 }
 
 /** Persist the validation results for one exercise. */
-export async function saveProgress(nia, slug, results, score) {
+export async function saveProgress(nia, slug, results, score, formValues = {}) {
   const res = await fetch(`${BASE}/api/progress`, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ nia, slug, results, score }),
+    body:    JSON.stringify({ nia, slug, results, score, formValues }),
   })
   if (!res.ok) throw new Error(await res.text())
   return res.json()

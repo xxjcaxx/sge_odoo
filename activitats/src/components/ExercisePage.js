@@ -198,6 +198,7 @@ export function renderExercisePage({
   activities = [],
   nia = '',
   niaName = '',
+  rawOutputs = [],
 }) {
   return `
     <div class="h-screen flex flex-col overflow-hidden bg-[#171d2d] text-gray-300">
@@ -264,6 +265,27 @@ export function renderExercisePage({
                 </div>
               </form>
             </section>
+
+            ${rawOutputs.length ? `
+            <!-- Raw JSON outputs -->
+            <section class="bg-[#21283a] rounded-xl border border-[#323a50] overflow-hidden shadow-[0_8px_25px_rgba(0,0,0,0.2)]">
+              <div class="border-b border-[#323a50] px-6 py-4 flex justify-between items-center">
+                <h3 class="font-semibold text-gray-200">JSON obtingut</h3>
+                <span class="text-xs text-gray-500 italic">${rawOutputs.length} respostes</span>
+              </div>
+              <div class="p-6 space-y-4">
+                ${rawOutputs.map((item) => `
+                  <div>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">${escapeHtml(item.title)}</p>
+                    ${Array.isArray(item.raw)
+                      ? item.raw.map((call) => `
+                        <p class="text-[10px] text-gray-600 font-mono mb-0.5">${escapeHtml(call.label)}</p>
+                        <pre class="bg-[#161d2d] border border-[#3a435d] rounded-md p-3 text-xs text-green-300 font-mono overflow-auto max-h-64 whitespace-pre break-all mb-2">${escapeHtml(JSON.stringify(call.data, null, 2))}</pre>`).join('')
+                      : `<pre class="bg-[#161d2d] border border-[#3a435d] rounded-md p-3 text-xs text-green-300 font-mono overflow-auto max-h-64 whitespace-pre break-all">${escapeHtml(JSON.stringify(item.raw, null, 2))}</pre>`
+                    }
+                  </div>`).join('')}
+              </div>
+            </section>` : ''}
 
           </div>
         </main>
