@@ -1,6 +1,11 @@
 import { createExercise } from './createExercise'
 import { fail, json2, ok, warn } from '../services/odooClient'
 
+function toSingleId(value) {
+  if (Array.isArray(value)) return value[0] ?? null
+  return value ?? null
+}
+
 export const exercise = createExercise({
   slug: 'practica_fields_relacionals',
   specificFields: [
@@ -67,17 +72,45 @@ export const exercise = createExercise({
     {
       title: 'Related estadi_nom s\'emplena en consultar jugador amb equip',
       run: async () => {
-        const data = await json2(values, 'basquet.jugador', 'search_read', {
-          domain: [['equip_id', '!=', false]],
-          fields: ['name', 'estadi_nom', 'equip_id'],
-          limit: 3,
-        })
-        const recs = Array.isArray(data) ? data : []
-        if (!recs.length) return warn('Sense jugadors amb equip assignat per verificar estadi_nom.')
-        const filled = recs.filter((r) => r.estadi_nom)
-        return filled.length > 0
-          ? ok(`estadi_nom omplert en ${filled.length}/${recs.length} jugadors consultats.`)
-          : fail('estadi_nom buit per a tots els jugadors amb equip — el Related no funciona.')
+        let pavelloId = null
+        let equipId = null
+        let jugadorId = null
+
+        try {
+          const stamp = Date.now()
+          const city = (values.stadiumCity || 'València').trim()
+          const stadiumName = `Pavello test ${stamp}`
+
+          pavelloId = toSingleId(await json2(values, 'basquet.pavello', 'create', {
+            values: { name: stadiumName, ciutat: city },
+          }))
+          if (!pavelloId) return fail('No s\'ha pogut crear basquet.pavello per provar el related.')
+
+          equipId = toSingleId(await json2(values, 'basquet.equip', 'create', {
+            values: { name: `Equip test ${stamp}`, ciutat: city, estadi_id: pavelloId },
+          }))
+          if (!equipId) return fail('No s\'ha pogut crear basquet.equip per provar el related.')
+
+          jugadorId = toSingleId(await json2(values, 'basquet.jugador', 'create', {
+            values: { name: `Jugador test ${stamp}`, equip_id: equipId },
+          }))
+          if (!jugadorId) return fail('No s\'ha pogut crear basquet.jugador per provar el related.')
+
+          const read = await json2(values, 'basquet.jugador', 'read', {
+            ids: [jugadorId],
+            fields: ['name', 'equip_id', 'estadi_nom'],
+          })
+          const rec = Array.isArray(read) ? read[0] : null
+          const relatedName = rec?.estadi_nom
+
+          return relatedName === stadiumName
+            ? ok(`estadi_nom s\'ha omplit correctament amb "${relatedName}".`)
+            : fail(`estadi_nom="${relatedName ?? ''}"; s\'esperava "${stadiumName}".`)
+        } finally {
+          if (jugadorId) await json2(values, 'basquet.jugador', 'unlink', { ids: [jugadorId] }).catch(() => {})
+          if (equipId) await json2(values, 'basquet.equip', 'unlink', { ids: [equipId] }).catch(() => {})
+          if (pavelloId) await json2(values, 'basquet.pavello', 'unlink', { ids: [pavelloId] }).catch(() => {})
+        }
       },
     },
   ],

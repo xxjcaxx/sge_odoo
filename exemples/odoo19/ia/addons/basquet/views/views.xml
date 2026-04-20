@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="basquet.list">
+      <field name="name">basquet list</field>
+      <field name="model">basquet.basquet</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="basquet.action_window">
+      <field name="name">basquet window</field>
+      <field name="res_model">basquet.basquet</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="basquet.action_server">
+      <field name="name">basquet server</field>
+      <field name="model_id" ref="model_basquet_basquet"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="basquet" id="basquet.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="basquet.menu_1" parent="basquet.menu_root"/>
+    <menuitem name="Menu 2" id="basquet.menu_2" parent="basquet.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="basquet.menu_1_list" parent="basquet.menu_1"
+              action="basquet.action_window"/>
+    <menuitem name="Server to list" id="basquet" parent="basquet.menu_2"
+              action="basquet.action_server"/>
+-->
+  </data>
+</odoo>

@@ -22,6 +22,18 @@ function normalizeBaseUrl(url = '') {
   return String(url).replace(/\/+$/, '')
 }
 
+function normalizeJson2Params(method, params = {}) {
+  if (method !== 'create') return params ?? {}
+
+  const payload = { ...(params ?? {}) }
+  if (payload.values && !payload.vals_list) {
+    payload.vals_list = Array.isArray(payload.values) ? payload.values : [payload.values]
+    delete payload.values
+  }
+
+  return payload
+}
+
 function buildOdooAuthHeaders({ apiKey, database, basicUser, basicPassword }) {
   const headers = {
     'Content-Type': 'application/json',
@@ -169,10 +181,11 @@ app.post('/api/odoo/json2', async (req, res) => {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 15000)
 
-  const parameters = {
+    const normalizedParams = normalizeJson2Params(method, params)
+    const parameters = {
       method: 'POST',
       headers,
-      body: JSON.stringify(params ?? {}),
+      body: JSON.stringify(normalizedParams),
       signal: controller.signal,
   }
 

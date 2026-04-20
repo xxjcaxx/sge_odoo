@@ -42,6 +42,5 @@ La web del professor es connectarà a la teua instància utilitzant l'API **JSON
 3.  **Validació de Restriccions:**
     *   Verificarà que el camp `selection` tinga 3 opcions.
     *   Verificarà quins camps tenen la propietat `required`.
-    *   Verificarà si el camp `image` té definides les mides màximes de reescalat.
 4.  **Comprovació de dades:** Realitzarà un `search_read` per a confirmar que el registre de prova s'ha creat correctament.
 

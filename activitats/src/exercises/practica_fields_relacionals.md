@@ -35,7 +35,7 @@ Heu d'aplicar els següents **domains** en el codi Python per a restringir les o
 Per a que la web del professor puga validar la pràctica mitjançant **JSON-2**, cal assegurar els següents punts:
 
 *   **API Key:** Genera una API Key per a l'usuari administrador des de la configuració de seguretat.
-*   **Ruta JSON-2:** La web farà peticions POST a `http://la_teua_ip:8069/json/2/basquet.jugador/search_read` per comprovar si el camp `estadi_nom` (Related) retorna el valor correcte de l'estadi de l'equip.
+*   **Ruta JSON-2:** La web farà peticions POST, per exemple, a `http://la_teua_ip:8069/json/2/basquet.jugador/search_read` per comprovar si el camp `estadi_nom` (Related) retorna el valor correcte de l'estadi de l'equip.
 *   **Permisos:** El fitxer `ir.model.access.csv` ha de permetre l'accés de lectura i escriptura a tots els models nous per al grup d'usuaris base.
 
 #### 4. Prova de Funcionament
