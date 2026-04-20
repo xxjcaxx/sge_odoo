@@ -8,10 +8,10 @@ services:
       - POSTGRES_DB=postgres
     #restart: always             # run as a service
     volumes:
-        - ./postgresql:/var/lib/postgresql/18/docker  
+        - odoo-db-data:/var/lib/postgresql/18/docker  
   odoo19:
     image: odoo:19
-    user: root
+    user: odoo
     depends_on:
       - db
     ports:
@@ -26,5 +26,10 @@ services:
       - PIP_BREAK_SYSTEM_PACKAGES=1
     volumes:
       - ./addons:/mnt/extra-addons
-      - ./etc:/etc/odoo
+      - ./config:/etc/odoo
+      - odoo-web-data:/var/lib/odoo
     #restart: always             # run as a service
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:

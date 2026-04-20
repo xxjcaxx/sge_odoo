@@ -262,8 +262,8 @@ Els logs es veuen en color gràcies a posar `tty:true` en el fitxer de configura
 Per fer un mòdul nou:
 
 ```bash
-    docker exec -ti odoo  odoo scaffold proves /mnt/extra-addons
-    docker exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
+    docker compose exec -ti odoo  odoo scaffold proves /mnt/extra-addons
+    docker compose exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
 ```
 
 Pot ser que tinguem un problema de permisos en aquest pas. És important recordad que la carpeta `addons` de fora pot o no ser propietat de l'usuari del docker depen de si existeix abans o no. Per tant, cal donar-i permisos 777 a la de fora y també dins del docker a la de dins. 

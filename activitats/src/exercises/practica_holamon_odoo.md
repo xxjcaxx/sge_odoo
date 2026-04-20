@@ -19,7 +19,6 @@ Dins del fitxer `models/models.py`, crea una classe que herete de `models.Model`
 **Requisits addicionals dels camps:**
 *   Almenys dos camps han de ser **obligatoris** (`required=True`).
 *   Almenys dos camps han de tindre un **valor per defecte** (`default`).
-*   Tots els camps han de tindre una etiqueta (`string`) llegible.
 
 #### 3. Menús, Accions i Seguretat
 Per a que el mòdul siga funcional en el client web, cal configurar:
