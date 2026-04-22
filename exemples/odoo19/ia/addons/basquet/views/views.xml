@@ -1,60 +1,124 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="basquet.list">
-      <field name="name">basquet list</field>
-      <field name="model">basquet.basquet</field>
+    <record model="ir.ui.view" id="basquet.equip_list">
+      <field name="name">Equips list</field>
+      <field name="model">basquet.equip</field>
       <field name="arch" type="xml">
         <list>
           <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="ciutat"/>
         </list>
       </field>
     </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="basquet.action_window">
-      <field name="name">basquet window</field>
-      <field name="res_model">basquet.basquet</field>
-      <field name="view_mode">list,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="basquet.action_server">
-      <field name="name">basquet server</field>
-      <field name="model_id" ref="model_basquet_basquet"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "list,form",
-          "res_model": model._name,
-        }
+  <record model="ir.ui.view" id="basquet.equip_form">
+      <field name="name">Equips form</field>
+      <field name="model">basquet.equip</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="ciutat"/>
+              <field name="jugador_ids">
+                 <list decoration-danger="es_capita==True"  default_group_by="equip_id" >
+                  <field name="name"/>
+                  <field name="equip_id"/>
+                  <field name="es_capita"/>
+                  <field name="triples" widget="progressbar"/>
+                  <field name="ptl" widget="progressbar"/>
+                </list>
+                </field>
+            </group>
+          </sheet>
+        </form>
       </field>
     </record>
--->
+
+    <record model="ir.ui.view" id="basquet.jugador_list">
+      <field name="name">Jugadors list</field>
+      <field name="model">basquet.jugador</field>
+      <field name="arch" type="xml">
+        <list decoration-danger="es_capita==True"  default_group_by="equip_id" >
+          <field name="name"/>
+          <field name="equip_id"/>
+          <field name="es_capita"/>
+          <field name="triples" widget="progressbar"/>
+          <field name="ptl" widget="gauge"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="basquet.jugador_form">
+      <field name="name">Jugadors form</field>
+      <field name="model">basquet.jugador</field>
+      <field name="arch" type="xml">
+        <form >
+          <sheet>
+            <group>
+            <group>
+              <separator string="Dades"/>
+              <field name="name"/>
+              <field name="foto" widget="image"/>
+          </group>
+               <group>
+              <separator string="Equip"/>
+
+              <field name="equip_id"/>
+              <field name="es_capita" invisible = "equip_id == False"/>
+          </group>
+          </group>
+          <group string="Estadistiques">
+                <field name="triples" widget="progressbar"/>
+          <field name="ptl" widget="gauge"/>
+          </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="basquet.pavello_list">
+      <field name="name">Pavellos list</field>
+      <field name="model">basquet.pavello</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="ciutat"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="basquet.action_equip_window">
+      <field name="name">Equips</field>
+      <field name="res_model">basquet.equip</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="basquet.action_jugador_window">
+      <field name="name">Jugadors</field>
+      <field name="res_model">basquet.jugador</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="basquet.action_pavello_window">
+      <field name="name">Pavellos</field>
+      <field name="res_model">basquet.pavello</field>
+      <field name="view_mode">list,form</field>
+    </record>
 
     <!-- Top menu item -->
-<!--
-    <menuitem name="basquet" id="basquet.menu_root"/>
--->
+    <menuitem name="Basquet" id="basquet.menu_root"/>
     <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="basquet.menu_1" parent="basquet.menu_root"/>
-    <menuitem name="Menu 2" id="basquet.menu_2" parent="basquet.menu_root"/>
--->
+    <menuitem name="Dades" id="basquet.menu_1" parent="basquet.menu_root"/>
+    <menuitem name="Informes" id="basquet.menu_2" parent="basquet.menu_root"/>
     <!-- actions -->
-<!--
-    <menuitem name="List" id="basquet.menu_1_list" parent="basquet.menu_1"
-              action="basquet.action_window"/>
-    <menuitem name="Server to list" id="basquet" parent="basquet.menu_2"
-              action="basquet.action_server"/>
--->
+    <menuitem name="Equips" id="basquet.menu_equips" parent="basquet.menu_1"
+              action="basquet.action_equip_window"/>
+    <menuitem name="Jugadors" id="basquet.menu_jugadors" parent="basquet.menu_1"
+              action="basquet.action_jugador_window"/>
+    <menuitem name="Pavellos" id="basquet.menu_pavellos" parent="basquet.menu_1"
+              action="basquet.action_pavello_window"/>
   </data>
 </odoo>

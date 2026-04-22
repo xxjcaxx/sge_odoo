@@ -18,7 +18,7 @@ services:
       - "8069:8069"
       - "8072:8072"
     tty: true
-    command: --
+    command:  ["--dev=all", "-u", "basquet", "-d", "proves"]
     environment:
       - HOST=db
       - USER=odoo
