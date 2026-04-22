@@ -3,6 +3,8 @@
 
 **Objectiu:** Crear un mòdul anomenat `venda_entrades_segures` que gestione entrades nominals, on la majoria de la informació es calcule automàticament per evitar manipulacions i garantir la identitat del comprador.
 
+Aquesta pràctica servirà per provar els `fields computed`.
+
 #### 1. Models Requerits
 Heu de definir els següents models:
 *   `entrades.esdeveniment`: Representa el concert o espectacle.
