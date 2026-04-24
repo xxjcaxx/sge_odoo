@@ -6,31 +6,46 @@
       <field name="model">basquet.equip</field>
       <field name="arch" type="xml">
         <list>
-          <field name="name"/>
-          <field name="ciutat"/>
+          <field name="name" />
+          <field name="ciutat" />
         </list>
       </field>
     </record>
 
-  <record model="ir.ui.view" id="basquet.equip_form">
+    <record model="ir.ui.view" id="basquet.equip_form">
       <field name="name">Equips form</field>
       <field name="model">basquet.equip</field>
       <field name="arch" type="xml">
         <form>
           <sheet>
+
             <group>
-              <field name="name"/>
-              <field name="ciutat"/>
-              <field name="jugador_ids">
-                 <list decoration-danger="es_capita==True"  default_group_by="equip_id" >
-                  <field name="name"/>
-                  <field name="equip_id"/>
-                  <field name="es_capita"/>
-                  <field name="triples" widget="progressbar"/>
-                  <field name="ptl" widget="progressbar"/>
-                </list>
-                </field>
+              <field name="name" />
+              <field name="ciutat" />
+              <field name="estadi_id" />
             </group>
+            <notebook>
+              <page string="Dades Equip">
+
+                <separator string="Jugadors"></separator>
+                <field name="jugador_ids">
+                  <list decoration-danger="es_capita==True" default_group_by="equip_id">
+                    <field name="name" />
+                    <field name="equip_id" />
+                    <field name="es_capita" />
+                    <field name="triples" widget="progressbar" />
+                    <field name="ptl" widget="progressbar" />
+                  </list>
+                </field>
+
+              </page>
+              <page string="Rivals">
+                <field name="equips_rivals_ids" />
+              </page>
+              <page string="Agermanats">
+                <field name="equips_agermanats_ids" />
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
@@ -40,12 +55,12 @@
       <field name="name">Jugadors list</field>
       <field name="model">basquet.jugador</field>
       <field name="arch" type="xml">
-        <list decoration-danger="es_capita==True"  default_group_by="equip_id" >
-          <field name="name"/>
-          <field name="equip_id"/>
-          <field name="es_capita"/>
-          <field name="triples" widget="progressbar"/>
-          <field name="ptl" widget="gauge"/>
+        <list decoration-danger="es_capita==True" default_group_by="equip_id">
+          <field name="name" />
+          <field name="equip_id" />
+          <field name="es_capita" />
+          <field name="triples" widget="progressbar" />
+          <field name="ptl" widget="gauge" />
         </list>
       </field>
     </record>
@@ -54,37 +69,93 @@
       <field name="name">Jugadors form</field>
       <field name="model">basquet.jugador</field>
       <field name="arch" type="xml">
-        <form >
+        <form>
           <sheet>
             <group>
-            <group>
-              <separator string="Dades"/>
-              <field name="name"/>
-              <field name="foto" widget="image"/>
-          </group>
-               <group>
-              <separator string="Equip"/>
+              <group>
+                <separator string="Dades" />
+                <field name="name" />
+                <field name="foto" widget="image" />
+              </group>
+              <group>
+                <separator string="Equip" />
 
-              <field name="equip_id"/>
-              <field name="es_capita" invisible = "equip_id == False"/>
-          </group>
-          </group>
-          <group string="Estadistiques">
-                <field name="triples" widget="progressbar"/>
-          <field name="ptl" widget="gauge"/>
-          </group>
+                <field name="equip_id" />
+                <field name="es_capita" invisible="equip_id == False" />
+              </group>
+            </group>
+            default_group_by="equip_id" <group string="Estadistiques">
+              <field name="triples" widget="progressbar" />
+              <field name="ptl" widget="gauge" />
+            </group>
           </sheet>
         </form>
       </field>
     </record>
+
+
+    <record model="ir.ui.view" id="basquet.jugador_kanban">
+      <field name="name">Jugadors kanban</field>
+      <field name="model">basquet.jugador</field>
+      <field name="arch" type="xml">
+        <kanban sample="1">
+                    <field name="name" />
+          <field name="equip_id" />
+          <field name="es_capita" />
+          <field name="foto" />
+                    <templates>
+                        <t t-name="card" class="flex-row">
+                           
+                            <aside class="o_kanban_aside_full">
+                                    <div class="position-relative w-100 h-auto m-0">
+                                        <field name="foto" alt="Contact image" class="h-100" widget="image" options="{'img_class': 'object-fit-contain'}"/>
+                                    </div>
+                      
+                            </aside>
+                            <main class="ps-2">
+                                <div class="mb-1">
+                                    <field name="name" class="mb-0 fw-bold fs-5"/>
+                                    <field name="es_capita" />
+                                </div>
+                               
+                            </main>
+                        </t>
+                    </templates>
+                </kanban>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="basquet.jugador_search">
+      <field name="name">Jugadors search</field>
+      <field name="model">basquet.jugador</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="equip_id" />
+          <field name="es_capita" />
+          <field name="triples"  />
+          <field name="ptl"  />
+          <field name="name" string="Name and Equip"
+    filter_domain="['|', ('name', 'ilike', self), ('equip_id', 'ilike', self)]"/>
+          <filter name="es_capita_filter" string="Es capità" domain="[('es_capita', '=', True)]"/>
+          <filter name="no_capita_filter" string="No Es capità" domain="[('es_capita', '=', False)]"/>
+
+          <filter name="good_triples" string="És bo en triples" domain="[('triples', '>', 50)]"/>
+            <filter name="group_by_team" string="Equip" context="{'group_by': 'equip_id'}"/>
+              <filter name="group_by_capita" string="És Capità" context="{'group_by': 'es_capita'}"/>
+        </search>
+      </field>
+    </record>
+
+
 
     <record model="ir.ui.view" id="basquet.pavello_list">
       <field name="name">Pavellos list</field>
       <field name="model">basquet.pavello</field>
       <field name="arch" type="xml">
         <list>
-          <field name="name"/>
-          <field name="ciutat"/>
+          <field name="name" />
+          <field name="ciutat" />
         </list>
       </field>
     </record>
@@ -99,7 +170,7 @@
     <record model="ir.actions.act_window" id="basquet.action_jugador_window">
       <field name="name">Jugadors</field>
       <field name="res_model">basquet.jugador</field>
-      <field name="view_mode">list,form</field>
+      <field name="view_mode">kanban,list,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="basquet.action_pavello_window">
@@ -109,16 +180,16 @@
     </record>
 
     <!-- Top menu item -->
-    <menuitem name="Basquet" id="basquet.menu_root"/>
+    <menuitem name="Basquet" id="basquet.menu_root" />
     <!-- menu categories -->
-    <menuitem name="Dades" id="basquet.menu_1" parent="basquet.menu_root"/>
-    <menuitem name="Informes" id="basquet.menu_2" parent="basquet.menu_root"/>
+    <menuitem name="Dades" id="basquet.menu_1" parent="basquet.menu_root" />
+    <menuitem name="Informes" id="basquet.menu_2" parent="basquet.menu_root" />
     <!-- actions -->
     <menuitem name="Equips" id="basquet.menu_equips" parent="basquet.menu_1"
-              action="basquet.action_equip_window"/>
+      action="basquet.action_equip_window" />
     <menuitem name="Jugadors" id="basquet.menu_jugadors" parent="basquet.menu_1"
-              action="basquet.action_jugador_window"/>
+      action="basquet.action_jugador_window" />
     <menuitem name="Pavellos" id="basquet.menu_pavellos" parent="basquet.menu_1"
-              action="basquet.action_pavello_window"/>
+      action="basquet.action_pavello_window" />
   </data>
 </odoo>

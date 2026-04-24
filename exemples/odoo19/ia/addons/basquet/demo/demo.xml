@@ -1,30 +1,26 @@
 <odoo>
     <data>
-<!--
-          <record id="object0" model="basquet.basquet">
-            <field name="name">Object 0</field>
-            <field name="value">0</field>
+
+         <record id="basquet.equip_1" model="basquet.equip">
+            <field name="name">Sorio</field>
+            
+          </record>
+           <record id="basquet.equip_2" model="basquet.equip">
+            <field name="name">Novetle</field>
+            
+          </record>
+           <record id="basquet.equip_3" model="basquet.equip">
+            <field name="name">Cuenca</field>
+            <field name="equips_agermanats_ids" eval="[(6,0,[ref('basquet.equip_1'),ref('basquet.equip_2')] )]" />
+            
           </record>
 
-          <record id="object1" model="basquet.basquet">
-            <field name="name">Object 1</field>
-            <field name="value">10</field>
+
+          <record id="basquet.jugador_1" model="basquet.jugador">
+            <field name="name">Adrian</field>
+            <field name="es_capita">True</field>
+            <field name="equip_id" ref="basquet.equip_1"></field>
           </record>
 
-          <record id="object2" model="basquet.basquet">
-            <field name="name">Object 2</field>
-            <field name="value">20</field>
-          </record>
-
-          <record id="object3" model="basquet.basquet">
-            <field name="name">Object 3</field>
-            <field name="value">30</field>
-          </record>
-
-          <record id="object4" model="basquet.basquet">
-            <field name="name">Object 4</field>
-            <field name="value">40</field>
-          </record>
--->
     </data>
 </odoo>

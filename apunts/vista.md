@@ -204,7 +204,7 @@ pot modificar el list per defecte:
 ```
 
 O especificar la vista que volem:
-``xml
+```xml
     <field name="subscriptions" context="{'list_view_ref': 'modul.view_subscriptions_tree'}"/>
 ```
 
@@ -320,15 +320,17 @@ donen error. Encara que no tots tenen sentit, com per exemple el *text*.
 Mostra un gràfic menut indicant alguna progressió. Necessita tindre
 guardat (o generat) en el char un json determinat, per exemple:
 
-`[{"values":`\
-`        [{"label":"2019-01-31","value": "7"},`\
-`         {"label":"2019-02-01","value": "20"},`\
-`         {"label":"2019-02-02","value": "45"},`\
-`         {"label":"2019-02-03","value": "34"},`\
-`         {"label":"2019-02-04","value": "40"},`\
-`         {"label":"2019-02-05","value": "67"},`\
-`         {"label":"2019-02-06","value": "80"}],`\
-` "area":true, "title": "Next Week", "key": "Ocupation", "color": "#7c7bad"}]`
+```json
+`[{"values":
+        [{"label":"2019-01-31","value": "7"},
+         {"label":"2019-02-01","value": "20"},
+         {"label":"2019-02-02","value": "45"},
+         {"label":"2019-02-03","value": "34"},
+         {"label":"2019-02-04","value": "40"},
+         {"label":"2019-02-05","value": "67"},
+         {"label":"2019-02-06","value": "80"}],
+ "area":true, "title": "Next Week", "key": "Ocupation", "color": "#7c7bad"}]`
+```
 
 I aquest seria un exemple del XML per a que funcione:
 
@@ -894,68 +896,40 @@ Els filtres sols poden comparar un field amb un valor específic. Així que si v
 ```
 #### Operadors per als domains: 
 
-\'like\': \[(\'input\', \'like\', \'open\')\] - Returns case sensitive
+* \'like\': \[(\'input\', \'like\', \'open\')\] - Returns case sensitive
 (wildcards - \'%open%\') search.
-
-O/p: open, opensource, openerp, Odooopenerp
-
-\'not like\': \[(\'input\', \'not like\', \'open\')\] - Returns results
+* \'not like\': \[(\'input\', \'not like\', \'open\')\] - Returns results
 not matched with case sensitive (wildcards - \'%open%\') search.
-
-O/p: Openerp, Opensource, Open, Odoo, odoo, OdooOpenerp
-
-\'=like\': \[(\'name\', \'=like\', \'open\')\] - Returns exact (=
-\'open\') case sensitive search.
-
-O/p: open
-
-\'ilike\': \[(\'name\', \'ilike\', \'open\')\] - Returns exact case
+* \'=like\': \[(\'name\', \'=like\', \'open\')\] - Returns exact (=
+* \'open\') case sensitive search.
+* \'ilike\': \[(\'name\', \'ilike\', \'open\')\] - Returns exact case
 insensitive (wildcards - \'%open%\') search.
-
-O/p: Openerp, openerp, Opensource, opensource, Open, open, Odooopenerp,
-OdooOpenerp
-
-\'not ilike\': \[(\'name\', \'not ilike\', \'open\')\] - Returns results
+* \'not ilike\': \[(\'name\', \'not ilike\', \'open\')\] - Returns results
 not matched with exact case insensitive (wildcards - \'%open%\') search.
-
-O/p: Odoo, odoo
-
-\'=ilike\': \[(\'name\', \'=ilike\', \'open\')\] - Returns exact (=
-\'open\' or \'Open\') case insensitive search.
-
-O/p: Open, open
-
-\'=?\':
-
+* \'=ilike\': \[(\'name\', \'=ilike\', \'open\')\] - Returns exact (=
+* \'open\' or \'Open\') case insensitive search.
+* \'=?\':
 name = \'odoo\' parent_id = False \[(\'name\', \'like\', name),
-(\'parent_id\', \'=?\', parent_id)\] - Returns name domain result & True
-
-name = \'odoo\' parent_id = \'openerp\' \[(\'name\', \'like\', name),
-(\'parent_id\', \'=?\', parent_id)\] - Returns name domain result &
+* (\'parent_id\', \'=?\', parent_id)\] - Returns name domain result & True
+ name = \'odoo\' parent_id = \'openerp\' \[(\'name\', \'like\', name),
+* (\'parent_id\', \'=?\', parent_id)\] - Returns name domain result &
 parent_id domain result
-
-\'=?\' is a short-circuit that makes the term TRUE if right is None or
+* \'=?\' is a short-circuit that makes the term TRUE if right is None or
 False, \'=?\' behaves like \'=\' in other cases
-
-\'in\': \[(\'value1\', \'in\', \[\'value1\', \'value2\'\])\] - in
+* \'in\': \[(\'value1\', \'in\', \[\'value1\', \'value2\'\])\] - in
 operator will check the value1 is present or not in list of right term
-
-\'not in\': \[(\'value1\', \'not in\', \[\'value2\'\])\] - not in
+* \'not in\': \[(\'value1\', \'not in\', \[\'value2\'\])\] - not in
 operator will check the value1 is not present in list of right term
 While these \'in\' and \'not in\' works with list/tuple of values, the
 latter \'=\' and \'!=\' works with string
-
-\'=\': value = 10 \[(\'value\',\'=\',value)\] - term left side has 10 in
+* \'=\': value = 10 \[(\'value\',\'=\',value)\] - term left side has 10 in
 db and term right our value 10 will match
-
-\'!=\': value = 15 \[(\'value\',\'!=\',value)\] - term left side has 10
+* \'!=\': value = 15 \[(\'value\',\'!=\',value)\] - term left side has 10
 in db and term right our value 10 will not match
-
-\'child_of\': parent_id = \'1\' #Agrolait \'child_of\':
+* \'child_of\': parent_id = \'1\' #Agrolait \'child_of\':
 \[(\'partner_id\', \'child_of\', parent_id)\] - return left and right
 list of partner_id for given parent_id
-
-\'\<=\', \'\<\', \'\>\', \'\>=\': These operators are largely used in
+* \'\<=\', \'\<\', \'\>\', \'\>=\': These operators are largely used in
 openerp for comparing dates - \[(\'date\', \'\>=\', date_begin),
 (\'date\', \'\<=\', date_end)\]. You can use these operators to compare
 int or float also.

@@ -2,6 +2,8 @@ services:
   db:
     image: postgres:18
     user: root
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
