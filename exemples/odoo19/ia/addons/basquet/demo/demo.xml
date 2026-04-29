@@ -1,15 +1,15 @@
 <odoo>
     <data>
 
-         <record id="basquet.equip_1" model="basquet.equip">
+         <record id="basquet.equip_1" model="res.partner">
             <field name="name">Sorio</field>
             
           </record>
-           <record id="basquet.equip_2" model="basquet.equip">
+           <record id="basquet.equip_2" model="res.partner">
             <field name="name">Novetle</field>
             
           </record>
-           <record id="basquet.equip_3" model="basquet.equip">
+           <record id="basquet.equip_3" model="res.partner">
             <field name="name">Cuenca</field>
             <field name="equips_agermanats_ids" eval="[(6,0,[ref('basquet.equip_1'),ref('basquet.equip_2')] )]" />
             
@@ -20,6 +20,7 @@
             <field name="name">Adrian</field>
             <field name="es_capita">True</field>
             <field name="equip_id" ref="basquet.equip_1"></field>
+            <field name="foto" type="base64" file="basquet/demo/imgs/output.jpg"></field>
           </record>
 
     </data>

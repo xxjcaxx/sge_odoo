@@ -7,15 +7,15 @@ Aquesta pràctica servirà per provar els `fields computed`.
 
 #### 1. Models Requerits
 Heu de definir els següents models:
-*   `entrades.esdeveniment`: Representa el concert o espectacle.
-*   `entrades.tiquet`: Representa l'entrada individual (model principal de la pràctica).
+*   `venda_entrades_segures.esdeveniment`: Representa el concert o espectacle. (Fields: name, preu_base)
+*   `venda_entrades_segures.tiquet`: Representa l'entrada individual (model principal de la pràctica).
 
-#### 2. Definició de Fields en `entrades.tiquet`
+#### 2. Definició de Fields en `venda_entrades_segures.tiquet`
 Heu d'implementar els següents camps seguint les especificacions tècniques:
 
 *   **Many2one (m2o):** `comprador_id` (cap al model `res.partner`).
-*   **Many2one Computed:** `esdeveniment_id`. S'ha de calcular automàticament a partir d'una referència o dades del context.
-*   **Numerical (Float):** `preu_final`. **Computed i amb `store=True`**. Ha de calcular-se sumant el preu base de l'esdeveniment més una taxa de gestió fixa del 10%. Ha d'utilitzar `@api.depends` del preu base.
+*   **Many2one:** `esdeveniment_id`.
+*   **Numerical (Float):** `preu_final`. **Computed i amb `store=True`**. Ha de calcular-se sumant el preu base de l'esdeveniment més una taxa de gestió fixa del 10%. Ha d'utilitzar `@api.depends` de l'esdeveniment. 
 *   **Char Computed:** `codi_seguretat`. Ha de generar una cadena de text única combinant el nom del comprador i l'ID de l'esdeveniment (p. ex: "NOM-ID-123").
 *   **Datetime Computed:** `data_limit_acces`. Es calcula restant 2 hores a la data d'inici de l'esdeveniment.
 *   **Image Computed:** `foto_comprador`. Ha d'agafar automàticament la imatge del `res.partner` associat al `comprador_id`.

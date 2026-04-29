@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_basquet_equip_all,basquet.equip all,model_basquet_equip,,1,1,1,1
 access_basquet_jugador_all,basquet.jugador all,model_basquet_jugador,,1,1,1,1
 access_basquet_pavello_all,basquet.pavello all,model_basquet_pavello,,1,1,1,1

@@ -3,7 +3,10 @@ import { json2, ok, warn } from '../services/odooClient'
 
 export const exercise = createExercise({
   slug: 'practica_search',
-  specificFields: [{ key: 'viewXmlNeedle', label: 'Text a buscar en XML vista', type: 'text', placeholder: 'filtre_actiu' }],
+  specificFields: [
+    { key: 'externalId', label: 'External ID (opcional)', type: 'text', placeholder: 'modul.view_search_x' },
+    { key: 'viewXmlNeedle', label: 'Text a buscar en XML vista', type: 'text', placeholder: 'filtre_actiu' },
+  ],
   createTests: (values) => [
     {
       title: 'Validació de filtre en XML de vista',

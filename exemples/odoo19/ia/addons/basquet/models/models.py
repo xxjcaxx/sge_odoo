@@ -4,15 +4,17 @@ import random
 
 
 class equip(models.Model):
-    _name = 'basquet.equip'
-    _description = 'basquet.equip'
+    #_name = 'res.partner'
+    #_description = 'basquet.equip'
+    _inherit= 'res.partner'
 
-    name = fields.Char()
+    #name = fields.Char()
     ciutat = fields.Char()
     jugador_ids = fields.One2many('basquet.jugador', 'equip_id', string='Jugadors')
     estadi_id = fields.Many2one('basquet.pavello', string='Pavellò', domain="[('ciutat', '=', ciutat)]")
-    equips_rivals_ids = fields.Many2many('basquet.equip', 'basquet_equip_rival_rel', 'equip_id', 'rival_id', string='Equips rivals')
-    equips_agermanats_ids = fields.Many2many('basquet.equip', 'basquet_equip_agermanat_rel', 'equip_id', 'agermanat_id', string='Equips agermanats')
+    equips_rivals_ids = fields.Many2many('res.partner', 'basquet_equip_rival_rel', 'equip_id', 'rival_id', string='Equips rivals')
+    equips_agermanats_ids = fields.Many2many('res.partner', 'basquet_equip_agermanat_rel', 'equip_id', 'agermanat_id', string='Equips agermanats')
+    is_equip = fields.Boolean()
 
     @api.constrains('equips_agermanats_ids')
     def _check_agermanats(self):
@@ -26,11 +28,11 @@ class jugador(models.Model):
 
     name = fields.Char()
     def _get_random_team(self):
-        aleatori = random.randint(0,len(self.env['basquet.equip'].search([]))-1)
-        return self.env['basquet.equip'].search([]).ids[aleatori]
+        aleatori = random.randint(0,len(self.env['res.partner'].search([]))-1)
+        return self.env['res.partner'].search([]).ids[aleatori]
     
-    equip_id = fields.Many2one('basquet.equip', string='Equip', 
-                               domain="[('estadi_id', '!=', False)]", default= lambda self: self.env['basquet.equip'].search([]).ids[random.randint(0,len(self.env['basquet.equip'].search([]))-1)])
+    equip_id = fields.Many2one('res.partner', string='Equip', 
+                               domain="[('estadi_id', '!=', False)]", default= lambda self: self.env['res.partner'].search([]).ids[random.randint(0,len(self.env['basquet.equip'].search([]))-1)])
     estadi_nom = fields.Char(string='Pavellò', related='equip_id.estadi_id.name')
     es_capita = fields.Boolean(string='És capità', default=False)
     triples = fields.Float(default = lambda self: random.random()*100)
