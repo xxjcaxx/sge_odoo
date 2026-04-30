@@ -472,6 +472,11 @@ Exemple https://github.com/bmya/claude-odoo-api
 Inclús si no necessitem Odoo com a intermediari, podem crear un MCP que interactue directament amb la base de dades d'Odoo mitjançant connexions directes a la base de dades. Aquesta arquitectura és més complexa però pot ser més eficient en termes de rendiment i permet una integració més profunda amb les dades d'Odoo. 
 
 ### Fer un MCP amb FastMCP contra JSON-2 
+
+FastMCP és una biblioteca que facilita la creació de MCPs de manera ràpida i senzilla. Permet definir les funcions que la IA pot invocar i com aquestes funcions interactuen amb Odoo. FastMCP és ideal per a desenvolupadors que volen crear connectors MCP de manera ràpida i eficient, ja que proporciona una estructura clara i simplificada per a la creació de MCPs. A més, FastMCP és compatible amb Python i JavaScript, el que permet una gran flexibilitat en la implementació del MCP.
+
+Es crearà un MCP amb FastMCP que es connectarà a Odoo mitjançant l'API JSON-2. Aquest MCP actuarà com a intermediari entre la IA i Odoo, permetent que la IA faci peticions a Odoo de manera controlada i segura. El MCP rebrà les peticions de la IA, les interpretarà i les executarà a Odoo mitjançant l'API JSON-2. Aquesta arquitectura és més escalable i permet separar les responsabilitats, ja que el MCP pot gestionar la informació que rep de Odoo i presentar-la a la IA d'una manera que entenga millor. El MCP pot ser un programa local, docker o remote, depenent de les necessitats del projecte i la infraestructura disponible.
+
 ### Fer un MCP amb Web Controllers
 
 Si es fa amb Web Controllers, la IA farà peticions HTTP a Odoo i Odoo processarà aquestes peticions mitjançant els controladors que hàgem creat. Aquesta arquitectura és més senzilla d'implementar però pot ser menys eficient que altres opcions com FastMCP o MCP via Stdio, ja que cada petició implica una connexió HTTP i el processament de la petició per part d'Odoo. A més, cal tenir en compte la seguretat, ja que exposar controladors HTTP pot obrir vulnerabilitats si no es gestiona correctament l'autenticació i les autoritzacions.
@@ -482,7 +487,7 @@ En lloc de crear rutes individuals, crees un **Web Controller** que actue com a 
 *   **Definició de funcions:** Cada funció en Odoo (com `generar_informe_vendes`) ha d'incloure una descripció clara i els paràmetres que necessita (nom del client, dates, etc.) en format **JSON Schema**.
 
 * *2. Donar d'alta en Antigravity (El Client)
-No crees una "Skill" manual, sinó que configures la connexió en el fitxer de configuració d'Antigravity (habitualment `mcp_config.json` o des de la seua interfície d'administració):
+No es crea una "Skill" manual, sinó que es configura la connexió en el fitxer de configuració d'Antigravity (habitualment `mcp_config.json` o des de la seua interfície d'administració):
 
 ```json
 {
@@ -506,17 +511,8 @@ Una vegada configurat, el flux és automàtic:
 3.  **Aprenentatge:** L'IA no necessita que li expliques què fer; ella llig les descripcions d'Odoo i entén: *"Ah, si l'usuari em demana un informe de vendes, tinc esta ferramenta disponible ací"*.
 
 * 4. Ús i Manteniment
-*   **Execució:** Quan demanes l'informe, Antigravity envia una petició `JSON-RPC` o `HTTP` al controlador d'Odoo, executa la lògica interna i rep les dades.
-*   **Escalabilitat:** Si demà afiges una funció nova en Odoo per a "Gestionar Stock", **no has de tocar res en Antigravity**. L'IA la descobrirà sola en la pròxima sessió.
-
-* Resum de diferències clau:
-| Pas | Mètode Skill (Manual) | Mètode MCP (Automàtic) |
-| :--- | :--- | :--- |
-| **Definició** | Escrius la lògica en Antigravity. | La lògica residix en Odoo. |
-| **Connexió** | Cada funció és un script nou. | Una sola connexió per a mil funcions. |
-| **Actualització** | Has de modificar l'IA cada vegada. | L'IA es "sincronitza" sola amb Odoo. |
-
-**Conclusió:** El MCP convertix el teu Odoo en un sistema **autoconsciente**. Només has de configurar el JSON de connexió una vegada i centrar-te a programar les capacitats dins d'Odoo.
+*   **Execució:** Quan demanes l'informe, Antigravity envia una petició `HTTP` al controlador d'Odoo, executa la lògica interna i rep les dades.
+*   **Escalabilitat:** Si demà s'afig una funció nova en Odoo per a "Gestionar Stock", **no s'ha de tocar res en Antigravity**. L'IA la descobrirà sola en la pròxima sessió.
 
 
 ### Fer Skills
@@ -558,4 +554,5 @@ class SalesReportController(http.Controller):
         return {'total_ventas': 1000, 'detalle': []}  # Ejemplo de respuesta
 ```
 
+També es poden fer Skills que criden directament a JSON-2. 
 
