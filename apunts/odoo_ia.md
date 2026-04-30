@@ -445,10 +445,117 @@ Odoo pot executar models d’intel·ligència artificial perquè funciona sobre 
 És posible que pugam exposar l'API de forma externa. En aquest cas Odoo fa d'intermediari. Creem un controlador HTTP que reba les peticions, processa la informació i retorna la resposta. Això pot ser útil quan volem que altres sistemes puguen accedir a la IA a través d'Odoo o quan volem tenir un punt centralitzat de control sobre les peticions a la IA.
 
 
-## Exposar un MCP amb Odoo
+## Exposar Odoo amb MCP i Skills
 
 Una arquitectura més robusta pot ser fer un servici o programa extern i connectar-lo amb Odoo mitjançant un MCP. Odoo es converteix en un simple backend per a una IA externa.
 
-Per a que funcione deguem crear MCP que connecte amb Odoo per les múltiples formes que té: JSON-2, Web Controllers, XML-RPC, etc. Aquesta arquitectura és més escalable i permet separar les responsabilitats. JSON-2 és una API que Odoo va crear per a facilitar la creació de APIs externes. És l'opció ideal a partir de la versió 19.
+Per a que funcione deguem crear un MCP i/o Skill que connecte amb Odoo per les múltiples formes que té: JSON-2, Web Controllers, XML-RPC, etc. Aquesta arquitectura és més escalable i permet separar les responsabilitats. JSON-2 és una API que Odoo va crear per a facilitar la creació de APIs externes. És l'opció ideal a partir de la versió 19.
+
+MCP és un patró de disseny que permet que la IA interactue de manera controlada amb Odoo. La IA rep una llista de possibles accions que pot fer a Odoo, però no sap interactuar o es pot equivocar. El MCP actua com a intermediari, rep les peticions de la IA, les interpreta i les executa a Odoo. D'aquesta manera, es pot controlar millor què pot fer la IA i evitar que faça coses que no volem. A més, el MCP pot gestionar la informació que rep de Odoo i presentar-la a la IA d'una manera que entenga millor. El MCP pot ser un programa local que la IA pot cridar directament, o pot ser un servici extern al que la IA fa peticions HTTP. Pot ser programat en python, Node.js o qualsevol llenguatge que pugue fer peticions a Odoo i processar la informació. També es pot crear dins d'un `docker` independent i comunicar-se amb Odoo mitjançant un bus de dades o una API. Pot estar al mateix ordinador que la IA, en un servidor diferent o fins i tot en el núvol o en el servidor d'Odoo. 
+
+Una altra manera és mijançant les `Skills`. Aquestes són funcions Python que la IA pot invocar directament. La diferència amb les tools és que les skills són més senzilles d'implementar i no necessiten una arquitectura tan complexa com SmolAgents. Les skills són ideals per a tasques molt específiques o càlculs complexos pre-IA que la IA pot necessitar per a generar una resposta adequada.
+
+
+
+| Opció Tècnica | Tipus de Connexió | Facilitat de Desplegament | Nivell de Seguretat | Ideal per a... |
+| :--- | :--- | :--- | :--- | :--- |
+| **FastMCP** | HTTP / Local | Molt Alta | Alta | Desenvolupament ràpid de connectors MCP amb Python/JS. |
+| **MCP via Stdio (Node/Docker)** | Local (Bus de dades) | Mitjana | Màxima (Sense ports oberts) | Ús personal, analistes de dades i privacitat total. |
+| **MCP via SSE (Servidor Extern)** | HTTP / Esdeveniments | Mitjana | Mitjana (Requerix Firewall/Auth) | Equips que compartixen un mateix agent d'IA. |
+| **MCP Natiu (Web Controller)** | Interna (ORM) | Alta (Requerix codi Odoo) | Alta (Usa ACLs d'Odoo) | Empreses amb equip de desenvolupament Odoo. |
+| **JSON-RPC 2.0 Directe** | HTTP / API | Baixa (Manual) | Mitjana | Tasques molt simples i puntuals sense necessitat de MCP. |
+| **Skills** | Python Scripts | Mitjana | Alta (Control total del script) | Lògica de negoci molt específica o càlculs complexos pre-IA. |
 
 Exemple https://github.com/bmya/claude-odoo-api 
+
+
+Inclús si no necessitem Odoo com a intermediari, podem crear un MCP que interactue directament amb la base de dades d'Odoo mitjançant connexions directes a la base de dades. Aquesta arquitectura és més complexa però pot ser més eficient en termes de rendiment i permet una integració més profunda amb les dades d'Odoo. 
+
+### Fer un MCP amb FastMCP contra JSON-2 
+### Fer un MCP amb Web Controllers
+
+Si es fa amb Web Controllers, la IA farà peticions HTTP a Odoo i Odoo processarà aquestes peticions mitjançant els controladors que hàgem creat. Aquesta arquitectura és més senzilla d'implementar però pot ser menys eficient que altres opcions com FastMCP o MCP via Stdio, ja que cada petició implica una connexió HTTP i el processament de la petició per part d'Odoo. A més, cal tenir en compte la seguretat, ja que exposar controladors HTTP pot obrir vulnerabilitats si no es gestiona correctament l'autenticació i les autoritzacions.
+
+* 1. Preparació en Odoo (El Servidor)
+En lloc de crear rutes individuals, crees un **Web Controller** que actue com a servidor MCP.
+*   **El "Handshake" (Aperta de mans):** Has de programar un punt d'accés (per exemple, `/mcp/v1/tools`) que, en rebre una petició `GET` o `POST` de descobriment, responga amb un JSON que llistObjecte totes les funcions disponibles.
+*   **Definició de funcions:** Cada funció en Odoo (com `generar_informe_vendes`) ha d'incloure una descripció clara i els paràmetres que necessita (nom del client, dates, etc.) en format **JSON Schema**.
+
+* *2. Donar d'alta en Antigravity (El Client)
+No crees una "Skill" manual, sinó que configures la connexió en el fitxer de configuració d'Antigravity (habitualment `mcp_config.json` o des de la seua interfície d'administració):
+
+```json
+{
+  "mcpServers": {
+    "odoo_mcp": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-http", "--url", "https://el-teu-odoo.com/mcp/v1"],
+      "env": {
+        "ODOO_API_KEY": "la_teua_clau"
+      }
+    }
+  }
+}
+```
+*Este pas crea un "pont" que permet a l'IA parlar el mateix idioma que el teu Odoo.*
+
+* 3. El Procés de Descobriment (Autoconsciència)
+Una vegada configurat, el flux és automàtic:
+1.  **Arrencada:** Quan Antigravity s'inicia, contacta amb l'URL d'Odoo.
+2.  **Llistat:** Odoo envia el catàleg de totes les ferramentes que has programat.
+3.  **Aprenentatge:** L'IA no necessita que li expliques què fer; ella llig les descripcions d'Odoo i entén: *"Ah, si l'usuari em demana un informe de vendes, tinc esta ferramenta disponible ací"*.
+
+* 4. Ús i Manteniment
+*   **Execució:** Quan demanes l'informe, Antigravity envia una petició `JSON-RPC` o `HTTP` al controlador d'Odoo, executa la lògica interna i rep les dades.
+*   **Escalabilitat:** Si demà afiges una funció nova en Odoo per a "Gestionar Stock", **no has de tocar res en Antigravity**. L'IA la descobrirà sola en la pròxima sessió.
+
+* Resum de diferències clau:
+| Pas | Mètode Skill (Manual) | Mètode MCP (Automàtic) |
+| :--- | :--- | :--- |
+| **Definició** | Escrius la lògica en Antigravity. | La lògica residix en Odoo. |
+| **Connexió** | Cada funció és un script nou. | Una sola connexió per a mil funcions. |
+| **Actualització** | Has de modificar l'IA cada vegada. | L'IA es "sincronitza" sola amb Odoo. |
+
+**Conclusió:** El MCP convertix el teu Odoo en un sistema **autoconsciente**. Només has de configurar el JSON de connexió una vegada i centrar-te a programar les capacitats dins d'Odoo.
+
+
+### Fer Skills
+
+En el nostre cas la Skill tindrà dos parts: un fitxer Markdown que descriu la skill i un MCP que implementa la lògica de la skill. El fitxer Markdown és important perquè és el que la IA utilitzarà per a entendre què fa la skill i com utilitzar-la. El MCP és el que realment fa el treball, però sense una bona descripció en el Markdown, la IA pot no saber quan o com utilitzar la skill. La Skill no sols diu com invocar el MCP, sinó que també ha de proporcionar informació clara sobre què fa la skill, quins paràmetres necessita i quin tipus de resposta retorna. 
+
+```markdown
+# Skill: obtener_analisis_ventas
+**Descripción**: Usa esta herramienta para obtener el total de ventas filtrado por categoría y fechas.
+**Parámetros**:
+- inicio (string): Fecha ISO 8601 de inicio.
+- fin (string): Fecha ISO 8601 de fin.
+
+**Ejecución**: 
+Llamar al endpoint de Odoo `/jsonrpc` con el método `get_sales_report_data`.
+```
+
+```python
+from odoo import http
+from odoo.http import request 
+class SalesReportController(http.Controller):
+
+    @http.route('/jsonrpc', type='json', auth='none', methods=['POST'], csrf=False)
+    def jsonrpc(self):
+        data = request.jsonrequest
+        method = data.get('method')
+        params = data.get('params')
+        
+        if method == 'get_sales_report_data':
+            return self.get_sales_report_data(params)
+        else:
+            return {'error': 'Método no encontrado'}
+
+    def get_sales_report_data(self, params):
+        inicio = params.get('inicio')
+        fin = params.get('fin')
+        # Lógica para obtener el reporte de ventas filtrado por categoría y fechas
+        # ...
+        return {'total_ventas': 1000, 'detalle': []}  # Ejemplo de respuesta
+```
+
+
