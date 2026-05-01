@@ -18,6 +18,10 @@ Un model de IA en producció és un programa que, com tots, té unes entrades i 
 
 Depenent el propòsit, la connexió amb la IA en Odoo pot ser, com hem vist, de moltes maneres i en Odoo es pot enfocar pràcticament de totes elles, ja que és un framework full stack amb Javascript al frontend i Python al backend, les possibilitats són innumerables. Anem a treballar entre cridar a una `API de IA` i els `MCP` com a mètodes estàndard molt útils.
 
+
+![Possibilitats Odoo i la IA](imgs/odoo-ia.png "Odoo IA")
+
+
 ### API
 
 Ja siga un servici extern o un propi, aquest mètode implica tenir un servidor HTTP que expose una API a la que se li poden enviar preguntes. Per crear aquesta API es pot utilitzar VLLM o Ollama, entre altres. Ollama és especialment útil i sencill, així que continuarem en ell en aquest manual.
@@ -196,7 +200,7 @@ def ai_button(self):
       self.response_ai_button = response.response
 ```
 
-## Tools
+### Tools
 
 Ollama permet utilitzar `tools`. Aquest són funcions que es poden invocar pel model. Si Odoo necessita informació que no està en el prompt, com dades de la base de dades, es pot crear un `tool` que retorne aquesta informació i el model pot invocar-lo quan ho necessite. Això és molt útil per a models menuts que no poden processar molta informació al prompt però poden accedir a ella mitjançant eines.
 
@@ -351,7 +355,7 @@ class ai_tools(models.Model):
 
 Fer que funcione el stream a la interfície d'Odoo és més complicat perquè els `form` no estan preparats per a això, caldria crear un component en OWL específic per a això. 
 
-## Agents amb Smolagents
+### Agents amb Smolagents
 
 La creació de tools i la seua interpretació per part del model pot ser complexa i no sempre funciona bé, especialment amb models menuts. Una alternativa és utilitzar una arquitectura d'agents com SmolAgents, que permet crear agents més sofisticats que poden gestionar millor les eines i les respostes. SmolAgents és una biblioteca que facilita la creació d'agents que poden interactuar amb múltiples eines i gestionar converses de manera més eficient. Amb SmolAgents, es pot definir un agent que utilitze les tools de manera més intel·ligent i que puga manejar converses més complexes amb els usuaris.
 
@@ -432,7 +436,7 @@ class ai_tools_smolagent(models.Model):
       self.response = response
 ```
 
-## Connectar amb MCP des de Odoo
+### Connectar amb MCP des de Odoo
 
 Si volem que la IA siga capaç de consultar altres fonts d'informació, la base de dades directament o Odoo de forma més estructurada, es poden crear MCPs (Model-Controller-Presenter) que actuen com a intermediaris.
 
@@ -455,6 +459,8 @@ MCP és un patró de disseny que permet que la IA interactue de manera controlad
 
 Una altra manera és mijançant les `Skills`. Aquestes són funcions Python que la IA pot invocar directament. La diferència amb les tools és que les skills són més senzilles d'implementar i no necessiten una arquitectura tan complexa com SmolAgents. Les skills són ideals per a tasques molt específiques o càlculs complexos pre-IA que la IA pot necessitar per a generar una resposta adequada.
 
+
+![Possibilitats Odoo i la IA](imgs/ia-odoo.png "AI Odoo")
 
 
 | Opció Tècnica | Tipus de Connexió | Facilitat de Desplegament | Nivell de Seguretat | Ideal per a... |
