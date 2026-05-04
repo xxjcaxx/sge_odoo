@@ -19,7 +19,7 @@ Un model de IA en producció és un programa que, com tots, té unes entrades i 
 Depenent el propòsit, la connexió amb la IA en Odoo pot ser, com hem vist, de moltes maneres i en Odoo es pot enfocar pràcticament de totes elles, ja que és un framework full stack amb Javascript al frontend i Python al backend, les possibilitats són innumerables. Anem a treballar entre cridar a una `API de IA` i els `MCP` com a mètodes estàndard molt útils.
 
 
-![Possibilitats Odoo i la IA](imgs/odoo-ia.jpg "Odoo IA")
+![Diagram showing multiple connection methods between Odoo and AI systems. The diagram illustrates five different integration approaches: direct API calls to external AI services, local tool-based interactions, MCP protocols, web controller connections, and skills-based implementations. Each pathway shows how data flows between Odoo's backend systems and various AI models, representing the flexibility of integrating artificial intelligence into enterprise resource planning workflows.](imgs/odoo-ia.jpg "Odoo IA")
 
 
 ### API
@@ -460,7 +460,7 @@ MCP és un patró de disseny que permet que la IA interactue de manera controlad
 Una altra manera és mijançant les `Skills`. Aquestes són funcions Python que la IA pot invocar directament. La diferència amb les tools és que les skills són més senzilles d'implementar i no necessiten una arquitectura tan complexa com SmolAgents. Les skills són ideals per a tasques molt específiques o càlculs complexos pre-IA que la IA pot necessitar per a generar una resposta adequada.
 
 
-![Possibilitats Odoo i la IA](imgs/ia-odoo.jpg "AI Odoo")
+![Diagram showing multiple connection methods between Odoo and AI systems. The diagram illustrates five different integration approaches: direct API calls to external AI services, local tool-based interactions, MCP protocols, web controller connections, and skills-based implementations. Each pathway shows how data flows between Odoo's backend systems and various AI models, representing the flexibility of integrating artificial intelligence into enterprise resource planning workflows.](imgs/odoo-ia.jpg "Odoo IA")
 
 
 | Opció Tècnica | Tipus de Connexió | Facilitat de Desplegament | Nivell de Seguretat | Ideal per a... |
