@@ -4,11 +4,9 @@
 
 Odoo té una funcionalitat integrada que permet crear accions automatitzades basades en esdeveniments. Aquestes accions es poden configurar per a executar-se quan es produeix un esdeveniment específic, com ara la creació d'un registre, la modificació d'un registre o la supressió d'un registre. Aquestes accions poden ser molt útils per a automatitzar processos interns dins d'Odoo. Per exemple, es pot configurar una acció automatitzada per a enviar un correu electrònic a un client quan es crea una nova ordre de venda.
 
-Es necessita instal·lar el mòdul `Automated Actions` (base_automation). 
+Es necessita instal·lar el mòdul `Automated Actions` (base_automation). La versió de pagament d'Odoo té `Studio`, que permet crear accions automatitzades de manera visual, però la versió comunitària també permet crear-les, encara que de manera més tècnica. Per a crear una acció automatitzada, es pot anar a `Settings > Technical > Automated Actions` i crear una nova acció.
 
 A més de les accions automatitzades, Odoo també permet configurar webhooks. Un webhook és una manera de rebre notificacions en temps real quan es produeix un esdeveniment específic en Odoo. Per exemple, es pot configurar un webhook per a rebre una notificació cada vegada que es crea una nova ordre de venda. Aquesta notificació es pot utilitzar per a desencadenar altres processos externs a Odoo, com ara actualitzar un sistema de gestió de relacions amb clients (CRM) o enviar una notificació a un canal de comunicació com Slack. Els webhooks es configuren en les automatitzacions anteriors. Quan es crea una acció automatitzada, es pot seleccionar l'opció de "Trigger Webhook" i especificar la URL del webhook al qual s'enviarà la notificació quan es produeixi l'esdeveniment.
-
-
 
 ## Odoo i n8n
 
@@ -60,13 +58,11 @@ docker compose exec n8n n8n user-management:reset
 
 > En general n8n dins del docker és un comandament del CLI que té moltes opcions. Al manual oficial estàn totes disponibles. 
 
-
 ## Integració d'Odoo amb n8n
 
 > Abans de començar amb Odoo i n8n seria interessant fer algun `workflow` més senzill. A la web oficial hi ha molts templates per anar practicant. 
 
 Per a integrar Odoo amb n8n, es pot utilitzar el connector d'Odoo que n8n ofereix. Els oficials de n8n són connectors genèrics, per tant, no tenen totes les funcionalitats d'Odoo, però permeten fer moltes coses. Si necessitem alguna funcionalitat específica que no està disponible en el connector oficial, es pot crear un connector personalitzat utilitzant l'API d'Odoo.
-
 
 ### Connector personalitzat d'Odoo amb JSON-2
 

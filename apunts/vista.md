@@ -217,7 +217,7 @@ Una altra opció és especificar la vista que insertarà en el field:
     <field name="m2o_id" context="{'form_view_ref': 'module_name.form_id'}"/>
 ```
 
-> Les vistes tree embegudes tenen limitacions respecte a les cridades amb un action. Per exemple, no poden ser agrupades. 
+> Les vistes list embegudes tenen limitacions respecte a les cridades amb un action. Per exemple, no poden ser agrupades. 
 
 **Valors per defecte en un one2many**
 
@@ -269,14 +269,14 @@ Alguns camps, com ara les imatges, es poden mostrar utilitzant un
 <field name="state" widget="statusbar"/>
 ```
 
-Les vistes form, tree o kanban de Odoo mostren els fields en els
+Les vistes form, list o kanban de Odoo mostren els fields en els
 anomenats widgets. Aquests permeten, per exemple, que les dates tinguen
 un calendari o que es mostre una llista en un many2many.
 
 Cada field te un widget per defecte, però es poden canviar si volem
 representar la informació de manera distinta. Aquests són els widgets
 disponibles per a cada tipus de field, sobretot per al form, encara que
-alguns funcionen en el tree:
+alguns funcionen en el list:
 
 #### Integer i Float
 
@@ -290,11 +290,11 @@ donen error. Encara que no tots tenen sentit, com per exemple el *text*.
 -   **widget=\"id\"**: Mostra el número però no es pot editar.
 -   **widget=\"float\"**: Mostra el número en decimals.
 -   **widget=\"percentpie\"**: Mostra un gràfic circular amb el
-    percentatge (no funciona en la vista tree ni en kanban).
+    percentatge (no funciona en la vista list ni en kanban).
 -   **widget=\"float_time\"**: Mostra els float com si representaren el
     temps.
 -   **widget=\"progressbar\"**: Mostra una barra de progrés (funciona en
-    la vista tree i form, però no en kanban):
+    la vista list i form, però no en kanban):
 -   **widget=\"monetary\"**: Mostra el número amb 2 decimals.
 -   **widget=\"gauge\"**: Mostra un curiós gràfic de semi-circul. Sols
     funciona en kanban.
@@ -366,8 +366,8 @@ Amés, accepta algunes opcions:
 <widget name="web_ribbon" text="Paid"/>
 ```
 
--   **boolean_toggle** per als trees, permet activar un boolean en un
-    tree.
+-   **boolean_toggle** per als lists, permet activar un boolean en un
+    list.
 
 #### Date
 
@@ -413,24 +413,24 @@ partner_ids = fields.Many2many('res.partner', 'calendar_event_res_partner_rel', 
 -   **widget=\"one2many_list\"**: Aparentment igual, es manté per
     retrocompatibilitat
 
-#### Modificar el tree del One2many 
+#### Modificar el list del One2many 
 
-El one2many, al igual que el many2one es poden vorer en format tree. Per
-defecte agafa el tree definit del model, però es pot especificar el tree
+El one2many, al igual que el many2one es poden vorer en format list. Per
+defecte agafa el list definit del model, però es pot especificar el list
 que volem veure:
 
 ``` xml
   <field name="fortress">
-   <tree>
+   <list>
      <field name="name"/><field name="level"/>
-   </tree>
+   </list>
   </field>
 ```
 
 Inclús es pot forçar a mostrar un kanban:
 
 ``` xml
-<field name="gallery" mode="kanban,tree" context="{'default_hotel_id':active_id}">
+<field name="gallery" mode="kanban,list" context="{'default_hotel_id':active_id}">
                  <kanban>
                  <!--list of field to be loaded -->
                  <field name="name" />
@@ -474,7 +474,7 @@ imatges.
 ```xml
            <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
 ```
-#### Fields dels trees 
+#### Fields dels list
 
 -   **handle**: Per a ordenar a ma. Cal que aquest camp siga el criteri
     d\'ordenació.
