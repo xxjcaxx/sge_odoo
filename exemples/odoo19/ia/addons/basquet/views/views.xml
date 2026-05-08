@@ -57,11 +57,15 @@
               <field name="is_equip" />
               <field name="ciutat" />
               <field name="estadi_id" />
+               <field name="triples_average" />
+               <field name="triples_average_mvp" />
             </group>
             <notebook>
               <page string="Dades Equip">
 
                 <separator string="Jugadors"></separator>
+
+                 <button name="generar_jugadors" type="object" string="Add players" class="oe_highlight" /> 
                 <field name="jugador_ids">
                   <list decoration-danger="es_capita==True" default_group_by="equip_id">
                     <field name="name" />
@@ -71,6 +75,28 @@
                     <field name="ptl" widget="progressbar" />
                   </list>
                 </field>
+
+                  <field name="mvps">
+                  <list decoration-danger="es_capita==True" default_group_by="equip_id">
+                    <field name="name" />
+                    <field name="equip_id" />
+                    <field name="es_capita" />
+                    <field name="triples" widget="progressbar" />
+                    <field name="ptl" widget="progressbar" />
+                  </list>
+                </field>
+
+                   <field name="lvps">
+                  <list decoration-danger="es_capita==True" default_group_by="equip_id">
+                    <field name="name" />
+                    <field name="equip_id" />
+                    <field name="es_capita" />
+                    <field name="triples" widget="progressbar" />
+                    <field name="ptl" widget="progressbar" />
+                  </list>
+                </field>
+
+
 
               </page>
               <page string="Rivals">
@@ -110,6 +136,8 @@
                 <separator string="Dades" />
                 <field name="name" />
                 <field name="foto" widget="image" />
+                 <button name="change_capita" type="object" string="Change Capità" class="oe_highlight" /> 
+                  <button name="buscar_pareguts" type="object" string="Buscar Pareguts" class="oe_highlight" /> 
               </group>
               <group>
                 <separator string="Equip" />
