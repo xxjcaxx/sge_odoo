@@ -6,7 +6,7 @@ const requiredTypes = ['integer', 'char', 'text', 'float', 'boolean', 'date', 'd
 export const exercise = createExercise({
   slug: 'practica_holamon_odoo',
   specificFields: [
-    { key: 'modelName', label: 'Model principal', type: 'text', placeholder: 'rpg.personatge' },
+    { key: 'modelName', label: 'Model principal', type: 'text', placeholder: '' },
     { key: 'selectionField', label: 'Camp selection (nom tècnic)', type: 'text', placeholder: 'x_estat' },
   ],
   createTests: (values) => [
