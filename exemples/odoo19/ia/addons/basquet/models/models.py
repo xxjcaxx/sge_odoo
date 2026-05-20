@@ -39,9 +39,9 @@ class equip(models.Model):
     @api.depends('jugador_ids')
     def _get_triples_average(self):
         for e in self:
-            e.triples_average = sum(e.jugador_ids.mapped('triples'))/len(e.jugador_ids)
+            e.triples_average = sum(e.jugador_ids.mapped('triples'))/(1+len(e.jugador_ids))
             mvps = e.jugador_ids.filtered(lambda j: j.ptl > 50 and j.triples > 50)
-            e.triples_average_mvp = sum(mvps.mapped('triples'))/len(mvps)
+            e.triples_average_mvp = sum(mvps.mapped('triples'))/(1+len(mvps))
 
             e.mvps = mvps.ids
             e.lvps = (e.jugador_ids - e.mvps).ids
@@ -79,3 +79,43 @@ class pavello(models.Model):
 
     name = fields.Char()
     ciutat = fields.Char()
+
+
+class equip_wizard(models.TransientModel):
+    _name = 'basquet.equip_wizard'
+
+    ciutat = fields.Char()
+    name = fields.Char()
+    #jugador_ids = fields.One2many('basquet.jugador', 'equip_id', string='Jugadors')
+    estadi_id = fields.Many2one('basquet.pavello', default=lambda e: e.env.context.get('active_id'))
+    state = fields.Selection([("name","Name"),("data","Data")],default="name")
+
+
+    def create_equip(self):
+        self.env['res.partner'].create({
+            "name": self.name,
+            "ciutat": self.ciutat,
+            "estadi_id": self.estadi_id.id,
+            "is_equip": True
+        })
+
+    def next(self):
+        if self.state == 'name':
+            self.state = 'data'
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+        }
+    def previous(self):
+        if self.state == 'data':
+            self.state = 'name'
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+        }

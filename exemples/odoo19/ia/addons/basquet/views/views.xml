@@ -1,5 +1,15 @@
 <odoo>
   <data>
+
+
+    <record id="basquet.equip_wizard_action" model="ir.actions.act_window">
+      <field name="name">Create Equip</field>
+      <field name="res_model">basquet.equip_wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+
+    </record>
+
     <!-- explicit list view definition -->
     <record model="ir.ui.view" id="basquet.equip_list">
       <field name="name">Equips list</field>
@@ -13,7 +23,7 @@
     </record>
 
 
-      <record model="ir.ui.view" id="basquet.equip_search">
+    <record model="ir.ui.view" id="basquet.equip_search">
       <field name="name">Equips list</field>
       <field name="model">res.partner</field>
       <field name="arch" type="xml">
@@ -29,19 +39,19 @@
     <record model="ir.ui.view" id="basquet.equip_inherit_form">
       <field name="name">Equips form</field>
       <field name="model">res.partner</field>
-       <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="inherit_id" ref="base.view_partner_form" />
       <field name="arch" type="xml">
         <notebook position="inside">
           <page string="Equip">
-              <group>
+            <group>
               <field name="ciutat" />
               <field name="estadi_id" />
             </group>
           </page>
-          
-          
+
+
         </notebook>
-        
+
       </field>
     </record>
 
@@ -57,15 +67,16 @@
               <field name="is_equip" />
               <field name="ciutat" />
               <field name="estadi_id" />
-               <field name="triples_average" />
-               <field name="triples_average_mvp" />
+              <field name="triples_average" />
+              <field name="triples_average_mvp" />
             </group>
             <notebook>
               <page string="Dades Equip">
 
                 <separator string="Jugadors"></separator>
 
-                 <button name="generar_jugadors" type="object" string="Add players" class="oe_highlight" /> 
+                <button name="generar_jugadors" type="object" string="Add players"
+                  class="oe_highlight" />
                 <field name="jugador_ids">
                   <list decoration-danger="es_capita==True" default_group_by="equip_id">
                     <field name="name" />
@@ -76,7 +87,7 @@
                   </list>
                 </field>
 
-                  <field name="mvps">
+                <field name="mvps">
                   <list decoration-danger="es_capita==True" default_group_by="equip_id">
                     <field name="name" />
                     <field name="equip_id" />
@@ -86,7 +97,7 @@
                   </list>
                 </field>
 
-                   <field name="lvps">
+                <field name="lvps">
                   <list decoration-danger="es_capita==True" default_group_by="equip_id">
                     <field name="name" />
                     <field name="equip_id" />
@@ -95,7 +106,6 @@
                     <field name="ptl" widget="progressbar" />
                   </list>
                 </field>
-
 
 
               </page>
@@ -136,8 +146,10 @@
                 <separator string="Dades" />
                 <field name="name" />
                 <field name="foto" widget="image" />
-                 <button name="change_capita" type="object" string="Change Capità" class="oe_highlight" /> 
-                  <button name="buscar_pareguts" type="object" string="Buscar Pareguts" class="oe_highlight" /> 
+                <button name="change_capita" type="object" string="Change Capità"
+                  class="oe_highlight" />
+                <button name="buscar_pareguts" type="object" string="Buscar Pareguts"
+                  class="oe_highlight" />
               </group>
               <group>
                 <separator string="Equip" />
@@ -161,29 +173,30 @@
       <field name="model">basquet.jugador</field>
       <field name="arch" type="xml">
         <kanban sample="1">
-                    <field name="name" />
+          <field name="name" />
           <field name="equip_id" />
           <field name="es_capita" />
           <field name="foto" />
-                    <templates>
-                        <t t-name="card" class="flex-row">
-                           
-                            <aside class="o_kanban_aside_full">
-                                    <div class="position-relative w-100 h-auto m-0">
-                                        <field name="foto" alt="Contact image" class="h-100" widget="image" options="{'img_class': 'object-fit-contain'}"/>
-                                    </div>
-                      
-                            </aside>
-                            <main class="ps-2">
-                                <div class="mb-1">
-                                    <field name="name" class="mb-0 fw-bold fs-5"/>
-                                    <field name="es_capita" />
-                                </div>
-                               
-                            </main>
-                        </t>
-                    </templates>
-                </kanban>
+          <templates>
+            <t t-name="card" class="flex-row">
+
+              <aside class="o_kanban_aside_full">
+                <div class="position-relative w-100 h-auto m-0">
+                  <field name="foto" alt="Contact image" class="h-100" widget="image"
+                    options="{'img_class': 'object-fit-contain'}" />
+                </div>
+
+              </aside>
+              <main class="ps-2">
+                <div class="mb-1">
+                  <field name="name" class="mb-0 fw-bold fs-5" />
+                  <field name="es_capita" />
+                </div>
+
+              </main>
+            </t>
+          </templates>
+        </kanban>
       </field>
     </record>
 
@@ -195,21 +208,57 @@
           <field name="name" />
           <field name="equip_id" />
           <field name="es_capita" />
-          <field name="triples"  />
-          <field name="ptl"  />
+          <field name="triples" />
+          <field name="ptl" />
           <field name="name" string="Name and Equip"
-    filter_domain="['|', ('name', 'ilike', self), ('equip_id', 'ilike', self)]"/>
-          <filter name="es_capita_filter" string="Es capità" domain="[('es_capita', '=', True)]"/>
-          <filter name="no_capita_filter" string="No Es capità" domain="[('es_capita', '=', False)]"/>
+            filter_domain="['|', ('name', 'ilike', self), ('equip_id', 'ilike', self)]" />
+          <filter name="es_capita_filter" string="Es capità" domain="[('es_capita', '=', True)]" />
+          <filter name="no_capita_filter" string="No Es capità" domain="[('es_capita', '=', False)]" />
 
-          <filter name="good_triples" string="És bo en triples" domain="[('triples', '>', 50)]"/>
-            <filter name="group_by_team" string="Equip" context="{'group_by': 'equip_id'}"/>
-              <filter name="group_by_capita" string="És Capità" context="{'group_by': 'es_capita'}"/>
+          <filter name="good_triples" string="És bo en triples" domain="[('triples', '>', 50)]" />
+          <filter name="group_by_team" string="Equip" context="{'group_by': 'equip_id'}" />
+          <filter name="group_by_capita" string="És Capità" context="{'group_by': 'es_capita'}" />
         </search>
       </field>
     </record>
 
 
+    <record model="ir.ui.view" id="basquet.equip_wizard_form">
+      <field name="name">Equips form</field>
+      <field name="model">basquet.equip_wizard</field>
+
+      <field name="arch" type="xml">
+
+        <form>
+          <header>
+            <button name="previous" type="object"
+              string="Previous"
+              invisible="state in ['name']" />
+            <button name="next" type="object"
+              string="Next" invisible="state in ['data']"
+              class="oe_highlight" />
+            <field name="state" widget="statusbar" />
+          </header>
+          <sheet>
+            <group invisible="state in ['data']">
+              <field name="name" />
+            </group>
+            <group invisible="state in ['name']">
+              <field name="ciutat" />
+              <field name="estadi_id" />
+            </group>
+          </sheet>
+          <footer>
+            <button name="create_equip" type="object"
+              string="Create Equip" class="oe_highlight" />
+
+            <button special="cancel" string="Cancel" />
+          </footer>
+        </form>
+
+
+      </field>
+    </record>
 
     <record model="ir.ui.view" id="basquet.pavello_list">
       <field name="name">Pavellos list</field>
@@ -218,6 +267,8 @@
         <list>
           <field name="name" />
           <field name="ciutat" />
+          <button name="%(basquet.equip_wizard_action)d" type="action" string="Create Team"
+            class="oe_highlight" />
         </list>
       </field>
     </record>
@@ -227,10 +278,11 @@
       <field name="name">Equips</field>
       <field name="res_model">res.partner</field>
       <field name="view_mode">list,form</field>
-      <field name="view_ids" eval="[(5, 0, 0),
+      <field name="view_ids"
+        eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'list', 'view_id': ref('basquet.equip_list')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('basquet.equip_form')}),]" />
-      <field name="domain"></field> 
+      <field name="domain"></field>
       <field name="context">{'default_is_equip': True, 'search_default_is_equip': 1}</field>
     </record>
 
