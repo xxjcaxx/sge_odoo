@@ -1471,6 +1471,16 @@ record.mapped('partner_id')
 record.mapped('partner_id.bank_ids')
 ```
 
+- **grouped()** Agrupa els elements d\'un recordset segons una funció i retorna un
+    diccionari amb els resultats:
+
+``` python
+# returns a dictionary grouping records by the value of field1
+records.grouped(lambda r: r.field1)
+# returns a dictionary grouping records by the value of field1 and field2
+records.grouped(lambda r: (r.field1, r.field2))
+```
+
 Aquestes funcions són útils per a fer tècniques de [programació
 funcional](https://docs.python.org/3.7/howto/functional.html)
 
