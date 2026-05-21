@@ -153,7 +153,7 @@ L'altra opció és crear un webhook en n8n i que Odoo envie les dades a aquest w
 
 ### Connectar amb Odoo amb un Web Controller
 
-En aquest cas ja es té control absolut. Es crea un Web Controller a un mòdul que expose un endpoint. Cal gestionar correctament la seguretat i autenticació. El funcionament será com qualsevol servici HTTP. Si la tasca no ho necessita explícitament o no estem fent una API REST o similar, és millor optar per JSON-2, que ja està fet, amb funcions a mida.
+En aquest cas ja es té control absolut. Es crea un Web Controller a un mòdul que expose un endpoint. Cal gestionar correctament la seguretat i autenticació. El funcionament será com qualsevol servici HTTP. Si la tasca no ho necessita explícitament o no estem fent una API REST o similar, és millor optar per JSON-2, que ja està fet, amb funcions a mida i seguretat garantida pet api key.
 
 ### Connectar directament amb PostgreSQL
 
@@ -208,7 +208,7 @@ Exemple de configuració d'un node `HTTP Request` en n8n per a enviar un missatg
 | **Autenticación** | `authentication` | Predefined Credential (`httpBearerAuth`) | Autenticación mediante Token Bearer. |
 | **Credencial Asociada** | `credentials` | *Bearer Auth account* (`id: vg9qrtrbzmATQP9a`) | Cuenta de credenciales guardada en n8n. |
 
-*** Body Parameters***
+***Body Parameters***
 
 | Parámetro (Name) | Tipo de Valor | Valor Configurado | Propósito |
 | --- | --- | --- | --- |
