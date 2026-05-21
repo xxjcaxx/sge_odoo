@@ -80,14 +80,67 @@ Com que el connector oficial d'Odoo no té totes les funcionalitats, es pot crea
 
 JSON-2 utilitza peticions HTTP POST a endpoints generats per Odoo a cada model. En aquestes peticions s'especifica el métode a executar. Tots els models tenen uns endpoints base, però també es poden crear endpoints personalitzats per a funcionalitats específiques creant mètodes. D'aquesta manera es pot delegar part de l'automatització a Odoo, i n8n només s'encarrega de fer les peticions i gestionar els fluxos de treball.
 
+> Per veure els endpoints disponibles a cada model i els payloads que accepten el millor és accedir a `/doc/` per a cada model. Per exemple: `http://localhost:8069/doc/res.partner#`
+
 ### Connectar amb Odoo amb un Webhook
+
+Una autmatització en Odoo pot ser activada per un webhook. D'aquesta manera Odoo exposa un endpoint que executa aquesta acció. Si la tasca no és molt complexa i el payload tampoc aquesta és una opció válida que pot ser donada d'alta de manera visual o per codi. 
+
+> Per a tasques realmente complexes, permanents i que necessiten molta lògica de negoci, pot ser millor crear un mòdul a mida que s'encarregue de tot amb Web Controllers.
+
+Suposem que volem crear un webhook que rep dades d'un jugador de bàsquet i les guarda en un model a Odoo. Podem crear una acció automatitzada que s'executa quan es rep una petició HTTP POST a un endpoint específic. Aquesta acció pot processar les dades rebudes i crear un nou registre en el model de jugadors de bàsquet.
+
+![Odoo webhook integration diagram](imgs/webhook.png "Odoo webhook integration diagram")
+
+Després en actions seleccionem `Execute Python Code` i escrivim el codi que processa les dades rebudes i crea un nou registre en el model de jugadors de bàsquet. El codi pot ser similar al següent:
+
+```python
+player_name = payload.get('name')
+if player_name:
+    new_partner = env['basquet.jugador'].create({
+        'name': player_name
+        
+    })
+else:
+    raise ValueError("Missing required fields: 'name'")
+```
+
+El codi té accés a la variable `payload`, que conté les dades rebudes en la petició HTTP POST.
+
+Tot s'ha fet de forma gràfica, però no és complicat fer-ho amb `xml` de la mateixa manera que es fan les vistes o dades de demo. En aquest cas, el model és `base.automation`, que és el model de les accions automatitzades i `ir.actions.server` la acció on posarem el codi python.
+
+La connexió amb n8n o Postman es fa enviant una petició HTTP POST a l'endpoint que Odoo ha generat per a aquesta acció automatitzada. El payload de la petició ha de ser un JSON amb les dades que volem processar. Per exemple:
+
+```json
+{
+    "_model": "res.partner",
+    "_id": 1,
+    "name": "Kameron Taylor"
+}
+```
+
+Sempre cal posar  el `_model` i `_id` del registre on es faria l'acció automatitzada, encara que no es facin servir en el codi. En aquest cas, com que no es fa servir cap registre específic, podem posar qualsevol model i id.
+
+En cas de que es necessite el registre del payload es pot obtenir de `record`, `model` o `env` com en qualsevol acció automatitzada. 
+
 
 ### Crear un webhook en n8n per a rebre dades d'Odoo
 
+L'altra opció és crear un webhook en n8n i que Odoo envie les dades a aquest webhook. Per a això, es pot crear un node `Webhook` en n8n i configurar-lo per a rebre peticions HTTP POST. Després, en Odoo, es pot crear una acció automatitzada que s'executa quan es produeix un esdeveniment específic (com la creació d'un nou registre) i que envia les dades a l'endpoint del webhook de n8n.
+
+![Odoo webhook sending data to n8n diagram](imgs/sendwebhook.png "Odoo webhook sending data to n8n diagram")
+
 ### Connectar amb Odoo amb un Web Controller
+
+En aquest cas ja es té control absolut. Es crea un Web Controller a un mòdul que expose un endpoint. Cal gestionar correctament la seguretat i autenticació. El funcionament será com qualsevol servici HTTP. Si la tasca no ho necessita explícitament o no estem fent una API REST o similar, és millor optar per JSON-2, que ja està fet, amb funcions a mida.
 
 ### Connectar directament amb PostgreSQL
 
+Com que n8n té un connector de PostgreSQL, també es pot connectar directament a la base de dades d'Odoo i fer les consultes SQL necessàries.
+
+> És l'opció més perillosa i no es recomana. Amés, cal implementar mesures de seguretat a nivell de base de dades tant en usuaris com en la seua exposició a la xarxa.
+
+Si s'està fent en `Docker` les dades de connexió estan al `docker compose`. Si n8n està al mateix compose la ruta pot ser `db`, per exemple, si no, cal exposar el port `5432` en el `Docker`.
 
 ## Misatges d'Odoo
 
@@ -122,8 +175,6 @@ for partner in record.partner_ids:
 ```
 
 En n8n es poden utilitzar els nodes de `HTTP Request` per a enviar peticions a l'API d'Odoo i utilitzar el mètode `message_post` per a enviar missatges des de n8n. També es poden utilitzar els nodes de `Function` per a processar les dades abans d'enviar els missatges.
-
-
 
 Exemple de configuració d'un node `HTTP Request` en n8n per a enviar un missatge d'error a Odoo:
 

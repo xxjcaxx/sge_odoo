@@ -56,7 +56,7 @@ class jugador(models.Model):
         return self.env['res.partner'].search([]).ids[aleatori]
     
     equip_id = fields.Many2one('res.partner', string='Equip', 
-                               domain="[('estadi_id', '!=', False)]", default= lambda self: self.env['res.partner'].search([]).ids[random.randint(0,len(self.env['basquet.equip'].search([]))-1)])
+                               domain="[('estadi_id', '!=', False)]")
     estadi_nom = fields.Char(string='Pavellò', related='equip_id.estadi_id.name')
     es_capita = fields.Boolean(string='És capità', default=False)
     triples = fields.Float(default = lambda self: random.random()*100)
