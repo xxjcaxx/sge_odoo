@@ -74,6 +74,8 @@ docker compose exec n8n n8n user-management:reset
 
 Per a integrar Odoo amb n8n, es pot utilitzar el connector d'Odoo que n8n ofereix. Els oficials de n8n són connectors genèrics, per tant, no tenen totes les funcionalitats d'Odoo, però permeten fer moltes coses. Si necessitem alguna funcionalitat específica que no està disponible en el connector oficial, es pot crear un connector personalitzat utilitzant l'API d'Odoo i el connector HTTP Request de n8n.
 
+> Pot ser que els connectors oficials de n8n no estiguen actualitzats a l'última versió d'Odoo, per tant, és possible que algunes funcionalitats no estiguen disponibles. En aquest cas, la millor opció és crear un connector personalitzat utilitzant l'API d'Odoo.
+
 ### Connector personalitzat d'Odoo amb JSON-2
 
 Com que el connector oficial d'Odoo no té totes les funcionalitats, es pot crear un connector personalitzat utilitzant l'API d'Odoo. Per a això, es pot utilitzar el node `HTTP Request` de n8n per a fer peticions a l'API d'Odoo.
@@ -82,9 +84,28 @@ JSON-2 utilitza peticions HTTP POST a endpoints generats per Odoo a cada model. 
 
 > Per veure els endpoints disponibles a cada model i els payloads que accepten el millor és accedir a `/doc/` per a cada model. Per exemple: `http://localhost:8069/doc/res.partner#`
 
+![n8n Odoo integration diagram](imgs/n8nodoo.png "n8n Odoo integration diagram")
+
+En la captura es pot veure la petició POST amb unes credencials que utilitzen el token d'autenticació de Odoo. El payload és un JSON amb les dades que es volen enviar a Odoo. Es pot fer que el payload siga dinàmic amb `expressions` de n8n.
+
+En aquest cas:
+
+```json
+{
+    "vals_list": [
+        {
+          "name": "{{ $json.name }}",
+          "periodo": "{{ $json.periodo }}",
+          "total": {{ $json.total }},
+          "excedentes": {{ $json.excedentes }}
+}
+    ]
+}
+```
+
 ### Connectar amb Odoo amb un Webhook
 
-Una autmatització en Odoo pot ser activada per un webhook. D'aquesta manera Odoo exposa un endpoint que executa aquesta acció. Si la tasca no és molt complexa i el payload tampoc aquesta és una opció válida que pot ser donada d'alta de manera visual o per codi. 
+Una automatització en Odoo pot ser activada per un webhook. D'aquesta manera Odoo exposa un endpoint que executa aquesta acció. Si la tasca no és molt complexa i el payload tampoc aquesta és una opció válida que pot ser donada d'alta de manera visual o per codi. 
 
 > Per a tasques realmente complexes, permanents i que necessiten molta lògica de negoci, pot ser millor crear un mòdul a mida que s'encarregue de tot amb Web Controllers.
 
