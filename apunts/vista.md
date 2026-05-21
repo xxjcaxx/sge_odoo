@@ -177,6 +177,16 @@ buttons dels forms.
 Cal tindre cura en els lists dins de forms (X2many), ja que el botó s'executa en el model del list i no del formulari que el conté. Si volem accedir al pare, cal utilitzar l'atribut `parent`.
 ```
 
+Les vistes poder tenir `<header>` i `<footer>` per a posar botons o altres coses. En el header, es poden posar botons que afecten a tota la vista, com un botó de crear o de eliminar. En el footer, es poden posar botons que afecten a l\'element seleccionat, com un botó de editar o de duplicar.
+
+```xml
+<header>
+    <button name="header_print" type="object" string="Create Championship Wizard" class="oe_highlight" display="always"/>
+</header>
+```
+
+En aquest cas és un botó que llança un wizard per a crear un campionat. El display="always" fa que el botó es mostre sempre, encara que no hi haja cap element seleccionat. Si no es posa aquest atribut, el botó sols es mostrarà quan hi haja un element seleccionat.
+
 ## Les vistes form 
 
 Per a que un form quede bé, es pot inclure la etiqueta

@@ -80,6 +80,18 @@ class pavello(models.Model):
     name = fields.Char()
     ciutat = fields.Char()
 
+    @api.onchange('ciutat')
+    def launch_wizard(self):
+        if self.ciutat:
+            print(self.ciutat)
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'basquet.equip_wizard',
+                'view_mode': 'form',
+                'target': 'new'
+                
+            }
+
 
 class equip_wizard(models.TransientModel):
     _name = 'basquet.equip_wizard'
