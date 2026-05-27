@@ -329,6 +329,18 @@ pytest_cache/
 
 Com que els volumns de la base de dades i del propi Odoo no van a estar a la carpeta, no cal ignorar l'instal·lació d'Odoo. Es pot crear un repositori en Github i després configurar la carpeta sencera amb `docker-compose.yml`, el directori config, nginx o addons, per exemple. Al descarregar el repositori es generará un entorn de treball igual que l'original, però sense les dades de la base de dades. 
 
+**Analitzar el codi oficial**
+
+El codi d'Odoo està a Github. si volem veure com estan fets els mòduls:
+
+```bash
+git clone --depth 1 --filter=blob:none --sparse https://github.com/odoo/odoo.git
+cd odoo
+git sparse-checkout set addons
+```
+
+I obrir el directori amb l'editor de text. 
+
 ## Posar en producció amb docker
 
 Si podem deixar correguent un Docker a un servidor amb connexió a Internet amb els ports exposats, ja estaria en producció. No obstant això suposa varis problemes de seguretat i rendiment. 
