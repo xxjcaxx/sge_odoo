@@ -205,6 +205,8 @@ definitiva en la base de dades. Aquest són els recomanables per a fer
 `wizards`. També poden ser **models.AbstractModel**
 per a definir models abstractes per a després heretar.
 
+> Es recomana no utilitzar majúscules als noms dels models ni caracters unicode. Es recomana una longitut del nom_modul.nom_model curta, de fet hi ha un límit de 63 caracters de PostgreSQL. No utilitar punts si no és un submodel. 
+
 ### Inspeccionar el models
 
 Per veure els models existents, es pot accedir a la base de dades

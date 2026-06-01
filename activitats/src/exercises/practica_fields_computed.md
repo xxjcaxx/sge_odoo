@@ -9,6 +9,7 @@ Aquesta pràctica servirà per provar els `fields computed`.
 Heu de definir els següents models:
 *   `venda_entrades_segures.esdeveniment`: Representa el concert o espectacle. (Fields: name, preu_base)
 *   `venda_entrades_segures.tiquet`: Representa l'entrada individual (model principal de la pràctica).
+*   `venda_entrades_segures.etiqueta`: Representa etiquetes "tags" que tenen les entrades. 
 
 #### 2. Definició de Fields en `venda_entrades_segures.tiquet`
 Heu d'implementar els següents camps seguint les especificacions tècniques:

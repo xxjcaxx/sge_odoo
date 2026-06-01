@@ -68,7 +68,7 @@ export const exercise = createExercise({
       title: 'preu_final emmagatzemat (store=True) — comprova via search_read',
       run: async () => {
         let createdPartnerId = null
-        let desenvolupamentId = null
+        let esdevenimentId = null
         let tiquetId = null
 
         try {
@@ -80,19 +80,19 @@ export const exercise = createExercise({
             return fail('No s\'ha pogut obtenir un comprador per provar preu_final.')
           }
 
-          desenvolvmentId = toSingleId(await json2(values, 'venda_entrades_segures.descoberta', 'create', {
+          esdevenimentId = toSingleId(await json2(values, 'venda_entrades_segures.esdeveniment', 'create', {
             values: {
-              name: `Descoberta test ${stamp}`,
+              name: `Esdeveniment test ${stamp}`,
               preu_base: 100,
             },
           }))
-          if (!desenvolupamentId) return fail('No s\'ha pogut crear la descoberta de prova.')
+          if (!esdevenimentId) return fail('No s\'ha pogut crear l\'esdeveniment de prova.')
 
           tiquetId = toSingleId(await json2(values, 'venda_entrades_segures.tiquet', 'create', {
             values: {
               name: `Tiquet test ${stamp}`,
               comprador_id: partner.partnerId,
-              esdeveniment_id: desenvolupamentId,
+              esdeveniment_id: esdevenimentId,
             },
           }))
           if (!tiquetId) return fail('No s\'ha pogut crear el tiquet de prova.')
@@ -110,7 +110,7 @@ export const exercise = createExercise({
             : fail('preu_final no retorna un número — possiblement no és store=True.')
         } finally {
           if (tiquetId) await json2(values, 'venda_entrades_segures.tiquet', 'unlink', { ids: [tiquetId] }).catch(() => {})
-          if (desenvolupamentId) await json2(values, 'venda_entrades_segures.esdeveniment', 'unlink', { ids: [desenvolupamentId] }).catch(() => {})
+          if (esdevenimentId) await json2(values, 'venda_entrades_segures.esdeveniment', 'unlink', { ids: [esdevenimentId] }).catch(() => {})
           if (createdPartnerId) await json2(values, 'res.partner', 'unlink', { ids: [createdPartnerId] }).catch(() => {})
         }
       },
@@ -252,7 +252,7 @@ export const exercise = createExercise({
       title: 'clausules_legals conté etiquetes HTML <b> o <strong>',
       run: async () => {
         let createdPartnerId = null
-        let desenvolupamentId = null
+        let esdevenimentId = null
         let tiquetId = null
 
         try {
@@ -264,19 +264,19 @@ export const exercise = createExercise({
             return fail('No s\'ha pogut obtenir un comprador per provar clausules_legals.')
           }
 
-          desenvolupamentId = toSingleId(await json2(values, 'venda_entrades_segures.descoberta', 'create', {
+          esdevenimentId = toSingleId(await json2(values, 'venda_entrades_segures.esdeveniment', 'create', {
             values: {
-              name: `Descoberta test ${stamp}`,
+              name: `Esdeveniment test ${stamp}`,
               preu_base: 100,
             },
           }))
-          if (!desenvolupamentId) return fail('No s\'ha pogut crear la descoberta de prova.')
+          if (!esdevenimentId) return fail('No s\'ha pogut crear l\'esdeveniment de prova.')
 
           tiquetId = toSingleId(await json2(values, 'venda_entrades_segures.tiquet', 'create', {
             values: {
               name: `Tiquet test ${stamp}`,
               comprador_id: partner.partnerId,
-              descoberta_id: desenvolupamentId,
+              esdeveniment_id: esdevenimentId,
             },
           }))
           if (!tiquetId) return fail('No s\'ha pogut crear el tiquet de prova.')
@@ -295,7 +295,7 @@ export const exercise = createExercise({
             : fail('clausules_legals no conté <b> ni <strong>.')
         } finally {
           if (tiquetId) await json2(values, 'venda_entrades_segures.tiquet', 'unlink', { ids: [tiquetId] }).catch(() => {})
-          if (desenvolupamentId) await json2(values, 'venda_entrades_segures.descoberta', 'unlink', { ids: [desenvolupamentId] }).catch(() => {})
+          if (esdevenimentId) await json2(values, 'venda_entrades_segures.esdeveniment', 'unlink', { ids: [esdevenimentId] }).catch(() => {})
           if (createdPartnerId) await json2(values, 'res.partner', 'unlink', { ids: [createdPartnerId] }).catch(() => {})
         }
       },
