@@ -104,6 +104,9 @@ export const exercise = createExercise({
           })
           const records = Array.isArray(data) ? data : []
           if (!records.length) return fail('El tiquet creat no es pot llegir.')
+          if (records[0].preu_final != 100*1.1) {
+            return fail('preu_final no retorna el valor esperat.')
+          }
 
           return typeof records[0].preu_final === 'number'
             ? ok(`preu_final és un número (${records[0].preu_final}) llegit directament de BD.`)
@@ -300,18 +303,6 @@ export const exercise = createExercise({
         }
       },
     },
-    {
-      title: 'Vista list de venda_entrades_segures.tiquet té atribut sum a preu_final',
-      run: async () => {
-        const data = await json2(values, 'ir.ui.view', 'search_read', {
-          domain: [['model', '=', 'venda_entrades_segures.tiquet'], ['type', '=', 'list']],
-          fields: ['arch'],
-          limit: 5,
-        })
-        const views = Array.isArray(data) ? data : []
-        const found = views.some((v) => /preu_final[^>]*sum=/.test(v.arch ?? ''))
-        return found ? ok('L\'atribut sum s\'ha detectat a preu_final a la vista list.') : warn('No s\'ha detectat sum="..." a preu_final en cap vista list.')
-      },
-    },
+   
   ],
 })

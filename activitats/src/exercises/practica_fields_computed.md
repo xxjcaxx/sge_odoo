@@ -29,13 +29,6 @@ Heu d'implementar els següents camps seguint les especificacions tècniques:
 *   **Iteració:** Recordeu que dins de les funcions `_compute_` cal iterar sobre `self` (usant `for record in self:`) per a gestionar correctament tant les vistes formulari com les de llista.
 *   **Funció per defecte:** El camp `etiquetes_ids` ha de cridar a un mètode (p. ex. `_get_default_tags`) que utilitze `self.env.ref()` per a buscar els identificadors externs de les etiquetes.
 
-#### 4. Interfície i Validació
-1.  Creeu una **vista form** on es visualitzen tots els camps. El camp `foto_comprador` ha d'utilitzar el `widget="image"`.
-2.  Creeu una **vista list** on el camp `preu_final` mostre el total al peu de la columna utilitzant l'atribut `sum`.
-3.  **Avaluació Automàtica:** La web del professor es connectarà via **JSON-2**.
-    *   Verificarà que el camp `preu_final` està guardat a la base de dades (`store=True`).
-    *   Comprovarà que en canviar el comprador, la foto i el codi de seguretat s'actualitzen immediatament (reactivitat de l'API).
-    *   Validarà que el camp HTML conté les etiquetes `<b>` o `<strong>` amb el nom del comprador.
 
 #### 5. Entrega
 Proporcioneu a la web de l'assignatura:
