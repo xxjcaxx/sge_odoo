@@ -462,7 +462,7 @@ MCP és un patró de disseny que permet que la IA interactue de manera controlad
 Una altra manera és mijançant les `Skills`. Aquestes són funcions Python que la IA pot invocar directament. La diferència amb les tools és que les skills són més senzilles d'implementar i no necessiten una arquitectura tan complexa com SmolAgents. Les skills són ideals per a tasques molt específiques o càlculs complexos pre-IA que la IA pot necessitar per a generar una resposta adequada.
 
 
-![Diagram showing multiple connection methods between Odoo and AI systems. The diagram illustrates five different integration approaches: direct API calls to external AI services, local tool-based interactions, MCP protocols, web controller connections, and skills-based implementations. Each pathway shows how data flows between Odoo's backend systems and various AI models, representing the flexibility of integrating artificial intelligence into enterprise resource planning workflows.](imgs/odoo-ia.jpg "Odoo IA")
+![Diagram showing multiple connection methods between Odoo and AI systems. The diagram illustrates five different integration approaches: direct API calls to external AI services, local tool-based interactions, MCP protocols, web controller connections, and skills-based implementations. Each pathway shows how data flows between Odoo's backend systems and various AI models, representing the flexibility of integrating artificial intelligence into enterprise resource planning workflows.](imgs/ia-odoo.jpg "Odoo IA")
 
 
 | Opció Tècnica | Tipus de Connexió | Facilitat de Desplegament | Nivell de Seguretat | Ideal per a... |

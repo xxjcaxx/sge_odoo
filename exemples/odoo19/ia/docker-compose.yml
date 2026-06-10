@@ -20,7 +20,7 @@ services:
       - "8069:8069"
       - "8072:8072"
     tty: true
-    #command:  ["--dev=all", "-u", "venda_entrades_segures", "-d", "proves"]
+    command:  ["--dev=all", "-u", "drive", "-d", "proves"]
     environment:
       - HOST=db
       - USER=odoo
