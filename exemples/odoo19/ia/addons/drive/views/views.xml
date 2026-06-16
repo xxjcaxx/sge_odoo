@@ -1,19 +1,73 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="drive.list">
-      <field name="name">drive list</field>
-      <field name="model">drive.drive</field>
+
+
+      <record model="ir.actions.act_window" id="drive.action_wizard">
+      <field name="name">drive wizard .</field>
+      <field name="res_model">drive.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+
+
+
+    <record model="ir.ui.view" id="drive.form_users">
+      <field name="name">drive form user</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form"/>
       <field name="arch" type="xml">
-        <list>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </list>
+        <notebook position="inside">
+          <page string="Drive">
+            <field name="drive_file_ids" widget="many2many_tags" options="{'no_create': True}"/>
+          <button name="%(drive.action_wizard)d" type="action" string="Create file" class="btn-primary"/>
+          </page>
+        </notebook>
       </field>
     </record>
--->
+
+      <record model="ir.ui.view" id="drive.files_form">
+      <field name="name">drive  file</field>
+      <field name="model">drive.file</field>
+      
+      <field name="arch" type="xml">
+        <form>
+        <sheet>
+          <group>
+             <field name="name"/>
+            <field name="file"/>
+            <field name="user"/>
+            <field name="interested"/>
+            <button name="toggle_interested" type="object" string="Toggle Interested" class="btn-secondary"/>
+          </group>
+        </sheet>
+ 
+        </form>
+      </field>
+    </record>
+
+    
+
+     <record model="ir.ui.view" id="drive.wizard_files">
+      <field name="name">drive wizard file</field>
+      <field name="model">drive.wizard</field>
+      
+      <field name="arch" type="xml">
+        <form>
+        <sheet>
+          <group>
+             <field name="name"/>
+            <field name="file"/>
+          </group>
+        </sheet>
+        <footer>
+          <button string="Close" special="cancel"/>
+          <button string="Create" type="object" name="create_file" />
+        </footer>
+        </form>
+      </field>
+    </record>
+
 
     <!-- actions opening views on models -->
 
@@ -27,16 +81,16 @@
 
     <!-- Top menu item -->
 
-    <menuitem name="drive" id="drive.menu_root"/>
+    <menuitem name="Drive" id="drive.menu_root"/>
 
     <!-- menu categories -->
 
-    <menuitem name="Menu 1" id="drive.menu_1" parent="drive.menu_root"/>
+    <menuitem name="Fitxers" id="drive.menu_1" parent="drive.menu_root"/>
    
 
     <!-- actions -->
 
-    <menuitem name="List" id="drive.menu_1_list" parent="drive.menu_1"
+    <menuitem name="Lista Fitxers" id="drive.menu_1_list" parent="drive.menu_1"
               action="drive.action_window"/>
 
   </data>
