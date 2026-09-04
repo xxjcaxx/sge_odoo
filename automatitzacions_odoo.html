@@ -1,0 +1,839 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Automatizacions amb Odoo &#8212; Apunts d&#39;Odoo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'automatitzacions_odoo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Odoo i la intel·ligència artificial" href="odoo_ia.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/odoo_logo.svg" class="logo__image only-light" alt="Apunts d'Odoo - Home"/>
+    <img src="_static/odoo_logo.svg" class="logo__image only-dark pst-js-only" alt="Apunts d'Odoo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introducció a Odoo
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instalarodoo.html">Instal·lar Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo.html">Desenvolupar per a Odoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">La vista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accions_menus.html">Accions i menús</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizards.html">Wizards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers i API Externa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client_web.html">Client Web</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter a Odoo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo_ia.html">Odoo i la intel·ligència artificial</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Automatizacions amb Odoo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xxjcaxx/exemples_sge/issues/new?title=Issue%20on%20page%20%2Fautomatitzacions_odoo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/automatitzacions_odoo.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Automatizacions amb Odoo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-actions-i-webhooks">Automated actions i Webhooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-d-us-del-webhooks">Casos d’ús del webhooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#odoo-i-n8n">Odoo i n8n</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installacio-de-n8n-amb-docker">Instal·lació de n8n amb Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucio-de-problemes">Solució de problemes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracio-d-odoo-amb-n8n">Integració d’Odoo amb n8n</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connector-personalitzat-d-odoo-amb-json-2">Connector personalitzat d’Odoo amb JSON-2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectar-amb-odoo-amb-un-webhook">Connectar amb Odoo amb un Webhook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-webhook-en-n8n-per-a-rebre-dades-d-odoo">Crear un webhook en n8n per a rebre dades d’Odoo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectar-amb-odoo-amb-un-web-controller">Connectar amb Odoo amb un Web Controller</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectar-directament-amb-postgresql">Connectar directament amb PostgreSQL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#misatges-d-odoo">Misatges d’Odoo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="automatizacions-amb-odoo">
+<h1>Automatizacions amb Odoo<a class="headerlink" href="#automatizacions-amb-odoo" title="Link to this heading">#</a></h1>
+<section id="automated-actions-i-webhooks">
+<h2>Automated actions i Webhooks<a class="headerlink" href="#automated-actions-i-webhooks" title="Link to this heading">#</a></h2>
+<p>Odoo té una funcionalitat integrada que permet crear accions automatitzades basades en esdeveniments. Aquestes accions es poden configurar per a executar-se quan es produeix un esdeveniment específic, com ara la creació d’un registre, la modificació d’un registre o la supressió d’un registre. Aquestes accions poden ser molt útils per a automatitzar processos interns dins d’Odoo. Per exemple, es pot configurar una acció automatitzada per a enviar un correu electrònic a un client quan es crea una nova ordre de venda.</p>
+<p>Es necessita instal·lar el mòdul <code class="docutils literal notranslate"><span class="pre">Automated</span> <span class="pre">Actions</span></code> (base_automation). La versió de pagament d’Odoo té <code class="docutils literal notranslate"><span class="pre">Studio</span></code>, que permet crear accions automatitzades de manera visual, però la versió comunitària també permet crear-les, encara que de manera més tècnica. Per a crear una acció automatitzada, es pot anar a <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Technical</span> <span class="pre">&gt;</span> <span class="pre">Automated</span> <span class="pre">Actions</span></code> i crear una nova acció.</p>
+<p>A més de les accions automatitzades, Odoo també permet configurar webhooks. Dins de l’arquitectura d’integració de sistemes orientada a esdeveniments, Odoo opera de manera completament bidireccional en actuar simultàniament com a receptor (<em>inbound</em>) i emissor (<em>outbound</em>) de <em>webhooks</em>. En la seua faceta receptora, la plataforma exposa punts d’accés (endpoints) URL per a capturar peticions HTTP de sistemes externs i desencadenar accions automàtiques immediates com la creació o modificació de registres; d’altra banda, en el seu rol com a emissor, aprofita el motor d’accions automatitzades intern per a monitoritzar mutacions en la base de dades —com la generació de factures o ruptures de stock— i notificar instantàniament a tercers mitjançant paquets de dades JSON.</p>
+<section id="casos-d-us-del-webhooks">
+<h3>Casos d’ús del webhooks<a class="headerlink" href="#casos-d-us-del-webhooks" title="Link to this heading">#</a></h3>
+<p>Els <em>webhooks</em> en Odoo funcionen com a ponts d’automatització amb sistemes externs, i un dels seus usos principals és l’actualització automatitzada de registres existents, com ara modificar la divisa d’una comanda de venda. Este cas és especialment útil per a empreses amb filials internacionals que necessiten consolidar la seua informació financera en la moneda de la matriu (per exemple, USD) o durant processos de fusió empresarial; el sistema extern envia les dades de la comanda i Odoo localitza el registre instantàniament per a actualitzar el field de la moneda sense intervenció manual.</p>
+<p>D’altra banda, estos mecanismes també són idonis per a la creació automàtica de nous registres en la base de dades, com ocorre amb l’alta de nous contactes, clients o proveïdors. Mitjançant la recepció d’informació bàsica (com el nom, el correu electrònic i el telèfon) des de formularis web o aplicacions de tercers, Odoo és capaç de processar estes dades en temps real, verificar els camps obligatoris i generar directament la fitxa de la persona en l’aplicació de <strong>Contactes</strong>, cosa que optimitza la sincronització i elimina les tasques administratives repetitives.</p>
+<p>Els <em>webhooks</em> d’Odoo són preferibles als <em>web controllers</em> quan volem una integració “Low-Code” molt més ràpida i fàcil de configurar de forma gràfica, la qual cosa simplifica el manteniment i garanteix una millor compatibilitat i supervivència del sistema davant de futures actualitzacions de versió. Estan especialment dissenyats per a reaccionar de manera nativa a esdeveniments externs de tipus “disparar i oblidar” (com la recepció de dades d’un formulari), mentre que els <em>web controllers</em> requereixen programar mòduls a mida des de zero i només es recomanen quan es necessita dissenyar una API completament personalitzada o gestionar lògiques de negoci extremadament complexes.</p>
+<blockquote>
+<div><p>Les automatitzacions amb Odoo estan més pensades per a la versió professional que té <code class="docutils literal notranslate"><span class="pre">Studio</span></code>, ja que permet crear accions automatitzades de manera visual. Encara que es poden fer de forma més tècnica en la <code class="docutils literal notranslate"><span class="pre">community</span></code>. Més endavant veurem sistemes més potents com n8n. També es poden crear accions automatitzades amb <code class="docutils literal notranslate"><span class="pre">Python</span></code> i <code class="docutils literal notranslate"><span class="pre">XML</span></code> si volem instal·lar un mòdul a mida que les incorpore. Els usuaris pro d’Odoo no necessiten ser programadors i poden fer-ho tot de manera visual amb certs coneixements tècnics de l’aplicació. Les opcions i combinacions són molt diverses. amb experiència es pot decidir quina és la millor manera de fer cada cosa.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="odoo-i-n8n">
+<h2>Odoo i n8n<a class="headerlink" href="#odoo-i-n8n" title="Link to this heading">#</a></h2>
+<p>Per a automatitzar processos amb <code class="docutils literal notranslate"><span class="pre">Odoo</span></code> es pot incorporar una ferramenta de fluxos de treball que treballa amb un sistema low code. D’aquesta manera, inclús usuaris no tècnics poden crear automatitzacions i integracions entre Odoo i altres aplicacions.</p>
+<p>N8n es pot instal·lar <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">premise</span></code>, en el nuvol o en el seu servei en el nuvol. En el nostre cas anem a instal·lar-lo en un servidor on premise. Per a això, es pot utilitzar <code class="docutils literal notranslate"><span class="pre">Docker</span></code>, que facilita la instal·lació i gestió de l’aplicació.</p>
+<section id="installacio-de-n8n-amb-docker">
+<h3>Instal·lació de n8n amb Docker<a class="headerlink" href="#installacio-de-n8n-amb-docker" title="Link to this heading">#</a></h3>
+<p>n8n utilitza <code class="docutils literal notranslate"><span class="pre">Nodejs</span></code>, per tant, sols amb <code class="docutils literal notranslate"><span class="pre">npm</span></code> es pot instal·lar. No obstant, la manera més senzilla d’instal·lar n8n és utilitzant Docker, ja que no cal preocupar-se per les dependències i la configuració del sistema. A més, Docker permet gestionar fàcilment les actualitzacions i les còpies de seguretat.</p>
+<p>Es pot afegir al Docker compose d’Odoo un nou servei n8n.</p>
+<blockquote>
+<div><p>A aquestes altures del curs és possible que el Docker compose ja tinga Odoo, postgreSQL, nginx o inclús Ollama, Jupyter, entre altres. No hi ha cap problema en concentrar tots aquests serveis en un mateix Docker compose, sempre que es gestionen correctament els ports i les xarxes. No obstant, cal pensar en els recursos del servidor, ja que cada servei consumeix memòria i CPU. Si el servidor té recursos limitats, pot ser millor separa els serveis en diferents màquines. Si estem treballant en una IaaS també cal pensar en el preu de diversos servidors menuts especialitzats front a la reserva d’un servidor més potent.</p>
+</div></blockquote>
+<p>El manual oficial (<a class="reference external" href="https://docs.n8n.io/hosting/installation/server-setups/docker-compose/#6-create-docker-compose-file">https://docs.n8n.io/hosting/installation/server-setups/docker-compose/#6-create-docker-compose-file</a> ) dona un fitxer de composició molt complet i segur. Si el nostre n8n ha d’estar a internet cal seguir-lo, però per a fer proves és més sencill:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">n8n</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.n8n.io/n8nio/n8n</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5678:5678&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">N8N_HOST=localhost</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">N8N_PORT=5678</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">N8N_PROTOCOL=http</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NODE_ENV=production</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GENERIC_TIMEZONE=Europe/Madrid</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TZ=Europe/Madrid</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">n8n_data:/home/node/.n8n</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./local-files:/files</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">n8n_data</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Al posar-lo en marxa, n8n estarà disponible a <code class="docutils literal notranslate"><span class="pre">http://&lt;ip&gt;:5678</span></code>. Ens demana registrar a l’administrador.</p>
+<section id="solucio-de-problemes">
+<h4>Solució de problemes<a class="headerlink" href="#solucio-de-problemes" title="Link to this heading">#</a></h4>
+<p>Si no recordem la contrasenya la podem restablir amb el següent comandament:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>n8n<span class="w"> </span>n8n<span class="w"> </span>user-management:reset
+</pre></div>
+</div>
+<blockquote>
+<div><p>En general n8n dins del docker és un comandament del CLI que té moltes opcions. Al manual oficial estàn totes disponibles.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="integracio-d-odoo-amb-n8n">
+<h2>Integració d’Odoo amb n8n<a class="headerlink" href="#integracio-d-odoo-amb-n8n" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Abans de començar amb Odoo i n8n seria interessant fer algun <code class="docutils literal notranslate"><span class="pre">workflow</span></code> més senzill. A la web oficial hi ha molts templates per anar practicant.</p>
+</div></blockquote>
+<p>Per a integrar Odoo amb n8n, es pot utilitzar el connector d’Odoo que n8n ofereix. Els oficials de n8n són connectors genèrics, per tant, no tenen totes les funcionalitats d’Odoo, però permeten fer moltes coses. Si necessitem alguna funcionalitat específica que no està disponible en el connector oficial, es pot crear un connector personalitzat utilitzant l’API d’Odoo i el connector HTTP Request de n8n.</p>
+<blockquote>
+<div><p>Pot ser que els connectors oficials de n8n no estiguen actualitzats a l’última versió d’Odoo, per tant, és possible que algunes funcionalitats no estiguen disponibles. En aquest cas, la millor opció és crear un connector personalitzat utilitzant l’API d’Odoo.</p>
+</div></blockquote>
+<section id="connector-personalitzat-d-odoo-amb-json-2">
+<h3>Connector personalitzat d’Odoo amb JSON-2<a class="headerlink" href="#connector-personalitzat-d-odoo-amb-json-2" title="Link to this heading">#</a></h3>
+<p>Com que el connector oficial d’Odoo no té totes les funcionalitats, es pot crear un connector personalitzat utilitzant l’API d’Odoo. Per a això, es pot utilitzar el node <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Request</span></code> de n8n per a fer peticions a l’API d’Odoo.</p>
+<p>JSON-2 utilitza peticions HTTP POST a endpoints generats per Odoo a cada model. En aquestes peticions s’especifica el métode a executar. Tots els models tenen uns endpoints base, però també es poden crear endpoints personalitzats per a funcionalitats específiques creant mètodes. D’aquesta manera es pot delegar part de l’automatització a Odoo, i n8n només s’encarrega de fer les peticions i gestionar els fluxos de treball.</p>
+<blockquote>
+<div><p>Per veure els endpoints disponibles a cada model i els payloads que accepten el millor és accedir a <code class="docutils literal notranslate"><span class="pre">/doc/</span></code> per a cada model. Per exemple: <code class="docutils literal notranslate"><span class="pre">http://localhost:8069/doc/res.partner#</span></code></p>
+</div></blockquote>
+<p><img alt="n8n Odoo integration diagram" src="_images/n8nodoo.png" /></p>
+<p>En la captura es pot veure la petició POST amb unes credencials que utilitzen el token d’autenticació de Odoo. El payload és un JSON amb les dades que es volen enviar a Odoo. Es pot fer que el payload siga dinàmic amb <code class="docutils literal notranslate"><span class="pre">expressions</span></code> de n8n.</p>
+<p>En aquest cas:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;vals_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ $json.name }}&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;periodo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ $json.periodo }}&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="err">$jso</span><span class="kc">n</span><span class="err">.</span><span class="kc">t</span><span class="err">o</span><span class="kc">tal</span><span class="w"> </span><span class="p">}},</span>
+<span class="w">          </span><span class="nt">&quot;excedentes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="err">$jso</span><span class="kc">n</span><span class="err">.excede</span><span class="kc">ntes</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="connectar-amb-odoo-amb-un-webhook">
+<h3>Connectar amb Odoo amb un Webhook<a class="headerlink" href="#connectar-amb-odoo-amb-un-webhook" title="Link to this heading">#</a></h3>
+<p>Una automatització en Odoo pot ser activada per un webhook. D’aquesta manera Odoo exposa un endpoint que executa aquesta acció. Si la tasca no és molt complexa i el payload tampoc aquesta és una opció válida que pot ser donada d’alta de manera visual o per codi.</p>
+<blockquote>
+<div><p>Per a tasques realmente complexes, permanents i que necessiten molta lògica de negoci, pot ser millor crear un mòdul a mida que s’encarregue de tot amb Web Controllers.</p>
+</div></blockquote>
+<p>Suposem que volem crear un webhook que rep dades d’un jugador de bàsquet i les guarda en un model a Odoo. Podem crear una acció automatitzada que s’executa quan es rep una petició HTTP POST a un endpoint específic. Aquesta acció pot processar les dades rebudes i crear un nou registre en el model de jugadors de bàsquet.</p>
+<p><img alt="Odoo webhook integration diagram" src="_images/webhook.png" /></p>
+<p>Després en actions seleccionem <code class="docutils literal notranslate"><span class="pre">Execute</span> <span class="pre">Python</span> <span class="pre">Code</span></code> i escrivim el codi que processa les dades rebudes i crea un nou registre en el model de jugadors de bàsquet. El codi pot ser similar al següent:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player_name</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">player_name</span><span class="p">:</span>
+    <span class="n">new_partner</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;basquet.jugador&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">player_name</span>
+        
+    <span class="p">})</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing required fields: &#39;name&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El codi té accés a la variable <code class="docutils literal notranslate"><span class="pre">payload</span></code>, que conté les dades rebudes en la petició HTTP POST.</p>
+<p>Tot s’ha fet de forma gràfica, però no és complicat fer-ho amb <code class="docutils literal notranslate"><span class="pre">xml</span></code> de la mateixa manera que es fan les vistes o dades de demo. En aquest cas, el model és <code class="docutils literal notranslate"><span class="pre">base.automation</span></code>, que és el model de les accions automatitzades i <code class="docutils literal notranslate"><span class="pre">ir.actions.server</span></code> la acció on posarem el codi python.</p>
+<p>La connexió amb n8n o Postman es fa enviant una petició HTTP POST a l’endpoint que Odoo ha generat per a aquesta acció automatitzada. El payload de la petició ha de ser un JSON amb les dades que volem processar. Per exemple:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;res.partner&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Kameron Taylor&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Sempre cal posar  el <code class="docutils literal notranslate"><span class="pre">_model</span></code> i <code class="docutils literal notranslate"><span class="pre">_id</span></code> del registre on es faria l’acció automatitzada, encara que no es facin servir en el codi. En aquest cas, com que no es fa servir cap registre específic, podem posar qualsevol model i id.</p>
+<p>En cas de que es necessite el registre del payload es pot obtenir de <code class="docutils literal notranslate"><span class="pre">record</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code> o <code class="docutils literal notranslate"><span class="pre">env</span></code> com en qualsevol acció automatitzada.</p>
+</section>
+<section id="crear-un-webhook-en-n8n-per-a-rebre-dades-d-odoo">
+<h3>Crear un webhook en n8n per a rebre dades d’Odoo<a class="headerlink" href="#crear-un-webhook-en-n8n-per-a-rebre-dades-d-odoo" title="Link to this heading">#</a></h3>
+<p>L’altra opció és crear un webhook en n8n i que Odoo envie les dades a aquest webhook. Per a això, es pot crear un node <code class="docutils literal notranslate"><span class="pre">Webhook</span></code> en n8n i configurar-lo per a rebre peticions HTTP POST. Després, en Odoo, es pot crear una acció automatitzada que s’executa quan es produeix un esdeveniment específic (com la creació d’un nou registre) i que envia les dades a l’endpoint del webhook de n8n.</p>
+<p><img alt="Odoo webhook sending data to n8n diagram" src="_images/sendwebhook.png" /></p>
+</section>
+<section id="connectar-amb-odoo-amb-un-web-controller">
+<h3>Connectar amb Odoo amb un Web Controller<a class="headerlink" href="#connectar-amb-odoo-amb-un-web-controller" title="Link to this heading">#</a></h3>
+<p>En aquest cas ja es té control absolut. Es crea un Web Controller a un mòdul que expose un endpoint. Cal gestionar correctament la seguretat i autenticació. El funcionament será com qualsevol servici HTTP. Si la tasca no ho necessita explícitament o no estem fent una API REST o similar, és millor optar per JSON-2, que ja està fet, amb funcions a mida i seguretat garantida pet api key.</p>
+</section>
+<section id="connectar-directament-amb-postgresql">
+<h3>Connectar directament amb PostgreSQL<a class="headerlink" href="#connectar-directament-amb-postgresql" title="Link to this heading">#</a></h3>
+<p>Com que n8n té un connector de PostgreSQL, també es pot connectar directament a la base de dades d’Odoo i fer les consultes SQL necessàries.</p>
+<blockquote>
+<div><p>És l’opció més perillosa i no es recomana. Amés, cal implementar mesures de seguretat a nivell de base de dades tant en usuaris com en la seua exposició a la xarxa.</p>
+</div></blockquote>
+<p>Si s’està fent en <code class="docutils literal notranslate"><span class="pre">Docker</span></code> les dades de connexió estan al <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code>. Si n8n està al mateix compose la ruta pot ser <code class="docutils literal notranslate"><span class="pre">db</span></code>, per exemple, si no, cal exposar el port <code class="docutils literal notranslate"><span class="pre">5432</span></code> en el <code class="docutils literal notranslate"><span class="pre">Docker</span></code>.</p>
+</section>
+</section>
+<section id="misatges-d-odoo">
+<h2>Misatges d’Odoo<a class="headerlink" href="#misatges-d-odoo" title="Link to this heading">#</a></h2>
+<p>Odoo té una funcionalitat integrada que permet enviar missatges a diferents destinataris, com ara usuaris, grups o canals de xat. Aquests missatges es poden utilitzar per a notificar als usuaris sobre esdeveniments importants Es comporta com moltes aplicacions de missatgeria integrada en Odoo i en alguns models, com ara el de les ordres de venda, que tenen com un xat associat. En realitat tots els xats d’Odoo, tant els generals com els dels models són canals associats a un model i registre.</p>
+<blockquote>
+<div><p>És adequat parlar de missatges d’Odoo en aquest apartat d’automatitzacions, ja que es poden utilitzar per a automatitzar notificacions i comunicacions dins de l’aplicació. Els usuaris han de saber que s’ha produït una acció automatitzada, un webhook o que n8n ha fet alguna cosa.</p>
+</div></blockquote>
+<p>La manera més senzilla d’enviar un missatge és utilitzar el mètode <code class="docutils literal notranslate"><span class="pre">message_post</span></code> del model <code class="docutils literal notranslate"><span class="pre">mail.thread</span></code>:</p>
+<p><a class="reference external" href="https://www.odoo.com/documentation/master/developer/reference/backend/mixins.html#basic-messaging-system">https://www.odoo.com/documentation/master/developer/reference/backend/mixins.html#basic-messaging-system</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">record</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;This is a message&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aquest mètode té molts paràmetres que permeten personalitzar el missatge, com ara el subjecte, els destinataris, els adjunts, etc. Per exemple, per a enviar un missatge a un grup d’usuaris:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">record</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;This is a message&#39;</span><span class="p">,</span> <span class="n">partner_ids</span><span class="o">=</span><span class="p">[(</span><span class="mi">4</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">partner_id</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>També es poden enviar missatges a canals de xat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">record</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;This is a message&#39;</span><span class="p">,</span> <span class="n">channel_ids</span><span class="o">=</span><span class="p">[(</span><span class="mi">4</span><span class="p">,</span> <span class="n">channel</span><span class="o">.</span><span class="n">id</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>A més, es poden utilitzar les funcions de mapeig i agrupació per a enviar missatges a grups d’usuaris o canals de xat de manera més eficient. Per exemple, per a enviar un missatge a tots els bancs associats als partners d’un registre:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">partner</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">partner_ids</span><span class="p">:</span>
+    <span class="n">partner</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;This is a message&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>En n8n es poden utilitzar els nodes de <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Request</span></code> per a enviar peticions a l’API d’Odoo i utilitzar el mètode <code class="docutils literal notranslate"><span class="pre">message_post</span></code> per a enviar missatges des de n8n. També es poden utilitzar els nodes de <code class="docutils literal notranslate"><span class="pre">Function</span></code> per a processar les dades abans d’enviar els missatges.</p>
+<p>Exemple de configuració d’un node <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Request</span></code> en n8n per a enviar un missatge d’error a Odoo:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo en n8n</p></th>
+<th class="head"><p>Parámetro / Configuración</p></th>
+<th class="head"><p>Valor / Expresión</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Nombre del Nodo</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Enviar</span> <span class="pre">mensaje</span> <span class="pre">error</span> <span class="pre">a</span> <span class="pre">Odoo</span></code></p></td>
+<td><p>Identificador del nodo en el flujo.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tipo de Nodo</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>HTTP Request (v4.4)</p></td>
+<td><p>Realiza una petición HTTP externa.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Método HTTP</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></td>
+<td><p><strong>POST</strong></p></td>
+<td><p>Envío de datos al servidor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>URL del End-point</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">http://localhost:8069/json/2/discuss.channel/message_post</span></code></p></td>
+<td><p>Destino de la API de Odoo Chat/Discuss.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Autenticación</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">authentication</span></code></p></td>
+<td><p>Predefined Credential (<code class="docutils literal notranslate"><span class="pre">httpBearerAuth</span></code>)</p></td>
+<td><p>Autenticación mediante Token Bearer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Credencial Asociada</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code></p></td>
+<td><p><em>Bearer Auth account</em> (<code class="docutils literal notranslate"><span class="pre">id:</span> <span class="pre">vg9qrtrbzmATQP9a</span></code>)</p></td>
+<td><p>Cuenta de credenciales guardada en n8n.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em><strong>Body Parameters</strong></em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parámetro (Name)</p></th>
+<th class="head"><p>Tipo de Valor</p></th>
+<th class="head"><p>Valor Configurado</p></th>
+<th class="head"><p>Propósito</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">ids</span></code></strong></p></td>
+<td><p>Expresión</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">[1]</span> <span class="pre">}}</span></code></p></td>
+<td><p>Identificador del canal o hilo de Odoo destinatario.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">body</span></code></strong></p></td>
+<td><p>Expresión</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Fallo</span> <span class="pre">al</span> <span class="pre">parsear</span> <span class="pre">{{</span> <span class="pre">$('Limpieza').item.json.text</span> <span class="pre">}}</span></code></p></td>
+<td><p>Mensaje de error enviado, incluyendo el texto extraído del nodo ‘Limpieza’.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">message_type</span></code></strong></p></td>
+<td><p>String / Texto</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">comment</span></code></p></td>
+<td><p>Tipo de mensaje dentro de Odoo.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">subtype_id</span></code></strong></p></td>
+<td><p>String / Texto</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Subtipo de registro o notificación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>L’id 1 és el canal general. El message_type <code class="docutils literal notranslate"><span class="pre">comment</span></code> indica que és un comentari, juntament amb el <code class="docutils literal notranslate"><span class="pre">subtype_id</span></code> 1 implica una notificació normal i Odoo li aplica uns estils específics. Cal mirar en cada instància de Odoo quins són els valors adequats per a cada cas i si fa falta fer una petició prèvia per a obtenir-los.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="odoo_ia.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Odoo i la intel·ligència artificial</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-actions-i-webhooks">Automated actions i Webhooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-d-us-del-webhooks">Casos d’ús del webhooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#odoo-i-n8n">Odoo i n8n</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installacio-de-n8n-amb-docker">Instal·lació de n8n amb Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucio-de-problemes">Solució de problemes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracio-d-odoo-amb-n8n">Integració d’Odoo amb n8n</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connector-personalitzat-d-odoo-amb-json-2">Connector personalitzat d’Odoo amb JSON-2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectar-amb-odoo-amb-un-webhook">Connectar amb Odoo amb un Webhook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-webhook-en-n8n-per-a-rebre-dades-d-odoo">Crear un webhook en n8n per a rebre dades d’Odoo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectar-amb-odoo-amb-un-web-controller">Connectar amb Odoo amb un Web Controller</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectar-directament-amb-postgresql">Connectar directament amb PostgreSQL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#misatges-d-odoo">Misatges d’Odoo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Castillo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

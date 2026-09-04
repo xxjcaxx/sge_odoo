@@ -1,21 +1,21 @@
-# Web Controllers
+# Web Controllers i API Externa
 
 En Odoo hi ha moltes maneres de comunicar-se amb el
 servidor:
 
--   Entrant en el backend
--   La pàgina web (frontend)
--   El TPV
--   Amb un API de XML-RPC per a aplicacions Java, Python o PHP.
--   Amb els controladors web per a consultes web o Ajax.
+- Entrant al backend
+- La pàgina web (frontend)
+- El TPV
+- Amb un API de XML-RPC (< versió 19) o JSON-2 (> versió 19)  per a aplicacions Java, Python o PHP.
+- Amb els controladors web per a consultes web o Ajax.
 
 Si volem fer la web amb el CMS d\'Odoo, cal aprendre a fer webs en Odoo.
 Però si el que volem és accedir a Odoo com un servidor **Rest** o
 similar des de una aplicació web diferent, hem de crear la interficie de
 servidor web amb Odoo i formular correctament les peticions Ajax.
 
-En aquest manual la intenció és fer una aplicació web en Angular que
-consulte coses a Odoo.
+
+## Controladors web
 
 Odoo utilitza la biblioteca
 <https://werkzeug.palletsprojects.com/en/1.0.x/> per als seus
@@ -91,7 +91,7 @@ s\'està realizant. Té métodes i atributs útils com **request.env**, que
 obstant, açò és per provar. En producció sempre necessitarem
 autentificació.
 
-## Passar paràmetres al web controller
+### Passar paràmetres al web controller
 
 Odoo permet passar paràmetres de la forma tradicional del GET o el POST
 (amb ?) o com es fa en REST, com a part de la URL.
@@ -134,7 +134,7 @@ json com aquest:
  {"jsonrpc":"2.0","method":"call","params":{"user":"${user}","password":"${pass}"}}
 ```
 
-## CORS en Odoo
+### CORS en Odoo
 
 Odoo no permet peticions Ajax que no vinguen del mateix origen que ell.
 Això ho podem canviar en cada **route** amb **cors=\'\***\'
@@ -142,7 +142,7 @@ Això ho podem canviar en cada **route** amb **cors=\'\***\'
 Si volem permetre CORS en tot odoo, el millor és instal·lar Ngingx,
 configurar-lo per a permetre CORS i fer que actue com a proxy d\'Odoo.
 
-## Autenticació
+### Autenticació
 
 En el directori d\'addons d\'Odoo, en el mòdul web/controller, trobem
 aquest codi:
@@ -183,7 +183,7 @@ token amb dades aleatòries i enviar-ho al JSON de resposta si l\'usuari
 fa login. A partir d\'aquest moment es pot demanar aquest token en totes
 les peticions posteriors.
 
-## Controllers amb JSON
+### Controllers amb JSON
 
 Com es veu en l\'exemple anterior, el client ha d\'enviar un JSON en un
 format determinat i el servidor també el retorna. Odoo necessita que el
@@ -244,31 +244,123 @@ Ací tenim un exemple funcional al que li falten moltes comprovacions per
 evitar errades:
 
 ``` python
-     @http.route('/terraform/api/<model>', auth="none", cors='*', csrf=False, type='json')
-     def api(self, **args):
+ @http.route('/natacio/api/<model>', auth="none", cors='*', csrf=False, type='http')
+    def api(self, **args):
        print('APIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
        print(args, http.request.httprequest.method)
        model = args['model']
-       if( http.request.httprequest.method == 'POST'):   #  {"jsonrpc":"2.0","method":"call","params":{"planet":{"name":"Trantor","average_temperature":20},"password":"1234"}}
-           record = http.request.env['terraform.'+model].sudo().create(args[model])
-           return record.read()
-       if( http.request.httprequest.method == 'GET'):
-           record = http.request.env['terraform.'+model].sudo().search([('id','=',args[model]['id'])])
-           return record.read()
+       if( http.request.httprequest.method == 'POST'):  # {"club": {"name": "nou clu22b"}}
+           data = json.loads(http.request.httprequest.data)
+           record = http.request.env['natacio.'+model].sudo().create(data[model])
+           return http.request.make_json_response(
+               record.read(['name']), 
+               headers=None, 
+               cookies=None, 
+               status=200)
+       if( http.request.httprequest.method == 'GET'):  #http://localhost:8069/natacio/api/club?id=2
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',args['id'])])
+           return http.request.make_json_response(
+               record.read(), 
+               headers=None, 
+               cookies=None, 
+               status=200)
+           
        if( http.request.httprequest.method == 'PUT' or  http.request.httprequest.method == 'PATCH'):
-           record = http.request.env['terraform.'+model].sudo().search([('id','=',args[model]['id'])])[0]
-           record.write(args[model])
-           return record.read()
+           data = json.loads(http.request.httprequest.data)
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',data['id'])])[0]
+           record.write(data[model])
+           return http.request.make_json_response(
+               record.read(['name']), 
+               headers=None, 
+               cookies=None, 
+               status=200)
        if(http.request.httprequest.method == 'DELETE'):
-           record = http.request.env['terraform.'+model].sudo().search([('id','=',args[model]['id'])])[0]
-           print(record)
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',args['id'])])[0]
            record.unlink()
-           return record.read()
+           return http.request.make_json_response(
+               {"deleted": True}, 
+               headers=None, 
+               cookies=None, 
+               status=200)
 
        return http.request.env['ir.http'].session_info()
+  
+
+    @http.route('/natacio/api/<model>/<id>', auth="none", cors='*', csrf=False, type='http')
+    def apiGet(self, **args):
+       print('APIIIIIIIIIIIIIIIIIIIII GETTTTTTTTT')
+       print(args, http.request.httprequest.method)
+       model = args['model']
+       id= args['id']
+       if( http.request.httprequest.method == 'GET'):  #http://localhost:8069/natacio/api/club/2
+           record = http.request.env['natacio.'+model].sudo().search([('id','=',id)])
+           return http.request.make_json_response(
+               record.read(), 
+               headers=None, 
+               cookies=None, 
+               status=200)
 ```
 
 Tenim un problema i és que per GET en teoria no es pot enviar body i
 aquesta API l\'està esperant al dir que és de tipus json. Si volem fer
 una API correcta, tenim que fer una funció diferent per al GET en http i
 retornar el JSON, que ha de ser construit dins de la funció.
+
+
+## API Externa amb JSON-2
+
+> A partir d'Odoo 19
+
+Està pensat per a connectar aplicacions externes amb Odoo de forma senzilla. No es necessita crear un controlador web. No obstant, no és una API REST ni està orientada al client web. Si la volem utilitar a una web, les peticions s'han de fer des del servidor, no des del client, ja que no permet CORS. Una altre opció és fer servir un proxy invers com Nginx per a permetre CORS.
+
+Està basada en fer peticions POST a la URL: `/json/2/<model>/<method>`. Les peticions han de tenir:
+
+* Host  Required, the hostname of the server.
+* Autorization Required, bearer followed by an API key.
+* Content-Type Required, application/json, a charset is recommended.
+* X-Odoo-Database Optional, the name of the database to connect to.
+* User-Agent Recommended, the name of your software.
+
+Amés cal posar un body amb aquesta sintaxi:
+
+```json
+{
+    "context": {
+        "lang": "en_US"
+    },
+    "domain": [
+        ["name", "ilike", "%deco%"],
+        ["is_company", "=", true]
+    ],
+    "fields": ["name"]
+}
+```
+
+Per autenticar és necessari crear una API key de forma sencilla en la interfície gràfica:
+
+```{figure} imgs/odoo_json24.png 
+    :scale: 100 %
+    :alt: api key
+
+    API Key
+```
+
+> És important destacar que la API key mai s'ha de compartir en un projecte real. El codi del client tindrà accés a variables d'entorn `env` o similar que no seràn pujades a Github. 
+
+> En un projecte real s'ha de crear usuaris específics per als bots amb permisos molt controlats a la seua tasca i no utilitzar l'usuari administrador.
+
+Ací podem veure com funciona en Postman:
+
+```{figure} imgs/odoo_json21.png 
+    :scale: 100 %
+    :alt: postman 1
+
+    Headers de la petició
+```
+
+```{figure} imgs/odoo_json22.png 
+    :scale: 100 %
+    :alt: postman 2
+
+    Body de la petició
+```
