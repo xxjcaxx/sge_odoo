@@ -139,7 +139,7 @@ function renderSidebar({ practices, activePractice, allResults }) {
           </svg>
           Avaluador Odoo
         </h2>
-        <p class="mt-1 text-xs text-gray-500">Pràctiques Odoo · comprovació granular</p>
+        <p class="mt-1 text-xs text-gray-500">Pràctiques Odoo</p>
       </div>
       <nav class="flex-1 overflow-y-auto py-3 px-2">
         <ul class="space-y-0.5">${items}</ul>

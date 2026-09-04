@@ -3,7 +3,9 @@ import { fail, json2, ok, warn } from '../services/odooClient'
 
 export const exercise = createExercise({
   slug: 'practica_instalar_odoo',
-  specificFields: [{ key: 'productName', label: 'Nom producte prova', type: 'text', placeholder: 'Producte_Prova_API o Producte_Prova_API_2026' }],
+  specificFields: [
+    { key: 'modelName', label: 'Model principal', type: 'text', placeholder: '' },
+    { key: 'productName', label: 'Nom producte prova', type: 'text', placeholder: 'Producte_Prova_API o Producte_Prova_API_2026' }],
   createTests: (values) => [
     {
       title: 'Producte de prova existent',
