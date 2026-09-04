@@ -197,6 +197,25 @@ Executem el comandament psql de forma interactiva a la base de dades proves i am
 
 Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, excepte config i addons. Això permet compartir el codi i la configuració d'Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.
 
+#### En Incus
+
+Si estem creant el docker dins d'un contenidor `incus` cal fer algunes configuracions més:
+
+En docker-compose.yml, al contenidor de la base de dades cal afegir:
+
+```yml
+    security_opt:
+      - apparmor=unconfined
+```
+
+En el sistema anfitriò cal activar els contenidors niuats:
+
+```bash
+incus config set nombre_de_tu_contenedor security.nesting=true
+incus config set nombre_de_tu_contenedor security.syscalls.intercept.mknod=true
+incus config set nombre_de_tu_contenedor security.syscalls.intercept.setxattr=true
+```
+
 #### Mode desenvolupador en Docker
 
 Com es pot veure, hem configurat un directori per als mòduls. En aquest directori farem els `scaffold`. Amés hem afegit al comandament `--dev=all`. Això simplifica molt el desenvolupament, ja que molts dels canvis provoquen un reinici del servidor i actualització d'algunes parts dels mòduls. 
