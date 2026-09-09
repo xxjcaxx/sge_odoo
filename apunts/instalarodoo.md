@@ -525,6 +525,44 @@ Cada empresa té unes necessitats i aquesta pregunta pot tenir moltes respostes.
 
 La resposta continúa sense ser clara. Cada empresa té unes posibilitats i necessitats. Una micro-empresa amb pocs ordinadors i sols necessitar de intranet pot instal·lar en un Docker en un servidor de baix consum amb copies de seguretat periòdiques. Una empresa menuda pot desplegar en VPS o PAAS amb preus predefinits i controlats i anar augmentant conforme ho necessiten. Una empresa més gran pot decidir-se per núvols més de baix nivell (IAAS) o per una instal·lació on-premise més seria amb alta disponibilitat a la propia empresa. Un SAAS pot ser útil per a empreses que no necessiten cap personalització. Si el negoci és donar el propi servei d'Odoo, es pot optar per contractar un IAAS i a sobre, donar un servei SAAS amb personalitzacions a mida i cobrar pel servei i per les personalitzacions.
 
+## Instal·lar en un entorn virtual **UV**
+
+https://www.youtube.com/watch?v=Ab4SGiJogzM 
+https://docs.astral.sh/uv/
+
+Odoo no deixa de ser un programa `Python` interpretable. Si aquest capítol té varis metodes d'instal·lació és perquè símplement descarregar el repositori i fer `python3 odoo-bin` és viable, però pot donar molts problemes. 
+
+El problema de Python és que s'han de gestionar moltes llibreries i cada projecte necessita unes i de vegades distintes versions de la mateixa. Python compta amb `pip` per gestionar paquets, però el propi `pip` dona advertències quan vols instal·lar un paquet de forma global.
+
+Docker, Incus, Venv, Màquines virtuals... són distintes solucions a aquest problema. L'instal·lació amb paquets oficials .deb, per exemple, que es veu a aquest manual també, sol funcionar bé, però és acceptable sols en una màquina virtual o contenidor dedicat a Odoo.
+
+Docker és una bona manera d'encapsular Odoo i altres servicis com Postgres, però una manera més lleugera d'executar Odoo, si ja tenim la base de dades, és amb `venv` o `uv`. 
+
+Una vegada instal·lat `uv`:
+
+```bash
+mkdir odoo_uv
+cd odoo_uv
+uv init --python 3.12 # o la versió que necessitem
+```
+
+Es creen varis arxius, ens interessa observar què passa en `pyproject.toml`. Guarda l'informació necessària per a generar un entorn igual amb totes les dependències. 
+
+No gastarem `pip install`, ho farem amb `uv add`.
+
+Ens descarreguem els `requirements.txt` d'Odoo: https://github.com/odoo/odoo/blob/master/requirements.txt 
+
+```bash 
+uv add -r requirements.txt
+```
+
+I després, en el directori `odoo_uv`: 
+
+```bash
+./.venv/bin/python ~/odoo/odoo-bin -c ~/config/odoo.conf # Suposant que Odoo està descarregat ahí. 
+```
+
+> Cal crear un `.gitignore` amb el `.venv` i altres fitxers que no volem posar en un repositori públic.
 
 ## Instal·lar en Debian i Ubuntu
 
