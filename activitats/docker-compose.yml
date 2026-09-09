@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     container_name: mi-app
     restart: unless-stopped
+    security_opt:
+      - apparmor=unconfined
     ports:
       - "3000:3000"
     environment:

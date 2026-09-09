@@ -21,9 +21,12 @@
     "vite": "^8.0.0"
   },
   "dependencies": {
-    "better-sqlite3": "^12.6.2",
+    "better-sqlite3": "^12.11.1",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "marked": "^17.0.4"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
   }
 }

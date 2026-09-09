@@ -1,9 +1,12 @@
 # =========================
 # Build
 # =========================
-FROM node:22-alpine AS build
+FROM node:22-slim AS build
 
 WORKDIR /app
+
+# Cambiar temporalmente a root para permitir la compilación de paquetes nativos
+USER root
 
 COPY package*.json ./
 
@@ -17,16 +20,18 @@ RUN npm run build
 # =========================
 # Production
 # =========================
-FROM node:22-alpine AS production
+FROM node:22-slim AS production
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
+# Cambiar también a root en producción si vas a copiar los node_modules con permisos correctos
+USER root
+
 COPY package*.json ./
 
-RUN npm ci --omit=dev
-
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/server ./server
 
