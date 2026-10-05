@@ -137,7 +137,7 @@ compose](https://docs.docker.com/compose/) com aquest:
 services:
   odoo:
     container_name: odoo
-    image: odoo:18.0
+    image: odoo:19.0
     depends_on:
       - db
     ports:
@@ -215,6 +215,8 @@ incus config set nombre_de_tu_contenedor security.nesting=true
 incus config set nombre_de_tu_contenedor security.syscalls.intercept.mknod=true
 incus config set nombre_de_tu_contenedor security.syscalls.intercept.setxattr=true
 ```
+
+> En Incus funciona millor amb Debian/13 i docker natiu. 
 
 #### Mode desenvolupador en Docker
 

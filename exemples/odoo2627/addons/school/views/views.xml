@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="school.list">
+      <field name="name">school list</field>
+      <field name="model">school.school</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="school.action_student_window">
+      <field name="name">Students</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="school.action_classroom_window">
+      <field name="name">Classrooms</field>
+      <field name="res_model">school.classroom</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="school.action_teacher_window">
+      <field name="name">Teachers</field>
+      <field name="res_model">school.teacher</field>
+      <field name="view_mode">list,form</field>
+    </record> 
+
+
+ 
+
+    <!-- Top menu item -->
+
+    <menuitem name="School" id="school.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Management" id="school.menu_management" parent="school.menu_root"/>
+  
+    <!-- actions -->
+
+    <menuitem name="Students" id="school.menu_students" parent="school.menu_management"
+              action="school.action_student_window"/>
+    <menuitem name="Classrooms" id="school.menu_classrooms" parent="school.menu_management"
+              action="school.action_classroom_window"/>
+    <menuitem name="Teachers" id="school.menu_teachers" parent="school.menu_management"
+              action="school.action_teacher_window"/>
+  
+  </data>
+</odoo>
