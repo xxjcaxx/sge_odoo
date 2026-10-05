@@ -479,6 +479,12 @@ Exemple https://github.com/bmya/claude-odoo-api
 
 Inclús si no necessitem Odoo com a intermediari, podem crear un MCP que interactue directament amb la base de dades d'Odoo mitjançant connexions directes a la base de dades. Aquesta arquitectura és més complexa però pot ser més eficient en termes de rendiment i permet una integració més profunda amb les dades d'Odoo. 
 
+### Utilitzar el MCP oficial d'Odoo
+
+https://www.youtube.com/watch?v=s7g97dBRNXU 
+
+És l'opció més interessant, ja que està desenvolupat per la gent d'Odoo. Es diu `ai_mcp`. Sols està disponible per a la versió Enterprise. 
+
 ### Fer un MCP amb FastMCP contra JSON-2 
 
 FastMCP és una biblioteca que facilita la creació de MCPs de manera ràpida i senzilla. Permet definir les funcions que la IA pot invocar i com aquestes funcions interactuen amb Odoo. FastMCP és ideal per a desenvolupadors que volen crear connectors MCP de manera ràpida i eficient, ja que proporciona una estructura clara i simplificada per a la creació de MCPs. A més, FastMCP és compatible amb Python i JavaScript, el que permet una gran flexibilitat en la implementació del MCP.
