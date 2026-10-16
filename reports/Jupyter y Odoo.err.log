@@ -1,31 +1,168 @@
 Traceback (most recent call last):
-  File "/home/jose/.local/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/runner/.local/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 1305, in execute
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 1323, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/jupyter_core/utils/__init__.py", line 168, in wrapped
+  File "/home/runner/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 705, in async_execute
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 1058, in async_execute_cell
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import odoorpc
+import json
+import urllib.request
+
+HOST = 'localhost'
+PORT = 8069
+DB = 'proves2'
+API_KEY = '8256fe38dcf41aeece425577ddae88c56c5fe8d7'
+
+def json_2(url, body):
+    print(json.dumps(body).encode())
+    req = urllib.request.Request(url=url, data=json.dumps(body).encode(), headers={
+        "Content-Type":"application/json",
+        "Authorization": "Bearer %s" % API_KEY,
+        "X-Odoo-Database": DB
+    })
+    reply = json.loads(urllib.request.urlopen(req).read().decode('UTF-8'))
+    
+    return reply
+
+
+# Test
+
+url = "http://%s:%s/json/2/res.partner/search_read" % (HOST, PORT)
+body = {
+    "domain": [["display_name","ilike",""]],  # No filtra res
+    "fields": [
+        "display_name"
+    ],
+    "limit": 20
+}
+
+print(json_2(url, body))
 ------------------
 
+----- stdout -----
+b'{"domain": [["display_name", "ilike", ""]], "fields": ["display_name"], "limit": 20}'
+------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01modoorpc[39;00m
+[31m---------------------------------------------------------------------------[39m
+[31mConnectionRefusedError[39m                    Traceback (most recent call last)
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:1344[39m, in [36mAbstractHTTPHandler.do_open[39m[34m(self, http_class, req, **http_conn_args)[39m
+[32m   1343[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1344[39m     [30;43mh[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mget_method[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mselector[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m,[39;49m
+[32m   1345[39m [30;43m              [39;49m[30;43mencode_chunked[39;49m[30;43m=[39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mhas_header[39;49m[30;43m([39;49m[30;43m'[39;49m[30;43mTransfer-encoding[39;49m[30;43m'[39;49m[30;43m)[39;49m[30;43m)[39;49m
+[32m   1346[39m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
 
-[0;31mModuleNotFoundError[0m: No module named 'odoorpc'
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1365[39m, in [36mHTTPConnection.request[39m[34m(self, method, url, body, headers, encode_chunked)[39m
+[32m   1364[39m [38;5;250m[39m[33;03m"""Send a complete request to the server."""[39;00m
+[32m-> [39m[32m1365[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_send_request[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mbody[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencode_chunked[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1411[39m, in [36mHTTPConnection._send_request[39m[34m(self, method, url, body, headers, encode_chunked)[39m
+[32m   1410[39m     body = _encode(body, [33m'[39m[33mbody[39m[33m'[39m)
+[32m-> [39m[32m1411[39m [30;43mself[39;49m[30;43m.[39;49m[30;43mendheaders[39;49m[30;43m([39;49m[30;43mbody[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencode_chunked[39;49m[30;43m=[39;49m[30;43mencode_chunked[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1360[39m, in [36mHTTPConnection.endheaders[39m[34m(self, message_body, encode_chunked)[39m
+[32m   1359[39m     [38;5;28;01mraise[39;00m CannotSendHeader()
+[32m-> [39m[32m1360[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_send_output[39;49m[30;43m([39;49m[30;43mmessage_body[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencode_chunked[39;49m[30;43m=[39;49m[30;43mencode_chunked[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1120[39m, in [36mHTTPConnection._send_output[39m[34m(self, message_body, encode_chunked)[39m
+[32m   1119[39m [38;5;28;01mdel[39;00m [38;5;28mself[39m._buffer[:]
+[32m-> [39m[32m1120[39m [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mmsg[39;49m[30;43m)[39;49m
+[32m   1122[39m [38;5;28;01mif[39;00m message_body [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1123[39m 
+[32m   1124[39m     [38;5;66;03m# create a consistent interface to message_body[39;00m
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1064[39m, in [36mHTTPConnection.send[39m[34m(self, data)[39m
+[32m   1063[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.auto_open:
+[32m-> [39m[32m1064[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1065[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1030[39m, in [36mHTTPConnection.connect[39m[34m(self)[39m
+[32m   1029[39m sys.audit([33m"[39m[33mhttp.client.connect[39m[33m"[39m, [38;5;28mself[39m, [38;5;28mself[39m.host, [38;5;28mself[39m.port)
+[32m-> [39m[32m1030[39m [38;5;28mself[39m.sock = [30;43mself[39;49m[30;43m.[39;49m[30;43m_create_connection[39;49m[30;43m([39;49m
+[32m   1031[39m [30;43m    [39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mhost[39;49m[30;43m,[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mport[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43msource_address[39;49m[30;43m)[39;49m
+[32m   1032[39m [38;5;66;03m# Might fail in OSs that don't implement TCP_NODELAY[39;00m
+
+[36mFile [39m[32m/usr/lib/python3.12/socket.py:852[39m, in [36mcreate_connection[39m[34m(address, timeout, source_address, all_errors)[39m
+[32m    851[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m all_errors:
+[32m--> [39m[32m852[39m     [38;5;28;01mraise[39;00m exceptions[[32m0[39m]
+[32m    853[39m [38;5;28;01mraise[39;00m ExceptionGroup([33m"[39m[33mcreate_connection failed[39m[33m"[39m, exceptions)
+
+[36mFile [39m[32m/usr/lib/python3.12/socket.py:837[39m, in [36mcreate_connection[39m[34m(address, timeout, source_address, all_errors)[39m
+[32m    836[39m     sock.bind(source_address)
+[32m--> [39m[32m837[39m [30;43msock[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43msa[39;49m[30;43m)[39;49m
+[32m    838[39m [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+[31mConnectionRefusedError[39m: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+[31mURLError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 32[39m
+[32m     28[39m     ],
+[32m     29[39m     [33m"limit"[39m: [32m20[39m
+[32m     30[39m }
+[32m     31[39m 
+[32m---> [39m[32m32[39m print(json_2(url, body))
+
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 16[39m, in [36mjson_2[39m[34m(url, body)[39m
+[32m     12[39m         [33m"Content-Type"[39m:[33m"application/json"[39m,
+[32m     13[39m         [33m"Authorization"[39m: [33m"Bearer %s"[39m % API_KEY,
+[32m     14[39m         [33m"X-Odoo-Database"[39m: DB
+[32m     15[39m     })
+[32m---> [39m[32m16[39m     reply = json.loads(urllib.request.urlopen(req).read().decode([33m'UTF-8'[39m))
+[32m     17[39m 
+[32m     18[39m     [38;5;28;01mreturn[39;00m reply
+
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:215[39m, in [36murlopen[39m[34m(url, data, timeout, cafile, capath, cadefault, context)[39m
+[32m    213[39m [38;5;28;01melse[39;00m:
+[32m    214[39m     opener = _opener
+[32m--> [39m[32m215[39m [38;5;28;01mreturn[39;00m [30;43mopener[39;49m[30;43m.[39;49m[30;43mopen[39;49m[30;43m([39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtimeout[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:515[39m, in [36mOpenerDirector.open[39m[34m(self, fullurl, data, timeout)[39m
+[32m    512[39m     req = meth(req)
+[32m    514[39m sys.audit([33m'[39m[33murllib.Request[39m[33m'[39m, req.full_url, req.data, req.headers, req.get_method())
+[32m--> [39m[32m515[39m response = [30;43mself[39;49m[30;43m.[39;49m[30;43m_open[39;49m[30;43m([39;49m[30;43mreq[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdata[39;49m[30;43m)[39;49m
+[32m    517[39m [38;5;66;03m# post-process response[39;00m
+[32m    518[39m meth_name = protocol+[33m"[39m[33m_response[39m[33m"[39m
+
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:532[39m, in [36mOpenerDirector._open[39m[34m(self, req, data)[39m
+[32m    529[39m     [38;5;28;01mreturn[39;00m result
+[32m    531[39m protocol = req.type
+[32m--> [39m[32m532[39m result = [30;43mself[39;49m[30;43m.[39;49m[30;43m_call_chain[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mhandle_open[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mprotocol[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mprotocol[39;49m[30;43m [39;49m[30;43m+[39;49m
+[32m    533[39m [30;43m                          [39;49m[30;43m'[39;49m[30;43m_open[39;49m[30;43m'[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m)[39;49m
+[32m    534[39m [38;5;28;01mif[39;00m result:
+[32m    535[39m     [38;5;28;01mreturn[39;00m result
+
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:492[39m, in [36mOpenerDirector._call_chain[39m[34m(self, chain, kind, meth_name, *args)[39m
+[32m    490[39m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[32m    491[39m     func = [38;5;28mgetattr[39m(handler, meth_name)
+[32m--> [39m[32m492[39m     result = [30;43mfunc[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m)[39;49m
+[32m    493[39m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    494[39m         [38;5;28;01mreturn[39;00m result
+
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:1373[39m, in [36mHTTPHandler.http_open[39m[34m(self, req)[39m
+[32m   1372[39m [38;5;28;01mdef[39;00m [34mhttp_open[39m([38;5;28mself[39m, req):
+[32m-> [39m[32m1373[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mdo_open[39;49m[30;43m([39;49m[30;43mhttp[39;49m[30;43m.[39;49m[30;43mclient[39;49m[30;43m.[39;49m[30;43mHTTPConnection[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/urllib/request.py:1347[39m, in [36mAbstractHTTPHandler.do_open[39m[34m(self, http_class, req, **http_conn_args)[39m
+[32m   1344[39m         h.request(req.get_method(), req.selector, req.data, headers,
+[32m   1345[39m                   encode_chunked=req.has_header([33m'[39m[33mTransfer-encoding[39m[33m'[39m))
+[32m   1346[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+[32m-> [39m[32m1347[39m         [38;5;28;01mraise[39;00m URLError(err)
+[32m   1348[39m     r = h.getresponse()
+[32m   1349[39m [38;5;28;01mexcept[39;00m:
+
+[31mURLError[39m: <urlopen error [Errno 111] Connection refused>
 
