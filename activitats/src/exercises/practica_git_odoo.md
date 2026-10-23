@@ -21,7 +21,7 @@ Heu de versionar la vostra configuració i els vostres mòduls.
 Heu de crear un mòdul nou (podeu usar el comandament `scaffold`) dins de la carpeta `addons`.
 *   **Nom del mòdul:** `practica_git_sge`.
 *   **Contingut:** El mòdul ha de definir un nou model de dades a Python.
-*   **Nom del model:** El model s'ha d'anomenar exactament **`practica_git_sge.practica`**.
+*   **Nom del model:** El model s'ha d'anomenar per exemple **`practica_git_sge.practica`**.
     *   *Exemple de codi a `models/models.py`:*
         ```python
         from odoo import models, fields

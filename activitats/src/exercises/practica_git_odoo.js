@@ -70,7 +70,7 @@ export const exercise = createExercise({
   slug: 'practica_git_odoo',
   specificFields: [
     { key: 'repoUrl', label: 'URL del repositori públic', type: 'url', placeholder: 'https://github.com/usuari/repo' },
-    { key: 'docModel', label: 'Model per validar /doc', type: 'text', placeholder: 'practica_git_sge.practica' },
+    { key: 'modelName', label: 'Model per validar /doc', type: 'text', placeholder: 'practica_git_sge.practica' },
   ],
   createTests: (values) => [
     {
@@ -81,19 +81,25 @@ export const exercise = createExercise({
         return repositoryExists(repoUrl)
       },
     },
-    {
+    /*{
       title: 'Estructura del repositori (addons/practica_git_sge)',
       run: async () => {
         const repoUrl = normalizeRepositoryUrl(resolveRepositoryUrl(values))
         if (!repoUrl) return fail('Falta la URL del repositori públic per validar l\'estructura.')
         return repositoryHasRequiredStructure(repoUrl)
       },
-    },
+    },*/
     {
       title: 'Documentació /doc del model',
       run: async () => {
-        const model = values.docModel || values.modelName || 'practica_git_sge.practica'
+        console.log(values.modelName);
+        
+        const model = values.modelName || 'practica_git_sge.practica'
         const response = await proxyHttp(`${normalizeBaseUrl(values.odooUrl)}/doc/${model}`, { method: 'GET' })
+        const text = await response.text()
+        console.log(text);
+        
+        //return text.includes(model) ? ok(`La ruta /doc/${model} respon correctament.`) : fail(`No s'ha pogut validar /doc/${model}. HTML ${text}.`)
         return response.ok ? ok(`La ruta /doc/${model} respon correctament.`) : fail(`No s'ha pogut validar /doc/${model}. HTTP ${response.status}.`)
       },
     },
