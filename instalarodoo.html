@@ -16,41 +16,44 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -58,40 +61,37 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'instalarodoo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Desenvolupar per a Odoo" href="odoo.html" />
     <link rel="prev" title="Introducció a Odoo" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -99,7 +99,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,15 +106,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -124,7 +167,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,21 +198,17 @@
     
     
     <img src="_static/odoo_logo.svg" class="logo__image only-light" alt="Apunts d'Odoo - Home"/>
-    <script>document.write(`<img src="_static/odoo_logo.svg" class="logo__image only-dark" alt="Apunts d'Odoo - Home"/>`);</script>
+    <img src="_static/odoo_logo.svg" class="logo__image only-dark pst-js-only" alt="Apunts d'Odoo - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -186,12 +226,13 @@
 <li class="toctree-l1"><a class="reference internal" href="accions_menus.html">Accions i menús</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wizards.html">Wizards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers i API Externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="client_web.html">Client Web</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bi.html">Business Intelligence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter a Odoo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo_ia.html">Odoo i la intel·ligència artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automatitzacions_odoo.html">Automatizacions amb Odoo</a></li>
 </ul>
 
     </div>
@@ -200,9 +241,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -332,7 +378,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -346,25 +392,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -386,9 +424,10 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-amb-docker">Instal·lar Amb Docker</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amb-docker-compose">Amb Docker Compose</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#en-incus">En Incus</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-desenvolupador-en-docker">Mode desenvolupador en Docker</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#git-i-odoo-en-docker">Git i Odoo en Docker</a></li>
 </ul>
@@ -401,6 +440,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-installar-odoo">On instal·lar Odoo?</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-en-un-entorn-virtual-uv">Instal·lar en un entorn virtual <strong>UV</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-en-debian-i-ubuntu">Instal·lar en Debian i Ubuntu</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracio-de-la-ruta-dels-moduls">Configuració de la ruta dels mòduls</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depurar-odoo">Depurar Odoo</a></li>
@@ -457,35 +497,36 @@ document.write(`
 <li><p><a class="reference internal" href="#on-installar-odoo" id="id6">On instal·lar Odoo?</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#installar-en-debian-i-ubuntu" id="id7">Instal·lar en Debian i Ubuntu</a></p>
+<li><p><a class="reference internal" href="#installar-en-un-entorn-virtual-uv" id="id7">Instal·lar en un entorn virtual <strong>UV</strong></a></p></li>
+<li><p><a class="reference internal" href="#installar-en-debian-i-ubuntu" id="id8">Instal·lar en Debian i Ubuntu</a></p>
 <ul>
-<li><p><a class="reference internal" href="#configuracio-de-la-ruta-dels-moduls" id="id8">Configuració de la ruta dels mòduls</a></p></li>
-<li><p><a class="reference internal" href="#depurar-odoo" id="id9">Depurar Odoo</a></p></li>
-<li><p><a class="reference internal" href="#millorar-l-eixida-de-log" id="id10">Millorar l’eixida de Log</a></p></li>
-<li><p><a class="reference internal" href="#opcions-de-log" id="id11">Opcions de log</a></p></li>
-<li><p><a class="reference internal" href="#debug-mode" id="id12">Debug mode</a></p></li>
-<li><p><a class="reference internal" href="#posar-en-produccio-en-ubuntu" id="id13">Posar en producció en Ubuntu</a></p></li>
-<li><p><a class="reference internal" href="#odoo-per-https" id="id14">Odoo per HTTPS</a></p></li>
+<li><p><a class="reference internal" href="#configuracio-de-la-ruta-dels-moduls" id="id9">Configuració de la ruta dels mòduls</a></p></li>
+<li><p><a class="reference internal" href="#depurar-odoo" id="id10">Depurar Odoo</a></p></li>
+<li><p><a class="reference internal" href="#millorar-l-eixida-de-log" id="id11">Millorar l’eixida de Log</a></p></li>
+<li><p><a class="reference internal" href="#opcions-de-log" id="id12">Opcions de log</a></p></li>
+<li><p><a class="reference internal" href="#debug-mode" id="id13">Debug mode</a></p></li>
+<li><p><a class="reference internal" href="#posar-en-produccio-en-ubuntu" id="id14">Posar en producció en Ubuntu</a></p></li>
+<li><p><a class="reference internal" href="#odoo-per-https" id="id15">Odoo per HTTPS</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#seguretat-en-odoo" id="id15">Seguretat en Odoo</a></p>
+<li><p><a class="reference internal" href="#seguretat-en-odoo" id="id16">Seguretat en Odoo</a></p>
 <ul>
-<li><p><a class="reference internal" href="#persistencia-de-les-dades" id="id16">Persistència de les dades</a></p></li>
-<li><p><a class="reference internal" href="#alta-disponibilitat" id="id17">Alta disponibilitat</a></p></li>
-<li><p><a class="reference internal" href="#usuaris-i-permisos" id="id18">Usuaris i permisos</a></p></li>
+<li><p><a class="reference internal" href="#persistencia-de-les-dades" id="id17">Persistència de les dades</a></p></li>
+<li><p><a class="reference internal" href="#alta-disponibilitat" id="id18">Alta disponibilitat</a></p></li>
+<li><p><a class="reference internal" href="#usuaris-i-permisos" id="id19">Usuaris i permisos</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#creacio-de-una-base-de-dades" id="id19">Creació de una base de dades</a></p></li>
-<li><p><a class="reference internal" href="#errors-documentats" id="id20">Errors documentats</a></p>
+<li><p><a class="reference internal" href="#creacio-de-una-base-de-dades" id="id20">Creació de una base de dades</a></p></li>
+<li><p><a class="reference internal" href="#errors-documentats" id="id21">Errors documentats</a></p>
 <ul>
-<li><p><a class="reference internal" href="#error-amb-el-rol-odoo" id="id21">Error amb el rol Odoo</a></p></li>
-<li><p><a class="reference internal" href="#error-amb-utf-8" id="id22">Error amb UTF-8</a></p></li>
-<li><p><a class="reference internal" href="#recuperar-la-contrasenya-de-l-administrador" id="id23">Recuperar la contrasenya de l’administrador</a></p></li>
-<li><p><a class="reference internal" href="#problemes-en-els-repositoris-oficials-d-ubuntu" id="id24">Problemes en els repositoris oficials d’ubuntu</a></p></li>
-<li><p><a class="reference internal" href="#no-connecta-amb-postgresql" id="id25">No connecta amb PostgreSQL</a></p></li>
+<li><p><a class="reference internal" href="#error-amb-el-rol-odoo" id="id22">Error amb el rol Odoo</a></p></li>
+<li><p><a class="reference internal" href="#error-amb-utf-8" id="id23">Error amb UTF-8</a></p></li>
+<li><p><a class="reference internal" href="#recuperar-la-contrasenya-de-l-administrador" id="id24">Recuperar la contrasenya de l’administrador</a></p></li>
+<li><p><a class="reference internal" href="#problemes-en-els-repositoris-oficials-d-ubuntu" id="id25">Problemes en els repositoris oficials d’ubuntu</a></p></li>
+<li><p><a class="reference internal" href="#no-connecta-amb-postgresql" id="id26">No connecta amb PostgreSQL</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#enllacos" id="id26">Enllaços</a></p></li>
+<li><p><a class="reference internal" href="#enllacos" id="id27">Enllaços</a></p></li>
 </ul>
 </nav>
 <p>Odoo pot ser instal·lat en qualsevol sistema
@@ -535,7 +576,7 @@ sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> <
 </div>
 <p>En Docker és molt senzill desplegar Odoo, tan sols fa falta aquests
 comandaments:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># docker run -d --restart=&quot;always&quot; -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:9.4
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># docker run -d --restart=&quot;always&quot; -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:15.0
 # docker run --restart=&quot;always&quot; -p 8069:8069 --name odoo --link db:db -t odoo
 # docker stop odoo
 # docker start -a odoo
@@ -606,7 +647,7 @@ compose</a> com aquest:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">odoo</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">odoo</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">odoo:18.0</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">odoo:19.0</span>
 <span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
@@ -652,11 +693,31 @@ addons_path = /mnt/extra-addons
 </div>
 <p>Si volem entrar en la base de dades postgreSQL per a fer coses
 manualment, podem executar:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker exec -ti postgresql psql proves -U odoo
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-ti<span class="w"> </span>postgresql<span class="w"> </span>psql<span class="w"> </span>proves<span class="w"> </span>-U<span class="w"> </span>odoo
+<span class="w">    </span><span class="c1"># o</span>
+<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>db<span class="w"> </span>psql<span class="w"> </span>proves<span class="w"> </span>-U<span class="w"> </span>odoo
 </pre></div>
 </div>
 <p>Executem el comandament psql de forma interactiva a la base de dades proves i amb l’usuari odoo.</p>
 <p>Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, excepte config i addons. Això permet compartir el codi i la configuració d’Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.</p>
+<section id="en-incus">
+<h4>En Incus<a class="headerlink" href="#en-incus" title="Link to this heading">#</a></h4>
+<p>Si estem creant el docker dins d’un contenidor <code class="docutils literal notranslate"><span class="pre">incus</span></code> cal fer algunes configuracions més:</p>
+<p>En docker-compose.yml, al contenidor de la base de dades cal afegir:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>    security_opt:
+      - apparmor=unconfined
+</pre></div>
+</div>
+<p>En el sistema anfitriò cal activar els contenidors niuats:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>incus<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>nombre_de_tu_contenedor<span class="w"> </span>security.nesting<span class="o">=</span><span class="nb">true</span>
+incus<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>nombre_de_tu_contenedor<span class="w"> </span>security.syscalls.intercept.mknod<span class="o">=</span><span class="nb">true</span>
+incus<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>nombre_de_tu_contenedor<span class="w"> </span>security.syscalls.intercept.setxattr<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>En Incus funciona millor amb Debian/13 i docker natiu.</p>
+</div></blockquote>
+</section>
 <section id="mode-desenvolupador-en-docker">
 <h4>Mode desenvolupador en Docker<a class="headerlink" href="#mode-desenvolupador-en-docker" title="Link to this heading">#</a></h4>
 <p>Com es pot veure, hem configurat un directori per als mòduls. En aquest directori farem els <code class="docutils literal notranslate"><span class="pre">scaffold</span></code>. Amés hem afegit al comandament <code class="docutils literal notranslate"><span class="pre">--dev=all</span></code>. Això simplifica molt el desenvolupament, ja que molts dels canvis provoquen un reinici del servidor i actualització d’algunes parts dels mòduls.</p>
@@ -674,8 +735,8 @@ manualment, podem executar:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;--dev=all&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-u&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;modul&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-d&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;basededades&quot;</span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
-<p>Però sols quan ja existeix la base de dades i el mòdul està instal·lat. En cas d’arrancar docker amb aquest comandament per primera vegada, es crearà la base de dades amb una confoguració estàndard que no ens interessa en Anglés, sense dades de demo i amb usuari/password admin/admin.</p>
-<p>Amés, sols s’executarà quan arranquem el Docker, per tant, cal fer un <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> i tornar a arrancar els contenidors de nou. Això suposa molta feina, així que ho podem simplificar afegint a <code class="docutils literal notranslate"><span class="pre">Visual</span> <span class="pre">Studio</span> <span class="pre">code</span></code> una extensió com <code class="docutils literal notranslate"><span class="pre">VS</span> <span class="pre">Code</span> <span class="pre">Action</span> <span class="pre">Buttons</span></code> i configurant el seu <code class="docutils literal notranslate"><span class="pre">json</span></code> així:</p>
+<p>Però sols quan ja existeix la base de dades i el mòdul està instal·lat. En cas d’arrancar docker amb aquest comandament per primera vegada, es crearà la base de dades amb una configuració estàndard que no ens interessa en anglès, sense dades de demo i amb usuari/password admin/admin.</p>
+<p>Amés, sols s’executarà quan arranquem el Docker, per tant, cal fer un <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">down</span></code> i tornar a arrancar els contenidors de nou. Això suposa molta feina, així que ho podem simplificar afegint a <code class="docutils literal notranslate"><span class="pre">Visual</span> <span class="pre">Studio</span> <span class="pre">code</span></code> una extensió com <code class="docutils literal notranslate"><span class="pre">VS</span> <span class="pre">Code</span> <span class="pre">Action</span> <span class="pre">Buttons</span></code> i configurant el seu <code class="docutils literal notranslate"><span class="pre">json</span></code> així:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nt">&quot;commands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(triangle-right) Run Odoo&quot;</span><span class="p">,</span>
@@ -698,7 +759,9 @@ manualment, podem executar:</p>
 </div></blockquote>
 <p>En <strong>Pycharm</strong> és encara més sencill perquè es poden crear en <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Edit</span> <span class="pre">configurations...</span></code> creant un nou <code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">Script</span></code> amb els comandaments anteriors.</p>
 <p>Per veure els logs podem fer:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker logs odoo -f
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>docker<span class="w"> </span>logs<span class="w"> </span>odoo<span class="w"> </span>-f
+<span class="w">    </span><span class="c1">#o</span>
+<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>odoo<span class="w"> </span>-f
 </pre></div>
 </div>
 <div class="tip admonition">
@@ -706,10 +769,11 @@ manualment, podem executar:</p>
 <p>Els logs es veuen en color gràcies a posar <code class="docutils literal notranslate"><span class="pre">tty:true</span></code> en el fitxer de configuració.</p>
 </div>
 <p>Per fer un mòdul nou:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker exec -ti odoo  odoo scaffold proves /mnt/extra-addons
-docker exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-ti<span class="w"> </span>odoo<span class="w">  </span>odoo<span class="w"> </span>scaffold<span class="w"> </span>proves<span class="w"> </span>/mnt/extra-addons
+<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-ti<span class="w"> </span>odoo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/mnt/extra-addons/proves
 </pre></div>
 </div>
+<p>Pot ser que tinguem un problema de permisos en aquest pas. És important recordad que la carpeta <code class="docutils literal notranslate"><span class="pre">addons</span></code> de fora pot o no ser propietat de l’usuari del docker depen de si existeix abans o no. Per tant, cal donar-i permisos 777 a la de fora y també dins del docker a la de dins.</p>
 <div class="tip admonition">
 <p class="admonition-title">Shell</p>
 <p>Si volem executar el <code class="docutils literal notranslate"><span class="pre">shell</span></code> de Odoo podem ejecutar el comandament:</p>
@@ -761,12 +825,25 @@ pytest_cache/
 </pre></div>
 </div>
 <p>Com que els volumns de la base de dades i del propi Odoo no van a estar a la carpeta, no cal ignorar l’instal·lació d’Odoo. Es pot crear un repositori en Github i després configurar la carpeta sencera amb <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>, el directori config, nginx o addons, per exemple. Al descarregar el repositori es generará un entorn de treball igual que l’original, però sense les dades de la base de dades.</p>
+<p><strong>Analitzar el codi oficial</strong></p>
+<p>El codi d’Odoo està a Github. si volem veure com estan fets els mòduls:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>--filter<span class="o">=</span>blob:none<span class="w"> </span>--sparse<span class="w"> </span>https://github.com/odoo/odoo.git
+<span class="nb">cd</span><span class="w"> </span>odoo
+git<span class="w"> </span>sparse-checkout<span class="w"> </span><span class="nb">set</span><span class="w"> </span>addons
+</pre></div>
+</div>
+<p>I obrir el directori amb l’editor de text.</p>
 </section>
 </section>
 </section>
 <section id="posar-en-produccio-amb-docker">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Posar en producció amb docker</a><a class="headerlink" href="#posar-en-produccio-amb-docker" title="Link to this heading">#</a></h2>
 <p>Si podem deixar correguent un Docker a un servidor amb connexió a Internet amb els ports exposats, ja estaria en producció. No obstant això suposa varis problemes de seguretat i rendiment.</p>
+<p>El primer de tot és afegir al contenidor d’Odoo i PostgreSQL en docker-compose:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>restart: always
+</pre></div>
+</div>
+<p>Després cal configurar HTTPs, per a això el posarem a Nginx:</p>
 <section id="docker-de-nginx">
 <h3><a class="toc-backref" href="#id4" role="doc-backlink">Docker de Nginx</a><a class="headerlink" href="#docker-de-nginx" title="Link to this heading">#</a></h3>
 <p>Podem afegir al fitxer del Docker Compose la configuració d’un contenidor Nginx. Aquest implementarà HTTPS i farà de proxy a Odoo.</p>
@@ -930,8 +1007,36 @@ CMD<span class="w"> </span><span class="o">[</span><span class="s2">&quot;nginx&
 <p>La resposta continúa sense ser clara. Cada empresa té unes posibilitats i necessitats. Una micro-empresa amb pocs ordinadors i sols necessitar de intranet pot instal·lar en un Docker en un servidor de baix consum amb copies de seguretat periòdiques. Una empresa menuda pot desplegar en VPS o PAAS amb preus predefinits i controlats i anar augmentant conforme ho necessiten. Una empresa més gran pot decidir-se per núvols més de baix nivell (IAAS) o per una instal·lació on-premise més seria amb alta disponibilitat a la propia empresa. Un SAAS pot ser útil per a empreses que no necessiten cap personalització. Si el negoci és donar el propi servei d’Odoo, es pot optar per contractar un IAAS i a sobre, donar un servei SAAS amb personalitzacions a mida i cobrar pel servei i per les personalitzacions.</p>
 </section>
 </section>
+<section id="installar-en-un-entorn-virtual-uv">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Instal·lar en un entorn virtual <strong>UV</strong></a><a class="headerlink" href="#installar-en-un-entorn-virtual-uv" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=Ab4SGiJogzM">https://www.youtube.com/watch?v=Ab4SGiJogzM</a>
+<a class="reference external" href="https://docs.astral.sh/uv/">https://docs.astral.sh/uv/</a></p>
+<p>Odoo no deixa de ser un programa <code class="docutils literal notranslate"><span class="pre">Python</span></code> interpretable. Si aquest capítol té varis metodes d’instal·lació és perquè símplement descarregar el repositori i fer <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">odoo-bin</span></code> és viable, però pot donar molts problemes.</p>
+<p>El problema de Python és que s’han de gestionar moltes llibreries i cada projecte necessita unes i de vegades distintes versions de la mateixa. Python compta amb <code class="docutils literal notranslate"><span class="pre">pip</span></code> per gestionar paquets, però el propi <code class="docutils literal notranslate"><span class="pre">pip</span></code> dona advertències quan vols instal·lar un paquet de forma global.</p>
+<p>Docker, Incus, Venv, Màquines virtuals… són distintes solucions a aquest problema. L’instal·lació amb paquets oficials .deb, per exemple, que es veu a aquest manual també, sol funcionar bé, però és acceptable sols en una màquina virtual o contenidor dedicat a Odoo.</p>
+<p>Docker és una bona manera d’encapsular Odoo i altres servicis com Postgres, però una manera més lleugera d’executar Odoo, si ja tenim la base de dades, és amb <code class="docutils literal notranslate"><span class="pre">venv</span></code> o <code class="docutils literal notranslate"><span class="pre">uv</span></code>.</p>
+<p>Una vegada instal·lat <code class="docutils literal notranslate"><span class="pre">uv</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>odoo_uv
+<span class="nb">cd</span><span class="w"> </span>odoo_uv
+uv<span class="w"> </span>init<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span><span class="c1"># o la versió que necessitem</span>
+</pre></div>
+</div>
+<p>Es creen varis arxius, ens interessa observar què passa en <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. Guarda l’informació necessària per a generar un entorn igual amb totes les dependències.</p>
+<p>No gastarem <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>, ho farem amb <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span></code>.</p>
+<p>Ens descarreguem els <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> d’Odoo: <a class="github reference external" href="https://github.com/odoo/odoo/blob/master/requirements.txt">odoo/odoo</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>I després, en el directori <code class="docutils literal notranslate"><span class="pre">odoo_uv</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./.venv/bin/python<span class="w"> </span>~/odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>~/config/odoo.conf<span class="w"> </span><span class="c1"># Suposant que Odoo està descarregat ahí. </span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Cal crear un <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> amb el <code class="docutils literal notranslate"><span class="pre">.venv</span></code> i altres fitxers que no volem posar en un repositori públic.</p>
+</div></blockquote>
+</section>
 <section id="installar-en-debian-i-ubuntu">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Instal·lar en Debian i Ubuntu</a><a class="headerlink" href="#installar-en-debian-i-ubuntu" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Instal·lar en Debian i Ubuntu</a><a class="headerlink" href="#installar-en-debian-i-ubuntu" title="Link to this heading">#</a></h2>
 <p>Abans de res, cal preparar un poc el sistema:</p>
 <p>En el cas de Ubuntu o Debian, que és el que ens interessa,
 Odoo proporciona uns repositoris anomenats
@@ -972,7 +1077,7 @@ l’Odoo.</p>
 </div>
 <p><a class="reference external" href="https://asciinema.org/a/122875">Asciinema del procés</a>.</p>
 <section id="configuracio-de-la-ruta-dels-moduls">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Configuració de la ruta dels mòduls</a><a class="headerlink" href="#configuracio-de-la-ruta-dels-moduls" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Configuració de la ruta dels mòduls</a><a class="headerlink" href="#configuracio-de-la-ruta-dels-moduls" title="Link to this heading">#</a></h3>
 <p>Com que la instalació d’Odoo crea lúsuari <strong>odoo</strong>, que és el que tenim
 que utilitzar per al desenvolupament, anem a donar-li una contrasenya:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo passwd odoo
@@ -1004,7 +1109,7 @@ al comandament. Els comandaments són queda, per tant:</p>
 </div>
 </section>
 <section id="depurar-odoo">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Depurar Odoo</a><a class="headerlink" href="#depurar-odoo" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Depurar Odoo</a><a class="headerlink" href="#depurar-odoo" title="Link to this heading">#</a></h3>
 <p>Per crear mòduls o vorer els problemes que estan passant, cal llegir els
 fitxers de log, però hi ha una manera més eficient de fer-ho. Si
 observem el comandament que, realment, està executant odoo:</p>
@@ -1051,7 +1156,7 @@ depurar.</a></p>
 <a class="reference external" href="https://www.odoo.com/documentation/12.0/reference/cmdline.html">https://www.odoo.com/documentation/12.0/reference/cmdline.html</a></p>
 </section>
 <section id="millorar-l-eixida-de-log">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Millorar l’eixida de Log</a><a class="headerlink" href="#millorar-l-eixida-de-log" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Millorar l’eixida de Log</a><a class="headerlink" href="#millorar-l-eixida-de-log" title="Link to this heading">#</a></h3>
 <p>Per afegir als nostres mètodes una eixida de log i facilitar la
 depuració, es pot utilitzar el api de Odoo:</p>
 <p>Al principi del fitxer .py:</p>
@@ -1073,7 +1178,7 @@ depuració, es pot utilitzar el api de Odoo:</p>
 </div>
 </section>
 <section id="opcions-de-log">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Opcions de log</a><a class="headerlink" href="#opcions-de-log" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Opcions de log</a><a class="headerlink" href="#opcions-de-log" title="Link to this heading">#</a></h3>
 <p>Per defecte, Odoo llança el seu log a un fitxer a <strong>/var/log/odoo/</strong>,
 però es pot fer que envía a un altre fitxer amb <strong>–log-file=LOGFILE</strong>.</p>
 <p>Si volem més detall en determinats accions d’Odoo, podem afegir al
@@ -1097,7 +1202,7 @@ Aquesta opció ens ajuda a entendre cóm funciona el ORM.</p></li>
 </div>
 </section>
 <section id="debug-mode">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Debug mode</a><a class="headerlink" href="#debug-mode" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Debug mode</a><a class="headerlink" href="#debug-mode" title="Link to this heading">#</a></h3>
 <p>Odoo permet entrar en mode debug amb <strong>–debug</strong>.</p>
 <p>També es pot importar la bibliteca <strong>pdb</strong> i col·locar un <em>trace</em> en el
 codi que ens interessa:</p>
@@ -1110,12 +1215,12 @@ codi que ens interessa:</p>
 <a class="reference external" href="https://docs.python.org/3/library/pdb.html">https://docs.python.org/3/library/pdb.html</a></p>
 </section>
 <section id="posar-en-produccio-en-ubuntu">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Posar en producció en Ubuntu</a><a class="headerlink" href="#posar-en-produccio-en-ubuntu" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Posar en producció en Ubuntu</a><a class="headerlink" href="#posar-en-produccio-en-ubuntu" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://www.odoo.com/documentation/17.0/administration/install/deploy.html?highlight=workers">https://www.odoo.com/documentation/17.0/administration/install/deploy.html?highlight=workers</a>
 <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd">https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd</a></p>
 </section>
 <section id="odoo-per-https">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Odoo per HTTPS</a><a class="headerlink" href="#odoo-per-https" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Odoo per HTTPS</a><a class="headerlink" href="#odoo-per-https" title="Link to this heading">#</a></h3>
 <p>El servidor Odoo per defecte dona la seua web pel port 8069 i en HTTP
 sense capa de seguretat SSL.</p>
 <p>Per fer que tinga eixa seguretat, necessitem utilitzar un servidor web
@@ -1242,11 +1347,11 @@ modificar-lo per a que no afecte al port 80 d’Odoo.</p>
 </section>
 </section>
 <section id="seguretat-en-odoo">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Seguretat en Odoo</a><a class="headerlink" href="#seguretat-en-odoo" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Seguretat en Odoo</a><a class="headerlink" href="#seguretat-en-odoo" title="Link to this heading">#</a></h2>
 <p>Quan parlem de seguretat en Odoo estem parlant de temes generals que totes les aplicacions web tenen i de temes específics d’Odoo. En general, qualsevol aplicació web té uns mínims de seguretat que passen per donar servici sols en HTTPS, controlar els ports, evitar atacs DDOS, tenir bones contrasenyes…</p>
 <p>En quant al HTTPS, en els apartats corresponents està explicat, a falta de contractar un certificat real. La seguretat i alta disponibilitat del servidor és una qüestió massa complexa per a aquest mòdul i pot ser tasca del cicle d’ASIX. Però podem fer coses específiques d’Odoo per evitar els problemes o per a recuperar-se ràpidament d’ells.</p>
 <section id="persistencia-de-les-dades">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Persistència de les dades</a><a class="headerlink" href="#persistencia-de-les-dades" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Persistència de les dades</a><a class="headerlink" href="#persistencia-de-les-dades" title="Link to this heading">#</a></h3>
 <p>Una empresa no es pot permetre perdre dades. Les formes d’evitar perdre dades en Odoo són múltiples. Si tenim una instal·lació on-premise hem de controlar tots els factors: físics i lògics. Això passa per varies tasques ineludibles:</p>
 <section id="copies-de-seguretat">
 <h4>Còpies de seguretat<a class="headerlink" href="#copies-de-seguretat" title="Link to this heading">#</a></h4>
@@ -1288,11 +1393,11 @@ modificar-lo per a que no afecte al port 80 d’Odoo.</p>
 </section>
 </section>
 <section id="alta-disponibilitat">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Alta disponibilitat</a><a class="headerlink" href="#alta-disponibilitat" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Alta disponibilitat</a><a class="headerlink" href="#alta-disponibilitat" title="Link to this heading">#</a></h3>
 <p>Un sistema empresarial ha d’estar sobre un servidor segur a nivell físic. Això implica SAIs i RAIDs o similars. Si estem utilitzant un VPS en el núvol, no ens preocuparem d’això. Si no, necessitarem un CPD encara que siga discret, amb seguretat física, sistemes d’alimentació ininterrompuda i discs redundants. Amés de sistemes de còpies de seguretat remotes. El sistema es deuria poder recuperar d’un trencament sense interrompre el servici.</p>
 </section>
 <section id="usuaris-i-permisos">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Usuaris i permisos</a><a class="headerlink" href="#usuaris-i-permisos" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Usuaris i permisos</a><a class="headerlink" href="#usuaris-i-permisos" title="Link to this heading">#</a></h3>
 <p>Odoo té un complex sistema d’usuaris, grups, rols i permisos. Un/a administrador d’Odoo ha de portar al dia la gestió granular d’aquests permisos. Amés, deguem distingir els disitints usuaris que tenim que gestionar, de més poderos a menys:</p>
 <ul class="simple">
 <li><p>Root del sistema operatiu: Usuari amb poder total en aquest sistema operatiu, deuria ser un administrador de sistemes.</p></li>
@@ -1306,7 +1411,7 @@ modificar-lo per a que no afecte al port 80 d’Odoo.</p>
 </section>
 </section>
 <section id="creacio-de-una-base-de-dades">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">Creació de una base de dades</a><a class="headerlink" href="#creacio-de-una-base-de-dades" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Creació de una base de dades</a><a class="headerlink" href="#creacio-de-una-base-de-dades" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Atenció</p>
 <p>En general no cal fer aquest pas i és recomanable fer la base de dades per la interfície web.</p>
@@ -1324,14 +1429,14 @@ treballar.</p>
 postgreSQL</a></p>
 </section>
 <section id="errors-documentats">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">Errors documentats</a><a class="headerlink" href="#errors-documentats" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Errors documentats</a><a class="headerlink" href="#errors-documentats" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Atenció</p>
 <p><strong>Important</strong> Abans de fer aquests comandaments, consulteu el final del
 fitxer de log, generalment en /var/log/odoo/odoo-server.log</p>
 </div>
 <section id="error-amb-el-rol-odoo">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Error amb el rol Odoo</a><a class="headerlink" href="#error-amb-el-rol-odoo" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Error amb el rol Odoo</a><a class="headerlink" href="#error-amb-el-rol-odoo" title="Link to this heading">#</a></h3>
 <p>Si apareix un error similar a:</p>
 <p><code class="docutils literal notranslate"><span class="pre">OperationalError: FATAL:  no existe el rol «odoo»</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">OperationalError: FATAL:  role &quot;odoo&quot; does not exist</span></code></p>
@@ -1342,7 +1447,7 @@ fitxer de log, generalment en /var/log/odoo/odoo-server.log</p>
 <p>Això crea l’usuari odoo amb permís de superusuari (-s)</p>
 </section>
 <section id="error-amb-utf-8">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">Error amb UTF-8</a><a class="headerlink" href="#error-amb-utf-8" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Error amb UTF-8</a><a class="headerlink" href="#error-amb-utf-8" title="Link to this heading">#</a></h3>
 <p>Moltes vegades, al instal·lar, no configura el template0 de la base de
 dades en utf-8.
 <a class="reference external" href="http://www.postgresql.org/docs/9.3/static/manage-ag-templatedbs.html">1</a></p>
@@ -1368,7 +1473,7 @@ els locales y després:</p>
 </div>
 </section>
 <section id="recuperar-la-contrasenya-de-l-administrador">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">Recuperar la contrasenya de l’administrador</a><a class="headerlink" href="#recuperar-la-contrasenya-de-l-administrador" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Recuperar la contrasenya de l’administrador</a><a class="headerlink" href="#recuperar-la-contrasenya-de-l-administrador" title="Link to this heading">#</a></h3>
 <p><strong>De l’administrador d’un base de dades:</strong> Dins de la base de dades:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> update res_users set password=&#39;test&#39; where login=&#39;admin&#39;;
 </pre></div>
@@ -1379,7 +1484,7 @@ línia <strong>admin_passwd</strong> de /etc/odoo/odoo.conf o .odoorc, depenent 
 fitxer de configuració estem utilitzant.</p>
 </section>
 <section id="problemes-en-els-repositoris-oficials-d-ubuntu">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">Problemes en els repositoris oficials d’ubuntu</a><a class="headerlink" href="#problemes-en-els-repositoris-oficials-d-ubuntu" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Problemes en els repositoris oficials d’ubuntu</a><a class="headerlink" href="#problemes-en-els-repositoris-oficials-d-ubuntu" title="Link to this heading">#</a></h3>
 <p>En el cas de l’IES, els repositoris oficials no funcionen bé per alguna
 interferència amb els de Lliurex. Cal canviar-los. Per exemple per els
 de Caliu. Una manera és entrar en <strong>vim</strong> i executar aquest comandament:</p>
@@ -1390,7 +1495,7 @@ de Caliu. Una manera és entrar en <strong>vim</strong> i executar aquest comand
 URL.)</p>
 </section>
 <section id="no-connecta-amb-postgresql">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink">No connecta amb PostgreSQL</a><a class="headerlink" href="#no-connecta-amb-postgresql" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">No connecta amb PostgreSQL</a><a class="headerlink" href="#no-connecta-amb-postgresql" title="Link to this heading">#</a></h3>
 <p>Pot ser perquè no está el servici en funcionament.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> service postgresql [restart,start,stop,status]         
 </pre></div>
@@ -1414,7 +1519,7 @@ funciona:</p>
 </section>
 </section>
 <section id="enllacos">
-<h2><a class="toc-backref" href="#id26" role="doc-backlink">Enllaços</a><a class="headerlink" href="#enllacos" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">Enllaços</a><a class="headerlink" href="#enllacos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/odoo/technical-training/tree/12.0-99-sysadmin">Manual technical training
 Odoo</a>.</p></li>
@@ -1483,17 +1588,20 @@ seguridad</a>.</p></li>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-amb-docker">Instal·lar Amb Docker</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amb-docker-compose">Amb Docker Compose</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#en-incus">En Incus</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-desenvolupador-en-docker">Mode desenvolupador en Docker</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#git-i-odoo-en-docker">Git i Odoo en Docker</a></li>
 </ul>
@@ -1506,6 +1614,7 @@ seguridad</a>.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-installar-odoo">On instal·lar Odoo?</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-en-un-entorn-virtual-uv">Instal·lar en un entorn virtual <strong>UV</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installar-en-debian-i-ubuntu">Instal·lar en Debian i Ubuntu</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracio-de-la-ruta-dels-moduls">Configuració de la ruta dels mòduls</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depurar-odoo">Depurar Odoo</a></li>
@@ -1583,8 +1692,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>
