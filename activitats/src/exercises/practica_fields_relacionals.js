@@ -9,7 +9,9 @@ function toSingleId(value) {
 export const exercise = createExercise({
   slug: 'practica_fields_relacionals',
   specificFields: [
-    { key: 'stadiumCity', label: 'Ciutat dels estadis (filtre domain)', type: 'text', placeholder: 'València' },
+  
+   { key: 'modelName', label: 'Model per validar', type: 'text', placeholder: 'practica_git_sge.practica' },
+  
   ],
   createTests: (values) => [
     {
@@ -113,5 +115,31 @@ export const exercise = createExercise({
         }
       },
     },
+     {
+      title: 'Domain equip_id',
+      run: async () => {
+        const data = await json2(values, 'basquet.jugador', 'fields_get', {})
+        const f = data?.equip_id
+        if (!f) return fail('No existeix equip_id')
+        console.log(f.domain);
+        
+        if(!f.domain.includes("estadi_id")) return fail('El domain no contempla estadi_id') 
+        return f.domain != false ? ok('El domain està') : fail(`El camp no tè domain`)
+      },
+    },
+
+      {
+      title: 'Domain estadi_id',
+      run: async () => {
+        const data = await json2(values, 'basquet.equip', 'fields_get', {})
+        const f = data?.estadi_id
+        if (!f) return fail('No existeix estadi_id')
+        console.log(f.domain);
+        
+        if(!f.domain.includes("ciutat")) return fail('El domain no contempla ciutat') 
+        return f.domain != false ? ok('El domain està') : fail(`El camp no tè domain`)
+      },
+    },
+
   ],
 })

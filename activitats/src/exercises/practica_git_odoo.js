@@ -70,7 +70,7 @@ export const exercise = createExercise({
   slug: 'practica_git_odoo',
   specificFields: [
     { key: 'repoUrl', label: 'URL del repositori públic', type: 'url', placeholder: 'https://github.com/usuari/repo' },
-    { key: 'modelName', label: 'Model per validar /doc', type: 'text', placeholder: 'practica_git_sge.practica' },
+    { key: 'modelName', label: 'Model per validar', type: 'text', placeholder: 'practica_git_sge.practica' },
   ],
   createTests: (values) => [
     {

@@ -29,7 +29,7 @@ Heu de crear els següents models amb els noms tècnics exactes:
 #### 2. Implementació de Domains (Filtres)
 Heu d'aplicar els següents **domains** en el codi Python per a restringir les opcions de l'usuari:
 1.  En el camp `equip_id` del jugador: Sols s'han de poder triar equips que tinguen un estadi assignat.
-2.  En el camp `estadi_id` de l'equip: Sols s'han de poder triar estadis d'una ciutat concreta (per exemple, 'València').
+2.  En el camp `estadi_id` de l'equip: Sols s'han de poder triar estadis de la ciutat de l'equip
 
 #### 3. Requisits tècnics per a la validació
 Per a que la web del professor puga validar la pràctica mitjançant **JSON-2**, cal assegurar els següents punts:
