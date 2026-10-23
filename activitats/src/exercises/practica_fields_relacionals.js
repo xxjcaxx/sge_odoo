@@ -124,7 +124,7 @@ export const exercise = createExercise({
         console.log(f.domain);
         
         if(!f.domain.includes("estadi_id")) return fail('El domain no contempla estadi_id') 
-        return f.domain != false ? ok('El domain està') : fail(`El camp no tè domain`)
+        return f.domain != false ? ok('El domain està i funciona'+f.domain) : fail(`El camp no tè domain`)
       },
     },
 
@@ -137,7 +137,8 @@ export const exercise = createExercise({
         console.log(f.domain);
         
         if(!f.domain.includes("ciutat")) return fail('El domain no contempla ciutat') 
-        return f.domain != false ? ok('El domain està') : fail(`El camp no tè domain`)
+        if(!f.domain === `[('ciutat', '=', ciutat)]` ) return fail('El domain no és exactament igual') 
+        return f.domain != false ? ok('El domain està i funciona'+f.domain) : fail(`El camp no tè domain`)
       },
     },
 
