@@ -37,5 +37,4 @@ El professor utilitzarà una web que es connectarà al vostre VPS mitjançant l'
 *   Consultar via `fields_get` si el camp `alumne_id` té aplicat el domini correcte sobre el camp computat.
 
 **Requisits d'entrega:**
-*   **Codi font:** Repositori Git amb el mòdul funcional.
 *   **Instància activa:** Odoo 19 corrent en Docker amb el port 8069 obert i una **API Key** configurada per a l'avaluació.

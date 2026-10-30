@@ -39,7 +39,10 @@ const REQUIRED_FIELDS = [
 
 export const exercise = createExercise({
   slug: 'practica_fields_computed',
-  specificFields: [],
+  specificFields: [
+
+     { key: 'modelName', label: 'Model per validar', type: 'text', placeholder: '' },
+  ],
   createTests: (values) => [
     {
       title: 'Model venda_entrades_segures.tiquet existeix',
@@ -203,21 +206,24 @@ export const exercise = createExercise({
         try {
           const stamp = Date.now()
           const partner = await getPartnerForComputedTests(values, stamp)
-          createdPartnerId = partner.createdPartnerId
+          createdPartnerId = partner.partnerId
 
-          if (!partner.partnerId || !partner.partnerName) {
+          if (!partner || !partner.partnerId || !partner.partnerName) {
             return fail('No s\'ha trobat ni creat cap comprador per provar data_limit_acces.')
           }
+          console.log("partner",partner);
+          
 
           esdevenimentId = toSingleId(await json2(values, 'venda_entrades_segures.esdeveniment', 'create', {
             values: {
               name: `Esdeveniment test ${stamp}`,
               preu_base: 100,
-              data_limit_acces: '2024-12-31 20:00:00',
+              data_inici: "2026-10-17 14:30:00"
             },
           }))
           if (!esdevenimentId) return fail('No s\'ha pogut crear l\'esdeveniment de prova.')
 
+            
           tiquetId = toSingleId(await json2(values, 'venda_entrades_segures.tiquet', 'create', {
             values: {
               name: `Tiquet test ${stamp}`,
@@ -234,11 +240,13 @@ export const exercise = createExercise({
           const rec = Array.isArray(read) ? read[0] : null
           const actualDate = rec?.data_limit_acces
 
+          console.log(rec)
+
           if (!actualDate) {
             return fail('data_limit_acces no retorna cap valor després de crear el tiquet.')
           }
 
-          const expectedDate = '2024-12-31 18:00:00'
+          const expectedDate = "2026-10-17 12:30:00"
           if (actualDate !== expectedDate) {
             return fail(`data_limit_acces="${actualDate}"; s\'esperava "${expectedDate}" que és 2 hores abans de data_limit_acces de l\'esdeveniment.`)
           }
