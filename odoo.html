@@ -16,41 +16,44 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -58,40 +61,37 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'odoo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="La vista" href="vista.html" />
     <link rel="prev" title="Instal·lar Odoo" href="instalarodoo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -99,7 +99,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,15 +106,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -124,7 +167,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,21 +198,17 @@
     
     
     <img src="_static/odoo_logo.svg" class="logo__image only-light" alt="Apunts d'Odoo - Home"/>
-    <script>document.write(`<img src="_static/odoo_logo.svg" class="logo__image only-dark" alt="Apunts d'Odoo - Home"/>`);</script>
+    <img src="_static/odoo_logo.svg" class="logo__image only-dark pst-js-only" alt="Apunts d'Odoo - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -186,12 +226,13 @@
 <li class="toctree-l1"><a class="reference internal" href="accions_menus.html">Accions i menús</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wizards.html">Wizards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_controllers.html">Web Controllers i API Externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="client_web.html">Client Web</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter en Odoo.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bi.html">Business Intelligence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jupyter%20y%20Odoo.html">Usar Jupyter a Odoo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odoo_ia.html">Odoo i la intel·ligència artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automatitzacions_odoo.html">Automatizacions amb Odoo</a></li>
 </ul>
 
     </div>
@@ -200,9 +241,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -332,7 +378,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -346,25 +392,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -386,7 +424,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-base-de-dades-d-odoo">La base de dades d’Odoo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#els-moduls">Els mòduls</a><ul class="nav section-nav flex-column">
@@ -408,7 +446,6 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2many">Many2many</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#related">Related</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2onereference">Many2oneReference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one2one">One2one</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#filtres-domains">Filtres (Domains)</a></li>
 </ul>
 </li>
@@ -514,8 +551,7 @@ virtualitzar.</p></li>
 <p>El <strong>servidor</strong> Odoo proporciona un accés a la base de dades amb
 <strong>ORM</strong>. El servidor necessita tindre instal·lats <strong>mòduls</strong>, ja que
 comença buit.</p>
-<p>Per altra banda, el <strong>client</strong> es comunica amb el servidor en
-<strong>XML-RPC</strong>, els clients web per <strong>JSON-RPC</strong>. El client sols té que mostrar el
+<p>Per altra banda, el <strong>client</strong> web es comunica amb el servidor per <strong>JSON-RPC</strong>. El client sols té que mostrar el
 que dona el servidor o demanar correctament les dades. Per tant, un
 client pot ser molt simple i fer-se en qualsevol llenguatge de
 programació. Odoo proporciona un client web encara que es pot fer un
@@ -533,8 +569,7 @@ ser
 <strong><a class="reference external" href="http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">WSGI</a></strong>.
 WSGI és una solució estàndard per a fer servidors i clients HTTP en
 Python. En el cas d’Odoo, aquest té <code class="docutils literal notranslate"><span class="pre">Werkzeug</span></code>, que interpreta les peticions i les transforma en funcions que Odoo pot entendre.</p>
-<p>Un altre concepte dins d’Odoo són els <strong>Business Objects</strong>. S’implementen amb <code class="docutils literal notranslate"><span class="pre">models</span></code> i implementen tant dades com lògica de negoci.</p>
-<p>Odoo proporciona els anomenats <strong>Wizards</strong>, que es comporten com un
+<p>Odoo permet crear els anomenats <strong>Wizards</strong>, que es comporten com un
 assistent per introduir dades d’una manera més fàcil per a l’usuari.</p>
 <p>El client web és fàcil de desenvolupar gràcies al <strong>Widgets</strong> o Window
 GaDGETS. Aquests proporcionen un comportament i visualització correctes
@@ -593,9 +628,9 @@ Model-Vista-Controlador. D’aquesta manera, un mòdul pot tindre:</p>
 <ul class="simple">
 <li><p><strong>Objectes de negoci</strong>: Són la part del model, estan definits en
 classes de Python segons una sintaxi pròpia de
-l’ORM d’Odoo.</p></li>
+l’ORM d’Odoo i es diuen <code class="docutils literal notranslate"><span class="pre">models</span></code>.</p></li>
 <li><p><strong>Fitxers de dades</strong>: Són fitxers XML que poden definir dades,
-vistes o configuracions.</p></li>
+vistes o configuracions. Totes les dades acaben a la base de dades, incloses les vistes.</p></li>
 <li><p><strong>Controladors web</strong>: Gestionen les peticions dels navegadors web.</p></li>
 <li><p><strong>Dades estàtiques</strong>: Imatges, CSS, o javascript utilitzats per
 l’interficie web. És necessari que les dades estatiques es guarden
@@ -622,7 +657,7 @@ un <strong>__init__.py</strong> per a instanciar tots els fitxers python.</p></l
 <p>Per ajudar al programador, Odoo conté un comandament per crear mòduls
 buits. Aquest crea l’estructura de fitxers necessaria per començar a
 treballar:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> $ odoo scaffold &lt;module name&gt; &lt;where to put it&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>odoo<span class="w"> </span>scaffold<span class="w"> </span>&lt;module<span class="w"> </span>name&gt;<span class="w"> </span>&lt;where<span class="w"> </span>to<span class="w"> </span>put<span class="w"> </span>it&gt;
 </pre></div>
 </div>
 <div class="dropdown admonition note">
@@ -649,7 +684,7 @@ demés.</p>
 al programador la majoria de consultes SQL. D’aquesta manera el
 desenvolupament dels mòduls és molt ràpid i evitem errades de
 programació.</p>
-<p>Els models són creats com classes de python que extenen la classe
+<p>Els `models són creats com classes de python que extenen la classe
 <strong><a class="reference external" href="https://www.odoo.com/documentation/master/developer/reference/backend/orm.html">models.Model</a></strong>
 que conté els camps i mètodes útils per a fer anar l’ORM.</p>
 <blockquote>
@@ -661,19 +696,21 @@ base de dades. Un model no és una fila en la taula, és tota la taula.</p>
 <blockquote>
 <div><p>En programació, el ‘’’Model’’’ és una manera de relacionar el programa amb la base de dades. És de més alt nivell que les consultes directes en quant a base de dades i que les ‘’’clases i objectes’’’ respecte a la programació orientada a objectes. El model junta en un únic concepte les ‘’’estructures de dades’’’, les ‘’’restriccions d’integritat’’’ i les opcions de ‘’’manipulació’’’ de les dades.</p>
 </div></blockquote>
-<p>Els models en Odoo poden heretar de <strong>models.Model</strong> i ser els normals
+<p>Els models en Odoo poden heretar de <strong>models.Model</strong> i ser
 mapejats i permanents en la base de dades. També poden ser
 <strong>models.TransientModel</strong> i són iguals, sols que no tenen permanència
 definitiva en la base de dades. Aquest són els recomanables per a fer
 <code class="docutils literal notranslate"><span class="pre">wizards</span></code>. També poden ser <strong>models.AbstractModel</strong>
 per a definir models abstractes per a després heretar.</p>
+<blockquote>
+<div><p>Es recomana no utilitzar majúscules als noms dels models ni caracters unicode. Es recomana una longitut del nom_modul.nom_model curta, de fet hi ha un límit de 63 caracters de PostgreSQL. No utilitar punts si no és un submodel.</p>
+</div></blockquote>
 <section id="inspeccionar-el-models">
 <h3>Inspeccionar el models<a class="headerlink" href="#inspeccionar-el-models" title="Link to this heading">#</a></h3>
 <p>Per veure els models existents, es pot accedir a la base de dades
 postgreSQL o mirar en <em>Configuración &gt; Estructura de la base de datos
 &gt; Modelos</em> dins del mode desenvolupador.</p>
-<p>Cal destacar el camp <em>modules</em> on diu els mòduls instal·lats on es
-defineix o hereta el model observat.</p>
+<p>A partir de la versió 19 es fa una documentació web automàtica dels models a <code class="docutils literal notranslate"><span class="pre">/doc</span></code> (per exemple: <a class="reference external" href="http://localhost:8069/doc/product.template">http://localhost:8069/doc/product.template</a>)</p>
 </section>
 <section id="fields">
 <h3>Fields<a class="headerlink" href="#fields" title="Link to this heading">#</a></h3>
@@ -699,7 +736,7 @@ que ja no es necessiten, per exemple.</p></li>
 llista.</p></li>
 </ul>
 <p>Els fields es declaren amb un constructor:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openerp</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">fields</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">odoo</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">fields</span>
 
 <span class="k">class</span> <span class="nc">LessMinimalModel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;test.model2&#39;</span>
@@ -749,10 +786,9 @@ ajuda a l’usuari per plenar el camp.</p></li>
 field.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;Alberto&#39;</span><span class="p">)</span>
  <span class="c1"># o:</span>
- <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">a_fun</span><span class="p">)</span>
- <span class="c1">#...</span>
  <span class="k">def</span> <span class="nf">a_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_something</span><span class="p">()</span>
+ <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">a_fun</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -768,13 +804,13 @@ field.</p>
 <li><p>Float</p></li>
 <li><p>Boolean</p></li>
 <li><p>Html : Guarda un text, però es representa de manera especial en el
-client.</p></li>
+client. El HTML és interpretat. No pot tenir css ni javascript. Els estils aniran en cada etiqueta, ja que és <em>sanititzat</em> abans de ser guardat per evitar injeccions malicioses.</p></li>
 <li><p>Binary : Per guardar, per exemple, imatges. Utilitza codificació
 base64 al enviar els fitxers al client. En realitat les guarda en
 <strong>/var/lib/odoo/.local/share/Odoo/filestore</strong> i la ruta als fitxers
 la diu la taula <strong>ir_attachment</strong> junt amb el id, nom del field i el
 model.</p></li>
-<li><p>Image (Odoo13) : En el cas d’imatges, accepta els atributs
+<li><p>Image: En el cas d’imatges, accepta els atributs
 <strong>max_width</strong> i <strong>max_height</strong> on es pot dir en píxel que ha de
 redimensionar la imatge a eixa mida màxima.</p></li>
 <li><p>Selection : Mostra un select amb les opcions indicades.</p></li>
@@ -787,10 +823,10 @@ redimensionar la imatge a eixa mida màxima.</p></li>
 <section id="fields-relacionals">
 <h3>Fields Relacionals<a class="headerlink" href="#fields-relacionals" title="Link to this heading">#</a></h3>
 <p>Les relacions entre els models (en definitiva, entre les taules de la
-base de dades) també les simplifica l’ORM. D’aquesta maneram les
+base de dades) també les simplifica l’ORM. D’aquesta manera les
 relacions 1 a molts es fan en el Odoo anomena Many2one i les relacions
 Mols a Molts es fan el el Many2Many. Les relacions molts a molts, en una
-base de dades relacional, impliquen una tercera taula en mitg, però en
+base de dades relacional, impliquen una tercera taula en mig, però en
 Odoo no tenim que preocupar-nos d’aquestes coses si no volem, el mapat
 dels objectes el detectarà i farà les taules, claus i restriccions
 d’integritat necessaries. Anem a repasar un a un aquests camps:</p>
@@ -926,85 +962,11 @@ preocupa això, amb store=False no guarda res en la taula.</p>
 <h4>Many2oneReference<a class="headerlink" href="#many2onereference" title="Link to this heading">#</a></h4>
 <p>Un Many2one on es guardar també el model al qual fa referència amb l’atribut: <strong>model_field</strong>.</p>
 </section>
-<section id="one2one">
-<h4>One2one<a class="headerlink" href="#one2one" title="Link to this heading">#</a></h4>
-<p>Els camps <strong>One2one</strong> no existeixen en Odoo. Però si volem aquesta
-funcionalitat podem utilitzar varies tècniques:</p>
-<ul class="simple">
-<li><p>Fer dos camps Many2many i restringir amb constrains que sols pot
-existir una relació. Problemes:</p>
-<ul>
-<li><p>En la vista no podem ficar un widget com en el Many2one i és
-complicat evitar relacions creuades.</p></li>
-<li><p>Es pot fer un <strong>limit</strong> en la vista, però es continuarà
-comportant com un Many2many.</p></li>
-</ul>
-</li>
-<li><p>Fer dos Many2one i restringit amb contrains o sql constrains que
-sols pot existir una relació mútua. (Cal sobreescriure els mètodes
-create i write per a que es cree l’associació automàticament).
-Problemes:</p>
-<ul>
-<li><p>Si sobreescribim el write de els dos, es pot produir una cridada
-recursiva sense fi i és molt complicat aconseguir que no tingam
-referències creuades.</p></li>
-</ul>
-</li>
-<li><p>Fer un Many2one i en l’altre model un Many2one computed que busque
-en els del primer model. Per poder editar en els dos cal fer una
-funció inversa per al camp computed. Aquesta és una de les opcions
-més elegants. Exemple:</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">orderline</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;sale.order.line&#39;</span>
-    <span class="n">_inherit</span> <span class="o">=</span> <span class="s1">&#39;sale.order.line&#39;</span>
-    <span class="n">booking</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s1">&#39;reserves.bookings&#39;</span><span class="p">)</span>
-      
-    <span class="n">_sql_constraints</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;booking_uniq&#39;</span><span class="p">,</span> <span class="s1">&#39;unique(booking)&#39;</span><span class="p">,</span> <span class="s1">&#39;There is another order line for this booking&#39;</span><span class="p">),</span>
-    <span class="p">]</span>
-
-<span class="k">class</span> <span class="nc">bookings</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;reserves.bookings&#39;</span>
-
-    <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">()</span>
-    <span class="n">order_line</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s1">&#39;sale.order.line&#39;</span><span class="p">,</span><span class="n">compute</span><span class="o">=</span><span class="s1">&#39;_get_order_line&#39;</span><span class="p">,</span><span class="n">inverse</span><span class="o">=</span><span class="s1">&#39;_set_order_line&#39;</span><span class="p">)</span>
-
-    <span class="nd">@api</span><span class="o">.</span><span class="n">multi</span>
-    <span class="k">def</span> <span class="nf">_get_order_line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="n">b</span><span class="o">.</span><span class="n">order_line</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;sale.order.line&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;booking.id&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">id</span><span class="p">)])</span><span class="o">.</span><span class="n">id</span>
-
-    <span class="nd">@api</span><span class="o">.</span><span class="n">one</span>
-    <span class="k">def</span> <span class="nf">_set_order_line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">order_line</span><span class="o">.</span><span class="n">id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;sale.order.line&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="n">o</span><span class="p">)])</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s1">&#39;booking&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">})</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Fer un Many2one i un One2many i restringir el màxim del One2many (
-<a class="reference external" href="https://stackoverflow.com/questions/32801526/how-to-create-a-one2one-relationship-in-odoo-8">3</a>
-). Problemes:</p>
-<ul>
-<li><p>Els mateixos que en els dos many2manys. És més simple restringir
-les relacions creuades.</p></li>
-</ul>
-</li>
-<li><p>Fer una herència múltiple.
-<a class="reference external" href="http://blog.odoobiz.com/2014/10/openerp-one2one-relational-field-example.html">4</a>.
-Problemes:</p>
-<ul>
-<li><p>Esta és, en teoría, la forma més oficial de fer-ho, però obliga
-a crear sempre la relació i els models en un ordre determinat.</p></li>
-</ul>
-</li>
-</ul>
-</section>
 <section id="filtres-domains">
 <h4>Filtres (Domains)<a class="headerlink" href="#filtres-domains" title="Link to this heading">#</a></h4>
 <p>En ocasions és necessari afegir un filtre en el codi python per fer que
 un camp <strong>relacional</strong> no puga tindre certes referències. El
-comportament del domain és diferent depen del tipus de field.</p>
+comportament del domain és diferent depèn del tipus de field.</p>
 <ul class="simple">
 <li><p><strong>Domain en Many2one</strong>: Filtra els elements del model referenciat
 que poden ser elegits per al field:</p></li>
@@ -1185,7 +1147,7 @@ funció i fer que estiga en l’opció <strong>inverse</strong>.</p>
 en el constructor dels fields:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
 <span class="n">user_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s1">&#39;res.users&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>
 <span class="n">active</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">compute_default_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
@@ -1200,6 +1162,7 @@ això:</p>
 <p>Perquè calcula la data del moment d’actualitzar el mòdul, no el de
 crear l’element en el model. Cal fer:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>  <span class="c1"># CORRECTE</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>  <span class="c1"># CORRECTE</span>
 </pre></div>
 </div>
 <p>o</p>
@@ -1908,6 +1871,16 @@ recordset amb els canvis demanats:</p></li>
 <span class="n">record</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span><span class="s1">&#39;partner_id.bank_ids&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><strong>grouped()</strong> Agrupa els elements d’un recordset segons una funció i retorna un
+diccionari amb els resultats:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># returns a dictionary grouping records by the value of field1</span>
+<span class="n">records</span><span class="o">.</span><span class="n">grouped</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">field1</span><span class="p">)</span>
+<span class="c1"># returns a dictionary grouping records by the value of field1 and field2</span>
+<span class="n">records</span><span class="o">.</span><span class="n">grouped</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">field1</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">field2</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>Aquestes funcions són útils per a fer tècniques de <a class="reference external" href="https://docs.python.org/3.7/howto/functional.html">programació
 funcional</a></p>
 </section>
@@ -2590,15 +2563,17 @@ settings.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura">Arquitectura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-base-de-dades-d-odoo">La base de dades d’Odoo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#els-moduls">Els mòduls</a><ul class="nav section-nav flex-column">
@@ -2620,7 +2595,6 @@ settings.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2many">Many2many</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#related">Related</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#many2onereference">Many2oneReference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one2one">One2one</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#filtres-domains">Filtres (Domains)</a></li>
 </ul>
 </li>
@@ -2726,8 +2700,8 @@ By Jose Castillo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -134,14 +134,6 @@ l\'usuari el veja. El que cal fer és ficar el field , però dir que es
                 </list>
 ```
 
-### Botons
-
-Els *lists* poden tindre **buttons** amb els mateixos atributs que els
-buttons dels forms.
-
-```{tip}
-Cal tindre cura en els lists dins de forms (X2many), ja que el botó s'executa en el model del list i no del formulari que el conté. Si volem accedir al pare, cal utilitzar l'atribut parent.
-```
 
 ### Totals
 
@@ -175,62 +167,25 @@ Amb **default_group_by**. Com l'atribut per ordenar, sols funciona amb camps gua
 </list>
 ```
 
-### banner_route
 
-A partir de la versió 12 d\'Odoo, permet afegir als lists, forms, etc
-una capçalera obtinguda per una url.
-<https://www.odoo.com/documentation/12.0/reference/views.html#common-structure>
+### Botons
 
-Aquesta capçalera serà un codi HTML que pot aprofitar les classes CSS
-d\'Odoo, però no aprofita la generació de codi HTML que realitza el
-client web d\'Odoo en la definició de les vistes. En cas d\'utilitzar
-imatges, aquestes estaran en el directori **static** del mòdul.
+Els *lists* poden tindre **buttons** amb els mateixos atributs que els
+buttons dels forms.
 
-**Fer un banner route pas a pas**:
-
-El primer és ficar en el list la referència al **banner_route**:
-
-``` xml
-   <list banner_route="/negocity/city_banner" >
+```{tip}
+Cal tindre cura en els lists dins de forms (X2many), ja que el botó s'executa en el model del list i no del formulari que el conté. Si volem accedir al pare, cal utilitzar l'atribut `parent`.
 ```
 
-Ara cal crear el **web controller** que implementa aquesta ruta (es
-recomana en controllers.py):
+Les vistes poder tenir `<header>` i `<footer>` per a posar botons o altres coses. En el header, es poden posar botons que afecten a tota la vista, com un botó de crear o de eliminar. En el footer, es poden posar botons que afecten a l\'element seleccionat, com un botó de editar o de duplicar.
 
-``` python
-from odoo import http
-
-
-class banner_city_controller(http.Controller):
-    @http.route('/negocity/city_banner', auth='user', type='json')
-    def banner(self):
-        return {
-            'html': """
-                <div  class="negocity_banner" 
-                style="height: 200px; background-size:100%; background-image: url(/negocity/static/src/img/negocity_city.jpg)">
-                <div class="negocity_button" style="position: static; color:#fff;"><a>Generate Cities</a></div>
-                </div> """
-        }
+```xml
+<header>
+    <button name="header_print" type="object" string="Create Championship Wizard" class="oe_highlight" display="always"/>
+</header>
 ```
 
-En aquest cas, el CSS es podria fer un estil en CSS segons les
-instruccions de [El client Web Odoo](El_client_Web_Odoo "wikilink").
-
-El resultat és un banner amb un `<a>` que, de moment, no fa res.
-Anem a donar-li funcionalitat a l\'enllaç. El primer és assignar-li un
-action:
-
-``` xml
-                 <a class="banner_button" type="action" data-reload-on-close="true" 
-                role="button" data-method="action_generate_cities" data-model="negocity.city">Generate Cities</a>
-```
-
-Segons les instruccions de
-**addons/web/static/src/js/views/abstract_controller.js**, si fem un
-`<a>` amb un **type=\"action\"**, el JS d\'Odoo interpretarà que
-ha de cridar al backend a una funció d\'un model en concret. La resta de
-dades es fan com l\'exemple. La funció que diu **data-method** és una
-funció que ha d\'estar en el model que diu **data-model**.
+En aquest cas és un botó que llança un wizard per a crear un campionat. El display="always" fa que el botó es mostre sempre, encara que no hi haja cap element seleccionat. Si no es posa aquest atribut, el botó sols es mostrarà quan hi haja un element seleccionat.
 
 ## Les vistes form 
 
@@ -261,7 +216,7 @@ pot modificar el list per defecte:
 ```
 
 O especificar la vista que volem:
-``xml
+```xml
     <field name="subscriptions" context="{'list_view_ref': 'modul.view_subscriptions_tree'}"/>
 ```
 
@@ -274,9 +229,9 @@ Una altra opció és especificar la vista que insertarà en el field:
     <field name="m2o_id" context="{'form_view_ref': 'module_name.form_id'}"/>
 ```
 
-> Les vistes tree embegudes tenen limitacions respecte a les cridades amb un action. Per exemple, no poden ser agrupades. 
+> Les vistes list embegudes tenen limitacions respecte a les cridades amb un action. Per exemple, no poden ser agrupades. 
 
-**Valors per defecte en un one2many**
+### **Valors per defecte en un one2many**
 
 Quant creem un One2many en el mode form (o list editable) ens permet
 crear elements d\'aquesta relació. Per a aconseguir que, al crear-los,
@@ -304,7 +259,7 @@ Aquesta sintaxi funciona per a passar per context valors per defecte a un form c
 En Odoo 14 ja no cal fer-ho, però el manual és vàlid per a altres many2ones o altres valors per defecte
 ```
 
-**Domains en Many2ones**
+### **Domains en Many2ones**
 
 Els camps Many2one es poden filtrar, per exemple:
 
@@ -314,234 +269,9 @@ Els camps Many2one es poden filtrar, per exemple:
 
 Funciona tant per a Many2one com per a Many2many.
 
-### Widgets
-
-Alguns camps, com ara les imatges, es poden mostrar utilitzant un
-**widget** distint que el per defecte:
-
-``` xml
-<field name="image" widget="image" class="oe_left oe_avatar"/>
-<field name="taken_seats" widget="progressbar"/>
-<field name="country_id" widget="selection"/>
-<field name="state" widget="statusbar"/>
-```
-
-Les vistes form, tree o kanban de Odoo mostren els fields en els
-anomenats widgets. Aquests permeten, per exemple, que les dates tinguen
-un calendari o que es mostre una llista en un many2many.
-
-Cada field te un widget per defecte, però es poden canviar si volem
-representar la informació de manera distinta. Aquests són els widgets
-disponibles per a cada tipus de field, sobretot per al form, encara que
-alguns funcionen en el tree:
-
-#### Integer i Float
-
-Els camps integer poden ser representats per molts widgets, es a dir, no
-donen error. Encara que no tots tenen sentit, com per exemple el *text*.
-
--   **widget=\"integer\"**: Tan sols mostra el número sense comes. En
-    cas de no tindre valor, mostra 0.
--   **widget=\"char\"**: També mostra el número, si no te valor deixa un
-    buit i el camp és més ample.
--   **widget=\"id\"**: Mostra el número però no es pot editar.
--   **widget=\"float\"**: Mostra el número en decimals.
--   **widget=\"percentpie\"**: Mostra un gràfic circular amb el
-    percentatge (no funciona en la vista tree ni en kanban).
--   **widget=\"float_time\"**: Mostra els float com si representaren el
-    temps.
--   **widget=\"progressbar\"**: Mostra una barra de progrés (funciona en
-    la vista tree i form, però no en kanban):
--   **widget=\"monetary\"**: Mostra el número amb 2 decimals.
--   **widget=\"gauge\"**: Mostra un curiós gràfic de semi-circul. Sols
-    funciona en kanban.
-
-    Observem un ús real del `Gauge` per veure com els widgets poden tenir opcions:
-    
-``` xml
-<field name="current" widget="gauge" options="{'max_field': 'target_goal', 'label_field': 'definition_suffix', 'style': 'width:160px; height: 120px;'}" />
-```
-
-##### Char i Text {#char_i_text}
-
--   **widget=\"char\"**: Mostra un editor d\'un línia.
--   **widget=\"text\"**: Mostra un camp més alt per fer més d\'una
-    línia.
--   **widget=\"email\"**: Crea el enllaç per enviar-li un correu.
--   **widget=\"url\"**: Crea el enllaç amb http.
--   **widget=\"date\"**: Permet guardar dates com cadenes de text.
--   **widget=\"html\"**: Permet guardar textos però amb format. Apareix
-    un wysiwyg
--   **dashboard_graph**:
-
-Mostra un gràfic menut indicant alguna progressió. Necessita tindre
-guardat (o generat) en el char un json determinat, per exemple:
-
-`[{"values":`\
-`        [{"label":"2019-01-31","value": "7"},`\
-`         {"label":"2019-02-01","value": "20"},`\
-`         {"label":"2019-02-02","value": "45"},`\
-`         {"label":"2019-02-03","value": "34"},`\
-`         {"label":"2019-02-04","value": "40"},`\
-`         {"label":"2019-02-05","value": "67"},`\
-`         {"label":"2019-02-06","value": "80"}],`\
-` "area":true, "title": "Next Week", "key": "Ocupation", "color": "#7c7bad"}]`
-
-I aquest seria un exemple del XML per a que funcione:
-
-``` xml
-<field name="week_ocupation" widget="dashboard_graph"  graph_type="bar"/>
-```
-
-En els exemples que es poden veure en Odoo, aquests valors són sempre
-computed, generant un json i invocant la funció de python json.dumps()
-([2](https://docs.python.org/3.7/library/json.html)):
-
-``` python
-           values = []
-           for i in record.sales:
-               reserves = i.quantity
-               values.append({'label':str(i.name),'value':str(reserves)})
-           graph = [{'values': values, 'area': True, 'title': 'Sales', 'key': 'Sales', 'color': '#7c7bad'}]
-           h.graph_data = json.dumps(graph)
-```
-
-Amés, accepta algunes opcions:
-
--   **type**: Pot ser **bar** o **line**. En el cas de ser line, en
-    compte de \'label\' i \'value\' cal posar \'x\' i \'y\'.
-
-#### Boolean
-
--   **Ribbon**: (Odoo 13) Mostra com una cinta al costat del formulari
-    per mostrar un boolean important.
-
-``` python
-<widget name="web_ribbon" text="Archived" bg_color="bg-danger" />
-<widget name="web_ribbon" text="Paid"/>
-```
-
--   **boolean_toggle** per als trees, permet activar un boolean en un
-    tree.
-
-#### Date
-
--   **Daterange**: Mostra un rang de dates
-
-``` python
-date_begin = fields.Datetime( string='Start Date')
-<field name="date_begin" widget="daterange"/>
-```
-
-#### Many2one
-
--   **widget=\"many2one\"**: Per defecte, crea un selection amb opció de
-    crear nous. Accepta arguments per evitar les opcions de crear:
-
-``` python
- <field name="field_name" options="{'no_create': True, 'no_open': True}"/>
-```
-
--   **widget=\"many2onebutton\"**: Crea un simple botó que indica si
-    està assignat. Si polses s\'obri el formulari.
-
-#### Many2Many
-
--   **widget=\"many2many\"**: Per defecte, crea una llista amb opció de
-    esborrar o afegir nous.
--   **widget=\"many2many_tags\"**: Llista amb etiquetes com en els
-    filtres
--   **widget=\"many2many_checkboxes\"**: Llista de checkboxes.
--   **widget=\"many2many_kanban\"**: Mostra un kanban dels que té
-    associats, necessita que la vista kanban estiga definida.
--   **widget=\"x2many_counter\"**: Mostra sols la quantitat.
--   **many2many_tags_avatar**:
-
-``` xml
-partner_ids = fields.Many2many('res.partner', 'calendar_event_res_partner_rel', string='Attendees')
-<field name="partner_ids" widget="many2many_tags_avatar" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_128"/>
-```
-
-#### One2many
-
--   **widget=\"one2many\"**: Per defecte.
--   **widget=\"one2many_list\"**: Aparentment igual, es manté per
-    retrocompatibilitat
-
-#### Modificar el tree del One2many 
-
-El one2many, al igual que el many2one es poden vorer en format tree. Per
-defecte agafa el tree definit del model, però es pot especificar el tree
-que volem veure:
-
-``` xml
-  <field name="fortress">
-   <tree>
-     <field name="name"/><field name="level"/>
-   </tree>
-  </field>
-```
-
-Inclús es pot forçar a mostrar un kanban:
-
-``` xml
-<field name="gallery" mode="kanban,tree" context="{'default_hotel_id':active_id}">
-                 <kanban>
-                 <!--list of field to be loaded -->
-                 <field name="name" />
-                 <field name="image" />
-
-                 <templates>
-                 <t t-name="kanban-box">
-                     <div class="oe_product_vignette">
-                     <a type="open">
-                        <img class="oe_kanban_image" style="width:300px; height:auto;"
-                        t-att-src="kanban_image('marsans.hotel.galley', 'image', record.id.value)" />
-                    </a>
-                    <div class="oe_product_desc">
-                        <h4>
-                        <a type="edit">
-                            <field name="name"></field>
-                        </a>
-                        </h4>
-
-                    </div>
-                    </div>
-                    </t>
-                    </templates>
-                </kanban>
-                </field>
-```
-
-De vegades, el kanban este no funciona perquè no força a carregar les
-imatges.
-
-#### Binary o Image 
-
--   **signature**: Permet signar dirènctament en la pantalla
--   **image**: A banda del que es pot ficar en el field de max_width o
-    max_height, al widget es pot afegir opcions com:
-
-```python
-    options="{&quot;zoom&quot;: true, &quot;preview_image&quot;: &quot;image_128&quot;}
-```
-#### Selection
-```xml
-           <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
-```
-#### Fields dels trees 
-
--   **handle**: Per a ordenar a ma. Cal que aquest camp siga el criteri
-    d\'ordenació.
 
 
-**Reescalar les imatges**
-
-Molt a sovint, tenim la necessitat de reescalar les imatges que
-l\'usuari penja. A partir d\'Odoo 13 tenim el field Image que permet
-tindre diferents resolucions amb varis related
-
-#### buttons
+### buttons
 
 Podem introduir un botó en el form:
 
@@ -558,7 +288,7 @@ funció del model al que represente el formulari que el conté.
 És important que el record sobre el que es pulsa un botó de tipus object estiga ja guardat, ja que si no existeix en la base de dades, el servidor no té la seua '''id''' i pot fer res. Per això, un botó polsat en fase de creació crida primer a la funció create().
 ```
 
-Per a fer un butó que cride a un altre formulari, s\'ha de fer en un
+Per a fer un butó que cride a una `action`, s\'ha de fer en un
 tipus **action**. Amés, per ficar la id del **action** al que es vol
 cridar, cal ficar el prefixe i sufixe **%(\...)d**, com en l\'exemple:
 
@@ -586,7 +316,7 @@ Esborrar: <button type="object" icon="fa-trash-o"  name="unlink"/>
 
 En l\'exemple anterior, també hem ficat l\'atribut **confirm** per
 mostrar una pregunta a l\'usuari. Els *buttons* es poden posar per el
-form, encara que es recomana en el header:
+form, encara que es recomana en el header o footer:
 
 ``` xml
 <header>
@@ -602,10 +332,8 @@ client web que demana alguna cosa al servidor. En el cas dels button
 dels buttons **object** demana que s\'execute una funció del model i
 recordset actual en el servidor. El client web es queda a l\'espera
 d\'una resposta del servidor, que si és un diccionari buit, provoca un
-refresc de la pàgina, però pot retornar moltes coses: **warnings**,
-**domains**, **actions**\... i el client ha d\'actuar en conseqüència.
-Els buttons poden tindre també [**context**](Odoo#Context "wikilink")
-per enviar alguna cosa extra al servidor.
+refresc de la pàgina, però pot retornar moltes coses: **warnings**, **actions**\... i el client ha d\'actuar en conseqüència.
+Els buttons poden tindre també **context** per enviar alguna cosa extra al servidor.
 
 **Smart Buttons**
 [2](https://www.slideshare.net/openobject/odoo-smart-buttons)
@@ -641,7 +369,7 @@ resum del formulari que va a obrir.
             </div>
 ```
 
-#### Formularis dinàmics 
+### Formularis dinàmics 
 
 Els fields dels formularis permet modificar el seu comportament en
 funció de condicions. Per exemple, ocultar amb **invisible**, permetre
@@ -753,42 +481,40 @@ Es poden utilitzar certs widgets en els fields com `image` o `progress_bar`, per
 Exemple bàsic:
 
 ``` xml
-<record model="ir.ui.view" id="socio_kanban_view">
-            <field name="name">cooperativa.socio</field>
-            <field name="model">cooperativa.socio</field>
+<record id="view_natacio_club_kanban" model="ir.ui.view">
+            <field name="name">natacio.club.form</field>
+            <field name="model">natacio.club</field>
             <field name="arch" type="xml">
                 <kanban>
-                    <!--list of field to be loaded -->
-                    <field name="name" />
-                    <field name="id" /> <!-- És important afegir el id per al record.id.value -->
-                    <field name="foto" />
-                    <field name="arrobas"/>
-
+                    <field name="logo" widget="image"/>
+                    <field name="name" required="1"/>
+                    <field name="town"/>
+                    <field name="swimmers" />
                     <templates>
-                    <t t-name="kanban-box">
-                            <div class="oe_product_vignette">
-                                <a type="open">
-                                    <img class="oe_kanban_image"
-                                        t-att-alt="record.name.value"
-                                        t-att-src="kanban_image('cooperativa.socio', 'foto', record.id.value)" />
-                                </a>
-                                <div class="oe_product_desc">
-                                    <h4>
-                                        <a type="edit">
-                                            <field name="name"></field>
-                                        </a>
-                                    </h4>
-                                    <ul>
-
-                                       <li>Arrobas: <field name="arrobas"></field></li>
-                                    </ul>
-                                </div>
+                        <t t-name="card" class="flex-row">
+                            <widget name="web_ribbon" title="1" bg_color="bg-success" invisible="classification != 1"/>
+                            <widget name="web_ribbon" title="2" bg_color="bg-primary" invisible="classification != 2"/>
+                            <widget name="web_ribbon" title="3" bg_color="bg-warning" invisible="classification != 3"/>
+                            <aside class="o_kanban_aside_full">
+                                <field name="logo" class="w-100" widget="image" options="{'img_class': 'object-fit-contain w-100 h-100'}"/>
+                            </aside>
+                            <main class="ps-2 ps-md-0">
+                                <div class="mb-1">
+                                    <field name="name" class="mb-0 fw-bold fs-5"/>
+                                    <br/>
+                                    Town:  <field name="town"/>
+                                <br/>
                             </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
+                            <footer>
+                                <div/>
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+
+            </kanban>
+        </field>
+    </record>
 ```
 
 
@@ -803,22 +529,14 @@ demanats després, però no estan disponibles per a que el Javascript puga
 utilitzar-los.
 
 A continuació ve un template **Qweb** en el que cal definir una etiqueta
-**`<t t-name="kanban-box">`** que serà renderitzada una vegada
+**`<t t-name="card">`** que serà renderitzada una vegada
 per cada element del model.
 
 Dins del template, es declaren divs o el que necessitem per donar-li el
 aspecte definitiu. Odoo ja té en el seu CSS unes classes per al
-productes o partners que podem aprofitar. El primer **div** defineix la
-forma i aspecte de cada caixa. Hi ha múltiples classes CSS que es poden
-utilitzar. Les que tenen **vignette** en principi no mostren vores ni
-colors de fons. Les que tenen **card** tenen el *border* prou marcat i
-un color de fons. Les bàsiques són **oe_kanban_vignette** i
-**oe_kanban_card**.
+productes o partners que podem aprofitar.
 
-Hi ha molts altres CSS que podem estudiar i utilitzar. Per exemple, els
-oe_kanban_image per a fer la imatge d\'una mida adequada o el
-oe_product_desc que ajuda a colocar el text al costat de la foto. En
-l\'exemple, usem uns **`<a>`** amb dos tipus: open i edit. Segons
+Podem utilitzar **`<a>`** amb dos tipus: open i edit. Segons
 el que posem, al fer click ens obri el form en mode vista o edició.
 Aquests botons o enllaços poden tindre aquestes funcions:
 
@@ -889,7 +607,7 @@ identificador extern d\'una vista form en **quick_create_view**. Aquest
 ```
 
 
-#### Imatges en els Kanbans
+### Imatges en els Kanbans
 
 En molts llocs trobarem la funció `kanban_image`. És la manera correcta de fer-ho en Qweb. Necessita posar el camp `id` el principi. però també es pot utilitzar dirèctament el `widget="image"` com en els forms. 
 
@@ -949,74 +667,48 @@ Per exemple:
 ```{tip}
 Els filtres sols poden comparar un field amb un valor específic. Així que si volem comparar dos fields cal fer una funció.
 ```
+
 #### Operadors per als domains: 
 
+```xml
 \'like\': \[(\'input\', \'like\', \'open\')\] - Returns case sensitive
 (wildcards - \'%open%\') search.
-
-O/p: open, opensource, openerp, Odooopenerp
-
 \'not like\': \[(\'input\', \'not like\', \'open\')\] - Returns results
 not matched with case sensitive (wildcards - \'%open%\') search.
-
-O/p: Openerp, Opensource, Open, Odoo, odoo, OdooOpenerp
-
 \'=like\': \[(\'name\', \'=like\', \'open\')\] - Returns exact (=
 \'open\') case sensitive search.
-
-O/p: open
-
 \'ilike\': \[(\'name\', \'ilike\', \'open\')\] - Returns exact case
 insensitive (wildcards - \'%open%\') search.
-
-O/p: Openerp, openerp, Opensource, opensource, Open, open, Odooopenerp,
-OdooOpenerp
-
 \'not ilike\': \[(\'name\', \'not ilike\', \'open\')\] - Returns results
 not matched with exact case insensitive (wildcards - \'%open%\') search.
-
-O/p: Odoo, odoo
-
 \'=ilike\': \[(\'name\', \'=ilike\', \'open\')\] - Returns exact (=
 \'open\' or \'Open\') case insensitive search.
-
-O/p: Open, open
-
 \'=?\':
-
 name = \'odoo\' parent_id = False \[(\'name\', \'like\', name),
 (\'parent_id\', \'=?\', parent_id)\] - Returns name domain result & True
-
-name = \'odoo\' parent_id = \'openerp\' \[(\'name\', \'like\', name),
+ name = \'odoo\' parent_id = \'openerp\' \[(\'name\', \'like\', name),
 (\'parent_id\', \'=?\', parent_id)\] - Returns name domain result &
 parent_id domain result
-
 \'=?\' is a short-circuit that makes the term TRUE if right is None or
 False, \'=?\' behaves like \'=\' in other cases
-
 \'in\': \[(\'value1\', \'in\', \[\'value1\', \'value2\'\])\] - in
 operator will check the value1 is present or not in list of right term
-
 \'not in\': \[(\'value1\', \'not in\', \[\'value2\'\])\] - not in
 operator will check the value1 is not present in list of right term
 While these \'in\' and \'not in\' works with list/tuple of values, the
 latter \'=\' and \'!=\' works with string
-
 \'=\': value = 10 \[(\'value\',\'=\',value)\] - term left side has 10 in
 db and term right our value 10 will match
-
 \'!=\': value = 15 \[(\'value\',\'!=\',value)\] - term left side has 10
 in db and term right our value 10 will not match
-
 \'child_of\': parent_id = \'1\' #Agrolait \'child_of\':
 \[(\'partner_id\', \'child_of\', parent_id)\] - return left and right
 list of partner_id for given parent_id
-
 \'\<=\', \'\<\', \'\>\', \'\>=\': These operators are largely used in
 openerp for comparing dates - \[(\'date\', \'\>=\', date_begin),
 (\'date\', \'\<=\', date_end)\]. You can use these operators to compare
 int or float also.
-
+``` 
 Els **filter** amb **group** agrupen per algun field:
 
 ``` xml
@@ -1125,3 +817,233 @@ atributs següents:
 ```{tip}
 Les vistes graph en Odoo són molt limitades, sols accepten un element en les X i necessiten que els camps estiguen guardats en la base de dades
 ```
+
+
+## Widgets
+
+Alguns camps, com ara les imatges, es poden mostrar utilitzant un
+**widget** distint que el per defecte:
+
+``` xml
+<field name="image" widget="image" class="oe_left oe_avatar"/>
+<field name="taken_seats" widget="progressbar"/>
+<field name="country_id" widget="selection"/>
+<field name="state" widget="statusbar"/>
+```
+
+Les vistes form, list o kanban de Odoo mostren els fields en els
+anomenats widgets. Aquests permeten, per exemple, que les dates tinguen
+un calendari o que es mostre una llista en un many2many.
+
+Cada field te un widget per defecte, però es poden canviar si volem
+representar la informació de manera distinta. Aquests són els widgets
+disponibles per a cada tipus de field, sobretot per al form, encara que
+alguns funcionen en el list:
+
+#### Integer i Float
+
+Els camps integer poden ser representats per molts widgets, es a dir, no
+donen error. Encara que no tots tenen sentit, com per exemple el *text*.
+
+-   **widget=\"integer\"**: Tan sols mostra el número sense comes. En
+    cas de no tindre valor, mostra 0.
+-   **widget=\"char\"**: També mostra el número, si no te valor deixa un
+    buit i el camp és més ample.
+-   **widget=\"id\"**: Mostra el número però no es pot editar.
+-   **widget=\"float\"**: Mostra el número en decimals.
+-   **widget=\"percentpie\"**: Mostra un gràfic circular amb el
+    percentatge (no funciona en la vista list ni en kanban).
+-   **widget=\"float_time\"**: Mostra els float com si representaren el
+    temps.
+-   **widget=\"progressbar\"**: Mostra una barra de progrés (funciona en
+    la vista list i form, però no en kanban):
+-   **widget=\"monetary\"**: Mostra el número amb 2 decimals.
+-   **widget=\"gauge\"**: Mostra un curiós gràfic de semi-circul. Sols
+    funciona en kanban.
+
+    Observem un ús real del `Gauge` per veure com els widgets poden tenir opcions:
+    
+``` xml
+<field name="current" widget="gauge" options="{'max_field': 'target_goal', 'label_field': 'definition_suffix', 'style': 'width:160px; height: 120px;'}" />
+```
+
+##### Char i Text {#char_i_text}
+
+-   **widget=\"char\"**: Mostra un editor d\'un línia.
+-   **widget=\"text\"**: Mostra un camp més alt per fer més d\'una
+    línia.
+-   **widget=\"email\"**: Crea el enllaç per enviar-li un correu.
+-   **widget=\"url\"**: Crea el enllaç amb http.
+-   **widget=\"date\"**: Permet guardar dates com cadenes de text.
+-   **widget=\"html\"**: Permet guardar textos però amb format. Apareix
+    un wysiwyg
+-   **dashboard_graph**:
+
+Mostra un gràfic menut indicant alguna progressió. Necessita tindre
+guardat (o generat) en el char un json determinat, per exemple:
+
+```json
+`[{"values":
+        [{"label":"2019-01-31","value": "7"},
+         {"label":"2019-02-01","value": "20"},
+         {"label":"2019-02-02","value": "45"},
+         {"label":"2019-02-03","value": "34"},
+         {"label":"2019-02-04","value": "40"},
+         {"label":"2019-02-05","value": "67"},
+         {"label":"2019-02-06","value": "80"}],
+ "area":true, "title": "Next Week", "key": "Ocupation", "color": "#7c7bad"}]`
+```
+
+I aquest seria un exemple del XML per a que funcione:
+
+``` xml
+<field name="week_ocupation" widget="dashboard_graph"  graph_type="bar"/>
+```
+
+En els exemples que es poden veure en Odoo, aquests valors són sempre
+computed, generant un json i invocant la funció de python json.dumps()
+([2](https://docs.python.org/3.7/library/json.html)):
+
+``` python
+           values = []
+           for i in record.sales:
+               reserves = i.quantity
+               values.append({'label':str(i.name),'value':str(reserves)})
+           graph = [{'values': values, 'area': True, 'title': 'Sales', 'key': 'Sales', 'color': '#7c7bad'}]
+           h.graph_data = json.dumps(graph)
+```
+
+Amés, accepta algunes opcions:
+
+-   **type**: Pot ser **bar** o **line**. En el cas de ser line, en
+    compte de \'label\' i \'value\' cal posar \'x\' i \'y\'.
+
+#### Boolean
+
+-   **Ribbon**: (Odoo 13) Mostra com una cinta al costat del formulari
+    per mostrar un boolean important.
+
+``` python
+<widget name="web_ribbon" text="Archived" bg_color="bg-danger" />
+<widget name="web_ribbon" text="Paid"/>
+```
+
+-   **boolean_toggle** per als lists, permet activar un boolean en un
+    list.
+
+#### Date
+
+-   **Daterange**: Mostra un rang de dates
+
+``` python
+date_begin = fields.Datetime( string='Start Date')
+<field name="date_begin" widget="daterange"/>
+```
+
+#### Many2one
+
+-   **widget=\"many2one\"**: Per defecte, crea un selection amb opció de
+    crear nous. Accepta arguments per evitar les opcions de crear:
+
+``` python
+ <field name="field_name" options="{'no_create': True, 'no_open': True}"/>
+```
+
+-   **widget=\"many2onebutton\"**: Crea un simple botó que indica si
+    està assignat. Si polses s\'obri el formulari.
+
+#### Many2Many
+
+-   **widget=\"many2many\"**: Per defecte, crea una llista amb opció de
+    esborrar o afegir nous.
+-   **widget=\"many2many_tags\"**: Llista amb etiquetes com en els
+    filtres
+-   **widget=\"many2many_checkboxes\"**: Llista de checkboxes.
+-   **widget=\"many2many_kanban\"**: Mostra un kanban dels que té
+    associats, necessita que la vista kanban estiga definida.
+-   **widget=\"x2many_counter\"**: Mostra sols la quantitat.
+-   **many2many_tags_avatar**:
+
+``` xml
+partner_ids = fields.Many2many('res.partner', 'calendar_event_res_partner_rel', string='Attendees')
+<field name="partner_ids" widget="many2many_tags_avatar" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_128"/>
+```
+
+#### One2many
+
+-   **widget=\"one2many\"**: Per defecte.
+-   **widget=\"one2many_list\"**: Aparentment igual, es manté per
+    retrocompatibilitat
+
+#### Modificar el list del One2many 
+
+El one2many, al igual que el many2one es poden vorer en format list. Per
+defecte agafa el list definit del model, però es pot especificar el list
+que volem veure:
+
+``` xml
+  <field name="fortress">
+   <list>
+     <field name="name"/><field name="level"/>
+   </list>
+  </field>
+```
+
+Inclús es pot forçar a mostrar un kanban:
+
+``` xml
+<field name="gallery" mode="kanban,list" context="{'default_hotel_id':active_id}">
+                 <kanban>
+                 <!--list of field to be loaded -->
+                 <field name="name" />
+                 <field name="image" />
+
+                 <templates>
+                 <t t-name="kanban-box">
+                     <div class="oe_product_vignette">
+                     <a type="open">
+                        <img class="oe_kanban_image" style="width:300px; height:auto;"
+                        t-att-src="kanban_image('marsans.hotel.galley', 'image', record.id.value)" />
+                    </a>
+                    <div class="oe_product_desc">
+                        <h4>
+                        <a type="edit">
+                            <field name="name"></field>
+                        </a>
+                        </h4>
+
+                    </div>
+                    </div>
+                    </t>
+                    </templates>
+                </kanban>
+                </field>
+```
+
+De vegades, el kanban este no funciona perquè no força a carregar les
+imatges.
+
+#### Binary o Image 
+
+-   **signature**: Permet signar dirènctament en la pantalla
+-   **image**: A banda del que es pot ficar en el field de max_width o
+    max_height, al widget es pot afegir opcions com:
+
+```python
+    options="{&quot;zoom&quot;: true, &quot;preview_image&quot;: &quot;image_128&quot;}
+```
+#### Selection
+```xml
+           <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
+```
+#### Fields dels list
+
+-   **handle**: Per a ordenar a ma. Cal que aquest camp siga el criteri
+    d\'ordenació.
+
+
+**Reescalar les imatges**
+
+Molt a sovint, tenim la necessitat de reescalar les imatges que
+l\'usuari penja. A partir d\'Odoo 13 tenim el field Image que permet
+tindre diferents resolucions amb varis related
