@@ -4,6 +4,7 @@ import { fail, json2, ok, warn } from '../services/odooClient'
 export const exercise = createExercise({
   slug: 'practica_constrains',
   specificFields: [
+     { key: 'modelName', label: 'Model per validar', type: 'text', placeholder: '' },
     { key: 'existingNif', label: 'NIF alumne ja existent (test unicitat)', type: 'text', placeholder: '12345678A' },
   ],
   createTests: (values) => [
