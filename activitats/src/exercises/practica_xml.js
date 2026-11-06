@@ -6,7 +6,10 @@ const LABELS = { img: 'Imatge', ref: 'Referència', dat: 'Data Calculada', m2m: 
 
 export const exercise = createExercise({
   slug: 'practica_xml',
-  specificFields: [],
+  specificFields: [
+ { key: 'modelName', label: 'Model per validar', type: 'text', placeholder: '' },
+
+  ],
   createTests: (values) => [
     {
       title: 'Model rpg.avaluador existeix',
