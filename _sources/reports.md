@@ -2,34 +2,39 @@
 
 El motor de reports utilitza una combinació de **QWeb, BootStrap i Wkhtmltopdf**.
 
+https://www.odoo.com/documentation/19.0/developer/reference/frontend/qweb.html
+
 ```{admonition} Consell
 :class: tip
 
 Pot ser que el wkhtmltopdf de la distribució no funcione. Cal anar a https://github.com/wkhtmltopdf/wkhtmltopdf/releases/ i descarregar el '''.deb''' de la versió estable més alta. S'instal·larà amb '''dpkg -i'''
 
-Amb '''wkhtmltopdf -V''' podem comprovar si la versió correcta s'ha instal·lat. 
+Amb '''wkhtmltopdf -V''' podem comprovar si la versió correcta s'ha instal·lat.
 ```
+
 Un report consta de dos elements:
 
--   Un registre en la base de dades en el model:
-    **ir.actions.report.xml** amb els paràmetres bàsics
--   Una vista `Qweb`  per al contingut.
+- Un registre en la base de dades en el model:
+  **ir.actions.report.xml** amb els paràmetres bàsics
+- Una vista `Qweb` per al contingut.
 
 Per exemple, en el xml:
 
-``` xml
-<report
-        id="report_session"
-        model="openacademy.session"
-        string="Session Report"
-        name="openacademy.report_session_view"
-        file="openacademy.report_session"
-        report_type="qweb-pdf" />
+```xml
+    <record id="natacio.action_championship_report" model="ir.actions.report">
+        <field name="name">Championship Results</field>
+        <field name="model">natacio.championship</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">natacio.report_session_view</field>
+        <field name="report_file">natacio.report_session_view</field>
+        <field name="binding_model_id" ref="model_natacio_championship" />
+        <field name="binding_type">report</field>
+    </record>
 
     <template id="report_session_view">
-        <t t-call="report.html_container">
+        <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="report.external_layout">
+                <t t-call="web.external_layout">
                     <div class="page">
                         <h2 t-field="doc.name"/>
                         <p>From <span t-field="doc.start_date"/> to <span t-field="doc.end_date"/></p>
@@ -46,17 +51,16 @@ Per exemple, en el xml:
     </template>
 ```
 
-Els reports simplifiquen amb l\'etiqueta **report** la creació d\'un
-action de tipus report. Automàticament situen un botó dalt del tree o
+Automàticament situen un botó dalt del tree o
 form per imprimir.
 
 Una mínima template que funciona:
 
-``` xml
+```xml
 <template id="report_invoice">
-    <t t-call="report.html_container">
+    <t t-call="web.html_container">
         <t t-foreach="docs" t-as="o">
-            <t t-call="report.external_layout">
+            <t t-call="web.external_layout">
                 <div class="page">
                     <h2>Report title</h2>
                     <p>This object's name is <span t-field="o.name"/></p>
@@ -69,20 +73,20 @@ Una mínima template que funciona:
 
 Analitzem aquesta template:
 
--   **external_layout**: Afegeix la capçalera i el peu per defecte de
-    Odoo.
--   Dins de
-    ```xml
-    <div class="page">
-    ```
-    Està el contingut del report.
--   **id**: A de ser el mateix que el name del report.
--   **docs**: Llista d\'objectes a imprimir. (Paregut a self)
+- **external_layout**: Afegeix la capçalera i el peu per defecte de
+  Odoo.
+- Dins de
+  ```xml
+  <div class="page">
+  ```
+  Està el contingut del report.
+- **id**: A de ser el mateix que el name del report.
+- **docs**: Llista d\'objectes a imprimir. (Paregut a self)
 
 Es poden afegir css locals o externs al report heredant el template e
 insertant el css:
 
-``` xml
+```xml
 <template id="report_saleorder_style" inherit_id="report.layout">
   <xpath expr="//style" position="after">
     <style type="text/css">
@@ -96,8 +100,8 @@ insertant el css:
 
 Per afegir una imatge de la base de dades:
 
-``` xml
-<span t-field="doc.logo" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+```xml
+<img t-attf-src="data:image/*;base64,{{c.logo}}"/>
 ```
 
 **Notes sobre QWeb**
@@ -105,19 +109,86 @@ Per afegir una imatge de la base de dades:
 QWeb és el motor de plantilles de Odoo. Els elements són etiquetes XML
 que comencen per **t-**
 
--   t-field: Per mostrar el contingut d\'un field
--   t-if: Per fer condicionals. Per fer un condicional en funció de si
-    un field està o no, sols cal ficar el field en questió dins del
-    condicional.
+- t-field: Per mostrar el contingut d\'un field
+- t-if: Per fer condicionals. Per fer un condicional en funció de si
+  un field està o no, sols cal ficar el field en questió dins del
+  condicional.
 
-``` xml
+```xml
   <t t-if="viatge.hotel">
     <!-- ... -->
   </t>
 ```
 
--   t-foreach: Per fer bucles per els elements d\'un one2many, per
-    exemple.
+- t-foreach: Per fer bucles per els elements d\'un one2many, per
+  exemple:
+
+```xml
+<t t-foreach="s.events" t-as="e">
+    <span t-field="e.name" />
+</t>
+```
+
+En el cas de mostrar dades que no són fields es posa `t-esc` o `t-out`
+
+```xml
+ <span t-out="sw['swimmer']" />
+```
+
+QWeb no pot executar codi però pot cridar a una funció:
+
+```xml
+ <tr t-foreach="o.generate_data_event(e.id)" t-as="sw">
+```
+
+**Per a crear un nou tipus de paper:**
+
+```xml
+    <record id="natacio.paperformat_ticket_80mm" model="report.paperformat">
+        <field name="name">Ticket 80mm</field>
+        <field name="format">custom</field>
+        <field name="page_width">80</field>
+        <field name="page_height">40</field>
+        <field name="orientation">Portrait</field>
+
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+    </record>
+
+```
+
+i en el action:
+
+```xml
+<field name="paperformat_id" ref="natacio.paperformat_ticket_80mm" />
+```
+
+**Per a posar QRs**
+
+```xml
+  <div class="qr">
+     <img
+      t-att-src="
+                base_url +
+                 '/report/barcode/QR/' +
+                    (o.name + ' - Ticket ' + str(ticket['n']))
+                   "
+          width="50"
+         height="50"
+             />
+  </div>
+```
+
+En cas de voler codis de barres normals:
+
+```xml
+/report/barcode/?barcode_type=Code128&value=123456789
+```
 
 **Depurar els reports**
 

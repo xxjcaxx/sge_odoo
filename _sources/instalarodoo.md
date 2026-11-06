@@ -61,7 +61,7 @@ sudo usermod -aG docker $USER
 En Docker és molt senzill desplegar Odoo, tan sols fa falta aquests
 comandaments:
 
-    # docker run -d --restart="always" -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:9.4
+    # docker run -d --restart="always" -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:15.0
     # docker run --restart="always" -p 8069:8069 --name odoo --link db:db -t odoo
     # docker stop odoo
     # docker start -a odoo
@@ -137,7 +137,7 @@ compose](https://docs.docker.com/compose/) com aquest:
 services:
   odoo:
     container_name: odoo
-    image: odoo:18.0
+    image: odoo:19.0
     depends_on:
       - db
     ports:
@@ -187,12 +187,36 @@ addons_path = /mnt/extra-addons
 Si volem entrar en la base de dades postgreSQL per a fer coses
 manualment, podem executar:
 
+```bash
     docker exec -ti postgresql psql proves -U odoo
-
+    # o
+    docker compose exec db psql proves -U odoo
+```
 
 Executem el comandament psql de forma interactiva a la base de dades proves i amb l\'usuari odoo. 
 
 Cal cambé observar que hem associat un volum a les carpetes dels dos contenidors, excepte config i addons. Això permet compartir el codi i la configuració d'Odoo sense compartir massa fitxers o les dades privades de la base de dades. Per compartir sols cal comprimir o posar en Git la carpeta contenidora dels fitxers i carpetes que estem creant.
+
+#### En Incus
+
+Si estem creant el docker dins d'un contenidor `incus` cal fer algunes configuracions més:
+
+En docker-compose.yml, al contenidor de la base de dades cal afegir:
+
+```yml
+    security_opt:
+      - apparmor=unconfined
+```
+
+En el sistema anfitriò cal activar els contenidors niuats:
+
+```bash
+incus config set nombre_de_tu_contenedor security.nesting=true
+incus config set nombre_de_tu_contenedor security.syscalls.intercept.mknod=true
+incus config set nombre_de_tu_contenedor security.syscalls.intercept.setxattr=true
+```
+
+> En Incus funciona millor amb Debian/13 i docker natiu. 
 
 #### Mode desenvolupador en Docker
 
@@ -215,10 +239,9 @@ Com que el comandament amb `--dev=all` no actualitza la base de dades, la creaci
     command: ["--dev=all", "-u", "modul", "-d", "basededades"]
 ```
 
-Però sols quan ja existeix la base de dades i el mòdul està instal·lat. En cas d'arrancar docker amb aquest comandament per primera vegada, es crearà la base de dades amb una confoguració estàndard que no ens interessa en Anglés, sense dades de demo i amb usuari/password admin/admin.
+Però sols quan ja existeix la base de dades i el mòdul està instal·lat. En cas d'arrancar docker amb aquest comandament per primera vegada, es crearà la base de dades amb una configuració estàndard que no ens interessa en anglès, sense dades de demo i amb usuari/password admin/admin.
 
-
-Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker-compose down` i tornar a arrancar els contenidors de nou. Això suposa molta feina, així que ho podem simplificar afegint a `Visual Studio code` una extensió com `VS Code Action Buttons` i configurant el seu `json` així:
+Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker compose down` i tornar a arrancar els contenidors de nou. Això suposa molta feina, així que ho podem simplificar afegint a `Visual Studio code` una extensió com `VS Code Action Buttons` i configurant el seu `json` així:
 
 ```json
         "commands": [
@@ -236,6 +259,7 @@ Amés, sols s'executarà quan arranquem el Docker, per tant, cal fer un `docker-
             },
         ],
 ```
+
 El primer `Command` ho reinicia tot, tant la base de dades com Odoo i elimina els contenidors per recrear-los. Això pot solucionar alguns problemes. Però en principi, el segon reinicia només el contenidor Odoo sense recrear-ho. És més ràpid i també actualitza la base de dades. El comandament el podem utilitzar en una terminal si no volem fer els botons o estem en un entorn on hi ha interfície gràfica.  
 
 > Si no necessites ser sudo per executar docker es pot llevar dels comandaments anteriors.
@@ -244,7 +268,11 @@ En **Pycharm** és encara més sencill perquè es poden crear en `Run > Edit con
 
 Per veure els logs podem fer:
 
+```bash
     docker logs odoo -f
+    #o
+    docker compose logs odoo -f
+```
 
 ```{admonition} Colors en la terminal
 :class: tip
@@ -254,9 +282,12 @@ Els logs es veuen en color gràcies a posar `tty:true` en el fitxer de configura
 
 Per fer un mòdul nou:
 
-    docker exec -ti odoo  odoo scaffold proves /mnt/extra-addons
-    docker exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
+```bash
+    docker compose exec -ti odoo  odoo scaffold proves /mnt/extra-addons
+    docker compose exec -ti odoo chmod 777 -R /mnt/extra-addons/proves
+```
 
+Pot ser que tinguem un problema de permisos en aquest pas. És important recordad que la carpeta `addons` de fora pot o no ser propietat de l'usuari del docker depen de si existeix abans o no. Per tant, cal donar-i permisos 777 a la de fora y també dins del docker a la de dins. 
 
 ```{admonition} Shell
 :class: tip
@@ -319,9 +350,29 @@ pytest_cache/
 
 Com que els volumns de la base de dades i del propi Odoo no van a estar a la carpeta, no cal ignorar l'instal·lació d'Odoo. Es pot crear un repositori en Github i després configurar la carpeta sencera amb `docker-compose.yml`, el directori config, nginx o addons, per exemple. Al descarregar el repositori es generará un entorn de treball igual que l'original, però sense les dades de la base de dades. 
 
+**Analitzar el codi oficial**
+
+El codi d'Odoo està a Github. si volem veure com estan fets els mòduls:
+
+```bash
+git clone --depth 1 --filter=blob:none --sparse https://github.com/odoo/odoo.git
+cd odoo
+git sparse-checkout set addons
+```
+
+I obrir el directori amb l'editor de text. 
+
 ## Posar en producció amb docker
 
 Si podem deixar correguent un Docker a un servidor amb connexió a Internet amb els ports exposats, ja estaria en producció. No obstant això suposa varis problemes de seguretat i rendiment. 
+
+El primer de tot és afegir al contenidor d'Odoo i PostgreSQL en docker-compose:
+
+```yml
+restart: always
+```
+
+Després cal configurar HTTPs, per a això el posarem a Nginx:
 
 ### Docker de Nginx
 
@@ -476,6 +527,44 @@ Cada empresa té unes necessitats i aquesta pregunta pot tenir moltes respostes.
 
 La resposta continúa sense ser clara. Cada empresa té unes posibilitats i necessitats. Una micro-empresa amb pocs ordinadors i sols necessitar de intranet pot instal·lar en un Docker en un servidor de baix consum amb copies de seguretat periòdiques. Una empresa menuda pot desplegar en VPS o PAAS amb preus predefinits i controlats i anar augmentant conforme ho necessiten. Una empresa més gran pot decidir-se per núvols més de baix nivell (IAAS) o per una instal·lació on-premise més seria amb alta disponibilitat a la propia empresa. Un SAAS pot ser útil per a empreses que no necessiten cap personalització. Si el negoci és donar el propi servei d'Odoo, es pot optar per contractar un IAAS i a sobre, donar un servei SAAS amb personalitzacions a mida i cobrar pel servei i per les personalitzacions.
 
+## Instal·lar en un entorn virtual **UV**
+
+https://www.youtube.com/watch?v=Ab4SGiJogzM 
+https://docs.astral.sh/uv/
+
+Odoo no deixa de ser un programa `Python` interpretable. Si aquest capítol té varis metodes d'instal·lació és perquè símplement descarregar el repositori i fer `python3 odoo-bin` és viable, però pot donar molts problemes. 
+
+El problema de Python és que s'han de gestionar moltes llibreries i cada projecte necessita unes i de vegades distintes versions de la mateixa. Python compta amb `pip` per gestionar paquets, però el propi `pip` dona advertències quan vols instal·lar un paquet de forma global.
+
+Docker, Incus, Venv, Màquines virtuals... són distintes solucions a aquest problema. L'instal·lació amb paquets oficials .deb, per exemple, que es veu a aquest manual també, sol funcionar bé, però és acceptable sols en una màquina virtual o contenidor dedicat a Odoo.
+
+Docker és una bona manera d'encapsular Odoo i altres servicis com Postgres, però una manera més lleugera d'executar Odoo, si ja tenim la base de dades, és amb `venv` o `uv`. 
+
+Una vegada instal·lat `uv`:
+
+```bash
+mkdir odoo_uv
+cd odoo_uv
+uv init --python 3.12 # o la versió que necessitem
+```
+
+Es creen varis arxius, ens interessa observar què passa en `pyproject.toml`. Guarda l'informació necessària per a generar un entorn igual amb totes les dependències. 
+
+No gastarem `pip install`, ho farem amb `uv add`.
+
+Ens descarreguem els `requirements.txt` d'Odoo: https://github.com/odoo/odoo/blob/master/requirements.txt 
+
+```bash 
+uv add -r requirements.txt
+```
+
+I després, en el directori `odoo_uv`: 
+
+```bash
+./.venv/bin/python ~/odoo/odoo-bin -c ~/config/odoo.conf # Suposant que Odoo està descarregat ahí. 
+```
+
+> Cal crear un `.gitignore` amb el `.venv` i altres fitxers que no volem posar en un repositori públic.
 
 ## Instal·lar en Debian i Ubuntu
 

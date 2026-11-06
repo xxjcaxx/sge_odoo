@@ -699,3 +699,19 @@ El formulari del wizard també és molt senzill:
             </field>
         </record>
 ```
+
+
+## Recopilació de maneres de cridar a un wizard
+
+- Per un action ja preexistent en la base de dades amb **%()d** i un botó de tipus action.
+- Per un action ja preexistent que tinga **binding_model** i per tant isca en el menú de dalt d\'una vista en eixe model.
+- Per un action generat per Python i retornat per una funció. (En Odoo totes les funcions cridades des de la vista poden retornar un action que després el client executa).
+- Eixe action pot ser creat per Python en un mètode del propi `transientModel` del wizard. 
+- Per un action preexistent però obtingut en una funció Python i retornat per aquesta. No és molt freqüent, però  pot ser l\'única opció si la funció pot o no retornar un wizard i la cridada al mateix es vol definir una vegada només.
+- Llocs on cridar a un wizard:
+  - En un botó d\'una vista.
+  - En el menú de dalt d\'una vista.
+  - En un nou menú.
+  - En el header de una vista, per exemple, tree.
+  - Encadenat a un altre wizard.
+

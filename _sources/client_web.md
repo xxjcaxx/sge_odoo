@@ -36,6 +36,10 @@ Reflexionem sobre el tipus de modificació que necessitem:
 - Un canvi en la manera de mostrar un recordset sencer: Crear una  vista.
 - Fer una web des de 0 amb les dades d\'Odoo: Utilitzar els [Web controllers](https://www.odoo.com/documentation/master/developer/reference/backend/http.html)
 
+
+https://www.simplifyit.com.bo/es/book
+
+
 ## Arquitectura del client web
 
 El **WebClient** d\'Odoo es construeix amb mòduls, de la mateixa manera que
