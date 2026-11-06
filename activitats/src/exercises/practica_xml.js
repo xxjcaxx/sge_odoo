@@ -79,9 +79,39 @@ export const exercise = createExercise({
         })
         const rec = Array.isArray(data) ? data[0] : null
         if (!rec?.nom_model) return warn('Sense registre img per validar la imatge.')
-        const img = await json2(values, rec.nom_model, 'search_read', {
-          domain: [], fields: ['image', 'image_1920'], limit: 1,
-        })
+        const fieldsInfo = await json2(values, rec.nom_model, 'fields_get', [], {
+  attributes: ['string', 'type', 'store']
+});
+const imageFields = Object.keys(fieldsInfo).filter(fieldName => {
+  const field = fieldsInfo[fieldName];
+  // Filtramos por tipo binary y que su nombre sugiera una imagen (opcional pero recomendado)
+  return field.type === 'binary';
+});
+if (imageFields.length === 0) {
+  return warn('El model no te cap registre image')
+}  
+
+const targetField = imageFields.includes('image_1920') ? 'image_1920' 
+                  : imageFields.includes('image') ? 'image' 
+                  : imageFields[0];
+
+console.log(`Campo de imagen seleccionado: ${targetField}`);
+
+// 3. Pedir los datos usando el campo detectado
+const recordId = await json2(values, 'ir.model.data', 'search_read', {
+  domain: [['name', '=', rec.ext_id.split('.')[1]]],
+  fields: ['res_id'], 
+  limit: 1,
+} );
+
+console.log('Record ID:', recordId);
+
+const img = await json2(values, rec.nom_model, 'search_read', {
+  domain: [['id', '=', recordId[0].res_id]], 
+  fields: [targetField],
+  limit: 1,
+});
+     
         const imgRec = Array.isArray(img) ? img[0] : null
         const b64 = imgRec?.image || imgRec?.image_1920
         return b64 ? ok('La imatge té contingut base64.') : warn('No s\'ha trobat contingut base64 en el camp image — revisa el fitxer de dades XML.')
@@ -95,9 +125,43 @@ export const exercise = createExercise({
         })
         const rec = Array.isArray(data) ? data[0] : null
         if (!rec?.nom_model) return warn('Sense registre dat per validar la data calculada.')
-        const modelData = await json2(values, rec.nom_model, 'search_read', {
+
+// 1. Obtenir la definició de tots els camps del model
+const fieldsInfo = await json2(values, rec.nom_model, 'fields_get', [], {
+  attributes: ['string', 'type', 'store']
+});
+
+// 2. Filtrar els camps que siguin de tipus 'datetime' (o 'date')
+const datetimeFields = Object.keys(fieldsInfo).filter(fieldName => {
+  const field = fieldsInfo[fieldName];
+  return field.type === 'datetime' || field.type === 'date';
+}).filter(fieldName => fieldName !== 'create_date' && fieldName !== 'write_date'); // Excloem camps automàtics
+
+if (datetimeFields.length === 0) {
+  throw new Error(`El model ${rec.nom_model} no té camps de tipus datetime.`);
+}
+
+
+
+const recordId = await json2(values, 'ir.model.data', 'search_read', {
+  domain: [['name', '=', rec.ext_id.split('.')[1]]],
+  fields: ['res_id'], 
+  limit: 1,
+} );
+
+console.log('Record ID:', recordId);
+
+const modelData = await json2(values, rec.nom_model, 'search_read', {
+  domain: [['id', '=', recordId[0].res_id]], 
+  fields: datetimeFields,
+  limit: 1,
+});
+
+console.log('Registre trobat:', modelData);
+
+       /* const modelData = await json2(values, rec.nom_model, 'search_read', {
           domain: [], fields: ['create_date', 'date', 'data_creacio'], limit: 1,
-        })
+        })*/
         const mRec = Array.isArray(modelData) ? modelData[0] : null
         const dateVal = mRec?.date || mRec?.data_creacio || mRec?.create_date
         if (!dateVal) return warn('No s\'ha pogut verificar el camp de data — comprova el nom del camp de data al model.')
